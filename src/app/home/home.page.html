@@ -1,0 +1,63 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title class="ion-text-center">
+      Oração do Perdão
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Blank</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+ <!--  <div id="container">
+    <strong>Ready to create an app?</strong>
+    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  </div> -->
+
+
+<div class="ion-text-center">
+
+  <h1>
+    Dia {{ totalClicks }} -> {{ displayLabel }}
+  </h1>
+
+  <h1>
+    <strong>{{ currentDate | date:'dd/MM/yyyy' }}</strong>
+  </h1>
+
+</div>
+
+  <br>
+<p>Eu perdoo-te, por favor, perdoa-me.<br>
+Nunca tiveste culpa,<br>
+Eu também nunca tive culpa,<br>
+Eu perdoo-te, perdoa-me, por favor.<br>
+A vida ensina-nos através das discórdias....<br>
+E eu aprendi a amar-te e a deixar-te ir da minha mente.
+<br><br>
+Precisas de viver as tuas próprias lições e eu também.<br>
+Eu perdoo-te. . . perdoa-me em nome de Deus.<br>
+Agora, vai ser feliz, para que eu seja também.<br>
+Que Deus te proteja e perdoe os nossos mundos,<br>
+As mágoas desapareceram do meu coração e só há luz e paz na minha vida.<br>
+Quero-te alegre, sorrindo, onde quer que estejas...
+<br><br>
+É tão bom soltar, parar de resistir e deixar fluir novos sentimentos!<br>
+Eu perdoei-te do fundo da minha alma, porque sei que nunca fizeste nada por mal,<br>
+E sim, porque acreditaste que era a melhor maneira de ser feliz...
+<br><br>
+Perdoa-me por ter nutrido ódio e mágoa por tanto tempo no meu coração.<br>
+Eu não sabia como era bom perdoar e soltar; eu não sabia como era bom deixar ir o que nunca me pertenceu.
+<br><br>
+Agora sei que só podemos ser felizes quando soltamos as vidas, para que sigam os seus próprios sonhos e os seus próprios erros.<br>
+Não quero mais controlar nada, nem ninguém. Por isso, peço que me perdoes e solta-me também, para que o teu coração se encha de amor, assim como o meu.</p>
+  <ion-button (click)="gravar()" [disabled]="!buttonEnabled" color="primary" expand="block">
+    Gravar
+  </ion-button>
+
+  <p>{{ mensagem }}</p>
+</ion-content>

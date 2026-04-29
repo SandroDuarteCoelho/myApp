@@ -70,4 +70,7 @@ export class HomePage implements OnInit {
     }
   }
 
+  openOutros() {
+    window.location.href = '/outros';
+  }
 }

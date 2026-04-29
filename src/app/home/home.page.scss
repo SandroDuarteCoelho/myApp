@@ -1,6 +1,33 @@
+.prayer-text {
+  font-size: 1.2em;
+  line-height: 1.6;
+  padding: 20px;
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.date-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.date-container h1 {
+  margin: 0;
+  flex-shrink: 0;
+}
+
+#outros-btn {
+  --border-radius: 20px;
+  --padding-start: 8px;
+  --padding-end: 8px;
+  height: 36px;
+  font-size: 0.8em;
+}
+
 #container {
   text-align: center;
-
   position: absolute;
   left: 0;
   right: 0;
@@ -16,9 +43,7 @@
 #container p {
   font-size: 16px;
   line-height: 22px;
-
   color: #8c8c8c;
-
   margin: 0;
 }
 

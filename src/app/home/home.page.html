@@ -13,26 +13,20 @@
     </ion-toolbar>
   </ion-header>
 
- <!--  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div> -->
+  <div class="ion-text-center">
+    <h1>
+      Dias feitos: {{ totalClicks }} 
+    </h1>
 
+    <div class="date-container">
+      <h1>
+        <strong>{{ displayLabel }} -- {{ currentDate | date:'dd/MM/yyyy' }}</strong>
+      </h1>
+    <ion-button id="outros-btn" (click)="openOutros()" size="small">Outros</ion-button>
+    </div>
+  </div>
 
-<div class="ion-text-center">
-
-  <h1>
-    Dia {{ totalClicks }} -> {{ displayLabel }}
-  </h1>
-
-  <h1>
-    <strong>{{ currentDate | date:'dd/MM/yyyy' }}</strong>
-  </h1>
-
-</div>
-
-  <br>
-<p>Eu perdoo-te, por favor, perdoa-me.<br>
+  <p class="prayer-text ion-padding">Eu perdoo-te, por favor, perdoa-me.<br>
 Nunca tiveste culpa,<br>
 Eu também nunca tive culpa,<br>
 Eu perdoo-te, perdoa-me, por favor.<br>
@@ -55,6 +49,7 @@ Eu não sabia como era bom perdoar e soltar; eu não sabia como era bom deixar i
 <br><br>
 Agora sei que só podemos ser felizes quando soltamos as vidas, para que sigam os seus próprios sonhos e os seus próprios erros.<br>
 Não quero mais controlar nada, nem ninguém. Por isso, peço que me perdoes e solta-me também, para que o teu coração se encha de amor, assim como o meu.</p>
+
   <ion-button (click)="gravar()" [disabled]="!buttonEnabled" color="primary" expand="block">
     Gravar
   </ion-button>

@@ -10,8 +10,28 @@ export const routes: Routes = [
     loadComponent: () => import('./outros/outros.page').then((m) => m.OutrosPage),
   },
   {
+    path: 'oracao-perdao',
+    loadComponent: () => import('./oracao-perdao/oracao-perdao.page').then((m) => m.OracaoPerdaoPage),
+  },
+  {
+    path: 'perfil',
+    loadComponent: () => import('./perfil/perfil.page').then((m) => m.PerfilPage),
+  },
+  {
+    path: 'animais',
+    loadComponent: () => import('./animais/animais.page').then((m) => m.AnimaisPage),
+  },
+  {
+    path: 'valores',
+    loadComponent: () => import('./valores/valores.page').then((m) => m.ValoresPage),
+  },
+  {
+    path: 'meditacoes',
+    loadComponent: () => import('./meditacoes/meditacoes.page').then((m) => m.MeditacoesPage),
+  },
+  {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'oracao-perdao',
     pathMatch: 'full',
   },
 ];

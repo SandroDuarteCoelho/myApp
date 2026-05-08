@@ -1,0 +1,72 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title class="ion-text-center">Casa Atual</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="cards-grid">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6">
+        <ion-card (click)="navigatePrayer()">
+          <ion-card-header>
+            <ion-card-subtitle>Orações</ion-card-subtitle>
+            <ion-card-title>Oração do Perdão</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            Pratique a oração do perdão diariamente.
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col size="6">
+        <ion-card (click)="navigatePerfil()">
+          <ion-card-header>
+            <ion-card-subtitle>Usuário</ion-card-subtitle>
+            <ion-card-title>Perfil</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            Gerencie seu perfil.
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6">
+        <ion-card (click)="navigateAnimais()">
+          <ion-card-header>
+            <ion-card-subtitle>Natureza</ion-card-subtitle>
+            <ion-card-title>Animais</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            Conteúdo sobre animais.
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col size="6">
+        <ion-card (click)="navigateValores()">
+          <ion-card-header>
+            <ion-card-subtitle>Princípios</ion-card-subtitle>
+            <ion-card-title>Valores</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            Explore valores.
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6">
+        <ion-card (click)="navigateMeditacoes()">
+          <ion-card-header>
+            <ion-card-subtitle>Relaxamento</ion-card-subtitle>
+            <ion-card-title>Meditações</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            Pratique meditações guiadas.
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+

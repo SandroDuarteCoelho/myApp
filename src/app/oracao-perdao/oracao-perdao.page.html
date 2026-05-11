@@ -28,7 +28,13 @@
 
   <ion-grid>
 
-    <div class="regra-container">{{ regraTexto }}</div>
+    <div class="regra-container">
+      <div class="regra-text">{{ regraTexto }}</div>
+      <ion-button class="regra-edit-btn" size="small" fill="clear" (click)="openRegraEdit()">
+        editar
+      </ion-button>
+    </div>
+
 
 
     <ion-row>
@@ -85,33 +91,88 @@
           <ion-card-content> Pratique meditações guiadas. </ion-card-content>
         </ion-card>
       </ion-col>
+
+      <ion-col size="6">
+        <ion-card (click)="navigateLinguagemCorpo()">
+          <ion-card-header>
+            <ion-card-subtitle>Comunicação</ion-card-subtitle>
+            <ion-card-title>Linguagem do Corpo</ion-card-title>
+          </ion-card-header>
+          <ion-card-content> Entenda sinais do corpo. </ion-card-content>
+        </ion-card>
+      </ion-col>
     </ion-row>
   </ion-grid>
 
-  <ion-modal
-    [isOpen]="isCasasModalOpen"
-    (didDismiss)="isCasasModalOpen = false"
-  >
-    <ng-template>
-      <ion-header>
-        <ion-toolbar>
-          <ion-title>Casas</ion-title>
-          <ion-buttons slot="end">
-            <ion-button (click)="isCasasModalOpen = false">Fechar</ion-button>
-          </ion-buttons>
-        </ion-toolbar>
-      </ion-header>
 
-      <ion-content class="ion-padding">
-        <ion-list>
-          <ion-item *ngFor="let casa of casasList">
-            <ion-label>
-              <h2 class="casa-item-title">{{ casa.nome }}</h2>
-              <p class="casa-item-desc">{{ casa.descricao }}</p>
-            </ion-label>
-          </ion-item>
-        </ion-list>
-      </ion-content>
-    </ng-template>
-  </ion-modal>
+<!-- MODAL: EDITAR FRASE -->
+<ion-modal
+  [isOpen]="isRegraEditModalOpen"
+  (didDismiss)="closeRegraEdit()"
+>
+  <ng-template>
+
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Editar frase</ion-title>
+
+        <ion-buttons slot="end">
+          <ion-button (click)="closeRegraEdit()">Cancelar</ion-button>
+          <ion-button (click)="saveRegraEdit()">Guardar</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="ion-padding">
+
+      <ion-item>
+        <ion-label position="stacked">Frase</ion-label>
+
+        <ion-input
+          [(ngModel)]="regraTextoEdit"
+          placeholder="Digite a nova frase"
+        ></ion-input>
+
+      </ion-item>
+
+    </ion-content>
+
+  </ng-template>
+</ion-modal>
+
+
+<!-- MODAL: CASAS -->
+<ion-modal
+  [isOpen]="isCasasModalOpen"
+  (didDismiss)="isCasasModalOpen = false"
+>
+  <ng-template>
+
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Casas</ion-title>
+
+        <ion-buttons slot="end">
+          <ion-button (click)="isCasasModalOpen = false">
+            Fechar
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="ion-padding">
+
+      <ion-list>
+        <ion-item *ngFor="let casa of casasList">
+          <ion-label>
+            <h2 class="casa-item-title">{{ casa.nome }}</h2>
+            <p class="casa-item-desc">{{ casa.descricao }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+
+    </ion-content>
+
+  </ng-template>
+</ion-modal>
 </ion-content>

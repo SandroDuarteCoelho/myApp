@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+
 
 
 import {
@@ -25,7 +28,9 @@ import {
   IonList,
   IonItem,
   IonLabel,
+  IonInput,
 } from '@ionic/angular/standalone';
+
 
 
 
@@ -38,11 +43,11 @@ import {
   standalone: true,
   imports: [
     CommonModule,
+    FormsModule,
     HttpClientModule,
 
+
     IonHeader,
-
-
 
     IonToolbar,
     IonTitle,
@@ -55,7 +60,6 @@ import {
     IonLabel,
     IonGrid,
 
-
     IonRow,
     IonCol,
     IonCard,
@@ -63,9 +67,12 @@ import {
     IonCardTitle,
     IonCardSubtitle,
     IonCardContent,
-    
+    IonInput,
   ],
 })
+
+
+
 
 export class OracaoPerdaoPage implements OnInit {
 
@@ -102,6 +109,11 @@ export class OracaoPerdaoPage implements OnInit {
 
 
   isCasasModalOpen = false;
+  isRegraEditModalOpen = false;
+  regraTextoEdit = '';
+  regraTextoEditBackup = '';
+
+
 
   // Área de edição (antes dos cards)
   isEditAreaVisible = true;
@@ -221,6 +233,13 @@ export class OracaoPerdaoPage implements OnInit {
   }
 
   private loadRegra(): void {
+    // Se o utilizador já alterou, preferir a versão guardada.
+    const savedTexto = window.localStorage.getItem('oracao_perdao_regra_texto');
+    if (savedTexto) {
+      this.regraTexto = savedTexto;
+      return;
+    }
+
     this.http.get<{ id?: string; texto?: string }>('assets/data/regra.json').subscribe({
       next: (data) => {
         this.regraTexto = data?.texto ?? '';
@@ -231,12 +250,37 @@ export class OracaoPerdaoPage implements OnInit {
     });
   }
 
+
   openCasasInfo() {
-
-
-
     this.isCasasModalOpen = true;
   }
+
+  openRegraEdit(): void {
+    this.regraTextoEditBackup = this.regraTexto ?? '';
+    this.regraTextoEdit = this.regraTextoEditBackup;
+    this.isRegraEditModalOpen = true;
+  }
+
+
+  saveRegraEdit(): void {
+    const texto = (this.regraTextoEdit ?? '').trim();
+    if (!texto) return;
+
+    // Guarda no localStorage para substituir a frase anterior.
+    window.localStorage.setItem('oracao_perdao_regra_texto', texto);
+    this.regraTexto = texto;
+    this.regraTextoEditBackup = texto;
+    this.isRegraEditModalOpen = false;
+  }
+
+
+  closeRegraEdit(): void {
+    // Repor o texto caso o utilizador cancele.
+    this.regraTextoEdit = this.regraTextoEditBackup ?? this.regraTexto ?? '';
+    this.isRegraEditModalOpen = false;
+  }
+
+
 
 
   navigatePrayer() {
@@ -259,6 +303,11 @@ export class OracaoPerdaoPage implements OnInit {
     window.location.href = '/meditacoes';
   }
 
+  navigateLinguagemCorpo() {
+    window.location.href = '/linguagem-corpo';
+  }
+
 
 }
+
 

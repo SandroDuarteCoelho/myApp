@@ -14,6 +14,10 @@ export const routes: Routes = [
     loadComponent: () => import('./oracao-perdao/oracao-perdao.page').then((m) => m.OracaoPerdaoPage),
   },
   {
+    path: 'linguagem-corpo',
+    loadComponent: () => import('./linguagem-corpo/linguagem-corpo.page').then((m) => m.LinguagemCorpoPage),
+  },
+  {
     path: 'perfil',
     loadComponent: () => import('./perfil/perfil.page').then((m) => m.PerfilPage),
   },

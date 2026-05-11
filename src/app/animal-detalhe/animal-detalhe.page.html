@@ -1,0 +1,31 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button fill="clear" size="small" (click)="voltar()">Voltar</ion-button>
+      <ion-button fill="clear" size="small" (click)="sair()">Sair</ion-button>
+    </ion-buttons>
+    <ion-title>{{ animal?.nome || 'Animal' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ng-container *ngIf="animal; else notFound">
+    <ion-card>
+      <ion-img [src]="getImagem(animal.imagem)" [alt]="animal.nome"></ion-img>
+      <ion-card-content>
+        <h1 class="animal-name">{{ animal.nome }}</h1>
+        <p class="animal-desc">{{ animal.descricao }}</p>
+      </ion-card-content>
+    </ion-card>
+  </ng-container>
+
+  <ng-template #notFound>
+    <ion-card>
+      <ion-card-content>
+        <h1 class="animal-name">Animal não encontrado</h1>
+        <p class="animal-desc">Não foi possível carregar os dados para este item.</p>
+      </ion-card-content>
+    </ion-card>
+  </ng-template>
+</ion-content>
+

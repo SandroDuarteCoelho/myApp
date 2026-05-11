@@ -1,12 +1,36 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title class="ion-text-center">Casa Atual</ion-title>
+    <ion-buttons slot="start">
+      <ion-button
+        class="info-btn"
+        fill="clear"
+        size="small"
+        (click)="openCasasInfo()"
+        aria-label="Informações das casas"
+      >
+        info
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title class="ion-text-center" [ngClass]="casaClass">
+      <div class="casa-title-wrap">
+        <div class="casa-title">{{ casaAtual }}</div>
+        <div class="casa-desc">{{ descricaoCasaAtual }}</div>
+      </div>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" class="cards-grid">
+  <div class="background-layer" [ngStyle]="{ 'background-image': 'url(' + backgroundImage + ')' }" aria-hidden="true"></div>
+
+
+
   <ion-grid>
+
+
     <ion-row>
+
       <ion-col size="6">
         <ion-card (click)="navigatePrayer()">
           <ion-card-header>
@@ -24,9 +48,7 @@
             <ion-card-subtitle>Usuário</ion-card-subtitle>
             <ion-card-title>Perfil</ion-card-title>
           </ion-card-header>
-          <ion-card-content>
-            Gerencie seu perfil.
-          </ion-card-content>
+          <ion-card-content> Gerencie seu perfil. </ion-card-content>
         </ion-card>
       </ion-col>
     </ion-row>
@@ -37,9 +59,7 @@
             <ion-card-subtitle>Natureza</ion-card-subtitle>
             <ion-card-title>Animais</ion-card-title>
           </ion-card-header>
-          <ion-card-content>
-            Conteúdo sobre animais.
-          </ion-card-content>
+          <ion-card-content> Conteúdo sobre animais. </ion-card-content>
         </ion-card>
       </ion-col>
       <ion-col size="6">
@@ -48,9 +68,7 @@
             <ion-card-subtitle>Princípios</ion-card-subtitle>
             <ion-card-title>Valores</ion-card-title>
           </ion-card-header>
-          <ion-card-content>
-            Explore valores.
-          </ion-card-content>
+          <ion-card-content> Explore valores. </ion-card-content>
         </ion-card>
       </ion-col>
     </ion-row>
@@ -61,12 +79,36 @@
             <ion-card-subtitle>Relaxamento</ion-card-subtitle>
             <ion-card-title>Meditações</ion-card-title>
           </ion-card-header>
-          <ion-card-content>
-            Pratique meditações guiadas.
-          </ion-card-content>
+          <ion-card-content> Pratique meditações guiadas. </ion-card-content>
         </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>
-</ion-content>
 
+  <ion-modal
+    [isOpen]="isCasasModalOpen"
+    (didDismiss)="isCasasModalOpen = false"
+  >
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Casas</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="isCasasModalOpen = false">Fechar</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content class="ion-padding">
+        <ion-list>
+          <ion-item *ngFor="let casa of casasList">
+            <ion-label>
+              <h2 class="casa-item-title">{{ casa.nome }}</h2>
+              <p class="casa-item-desc">{{ casa.descricao }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>

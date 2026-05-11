@@ -1,21 +1,232 @@
+.casa-title-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 10px 14px;
+}
+
+.casa-title {
+  font-weight: 800;
+  font-size: 1.05rem;
+  letter-spacing: 0.2px;
+}
+
+/* Aumentar espaço vertical para ler a descrição toda */
+.casa-desc {
+  font-size: 0.78rem;
+  line-height: 1.25;
+  text-align: center;
+  max-width: 280px;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: initial;
+}
+
+.casa-VIDA {
+  background-color: rgba(40, 20, 0, 0.55);
+  color: #fff2e6;
+}
+.casa-VIDA .casa-title,
+.casa-VIDA .casa-desc {
+  color: #fff2e6;
+}
+
+.casa-BENS {
+  background-color: rgba(10, 40, 20, 0.60);
+}
+.casa-BENS .casa-title {
+  color: #d9b46a; /* dourado claro */
+}
+.casa-BENS .casa-desc {
+  color: #d9b46a;
+}
+
+.casa-SANGUE {
+  background-color: rgba(45, 0, 0, 0.60);
+  color: #ffffff;
+}
+.casa-SANGUE .casa-title,
+.casa-SANGUE .casa-desc {
+  color: #ffffff;
+}
+
+.casa-SOLIDEZ {
+  background-color: rgba(35, 20, 10, 0.60);
+}
+.casa-SOLIDEZ .casa-title,
+.casa-SOLIDEZ .casa-desc {
+  color: #f2d9b6; /* bege claro */
+}
+
+.casa-FILHOS {
+  background-color: rgba(60, 20, 30, 0.45);
+  color: #ffffff;
+}
+.casa-FILHOS .casa-title,
+.casa-FILHOS .casa-desc {
+  color: #ffffff;
+}
+
+.casa-SAÚDE {
+  background-color: rgba(0, 40, 45, 0.55);
+  color: #ffffff;
+}
+.casa-SAÚDE .casa-title,
+.casa-SAÚDE .casa-desc {
+  color: #ffffff;
+}
+
+.casa-CASAMENTO {
+  background-color: rgba(35, 0, 45, 0.55);
+}
+.casa-CASAMENTO .casa-title,
+.casa-CASAMENTO .casa-desc {
+  color: #ffd1e8; /* rosa claro */
+}
+
+.casa-MORTE-MUDANÇA {
+  background-color: rgba(0, 0, 0, 0.65);
+  color: #ffffff;
+}
+.casa-MORTE-MUDANÇA .casa-title,
+.casa-MORTE-MUDANÇA .casa-desc {
+  color: #ffffff;
+}
+
+.casa-DIVINA {
+  background-color: rgba(35, 20, 60, 0.50);
+}
+.casa-DIVINA .casa-title,
+.casa-DIVINA .casa-desc {
+  color: #ffffff;
+}
+
+.casa-POSICAO-SOCIAL {
+  background-color: rgba(10, 20, 50, 0.60);
+}
+.casa-POSICAO-SOCIAL .casa-title,
+.casa-POSICAO-SOCIAL .casa-desc {
+  color: #d9b46a; /* dourado suave */
+}
+
+.casa-AMIGOS {
+  background-color: rgba(50, 20, 0, 0.45);
+  color: #ffffff;
+}
+.casa-AMIGOS .casa-title,
+.casa-AMIGOS .casa-desc {
+  color: #ffffff;
+}
+
+.casa-INIMIGOS {
+  background-color: rgba(20, 20, 20, 0.70);
+}
+.casa-INIMIGOS .casa-title,
+.casa-INIMIGOS .casa-desc {
+  color: #ff6666; /* vermelho muito claro */
+}
+
+/* fundo no título (sempre preto, letras sempre brancas) */
+ion-title {
+  border-radius: 12px;
+  background-color: #000 !important;
+}
+
+/* Botão “i” no canto do título: não encostar na borda e ficar com estilo de bolinha */
+ion-toolbar ion-buttons.info-btn-wrap {
+  margin-right: 12px;
+}
+
+.info-btn {
+  --padding-start: 0;
+  --padding-end: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.65);
+  color: #ffffff;
+  text-transform: lowercase;
+}
+
+
+
+.info-btn::part(native) {
+  border-radius: 999px;
+}
+
+
+.casa-title-wrap {
+  background-color: #000;
+  color: #fff;
+}
+
+.casa-title-wrap {
+  background-color: #000 !important;
+}
+
+/* Garante que as letras do título nunca mudem por causa da casa */
+.casa-title,
+.casa-desc {
+  color: #ffffff !important;
+}
+
+
+
 .cards-grid {
   --background: var(--ion-color-light);
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+
+
+
+
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   padding: 20px;
+
+  .background-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 1;
+    transform: translateZ(0);
+    pointer-events: none;
+
+    /* melhora legibilidade sobre imagens */
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.35);
+    }
+  }
+
+
+  ion-grid {
+    position: relative;
+    z-index: 1;
+  }
+
   ion-grid {
     --ion-grid-gap: 20px;
     max-width: 400px;
     ion-row {
       --ion-grid-column-alignment: stretch;
     }
-    ion-card {
-      width: 180px;
+      ion-card {
+      width: 170px;
       height: 120px;
       cursor: pointer;
       transition: transform 0.2s, box-shadow 0.2s;
+
       display: flex;
       flex-direction: column;
       &:hover, &:active {
@@ -37,4 +248,5 @@
     }
   }
 }
+
 

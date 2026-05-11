@@ -9,6 +9,28 @@
 
 <ion-content [fullscreen]="true" class="ion-padding">
   <h1>Página de Animais</h1>
-  <p>Conteúdo sobre animais aqui.</p>
+  <p>Selecione um animal para ver a descrição.</p>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col
+        size="6"
+        *ngFor="let animal of animais; trackBy: trackById"
+      >
+        <ion-card class="animal-card" (click)="navigateDetalhe(animal.id)">
+          <img
+            [src]="getImagem(animal.imagem)"
+            [alt]="animal.nome"
+            class="animal-image"
+          />
+          <div class="animal-overlay">
+            <ion-card-title>{{ animal.nome | uppercase }}</ion-card-title>
+          </div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
 </ion-content>
 

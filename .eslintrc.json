@@ -12,6 +12,7 @@
         "plugin:@angular-eslint/recommended",
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
+      "plugins": ["unused-imports"],
       "rules": {
         "@angular-eslint/component-class-suffix": [
           "error",
@@ -19,6 +20,7 @@
             "suffixes": ["Page", "Component"]
           }
         ],
+
         "@angular-eslint/component-selector": [
           "error",
           {
@@ -27,6 +29,7 @@
             "style": "kebab-case"
           }
         ],
+
         "@angular-eslint/directive-selector": [
           "error",
           {
@@ -34,9 +37,22 @@
             "prefix": "app",
             "style": "camelCase"
           }
+        ],
+
+        "unused-imports/no-unused-imports": "warn",
+
+        "unused-imports/no-unused-vars": [
+          "warn",
+          {
+            "vars": "all",
+            "varsIgnorePattern": "^_",
+            "args": "after-used",
+            "argsIgnorePattern": "^_"
+          }
         ]
       }
     },
+
     {
       "files": ["*.html"],
       "extends": ["plugin:@angular-eslint/template/recommended"],

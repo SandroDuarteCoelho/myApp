@@ -66,8 +66,9 @@ export class AnimalDetalhePage implements OnInit {
   }
 
   sair(): void {
-    window.location.href = '/home';
+    window.location.href = '/oracao-perdao';
   }
+
 
   getImagem(img: string | undefined | null): string {
     if (!img) return '';

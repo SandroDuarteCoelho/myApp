@@ -174,7 +174,31 @@ ion-toolbar ion-buttons.info-btn-wrap {
 
 
 
+
+.regra-container {
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.05rem;
+  line-height: 1.4;
+
+  padding: 28px 16px 18px;
+
+  position: relative;
+  z-index: 2;
+
+  background: rgba(0, 0, 0, 0.45);
+
+  backdrop-filter: blur(4px);
+
+  border-radius: 14px;
+
+  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+}
+
 .cards-grid {
+
   --background: var(--ion-color-light);
   position: relative;
   z-index: 1;
@@ -214,6 +238,9 @@ ion-toolbar ion-buttons.info-btn-wrap {
     position: relative;
     z-index: 1;
   }
+
+
+
 
   ion-grid {
     --ion-grid-gap: 20px;

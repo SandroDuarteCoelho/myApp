@@ -51,8 +51,9 @@ export class AnimaisPage implements OnInit {
   }
 
   sair(): void {
-    window.location.href = '/home';
+    window.location.href = '/oracao-perdao';
   }
+
 
   trackById(_: number, item: { id: string }): string {
     return item.id;

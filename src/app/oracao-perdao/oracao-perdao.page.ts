@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 
 import {
+
+
+
   IonHeader,
   IonToolbar,
   IonTitle,
@@ -34,8 +38,10 @@ import {
   standalone: true,
   imports: [
     CommonModule,
+    HttpClientModule,
 
     IonHeader,
+
 
 
     IonToolbar,
@@ -63,10 +69,20 @@ import {
 
 export class OracaoPerdaoPage implements OnInit {
 
+  regraTexto: string = '';
+
+  constructor(private readonly http: HttpClient) {}
+
+
+
   casaAtual: string = '';
+
   descricaoCasaAtual: string = '';
   casaClass: string = '';
   backgroundImage: string = '';
+
+
+
 
   // fontes de imagem por casa
   private backgroundByCasa: Record<string, string> = {
@@ -94,7 +110,11 @@ export class OracaoPerdaoPage implements OnInit {
   phraseStorageKey = 'oracao_perdao_user_phrase';
 
   ngOnInit() {
+    this.loadRegra();
     this.casaAtual = this.getCasaAtual();
+
+
+
     this.descricaoCasaAtual = this.getDescricaoCasaAtual(this.casaAtual);
     this.casaClass = this.getCasaClass(this.casaAtual);
     this.backgroundImage = this.backgroundByCasa[this.casaAtual] ?? this.backgroundByCasa['Casa da VIDA'];
@@ -200,10 +220,21 @@ export class OracaoPerdaoPage implements OnInit {
     return this.casasMap[casa] ?? '';
   }
 
-  
-
+  private loadRegra(): void {
+    this.http.get<{ id?: string; texto?: string }>('assets/data/regra.json').subscribe({
+      next: (data) => {
+        this.regraTexto = data?.texto ?? '';
+      },
+      error: () => {
+        this.regraTexto = '';
+      },
+    });
+  }
 
   openCasasInfo() {
+
+
+
     this.isCasasModalOpen = true;
   }
 

@@ -9,5 +9,25 @@
 .animal-desc {
   margin: 0;
   white-space: pre-wrap;
+
+  font-size: 1.2rem;
+  line-height: 1.2;
+
+  color: #111;
+
+  background: #ffffff;
+
+ /*  padding: 10px 8px; */
+  /* border-radius: 8px; */
+
+  width: 100%;
+  box-sizing: border-box;
 }
 
+ion-content {
+  --padding-bottom: 80px;
+}
+
+ion-card {
+  margin-bottom: 24px;
+}

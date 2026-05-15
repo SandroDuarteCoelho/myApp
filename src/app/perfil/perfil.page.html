@@ -41,16 +41,27 @@
       </ion-select-option>
     </ion-select>
   </ion-item>
-  
+
+  <!-- FILTRO POR LOCALIDADE -->
+  <ion-item>
+    <ion-label>Localidade</ion-label>
+
+    <ion-select [(ngModel)]="selectedLocalidade">
+      <ion-select-option value="">Todas</ion-select-option>
+      <ion-select-option *ngFor="let l of localidades" [value]="l">
+        {{ l }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
     </ion-title>
+
 
   </ion-toolbar>
 </ion-header>
 
 <!-- Dropdown / Popover -->
 <ion-popover
-  trigger="criar-novo-trigger"
-  triggerAction="click"
 >
   <ng-template>
 
@@ -167,10 +178,16 @@
             </ion-card-subtitle>
           </ion-card-header>
 
-          <ion-card-content>
+<ion-card-content>
             <p><strong>Localidade:</strong> {{ p.localidade }}</p>
             <p><strong>Eneagrama:</strong> {{ p.eneagrama_tipo }}</p>
             <p><strong>Data:</strong> {{ p.data }}</p>
+
+            <div style="margin-top: 12px; display:flex; gap:8px;">
+              <ion-button size="small" fill="outline" (click)="escolher(p)">Escolher</ion-button>
+              <ion-button size="small" fill="outline" (click)="abrirEditar(p)">Editar</ion-button>
+              <ion-button size="small" color="danger" fill="outline" (click)="apagar(p)">Apagar</ion-button>
+            </div>
           </ion-card-content>
 
         </ion-card>

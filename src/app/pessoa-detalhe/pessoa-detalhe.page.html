@@ -1,0 +1,37 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button fill="clear" size="small" (click)="voltar()">Voltar</ion-button>
+    </ion-buttons>
+    <ion-title>{{ pessoa ? pessoa.nome + ' ' + pessoa.apelido : 'Pessoa' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ng-container *ngIf="pessoa; else notFound">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>
+          {{ pessoa.nome }} {{ pessoa.apelido }}
+        </ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <p><strong>Grupo:</strong> {{ pessoa.grupo }}</p>
+        <p><strong>Localidade:</strong> {{ pessoa.localidade }}</p>
+        <p><strong>Eneagrama:</strong> {{ pessoa.eneagrama_tipo }}</p>
+        <p><strong>Data:</strong> {{ pessoa.data }}</p>
+      </ion-card-content>
+    </ion-card>
+  </ng-container>
+
+  <ng-template #notFound>
+    <ion-card>
+      <ion-card-content>
+        <h2>Não foi possível carregar a pessoa</h2>
+        <p>ID inválido ou dados indisponíveis.</p>
+      </ion-card-content>
+    </ion-card>
+  </ng-template>
+</ion-content>
+

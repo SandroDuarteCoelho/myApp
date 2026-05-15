@@ -38,6 +38,10 @@ export const routes: Routes = [
     loadComponent: () => import('./animal-detalhe/animal-detalhe.page').then((m) => m.AnimalDetalhePage),
   },
   {
+    path: 'pessoa/:id',
+    loadComponent: () => import('./pessoa-detalhe/pessoa-detalhe.page').then((m) => m.PessoaDetalhePage),
+  },
+  {
     path: '',
     redirectTo: 'oracao-perdao',
     pathMatch: 'full',

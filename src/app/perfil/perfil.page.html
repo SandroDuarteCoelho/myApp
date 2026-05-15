@@ -1,14 +1,181 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+
     <ion-buttons slot="start">
-      <ion-button fill="clear" size="small" (click)="voltar()">Voltar</ion-button>
+      <ion-button fill="clear" size="small" (click)="voltar()">
+        Voltar
+      </ion-button>
     </ion-buttons>
-    <ion-title>Perfil</ion-title>
+
+    <!-- Dropdown Button -->
+    <ion-title>
+
+      <ion-button
+        id="criar-novo-trigger"
+        fill="clear"
+        size="small"
+      >
+        Criar novo
+        <ion-icon
+          name="chevron-down-outline"
+          slot="end"
+        ></ion-icon>
+      </ion-button>
+
+
+       <!-- PESQUISA -->
+  <ion-searchbar
+    [(ngModel)]="searchText"
+    placeholder="Pesquisar nome ou apelido"
+    debounce="300">
+  </ion-searchbar>
+
+  <!-- FILTRO POR GRUPO -->
+  <ion-item>
+    <ion-label>Grupo</ion-label>
+
+    <ion-select [(ngModel)]="selectedGroup">
+      <ion-select-option value="">Todos</ion-select-option>
+      <ion-select-option *ngFor="let g of grupos" [value]="g">
+        {{ g }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+  
+    </ion-title>
+
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="ion-padding">
-  <h1>Página de Perfil</h1>
-  <p>Conteúdo do perfil aqui.</p>
-</ion-content>
+<!-- Dropdown / Popover -->
+<ion-popover
+  trigger="criar-novo-trigger"
+  triggerAction="click"
+>
+  <ng-template>
 
+    <ion-content class="ion-padding">
+
+      <ion-list lines="none">
+
+        <!-- Primeiro Nome -->
+        <ion-item>
+          <ion-label position="stacked">
+            Primeiro nome
+          </ion-label>
+
+          <ion-input
+            [(ngModel)]="primeiroNome"
+            placeholder="Digite o primeiro nome"
+          ></ion-input>
+        </ion-item>
+
+        <!-- Último Nome -->
+        <ion-item>
+          <ion-label position="stacked">
+            Último nome
+          </ion-label>
+
+          <ion-input
+            [(ngModel)]="ultimoNome"
+            placeholder="Digite o último nome"
+          ></ion-input>
+        </ion-item>
+
+        <!-- Data Nascimento -->
+        <ion-item>
+          <ion-label position="stacked">
+            Data nascimento
+          </ion-label>
+
+          <ion-input
+            type="date"
+            [(ngModel)]="dataNascimento"
+          ></ion-input>
+        </ion-item>
+
+        <!-- Localidade -->
+<ion-item>
+  <ion-label position="stacked">
+    Localidade
+  </ion-label>
+
+  <ion-input
+    [(ngModel)]="localidade"
+    placeholder="Digite a localidade"
+  ></ion-input>
+</ion-item>
+
+<!-- Grupo -->
+<ion-item>
+  <ion-label position="stacked">
+    Grupo
+  </ion-label>
+
+  <ion-input
+    [(ngModel)]="grupo"
+    placeholder="Digite o grupo"
+  ></ion-input>
+</ion-item>
+
+<!-- Eneagrama -->
+<ion-item>
+  <ion-label position="stacked">
+    Eneagrama
+  </ion-label>
+
+  <ion-input
+    [(ngModel)]="eneagrama"
+    placeholder="Ex: Tipo 4"
+  ></ion-input>
+</ion-item>
+
+      </ion-list>
+
+      <!-- Botão -->
+      <div class="ion-padding-top">
+        <ion-button
+          expand="block"
+          (click)="guardar()"
+        >
+          Guardar
+        </ion-button>
+      </div>
+
+    </ion-content>
+
+  </ng-template>
+</ion-popover>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+ 
+
+  <!-- LISTA -->
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" *ngFor="let p of filteredPeople()">
+
+        <ion-card>
+
+          <ion-card-header>
+            <ion-card-title>
+              {{ p.nome }} {{ p.apelido }}
+            </ion-card-title>
+
+            <ion-card-subtitle>
+              {{ p.grupo }}
+            </ion-card-subtitle>
+          </ion-card-header>
+
+          <ion-card-content>
+            <p><strong>Localidade:</strong> {{ p.localidade }}</p>
+            <p><strong>Eneagrama:</strong> {{ p.eneagrama_tipo }}</p>
+            <p><strong>Data:</strong> {{ p.data }}</p>
+          </ion-card-content>
+
+        </ion-card>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

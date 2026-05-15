@@ -1,0 +1,474 @@
+[
+  {
+    "nome": "Sandro",
+    "apelido": "Coelho",
+    "localidade": "Portalegre",
+“grupo”:”Familia”,
+    "enea_tipo": "5",
+    "data": "1977-01-16"
+  },
+  {
+    "nome": "Joana",
+    "apelido": "Duarte",
+    "localidade": "Portalegre",
+“grupo”:”Familia”,
+    "enea_tipo": "4",
+    "data": "1981-01-16"
+  },
+  {
+    "nome": "Margarida",
+    "apelido": "Lourenço",
+    "localidade": "Coimbra",
+“grupo”:”Familia”,
+    "enea_tipo": "9",
+    "data": "1951-08-23"
+  },
+  {
+    "nome": "José",
+    "apelido": "Duarte",
+    "localidade": "Coimbra",
+“grupo”:”Familia”,
+    "enea_tipo": "7",
+    "data": "1959-11-20"
+  },
+  {
+    "nome": "Maria",
+    "apelido": "Francisco",
+    "localidade": "Setúbal",
+“grupo”:”Familia”,
+    "enea_tipo": "2",
+    "data": "1948-03-31"
+  },
+  {
+    "nome": "Rui",
+    "apelido": "Ferreira",
+    "localidade": "Setúbal",
+“grupo”:”Familia”,
+    "enea_tipo": "3",
+    "data": "1958-07-14"
+  },
+  {
+    "nome": "Celso",
+    "apelido": "Ferreira",
+    "localidade": "Setúbal",
+“grupo”:”Familia”,
+    "enea_tipo": "6",
+    "data": "1983-05-14"
+  },
+  {
+    "nome": "Branca",
+    "apelido": "Belchior",
+    "localidade": "Setúbal",
+“grupo”:”Familia”,
+    "enea_tipo": "0",
+    "data": "1985-12-12"
+  },
+  {
+    "nome": "Lucas",
+    "apelido": "Ferreira",
+    "localidade": "Setúbal",
+“grupo”:”Familia”,
+    "enea_tipo": "0",
+    "data": "2014-09-21"
+  },
+  {
+    "nome": "Ana",
+    "apelido": "Duarte",
+    "localidade": "Porto",
+“grupo”:”Familia”,
+    "enea_tipo": "6",
+    "data": "1983-02-11"
+  },
+  {
+    "nome": "Tiago",
+    "apelido": "Queiroz",
+    "localidade": "Porto",
+“grupo”:”Familia”,
+    "enea_tipo": "5",
+    "data": "1987-09-17"
+  },
+  {
+    "nome": "Luca",
+    "apelido": "Queiroz",
+    "localidade": "Porto",
+“grupo”:”Familia”,
+    "enea_tipo": "0",
+    "data": "2023-03-18"
+  },
+  {
+    "nome": "Mili",
+    "apelido": "Queiroz",
+    "localidade": "Porto",
+“grupo”:”Familia”,
+    "enea_tipo": "0",
+    "data": "2024-09-23"
+  },
+  {
+    "nome": "João",
+    "apelido": "Duarte",
+    "localidade": "Leiria",
+“grupo”:”Familia”,
+    "enea_tipo": "0",
+    "data": "1993-04-07"
+  },
+  {
+    "nome": "Gabriel",
+    "apelido": "Alves",
+    "localidade": "Leiria",
+“grupo”:”Familia”,
+    "enea_tipo": "0",
+    "data": "1995-07-11"
+  },
+  {
+    "nome": "Pedro",
+    "apelido": "Duarte",
+    "localidade": "Suiça",
+“grupo”:”Familia”,
+    "enea_tipo": "0",
+    "data": "1988-08-03"
+  },
+  {
+    "nome": "Gustavo",
+    "apelido": "Duarte",
+    "localidade": "Suiça",
+“grupo”:”Familia”,
+    "enea_tipo": "0",
+    "data": "2012-06-01"
+  },
+  {
+    "nome": "Liliana",
+    "apelido": "Duarte",
+    "localidade": "Porto",
+“grupo”:”Familia”,
+    "enea_tipo": "8",
+    "data": "1986-02-01"
+  },
+  {
+    "nome": "António",
+    "apelido": "Arruela",
+    "localidade": "Porto",
+“grupo”:”Familia”,
+    "enea_tipo": "3",
+    "data": "1985-02-26"
+  },
+  {
+    "nome": "Bianca",
+    "apelido": "Arruela",
+    "localidade": "Porto",
+“grupo”:”Familia”,
+    "enea_tipo": "0",
+    "data": "2009-07-19"
+  },
+  {
+    "nome": "Safira",
+    "apelido": "Arruela",
+    "localidade": "Porto",
+“grupo”:”Familia”,
+    "enea_tipo": "0",
+    "data": "2012-06-18"
+  },
+  {
+    "nome": "Tomás",
+    "apelido": "Arruela",
+    "localidade": "Porto",
+“grupo”:”Familia”,
+    "enea_tipo": "0",
+    "data": "2014-05-16"
+  },
+  {
+    "nome": "Miguel",
+    "apelido": "Lourenço",
+    "localidade": "Oliveira Hospital",
+“grupo”:”Familia”,
+    "enea_tipo": "0",
+    "data": "1997-04-07"
+  },
+  {
+    "nome": "António",
+    "apelido": "Lourenço",
+    "localidade": "Oliveira Hospital",
+“grupo”:”Familia”,
+    "enea_tipo": "0",
+    "data": "1953-09-18"
+  },
+  {
+    "nome": "Maria",
+    "apelido": "Pereira",
+    "localidade": "Oliveira Hospital",
+“grupo”:”Familia”,
+    "enea_tipo": "0",
+    "data": "1955-02-13"
+  },
+  {
+    "nome": "Cecília",
+    "apelido": "Lourenço",
+    "localidade": "Chão Sobral",
+“grupo”:”Familia”,
+    "enea_tipo": "0",
+    "data": "1961-03-07"
+  },
+  {
+    "nome": "José",
+    "apelido": "Luiz",
+    "localidade": "Chão Sobral",
+“grupo”:”Familia”,
+    "enea_tipo": "0",
+    "data": "1959-01-13"
+  },
+  {
+    "nome": "Saul",
+    "apelido": "Martins",
+    "localidade": "Chão Sobral",
+“grupo”:”Familia”,
+    "enea_tipo": "0",
+    "data": "1996-11-25"
+  },
+  {
+    "nome": "Basilio",
+    "apelido": "Martins",
+    "localidade": "Chão Sobral",
+“grupo”:”Familia”,
+    "enea_tipo": "0",
+    "data": "1965-10-15"
+  },
+  {
+    "nome": "Clara",
+    "apelido": "Mendes",
+    "localidade": "Chão Sobral",
+“grupo”:”Familia”,
+    "enea_tipo": "0",
+    "data": "1974-11-13"
+  },
+  {
+    "nome": "Maria",
+    "apelido": "Lourenço",
+    "localidade": "Coimbra",
+“grupo”:”Familia”,
+    "enea_tipo": "0",
+    "data": "1958-12-30"
+  },
+  {
+    "nome": "João",
+    "apelido": "Lourenço",
+    "localidade": "Suiça",
+“grupo”:”Familia”,
+    "enea_tipo": "0",
+    "data": "1963-11-15"
+  },
+  {
+    "nome": "Filomena",
+    "apelido": "Lourenço",
+    "localidade": "Suiça",
+“grupo”:”Familia”,
+    "enea_tipo": "0",
+    "data": "1956-06-27"
+  },
+  {
+    "nome": "José",
+    "apelido": "Jorge",
+    "localidade": "Suiça",
+“grupo”:”Familia”,
+    "enea_tipo": "0",
+    "data": "1958-03-19"
+  },
+  {
+    "nome": "Susana",
+    "apelido": "Jorge",
+    "localidade": "Suiça",
+“grupo”:”Familia”,
+    "enea_tipo": "0",
+    "data": "1990-06-06"
+  },
+  {
+    "nome": "Tiago",
+    "apelido": "Freitas",
+    "localidade": "Suiça",
+“grupo”:”Familia”,
+    "enea_tipo": "0",
+    "data": "1989-05-19"
+  },
+  {
+    "nome": "Gabriel",
+    "apelido": "Jorge",
+    "localidade": "Suiça",
+“grupo”:”Familia”,
+    "enea_tipo": "0",
+    "data": "1987-07-07"
+  },
+  {
+    "nome": "Emilia",
+    "apelido": "Machado",
+    "localidade": "Mirandela",
+“grupo”:”Familia”,
+    "enea_tipo": "0",
+    "data": "1929-09-12"
+  },
+  {
+    "nome": "Carlos",
+    "apelido": "Ferreira",
+    "localidade": "Mirandela",
+“grupo”:”Familia”,
+    "enea_tipo": "0",
+    "data": "1954-06-08"
+  },
+  {
+    "nome": "Luciana",
+    "apelido": "Ferreira",
+    "localidade": "Mirandela",
+“grupo”:”Familia”,
+    "enea_tipo": "0",
+    "data": "1956-09-25"
+  },
+  {
+    "nome": "Angela",
+    "apelido": "Ferreira",
+    "localidade": "Mirandela",
+“grupo”:”Familia”,
+    "enea_tipo": "0",
+    "data": "1977-02-05"
+  },
+  {
+    "nome": "Angela",
+    "apelido": "Francisco",
+    "localidade": "Coimbra",
+“grupo”:”Familia”,
+    "enea_tipo": "0",
+    "data": "1964-10-16"
+  },
+  {
+    "nome": "Maria",
+    "apelido": "Duarte",
+    "localidade": "prima Claudia Coimbra",
+“grupo”:”Familia”,
+    "enea_tipo": "0",
+    "data": "1990-09-25"
+  },
+  {
+    "nome": "Cristóvão",
+    "apelido": "Sousa",
+    "localidade": "Coimbra",
+“grupo”:”Familia”,
+    "enea_tipo": "0",
+    "data": "1984-02-09"
+  },
+  {
+    "nome": "André",
+    "apelido": "Duarte",
+    "localidade": "Coimbra",
+“grupo”:”Familia”,
+    "enea_tipo": "0",
+    "data": "1987-11-02"
+  },
+  {
+    "nome": "Clarissa",
+    "apelido": "Harris",
+    "localidade": "Peniche",
+“grupo”:”Familia”,
+    "enea_tipo": "0",
+    "data": "1947-07-26"
+  },
+  {
+    "nome": "Carol",
+    "apelido": "Francisco",
+    "localidade": "Peniche",
+“grupo”:”Familia”,
+    "enea_tipo": "0",
+    "data": "1976-07-28"
+  },
+  {
+    "nome": "Tania",
+    "apelido": "Francisco",
+    "localidade": "Porto",
+“grupo”:”Familia”,
+    "enea_tipo": "0",
+    "data": "1976-03-16"
+  },
+  {
+    "nome": "Prima",
+    "apelido": "Vanessa",
+    "localidade": "Porto",
+“grupo”:”Familia”,
+    "enea_tipo": "0",
+    "data": "1982-11-23"
+  },
+  {
+    "nome": "Iris",
+    "apelido": "Esteves",
+    "localidade": "Porto",
+“grupo”:”Familia”,
+    "enea_tipo": "0",
+    "data": "2024-08-01"
+  },
+  {
+    "nome": "Fátima",
+    "apelido": "Francisco",
+    "localidade": "Porto",
+“grupo”:”Familia”,
+    "enea_tipo": "0",
+    "data": "1960-01-09"
+  },
+  {
+    "nome": "Orlanda",
+    "apelido": "Francisco",
+    "localidade": "Porto",
+“grupo”:”Familia”,
+    "enea_tipo": "0",
+    "data": "1961-02-28"
+  },
+  {
+    "nome": "Angela",
+    "apelido": "Nóbrega",
+    "localidade": "Madeira",
+“grupo”:”Familia”,
+    "enea_tipo": "0",
+    "data": "1951-09-03"
+  },
+  {
+    "nome": "Silvia",
+    "apelido": "Coelho",
+    "localidade": "Madeira",
+“grupo”:”Familia”,
+    "enea_tipo": "0",
+    "data": "1979-04-15"
+  },
+  {
+    "nome": "Daniela",
+    "apelido": "Coelho",
+    "localidade": "Madeira",
+“grupo”:”Familia”,
+    "enea_tipo": "0",
+    "data": "1981-07-09"
+  },
+  {
+    "nome": "Carla",
+    "apelido": "Coelho",
+    "localidade": "Madeira",
+“grupo”:”Familia”,
+    "enea_tipo": "0",
+    "data": "1976-02-22"
+  },
+  {
+    "nome": "Marciano",
+    "apelido": "Coelho",
+    "localidade": "Madeira",
+“grupo”:”Familia”,
+    "enea_tipo": "0",
+    "data": "1989-06-14"
+  },
+  {
+    "nome": "Miguel",
+    "apelido": "Coelho",
+    "localidade": "Madeira",
+“grupo”:”Familia”,
+    "enea_tipo": "0",
+    "data": "1982-06-15"
+  },
+  {
+    "nome": "Sara",
+    "apelido": "Gomes",
+    "localidade": "Coimbra",
+“grupo”:”Familia”,
+    "enea_tipo": "0",
+    "data": "1994-07-15"
+  }
+]

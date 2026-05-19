@@ -77,6 +77,8 @@ type SignoChines = {
 export class PessoaDetalhePage implements OnInit {
 
   pessoa: PessoaWithId | null = null;
+  idadeAtual: number | null = null;
+
 
   forcaVogais = '';
   atividadeConsoantes = '';
@@ -117,8 +119,11 @@ export class PessoaDetalhePage implements OnInit {
 
           if (!this.pessoa) return;
 
+          this.idadeAtual = this.calcularIdade(this.pessoa.data);
+
           const numeroVogais = this.somaVogais;
           const numeroConsoantes = this.somaConsoantes;
+
 
           Promise.all([
             this.getForcaPorNumero(numeroVogais, 'força_espiritual'),

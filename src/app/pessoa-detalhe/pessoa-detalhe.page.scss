@@ -10,3 +10,19 @@
   align-items: flex-end;
   gap: 4px;
 }
+
+.text-zoom {
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.text-zoom p {
+  font-size: 18px;
+}
+
+.text-zoom ion-label,
+.text-zoom ion-item,
+.text-zoom h2,
+.text-zoom h3 {
+  font-size: 18px;
+}

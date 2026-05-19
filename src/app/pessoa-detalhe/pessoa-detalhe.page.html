@@ -1,49 +1,143 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+
     <ion-buttons slot="start">
-      <ion-button fill="clear" size="small" (click)="voltar()">Voltar</ion-button>
-      <ion-button fill="clear" size="small" (click)="abrirSignos()">Signos</ion-button>
-      <ion-button fill="clear" size="small" (click)="abrirEneagrama()">Eneagrama</ion-button>
-      <ion-button fill="clear" size="small" (click)="abrirSetenios()">Setenios</ion-button>
+      <ion-button fill="clear" size="small" (click)="voltar()">
+        Voltar
+      </ion-button>
+
+      <ion-button fill="clear" size="small" (click)="abrirSignos()">
+        Signos
+      </ion-button>
+
+      <ion-button fill="clear" size="small" (click)="abrirEneagrama()">
+        Eneagrama
+      </ion-button>
+
+      <ion-button fill="clear" size="small" (click)="abrirSetenios()">
+        Setenios
+      </ion-button>
     </ion-buttons>
-    <ion-title>{{ pessoa ? pessoa.nome + ' ' + pessoa.apelido : 'Pessoa' }}</ion-title>
+
+    <ion-title>
+      {{ pessoa ? pessoa.nome + ' ' + pessoa.apelido : 'Pessoa' }}
+    </ion-title>
+
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content [fullscreen]="true" class="ion-padding">
+
   <ng-container *ngIf="pessoa; else notFound">
+
     <ion-card>
+
       <ion-card-header>
+
         <ion-card-title>
           {{ pessoa.nome }} {{ pessoa.apelido }}
         </ion-card-title>
+
       </ion-card-header>
 
       <ion-card-content>
+
         <p><strong>Grupo:</strong> {{ pessoa.grupo }}</p>
         <p><strong>Localidade:</strong> {{ pessoa.localidade }}</p>
         <p><strong>Eneagrama:</strong> {{ pessoa.eneagrama_tipo }}</p>
         <p><strong>Data:</strong> {{ pessoa.data }}</p>
 
         <ion-card-subtitle class="ion-margin-top">
-          <p style="margin: 0;"><strong>força_espiritual</strong>: {{ forcaVogais }}</p>
-          <p style="margin: 0;"><strong>atividade</strong>: {{ atividadeConsoantes }}</p>
+
+          <p style="margin: 0;">
+            <strong>força_espiritual</strong>:
+            {{ forcaVogais }}
+          </p>
+
+          <p style="margin: 0;">
+            <strong>atividade</strong>:
+            {{ atividadeConsoantes }}
+          </p>
 
         </ion-card-subtitle>
 
+        <br>
+
+        <!-- 🔽 ACORDEÃO SETÉNIO + DIA NASCIMENTO -->
+        <ion-accordion-group>
+
+          <!-- SETÉNIO -->
+          <ion-accordion value="setenio">
+
+            <ion-item slot="header">
+              <ion-label>Seténio atual</ion-label>
+            </ion-item>
+
+            <div class="ion-padding" slot="content">
+
+              <div *ngIf="setenioAtual">
+
+                <h2>{{ setenioAtual.nome }}</h2>
+
+                <p style="white-space: pre-line;">
+                  {{ setenioAtual.descricao }}
+                </p>
+
+              </div>
+
+            </div>
+
+          </ion-accordion>
+
+          <!-- DIA NASCIMENTO -->
+          <ion-accordion value="dia">
+
+            <ion-item slot="header">
+              <ion-label>Dia de nascimento</ion-label>
+            </ion-item>
+
+            <div class="ion-padding" slot="content">
+
+              <div *ngIf="descricaoDia">
+
+                <h2>Dia de nascimento</h2>
+
+                <p style="white-space: pre-line;">
+                  {{ descricaoDia }}
+                </p>
+
+              </div>
+
+            </div>
+
+          </ion-accordion>
+
+        </ion-accordion-group>
+
       </ion-card-content>
 
     </ion-card>
+
   </ng-container>
 
   <ng-template #notFound>
-    <ion-card>
-      <ion-card-content>
-        <h2>Não foi possível carregar a pessoa</h2>
-        <p>ID inválido ou dados indisponíveis.</p>
-      </ion-card-content>
-    </ion-card>
-  </ng-template>
-</ion-content>
 
+    <ion-card>
+
+      <ion-card-content>
+
+        <h2>
+          Não foi possível carregar a pessoa
+        </h2>
+
+        <p>
+          ID inválido ou dados indisponíveis.
+        </p>
+
+      </ion-card-content>
+
+    </ion-card>
+
+  </ng-template>
+
+</ion-content>

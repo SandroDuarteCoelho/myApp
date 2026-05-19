@@ -8,6 +8,18 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
-  <p>Conteúdo de setenios.</p>
+  <ion-card *ngFor="let s of setenios">
+
+    <ion-card-header>
+      <ion-card-title>
+        {{ s.nome }}
+      </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      {{ s.descricao }}
+    </ion-card-content>
+
+  </ion-card>
 </ion-content>
 

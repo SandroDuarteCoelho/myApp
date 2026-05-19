@@ -1,15 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 import {
   IonHeader,
   IonToolbar,
   IonTitle,
   IonContent,
+  IonCard,
+  IonCardHeader,
+  IonCardTitle,
+  IonCardContent,
   IonButton,
-  IonButtons,
+  IonButtons
 } from '@ionic/angular/standalone';
+
+type Setenio = {
+  id: number;
+  nome: string;
+  descricao: string;
+};
 
 @Component({
   selector: 'app-setenios',
@@ -18,19 +28,44 @@ import {
   standalone: true,
   imports: [
     CommonModule,
-    FormsModule,
+    HttpClientModule,
+
     IonHeader,
     IonToolbar,
     IonTitle,
     IonContent,
-    IonButton,
-    IonButtons,
-  ],
+
+      IonButtons,
+  IonButton,
+
+    IonCard,
+    IonCardHeader,
+    IonCardTitle,
+    IonCardContent
+  ]
 })
-export class SeteniosPage {
+export class SeteniosPage implements OnInit {
+
+  setenios: Setenio[] = [];
+
+  constructor(private http: HttpClient) {}
+
+  ngOnInit() {
+
+    this.http
+      .get<Setenio[]>('assets/data/setenios.json')
+      .subscribe({
+        next: (data) => {
+          this.setenios = data;
+        },
+        error: (err) => {
+          console.error('Erro ao carregar setenios.json', err);
+        }
+      });
+  }
+
+
   voltar(): void {
     window.history.back();
   }
-
 }
-

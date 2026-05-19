@@ -303,9 +303,10 @@ export class OracaoPerdaoPage implements OnInit {
     window.location.href = '/meditacoes';
   }
 
-  navigateLinguagemCorpo() {
-    window.location.href = '/linguagem-corpo';
+  navigateMetadeSombra() {
+    window.location.href = '/metade-sombra';
   }
+
 
 
 }

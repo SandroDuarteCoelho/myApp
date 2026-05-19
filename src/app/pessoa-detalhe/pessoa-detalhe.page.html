@@ -1,10 +1,15 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
 
+    <!-- ESQUERDA -->
     <ion-buttons slot="start">
       <ion-button fill="clear" size="small" (click)="voltar()">
         Voltar
       </ion-button>
+    </ion-buttons>
+
+    <!-- DIREITA -->
+    <ion-buttons slot="end" class="right-buttons">
 
       <ion-button fill="clear" size="small" (click)="abrirSignos()">
         Signos
@@ -17,6 +22,7 @@
       <ion-button fill="clear" size="small" (click)="abrirSetenios()">
         Setenios
       </ion-button>
+
     </ion-buttons>
 
     <ion-title>
@@ -33,11 +39,9 @@
     <ion-card>
 
       <ion-card-header>
-
         <ion-card-title>
           {{ pessoa.nome }} {{ pessoa.apelido }}
         </ion-card-title>
-
       </ion-card-header>
 
       <ion-card-content>
@@ -63,7 +67,7 @@
 
         <br>
 
-        <!-- 🔽 ACORDEÃO SETÉNIO + DIA NASCIMENTO -->
+        <!-- 🔽 ACORDEÃO -->
         <ion-accordion-group>
 
           <!-- SETÉNIO -->
@@ -76,13 +80,10 @@
             <div class="ion-padding" slot="content">
 
               <div *ngIf="setenioAtual">
-
                 <h2>{{ setenioAtual.nome }}</h2>
-
                 <p style="white-space: pre-line;">
                   {{ setenioAtual.descricao }}
                 </p>
-
               </div>
 
             </div>
@@ -98,12 +99,31 @@
 
             <div class="ion-padding" slot="content">
 
-              <div *ngIf="descricaoDia">
+              <p style="white-space: pre-line;">
+                {{ descricaoDia }}
+              </p>
 
-                <h2>Dia de nascimento</h2>
+            </div>
+
+          </ion-accordion>
+
+          <!-- 🟡 SIGNO CHINÊS (NOVO) -->
+          <ion-accordion value="chines">
+
+            <ion-item slot="header">
+              <ion-label>Signo chinês</ion-label>
+            </ion-item>
+
+            <div class="ion-padding" slot="content">
+
+              <div *ngIf="signoChines">
+
+                <h2>
+                  {{ signoChines.signo }} ({{ signoChines.elemento }})
+                </h2>
 
                 <p style="white-space: pre-line;">
-                  {{ descricaoDia }}
+                  {{ signoChines.descricao }}
                 </p>
 
               </div>

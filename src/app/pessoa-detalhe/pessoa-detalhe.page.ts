@@ -38,6 +38,13 @@ type Setenio = {
   descricao: string;
 };
 
+type SignoChines = {
+  signo: string;
+  elemento: string;
+  anos: number[];
+  descricao: string;
+};
+
 @Component({
   selector: 'app-pessoa-detalhe',
   templateUrl: './pessoa-detalhe.page.html',
@@ -77,6 +84,8 @@ export class PessoaDetalhePage implements OnInit {
   setenioAtual: Setenio | null = null;
   descricaoDia = '';
 
+  signoChines: SignoChines | null = null;
+
   private readonly letraValor: Record<string, number> = {
     A: 1, B: 2, C: 3, D: 4, E: 5, F: 6, G: 7, H: 8, I: 9,
     J: 1, K: 2, L: 3, M: 4, N: 5, O: 6, P: 7, Q: 8, R: 9,
@@ -94,32 +103,41 @@ export class PessoaDetalhePage implements OnInit {
 
     const idStr = this.route.snapshot.paramMap.get('id');
     const id = idStr ? Number(idStr) : NaN;
+
     if (!id || Number.isNaN(id)) return;
 
-    this.http.get<PessoaJson[]>('assets/data/pessoas.json').subscribe({
-      next: (arr) => {
+    this.http.get<PessoaJson[]>('assets/data/pessoas.json')
+      .subscribe({
+        next: (arr) => {
 
-        const idx = id - 1;
-        this.pessoa = arr[idx] ? ({ id, ...arr[idx] } as PessoaWithId) : null;
+          const idx = id - 1;
+          this.pessoa = arr[idx]
+            ? ({ id, ...arr[idx] } as PessoaWithId)
+            : null;
 
-        if (!this.pessoa) return;
+          if (!this.pessoa) return;
 
-        const numeroVogais = this.somaVogais;
-        const numeroConsoantes = this.somaConsoantes;
+          const numeroVogais = this.somaVogais;
+          const numeroConsoantes = this.somaConsoantes;
 
-        Promise.all([
-          this.getForcaPorNumero(numeroVogais, 'força_espiritual'),
-          this.getForcaPorNumero(numeroConsoantes, 'atividade'),
-        ]).then(([forca, atividade]) => {
-          this.forcaVogais = forca;
-          this.atividadeConsoantes = atividade;
-        });
+          Promise.all([
+            this.getForcaPorNumero(numeroVogais, 'força_espiritual'),
+            this.getForcaPorNumero(numeroConsoantes, 'atividade'),
+          ]).then(([forca, atividade]) => {
+            this.forcaVogais = forca;
+            this.atividadeConsoantes = atividade;
+          });
 
-        this.carregarSetenio();
-        this.carregarDescricaoDia();
-      }
-    });
+          this.carregarSetenio();
+          this.carregarDescricaoDia();
+          this.carregarSignoChines();
+        }
+      });
   }
+
+  // =========================
+  // NUMEROLOGIA (já existente)
+  // =========================
 
   private reduzirSoma(total: number): number {
     if (total === 11 || total === 22) return total;
@@ -129,6 +147,7 @@ export class PessoaDetalhePage implements OnInit {
       x = String(x)
         .split('')
         .reduce((acc, d) => acc + Number(d), 0);
+
       if (x === 11 || x === 22) return x;
     }
     return x;
@@ -153,9 +172,7 @@ export class PessoaDetalhePage implements OnInit {
 
       if (ehVogal !== querVogal) return acc;
 
-      const map = this.letraValor[ch];
-
-      return acc + (map ?? 0);
+      return acc + (this.letraValor[ch] ?? 0);
 
     }, 0);
 
@@ -172,7 +189,10 @@ export class PessoaDetalhePage implements OnInit {
     return this.somarLetrasPeloTipo(this.pessoa.nome, this.pessoa.apelido, 'consoantes');
   }
 
-  async getForcaPorNumero(numero: number, tipo: 'força_espiritual' | 'atividade'): Promise<string> {
+  async getForcaPorNumero(
+    numero: number,
+    tipo: 'força_espiritual' | 'atividade'
+  ): Promise<string> {
 
     const data = await this.http
       .get<Array<{ numero: number; força_espiritual: string; atividade: string }>>(
@@ -184,6 +204,10 @@ export class PessoaDetalhePage implements OnInit {
 
     return n ? n[tipo] : '';
   }
+
+  // =========================
+  // SETÉNIOS
+  // =========================
 
   calcularIdade(data: string): number {
 
@@ -214,17 +238,44 @@ export class PessoaDetalhePage implements OnInit {
       });
   }
 
+  // =========================
+  // DIA NASCIMENTO
+  // =========================
+
   carregarDescricaoDia(): void {
 
     if (!this.pessoa) return;
 
     const dia = new Date(this.pessoa.data).getDate();
 
-    this.http.get<Record<string, string>>('assets/data/dia_nascimento.json')
+    this.http.get<Record<string, string>>(
+      'assets/data/dia_nascimento.json'
+    ).subscribe(data => {
+      this.descricaoDia = data[String(dia)] || '';
+    });
+  }
+
+  // =========================
+  // SIGNO CHINÊS (NOVO)
+  // =========================
+
+  carregarSignoChines(): void {
+
+    if (!this.pessoa) return;
+
+    const ano = new Date(this.pessoa.data).getFullYear();
+
+    this.http.get<SignoChines[]>('assets/data/chineses.json')
       .subscribe(data => {
-        this.descricaoDia = data[String(dia)] || '';
+
+        this.signoChines =
+          data.find(s => s.anos.includes(ano)) || null;
       });
   }
+
+  // =========================
+  // NAV
+  // =========================
 
   voltar(): void {
     window.history.back();

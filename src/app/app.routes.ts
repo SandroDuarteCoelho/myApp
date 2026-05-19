@@ -18,6 +18,11 @@ export const routes: Routes = [
     loadComponent: () => import('./linguagem-corpo/linguagem-corpo.page').then((m) => m.LinguagemCorpoPage),
   },
   {
+    path: 'metade-sombra',
+    loadComponent: () => import('./metade-sombra/metade-sombra.page').then((m) => m.MetadeSombraPage),
+  },
+
+  {
     path: 'perfil',
     loadComponent: () => import('./perfil/perfil.page').then((m) => m.PerfilPage),
   },

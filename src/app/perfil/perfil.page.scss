@@ -2,3 +2,9 @@ ion-content {
   --background: linear-gradient(135deg, var(--ion-color-primary), var(--ion-color-secondary));
 }
 
+.vertical-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* encosta à esquerda */
+  gap: 6px; /* espaço entre botões */
+}

@@ -224,9 +224,38 @@ export class PerfilPage implements OnInit {
     window.location.href = '/oracao-perdao';
   }
 
+  abrirSignos(): void {
+    window.location.href = '/signos';
+  }
+
+  abrirEneagrama(): void {
+    window.location.href = '/eneagrama';
+  }
+
 
 
   guardar() {
+
+    // Obrigatório no modo CRIAR: preencher todos os campos
+    if (this.popoverMode === 'create') {
+      const requiredValues: Array<[string, string]> = [
+        ['Primeiro nome', this.primeiroNome],
+        ['Último nome', this.ultimoNome],
+        ['Data nascimento', this.dataNascimento],
+        ['Localidade', this.localidade],
+        ['Grupo', this.grupo],
+        ['Eneagrama', this.eneagrama],
+      ];
+
+      const missing = requiredValues
+        .filter(([, v]) => (v ?? '').toString().trim() === '')
+        .map(([label]) => label);
+
+      if (missing.length) {
+        alert(`Preencha todos os campos antes de guardar. Faltando: ${missing.join(', ')}`);
+        return;
+      }
+    }
 
     const payload: Pessoa = {
 
@@ -251,6 +280,10 @@ export class PerfilPage implements OnInit {
         : p
     );
 
+    // atualizar listas de filtro (grupo/localidade) para incluir novos valores
+    this.grupos = [...new Set(this.people.map((p) => p.grupo))];
+    this.localidades = [...new Set(this.people.map((p) => p.localidade))];
+
     this.editingId = null;
     this.popoverMode = 'create';
 
@@ -261,6 +294,9 @@ export class PerfilPage implements OnInit {
 
     const newId = Math.max(...this.people.map(p => p.id), 0) + 1;
 
+    // persistir também no modo CRIAR
+    this.overrides[newId] = payload;
+    this.persistOverrides();
 
     const newPerson: PessoaPersistida = {
       id: newId,

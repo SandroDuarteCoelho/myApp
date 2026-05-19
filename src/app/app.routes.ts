@@ -22,6 +22,14 @@ export const routes: Routes = [
     loadComponent: () => import('./perfil/perfil.page').then((m) => m.PerfilPage),
   },
   {
+    path: 'signos',
+    loadComponent: () => import('./signos/signos.page').then((m) => m.SignosPage),
+  },
+  {
+    path: 'eneagrama',
+    loadComponent: () => import('./eneagrama/eneagrama.page').then((m) => m.EneagramaPage),
+  },
+  {
     path: 'animais',
     loadComponent: () => import('./animais/animais.page').then((m) => m.AnimaisPage),
   },

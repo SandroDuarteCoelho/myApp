@@ -1,11 +1,19 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
 
-    <ion-buttons slot="start">
-      <ion-button fill="clear" size="small" (click)="voltar()">
-        Voltar
-      </ion-button>
-    </ion-buttons>
+  <ion-buttons slot="start" class="vertical-buttons">
+  <ion-button fill="clear" size="small" (click)="voltar()">
+    Voltar
+  </ion-button>
+
+  <ion-button fill="clear" size="small" (click)="abrirSignos()">
+    Signos
+  </ion-button>
+
+  <ion-button fill="clear" size="small" (click)="abrirEneagrama()">
+    Eneagrama
+  </ion-button>
+</ion-buttons>
 
     <!-- Dropdown Button -->
     <ion-title>
@@ -14,6 +22,7 @@
         id="criar-novo-trigger"
         fill="clear"
         size="small"
+        (click)="abrirCriar()"
       >
         Criar novo
         <ion-icon

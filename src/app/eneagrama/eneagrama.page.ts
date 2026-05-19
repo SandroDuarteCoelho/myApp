@@ -20,7 +20,8 @@ import {
 })
 export class EneagramaPage {
   voltar(): void {
-    window.location.href = '/perfil';
+    window.history.back();
   }
+
 }
 

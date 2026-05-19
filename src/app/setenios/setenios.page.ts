@@ -12,13 +12,22 @@ import {
 } from '@ionic/angular/standalone';
 
 @Component({
-  selector: 'app-signos',
-  templateUrl: './signos.page.html',
-  styleUrls: ['./signos.page.scss'],
+  selector: 'app-setenios',
+  templateUrl: './setenios.page.html',
+  styleUrls: ['./setenios.page.scss'],
   standalone: true,
-  imports: [CommonModule, FormsModule, IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonButtons],
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonHeader,
+    IonToolbar,
+    IonTitle,
+    IonContent,
+    IonButton,
+    IonButtons,
+  ],
 })
-export class SignosPage {
+export class SeteniosPage {
   voltar(): void {
     window.history.back();
   }

@@ -1,0 +1,62 @@
+[
+  {
+    "numero": 1,
+    "força_espiritual": "Tem necessidade de independencia, quer triunfar.",
+    "atividade": "independente, autonoma, de direccao."
+  },
+  {
+    "numero": 2,
+    "força_espiritual": "Quer dar, ser agradavel, colaborar, unir-se.",
+    "atividade": "de trabalho de equipa."
+  },
+  {
+    "numero": 3,
+    "força_espiritual": "Quer exprimir-se, comunicar. Gosta das coisas mundanas.",
+    "atividade": "de comunicacao."
+  },
+  {
+    "numero": 4,
+    "força_espiritual": "Procura realizar-se pelo trabalho. Ama a natureza.",
+    "atividade": "estavel e segura."
+  },
+  {
+    "numero": 5,
+    "força_espiritual": "Quer abrir-se aos outros, viajar.",
+    "atividade": "variada e nao sedentaria."
+  },
+  {
+    "numero": 6,
+    "força_espiritual": "Quer aconselhar, ter responsabilidades.",
+    "atividade": "de ajuda, de aconselhamento, implicando responsabilidades."
+  },
+  {
+    "numero": 7,
+    "força_espiritual": "Quer refletir, analisar, compreender.",
+    "atividade": "independente de reflexao."
+  },
+  {
+    "numero": 8,
+    "força_espiritual": "Quer concretizar as suas ambicoes, afirmar-se,",
+    "atividade": "concreta, comercial."
+  },
+  {
+    "numero": 9,
+    "força_espiritual": "Quer ajudar, aconselhar, escutar os outros e realizar um ideal.",
+    "atividade": "ligada a um grupo, uma coletividade."
+  },
+  {
+    "numero": 10,
+    "força_espiritual": "Tem necessidade de independencia, quer triunfar.",
+    "atividade": "independente, autonoma, de direccao."
+  },
+  {
+    "numero": 11,
+    "força_espiritual": "Quer impor-se, lutar.",
+    "atividade": "concreta necessitando de muito trabalho."
+  },
+  {
+    "numero": 22,
+    "força_espiritual": "Quer construir para os outros.",
+    "atividade": "concreta, ligada a grandes projectos."
+  }
+]

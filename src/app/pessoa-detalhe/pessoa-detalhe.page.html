@@ -2,10 +2,14 @@
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-button fill="clear" size="small" (click)="voltar()">Voltar</ion-button>
+      <ion-button fill="clear" size="small" (click)="abrirSignos()">Signos</ion-button>
+      <ion-button fill="clear" size="small" (click)="abrirEneagrama()">Eneagrama</ion-button>
+      <ion-button fill="clear" size="small" (click)="abrirSetenios()">Setenios</ion-button>
     </ion-buttons>
     <ion-title>{{ pessoa ? pessoa.nome + ' ' + pessoa.apelido : 'Pessoa' }}</ion-title>
   </ion-toolbar>
 </ion-header>
+
 
 <ion-content [fullscreen]="true" class="ion-padding">
   <ng-container *ngIf="pessoa; else notFound">
@@ -21,7 +25,15 @@
         <p><strong>Localidade:</strong> {{ pessoa.localidade }}</p>
         <p><strong>Eneagrama:</strong> {{ pessoa.eneagrama_tipo }}</p>
         <p><strong>Data:</strong> {{ pessoa.data }}</p>
+
+        <ion-card-subtitle class="ion-margin-top">
+          <p style="margin: 0;"><strong>força_espiritual</strong>: {{ forcaVogais }}</p>
+          <p style="margin: 0;"><strong>atividade</strong>: {{ atividadeConsoantes }}</p>
+
+        </ion-card-subtitle>
+
       </ion-card-content>
+
     </ion-card>
   </ng-container>
 

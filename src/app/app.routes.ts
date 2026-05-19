@@ -50,6 +50,11 @@ export const routes: Routes = [
     loadComponent: () => import('./pessoa-detalhe/pessoa-detalhe.page').then((m) => m.PessoaDetalhePage),
   },
   {
+    path: 'setenios',
+    loadComponent: () => import('./setenios/setenios.page').then((m) => m.SeteniosPage),
+  },
+
+  {
     path: '',
     redirectTo: 'oracao-perdao',
     pathMatch: 'full',

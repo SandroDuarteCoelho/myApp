@@ -114,8 +114,12 @@ export class PessoaDetalhePage implements OnInit {
 
   eneagramaAtual: EneagramaData | null = null;
 
-  private readonly letraValor: Record<string, number> = {
+  anoPessoalAtual: number | null = null;
+  anoPessoalProximo: number | null = null;
+  descricaoAnoPessoalAtual = '';
+  descricaoAnoPessoalProximo = '';
 
+  private readonly letraValor: Record<string, number> = {
     A: 1, B: 2, C: 3, D: 4, E: 5, F: 6, G: 7, H: 8, I: 9,
     J: 1, K: 2, L: 3, M: 4, N: 5, O: 6, P: 7, Q: 8, R: 9,
     S: 1, T: 2, U: 3, V: 4, W: 5, X: 6, Y: 7, Z: 8,
@@ -162,6 +166,7 @@ export class PessoaDetalhePage implements OnInit {
           this.carregarSignoChines();
           this.carregarSignoSolar();
           this.carregarEneagrama();
+          this.carregarAnoPessoal();
 
         }
       });
@@ -364,11 +369,76 @@ export class PessoaDetalhePage implements OnInit {
     }
   }
 
+// =========================
+// ANO PESSOAL (PÉSTAL)
+// =========================
+
+private calcularAnoPessoal(
+  mesNascimento: number,
+  diaNascimento: number,
+  anoReferencia: number
+): number {
+
+  // Soma inicial
+  let resultado = diaNascimento + mesNascimento + anoReferencia;
+
+  // Reduzir até ficar apenas 1 algarismo
+  while (resultado >= 10) {
+    resultado = String(resultado)
+      .split('')
+      .reduce((acc, n) => acc + Number(n), 0);
+  }
+
+  return resultado;
+}
+
+private async carregarTextoAnoPessoal(numero: number): Promise<string> {
+
+  const data = await this.http
+    .get<Record<string, string>>(
+      'assets/data/ano_pessoal.json'
+    )
+    .toPromise();
+
+  return data?.[String(numero)] ?? '';
+}
+
+async carregarAnoPessoal(): Promise<void> {
+
+  if (!this.pessoa) return;
+
+  const d = new Date(this.pessoa.data);
+
+  const dia = d.getDate();
+  const mes = d.getMonth() + 1;
+
+  const anoAtual = new Date().getFullYear();
+  const anoProximo = anoAtual + 1;
+
+  // Calcular anos pessoais
+  this.anoPessoalAtual =
+    this.calcularAnoPessoal(mes, dia, anoAtual);
+
+  this.anoPessoalProximo =
+    this.calcularAnoPessoal(mes, dia, anoProximo);
+
+  // Carregar textos do JSON
+  this.descricaoAnoPessoalAtual =
+    await this.carregarTextoAnoPessoal(
+      this.anoPessoalAtual
+    );
+
+  this.descricaoAnoPessoalProximo =
+    await this.carregarTextoAnoPessoal(
+      this.anoPessoalProximo
+    );
+}
+
   // =========================
   // ENEAGRAMA
   // =========================
 
-  private carregarEneagrama(): void {
+  private carregarEneagrama(): void { 
   if (!this.pessoa) return;
 
   const tipoNum = Number(this.pessoa.eneagrama_tipo);

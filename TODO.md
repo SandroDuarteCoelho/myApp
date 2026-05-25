@@ -1,14 +1,6 @@
-# TODO
-
-- [ ] (1) Atualizar `src/app/pessoa-detalhe/pessoa-detalhe.page.html`: adicionar no `ion-accordion-group` dois acordeões novos: **Eneagrama** e **Análise Pestal**.
-- [ ] (2) Atualizar `src/app/pessoa-detalhe/pessoa-detalhe.page.ts`: carregar `assets/data/eneagrama.json`, filtrar pelo `pessoa.eneagrama_tipo` e expor variáveis para o template.
-- [ ] (3) Atualizar `src/app/pessoa-detalhe/pessoa-detalhe.page.html`: renderizar no acordeão Eneagrama as seções do JSON (infancia, dificuldades, gostos, autoajuda, exercicios_praticos).
-- [ ] (4) Renderizar no acordeão Análise Pestal conteúdo fixo/placeholder (até haver o json/estrutura).
-- [x] Implementar carregamento e renderização do JSON do Eneagrama no acordeão da pessoa.
-
-- [x] (5) Rodar build/lint (se aplicável) para validar.
-
-- [x] Acesso às áreas do projeto identificadas.
-
-
+- [ ] Ler implementação atual de "Análise Pestal" (acordeão) em pessoa-detalhe.page.html/.ts
+- [ ] Implementar cálculo do Ano Pessoal atual e do próximo ano (usando dia+mes+anoNascimento+anoAtual com redução para 1 algarismo, exceto 11/22)
+- [ ] Carregar texto correspondente do json src/assets/data/ano_pessoal.json
+- [ ] Atualizar UI do acordeão "Análise Pestal" para mostrar: Ano pessoal atual, Ano pessoal do próximo ano e os respectivos textos
+- [ ] Rodar build/teste (npm test/build) para garantir que compila
 

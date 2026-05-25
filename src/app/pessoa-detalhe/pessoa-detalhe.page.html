@@ -233,9 +233,25 @@
             </ion-item>
 
             <div class="ion-padding" slot="content">
-              <p style="margin: 0; white-space: pre-line;">
-                Em desenvolvimento.
-              </p>
+
+              <ng-container *ngIf="anoPessoalAtual !== null && anoPessoalProximo !== null; else pestalFallback">
+
+                <h2 style="margin-top: 0; margin-bottom: 10px;">Ano Pessoal</h2>
+
+                <p style="margin: 0;">Ano pessoal atual ({{ anoPessoalAtual }}):</p>
+                <p style="white-space: pre-line; margin-top: 6px;">{{ descricaoAnoPessoalAtual }}</p>
+
+                <br>
+
+                <p style="margin: 0;">Ano pessoal do próximo ano ({{ anoPessoalProximo }}):</p>
+                <p style="white-space: pre-line; margin-top: 6px;">{{ descricaoAnoPessoalProximo }}</p>
+
+              </ng-container>
+
+              <ng-template #pestalFallback>
+                <p style="margin: 0; white-space: pre-line;">Em desenvolvimento.</p>
+              </ng-template>
+
             </div>
 
           </ion-accordion>
@@ -246,7 +262,7 @@
       </ion-card-content>
 
     </ion-card>
-
+<br><br><br>
   </ng-container>
 
   <ng-template #notFound>

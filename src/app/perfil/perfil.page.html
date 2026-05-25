@@ -2,9 +2,9 @@
   <ion-toolbar>
 
   <ion-buttons slot="start" class="vertical-buttons">
-  <ion-button fill="clear" size="small" (click)="voltar()">
-    Voltar
-  </ion-button>
+  <ion-button class="thin-outline" fill="outline" size="small" (click)="voltar()">
+  Voltar
+</ion-button>
 
   <ion-button fill="clear" size="small" (click)="abrirSignos()">
     Signos
@@ -193,10 +193,18 @@
             <p><strong>Data:</strong> {{ p.data }}</p>
 
             <div style="margin-top: 12px; display:flex; gap:8px;">
-              <ion-button size="small" fill="outline" (click)="escolher(p)">Escolher</ion-button>
-              <ion-button size="small" fill="outline" (click)="abrirEditar(p)">Editar</ion-button>
-              <ion-button size="small" color="danger" fill="outline" (click)="apagar(p)">Apagar</ion-button>
-            </div>
+  <ion-button class="mini-btn" size="small" fill="outline" (click)="escolher(p)">
+    Escolher
+  </ion-button>
+
+  <ion-button class="mini-btn" size="small" fill="outline" (click)="abrirEditar(p)">
+    Editar
+  </ion-button>
+
+  <ion-button class="mini-btn" size="small" color="danger" fill="outline" (click)="apagar(p)">
+    Apagar
+  </ion-button>
+</div>
           </ion-card-content>
 
         </ion-card>

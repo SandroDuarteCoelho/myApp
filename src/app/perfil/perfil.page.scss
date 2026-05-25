@@ -8,3 +8,14 @@ ion-content {
   align-items: flex-start; /* encosta à esquerda */
   gap: 6px; /* espaço entre botões */
 }
+
+.mini-btn {
+  --padding-start: 4px;
+  --padding-end: 4px;
+  min-height: 22px;
+  font-size: 10px;
+}
+
+.thin-outline {
+  --border-width: 0.5px;
+}

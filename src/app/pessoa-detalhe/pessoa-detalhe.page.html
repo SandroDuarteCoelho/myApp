@@ -32,7 +32,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="ion-padding">
+<ion-content [fullscreen]="true" class="no-padding">
 
   <ng-container *ngIf="pessoa; else notFound">
 
@@ -137,7 +137,111 @@
 
           </ion-accordion>
 
+          <!-- 🟢 SIGNO SOLAR -->
+          <ion-accordion value="solar">
+
+
+            <ion-item slot="header">
+              <ion-label>Signo solar</ion-label>
+            </ion-item>
+
+            <div class="ion-padding" slot="content">
+
+              <div *ngIf="signoSolarAtual">
+
+                <h2>{{ signoSolarAtual.signo }}</h2>
+
+                <p style="white-space: pre-line; margin-bottom: 14px;">
+                  <strong>objetivo:</strong>
+                  {{ signoSolarAtual.objetivo }}
+                </p>
+
+                <p style="white-space: pre-line;">
+                  <strong>personalidade:</strong>
+                  {{ signoSolarAtual.personalidade }}
+                </p>
+
+              </div>
+
+            </div>
+
+          </ion-accordion>
+
+          <!-- 🔥 ENEAGRAMA -->
+          <ion-accordion value="eneagrama">
+
+            <ion-item slot="header">
+              <ion-label>Eneagrama</ion-label>
+            </ion-item>
+
+            <div class="ion-padding" slot="content">
+
+              <div *ngIf="eneagramaAtual; else eneagramaFallback">
+
+                <p style="margin: 0; white-space: pre-line;">
+                  <strong>Infância:</strong>
+                  {{ eneagramaAtual.infancia }}
+                </p>
+
+                <p style="margin-top: 12px;">
+                  <strong>Dificuldades:</strong>
+                </p>
+
+                <ul style="margin-top: 0; padding-left: 18px;">
+                  <li *ngFor="let d of eneagramaAtual.dificuldades" style="white-space: pre-line;">
+                    {{ d }}
+                  </li>
+                </ul>
+
+                <p style="margin-top: 12px;">
+                  <strong>Gostos:</strong>
+                </p>
+
+                <ul style="margin-top: 0; padding-left: 18px;">
+                  <li *ngFor="let g of eneagramaAtual.gostos" style="white-space: pre-line;">
+                    {{ g }}
+                  </li>
+                </ul>
+
+                <p style="margin-top: 12px; white-space: pre-line;">
+                  <strong>Autoajuda:</strong>
+                  {{ eneagramaAtual.autoajuda }}
+                </p>
+
+                <p style="margin-top: 12px; white-space: pre-line;">
+                  <strong>Exercícios práticos:</strong>
+                  {{ eneagramaAtual.exercicios_praticos }}
+                </p>
+
+              </div>
+
+              <ng-template #eneagramaFallback>
+                <p style="margin: 0;">
+                  Não foi possível carregar o conteúdo do Eneagrama.
+                </p>
+              </ng-template>
+
+            </div>
+
+          </ion-accordion>
+
+          <!-- 🔶 ANÁLISE PESTAL -->
+          <ion-accordion value="pestal">
+
+            <ion-item slot="header">
+              <ion-label>Análise Pestal</ion-label>
+            </ion-item>
+
+            <div class="ion-padding" slot="content">
+              <p style="margin: 0; white-space: pre-line;">
+                Em desenvolvimento.
+              </p>
+            </div>
+
+          </ion-accordion>
+
         </ion-accordion-group>
+
 
       </ion-card-content>
 

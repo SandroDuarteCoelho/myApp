@@ -26,3 +26,9 @@
 .text-zoom h3 {
   font-size: 18px;
 }
+
+ion-card {
+  margin: 12px 0 0 0;
+  width: 100%;
+  border-radius: 0; // opcional (fica “colado” tipo app full width)
+}

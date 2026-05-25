@@ -11,15 +11,19 @@
         info
       </ion-button>
     </ion-buttons>
-
+ 
     <ion-title class="ion-text-center" [ngClass]="casaClass">
       <div class="casa-title-wrap">
+         
         <div class="casa-title">{{ casaAtual }}</div>
         <div class="casa-desc">{{ descricaoCasaAtual }}</div>
+       
       </div>
     </ion-title>
   </ion-toolbar>
 </ion-header>
+
+
 
 <ion-content [fullscreen]="true" class="cards-grid">
   <div class="background-layer" [ngStyle]="{ 'background-image': 'url(' + backgroundImage + ')' }" aria-hidden="true"></div>

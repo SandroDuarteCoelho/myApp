@@ -4,7 +4,6 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 
 import {
-
   IonHeader,
   IonToolbar,
   IonTitle,
@@ -60,16 +59,7 @@ type EneagramaData = {
   exercicios_praticos: string;
 };
 
-
-
-
-
-
-
-
 @Component({
-
-
   selector: 'app-pessoa-detalhe',
   templateUrl: './pessoa-detalhe.page.html',
   styleUrls: ['./pessoa-detalhe.page.scss'],
@@ -109,27 +99,95 @@ export class PessoaDetalhePage implements OnInit {
   descricaoDia = '';
 
   signoChines: SignoChines | null = null;
-
   signoSolarAtual: SignoSolar | null = null;
-
   eneagramaAtual: EneagramaData | null = null;
 
   anoPessoalAtual: number | null = null;
   anoPessoalProximo: number | null = null;
+  anoSistemaAtual: number | null = null;
+  anoSistemaSeguinte: number | null = null;
+
   descricaoAnoPessoalAtual = '';
   descricaoAnoPessoalProximo = '';
 
+  // Casas
+  casaAtual: string = '';
+  descricaoCasaAtual: string = '';
+  casaSeguinte: string = '';
+  descricaoCasaSeguinte: string = '';
+  diasParaCasaSeguinte: number | null = null;
+
+  // Análise Pestal - Ano Chinês
+  anoChinesAtual: number | null = null;
+  anoChinesProximo: number | null = null;
+  previsaoAnoChinesAtual: string = '';
+  previsaoAnoChinesProximo: string = '';
+
+
   private readonly letraValor: Record<string, number> = {
-    A: 1, B: 2, C: 3, D: 4, E: 5, F: 6, G: 7, H: 8, I: 9,
-    J: 1, K: 2, L: 3, M: 4, N: 5, O: 6, P: 7, Q: 8, R: 9,
-    S: 1, T: 2, U: 3, V: 4, W: 5, X: 6, Y: 7, Z: 8,
+    A: 1,
+    B: 2,
+    C: 3,
+    D: 4,
+    E: 5,
+    F: 6,
+    G: 7,
+    H: 8,
+    I: 9,
+    J: 1,
+    K: 2,
+    L: 3,
+    M: 4,
+    N: 5,
+    O: 6,
+    P: 7,
+    Q: 8,
+    R: 9,
+    S: 1,
+    T: 2,
+    U: 3,
+    V: 4,
+    W: 5,
+    X: 6,
+    Y: 7,
+    Z: 8,
   };
 
   private readonly vogais = new Set(['A', 'E', 'I', 'O', 'U']);
 
+  // (Mantida caso o texto das casas venha a ser centralizado via map)
+  // Neste componente, a descrição é lida diretamente deste mapa via getDescricaoCasa().
+  private readonly casasMap: Record<string, string> = {
+
+    'Casa da VIDA':
+      'empreendimentos pessoais, temperamento, qualidades, defeitos e projetos para o futuro',
+    'Casa dos BENS':
+      'bens materiais, fortuna, lucros, promoções, emprego, compras e vendas importantes.',
+    'Casa do SANGUE':
+      'família e parentes, tanto nas alegrias quanto nas tristezas. Se o relacionamento é bom, o período é muito positivo',
+    'Casa da SOLIDEZ':
+      'realização de sonhos, consolidação de negócios, sociedades, contratos, terra, propriedades e viagens importantes',
+    'Casa dos FILHOS':
+      'fertilidade, fecundidade, gestação, nascimento, educação, alegrias e tristezas, tudo envolvendo filhos.',
+    'Casa da SAÚDE':
+      'esta é a casa do sucesso em todos os sentidos, bem como da saúde física e mental. Curas e distúrbios podem acontecer nesse período. Período do Paraíso Astral.',
+    'Casa do CASAMENTO':
+      'tudo que se relacionar a sua relação amorosa, quer seja ou não formalizada, tanto no sentido de realização quanto no de finalização',
+    'Casa da MORTE/MUDANÇA':
+      'lutas, obstáculos, problemas, acidentes, operações cirúrgicas, bem como término abrupto de relacionamentos, sociedades, com prejuízos ou não.',
+    'Casa DIVINA':
+      'período da religiosidade, da dedicação às coisas do espírito, da busca e do encontro por respostas. Delicado para pessoas místicas ou fanáticas em excesso.',
+    'Casa da POSIÇÃO SOCIAL':
+      'sucesso, ascensão, glórias, reconhecimento, prêmios, evidência e elevação. Casamento por interesse.',
+    'Casa dos AMIGOS':
+      'início ou fim de relacionamentos com amigos. Indicado para pedir auxílio e proteção nos assuntos complicados.',
+    'Casa dos INIMIGOS':
+      'perseguições, desavenças, brigas, escândalos e tudo de ruim que possa ocorrer no período do seu Inferno Astral.',
+  };
+
   constructor(
     private readonly route: ActivatedRoute,
-    private readonly http: HttpClient
+    private readonly http: HttpClient,
   ) {}
 
   ngOnInit(): void {
@@ -138,38 +196,39 @@ export class PessoaDetalhePage implements OnInit {
 
     if (!id || Number.isNaN(id)) return;
 
-    this.http.get<PessoaJson[]>('assets/data/pessoas.json')
-      .subscribe({
-        next: (arr) => {
-          const idx = id - 1;
-          this.pessoa = arr[idx]
-            ? ({ id, ...arr[idx] } as PessoaWithId)
-            : null;
+    this.http.get<PessoaJson[]>('assets/data/pessoas.json').subscribe({
+      next: (arr) => {
+        const idx = id - 1;
+        this.pessoa = arr[idx] ? ({ id, ...arr[idx] } as PessoaWithId) : null;
+        if (!this.pessoa) return;
 
-          if (!this.pessoa) return;
+        this.idadeAtual = this.calcularIdade(this.pessoa.data);
 
-          this.idadeAtual = this.calcularIdade(this.pessoa.data);
+        const numeroVogais = this.somaVogais;
+        const numeroConsoantes = this.somaConsoantes;
 
-          const numeroVogais = this.somaVogais;
-          const numeroConsoantes = this.somaConsoantes;
+        Promise.all([
+          this.getForcaPorNumero(numeroVogais, 'força_espiritual'),
+          this.getForcaPorNumero(numeroConsoantes, 'atividade'),
+        ]).then(([forca, atividade]) => {
+          this.forcaVogais = forca;
+          this.atividadeConsoantes = atividade;
+        });
 
-          Promise.all([
-            this.getForcaPorNumero(numeroVogais, 'força_espiritual'),
-            this.getForcaPorNumero(numeroConsoantes, 'atividade'),
-          ]).then(([forca, atividade]) => {
-            this.forcaVogais = forca;
-            this.atividadeConsoantes = atividade;
-          });
+        this.carregarSetenio();
+        this.carregarDescricaoDia();
+        this.carregarSignoChines();
+        this.carregarSignoSolar();
+        this.carregarEneagrama();
+        this.carregarAnoPessoal();
+        this.carregarCasasPestal();
+        this.carregarPrevisaoAnoChines();
 
-          this.carregarSetenio();
-          this.carregarDescricaoDia();
-          this.carregarSignoChines();
-          this.carregarSignoSolar();
-          this.carregarEneagrama();
-          this.carregarAnoPessoal();
 
-        }
-      });
+
+
+      },
+    });
   }
 
   // =========================
@@ -198,7 +257,11 @@ export class PessoaDetalhePage implements OnInit {
       .replace(/[^A-Z]/g, '');
   }
 
-  private somarLetrasPeloTipo(p1: string, p2: string, tipo: 'vogais' | 'consoantes'): number {
+  private somarLetrasPeloTipo(
+    p1: string,
+    p2: string,
+    tipo: 'vogais' | 'consoantes',
+  ): number {
     const texto = this.normalizarTexto(p1 + p2);
 
     const soma = [...texto].reduce((acc, ch) => {
@@ -224,16 +287,14 @@ export class PessoaDetalhePage implements OnInit {
 
   async getForcaPorNumero(
     numero: number,
-    tipo: 'força_espiritual' | 'atividade'
+    tipo: 'força_espiritual' | 'atividade',
   ): Promise<string> {
     const data = await this.http
-      .get<Array<{ numero: number; força_espiritual: string; atividade: string }>>(
-        'assets/data/nome.json'
-      )
+      .get<Array<{ numero: number; força_espiritual: string; atividade: string }>>('assets/data/nome.json')
       .toPromise();
 
-    const n = data?.find(x => x.numero === numero);
-    return n ? n[tipo] : '';
+    const n = data?.find((x) => x.numero === numero);
+    return n ? (n as any)[tipo] : '';
   }
 
   // =========================
@@ -260,10 +321,9 @@ export class PessoaDetalhePage implements OnInit {
     const idade = this.calcularIdade(this.pessoa.data);
     const idSetenio = Math.floor(idade / 7) + 1;
 
-    this.http.get<Setenio[]>('assets/data/setenios.json')
-      .subscribe(data => {
-        this.setenioAtual = data.find(s => s.id === idSetenio) || null;
-      });
+    this.http.get<Setenio[]>('assets/data/setenios.json').subscribe((data) => {
+      this.setenioAtual = data.find((s) => s.id === idSetenio) || null;
+    });
   }
 
   // =========================
@@ -275,10 +335,9 @@ export class PessoaDetalhePage implements OnInit {
 
     const dia = new Date(this.pessoa.data).getDate();
 
-    this.http.get<Record<string, string>>('assets/data/dia_nascimento.json')
-      .subscribe(data => {
-        this.descricaoDia = data[String(dia)] || '';
-      });
+    this.http.get<Record<string, string>>('assets/data/dia_nascimento.json').subscribe((data) => {
+      this.descricaoDia = data[String(dia)] || '';
+    });
   }
 
   // =========================
@@ -286,14 +345,14 @@ export class PessoaDetalhePage implements OnInit {
   // =========================
 
   carregarSignoChines(): void {
+
     if (!this.pessoa) return;
 
     const ano = new Date(this.pessoa.data).getFullYear();
 
-    this.http.get<SignoChines[]>('assets/data/chineses.json')
-      .subscribe(data => {
-        this.signoChines = data.find(s => s.anos.includes(ano)) || null;
-      });
+    this.http.get<SignoChines[]>('assets/data/chineses.json').subscribe((data) => {
+      this.signoChines = data.find((s) => s.anos.includes(ano)) || null;
+    });
   }
 
   // =========================
@@ -303,38 +362,22 @@ export class PessoaDetalhePage implements OnInit {
   private getSignoSolarKeyPorDataNascimento(dateStr: string): string | null {
     const d = new Date(dateStr);
     const day = d.getDate();
-    const month = d.getMonth() + 1; // 1-12
-
-    // Usando o mapeamento tropical (por mês/dia) com wrap conforme sua regra:
-    // Capricórnio: 22/12 a 20/01 (inclui 01/01-20/01)
-    // Aquário: 21/01 a 19/02
+    const month = d.getMonth() + 1;
 
     const mmdd = month * 100 + day;
 
-    // Carneiro 21/03-19/04
     if (mmdd >= 321 && mmdd <= 419) return 'carneiro';
-    // Touro 20/04-20/05
     if (mmdd >= 420 && mmdd <= 520) return 'touro';
-    // Gémeos 21/05-20/06
     if (mmdd >= 521 && mmdd <= 620) return 'gemeos';
-    // Caranguejo 21/06-22/07
     if (mmdd >= 621 && mmdd <= 722) return 'caranguejo';
-    // Leão 23/07-22/08
     if (mmdd >= 723 && mmdd <= 822) return 'leao';
-    // Virgem 23/08-22/09
     if (mmdd >= 823 && mmdd <= 922) return 'virgem';
-    // Balança 23/09-22/10
     if (mmdd >= 923 && mmdd <= 1022) return 'balanca';
-    // Escorpião 23/10-21/11
     if (mmdd >= 1023 && mmdd <= 1121) return 'escorpiao';
-    // Sagitário 22/11-21/12
     if (mmdd >= 1122 && mmdd <= 1221) return 'sagitario';
-    // Capricórnio 22/12-31/12 + 01/01-20/01
     if (mmdd >= 1222 && mmdd <= 1231) return 'capricornio';
     if (mmdd >= 101 && mmdd <= 120) return 'capricornio';
-    // Aquário 21/01-19/02
     if (mmdd >= 121 && mmdd <= 219) return 'aquario';
-    // Peixes 20/02-20/03
     if (mmdd >= 220 && mmdd <= 320) return 'peixes';
 
     return null;
@@ -351,9 +394,7 @@ export class PessoaDetalhePage implements OnInit {
 
     try {
       const json = await this.http
-        .get<Array<{ signo?: string; objetivo?: string; personalidade?: string }>>(
-          `assets/data/solares/${key}.json`
-        )
+        .get<Array<{ signo?: string; objetivo?: string; personalidade?: string }>>(`assets/data/solares/${key}.json`)
         .toPromise();
 
       const primeiro = json?.[0];
@@ -370,90 +411,270 @@ export class PessoaDetalhePage implements OnInit {
   }
 
 // =========================
-// ANO PESSOAL (PÉSTAL)
+// CASAS (PÉSTAL)
 // =========================
 
-private calcularAnoPessoal(
-  mesNascimento: number,
-  diaNascimento: number,
-  anoReferencia: number
-): number {
+private ordemCasas: string[] = [
+  'Casa da VIDA',
+  'Casa dos BENS',
+  'Casa do SANGUE',
+  'Casa da SOLIDEZ',
+  'Casa dos FILHOS',
+  'Casa da SAÚDE',
+  'Casa do CASAMENTO',
+  'Casa da MORTE/MUDANÇA',
+  'Casa DIVINA',
+  'Casa da POSIÇÃO SOCIAL',
+  'Casa dos AMIGOS',
+  'Casa dos INIMIGOS',
+];
 
-  // Soma inicial
-  let resultado = diaNascimento + mesNascimento + anoReferencia;
+private getDescricaoCasa(casa: string): string {
+  return this.casasMap[casa] ?? '';
+}
 
-  // Reduzir até ficar apenas 1 algarismo
-  while (resultado >= 10) {
-    resultado = String(resultado)
-      .split('')
-      .reduce((acc, n) => acc + Number(n), 0);
+private getCasaAtualPorDataNascimento(dateStr: string): string {
+
+  const nascimento = new Date(dateStr);
+  const diaNascimento = nascimento.getDate();
+
+  const hoje = new Date();
+
+  let mesesDecorridos =
+    (hoje.getFullYear() - nascimento.getFullYear()) * 12 +
+    (hoje.getMonth() - nascimento.getMonth());
+
+  // Ainda não chegou ao dia de mudança deste mês
+  if (hoje.getDate() < diaNascimento) {
+    mesesDecorridos--;
   }
 
-  return resultado;
+  const idx =
+    ((mesesDecorridos % this.ordemCasas.length)
+      + this.ordemCasas.length)
+    % this.ordemCasas.length;
+
+  return this.ordemCasas[idx];
 }
 
-private async carregarTextoAnoPessoal(numero: number): Promise<string> {
+private proximaCasa(casaAtual: string): string {
 
-  const data = await this.http
-    .get<Record<string, string>>(
-      'assets/data/ano_pessoal.json'
-    )
-    .toPromise();
+  const idx = this.ordemCasas.indexOf(casaAtual);
 
-  return data?.[String(numero)] ?? '';
+  if (idx === -1) {
+    return this.ordemCasas[0];
+  }
+
+  return this.ordemCasas[
+    (idx + 1) % this.ordemCasas.length
+  ];
 }
 
-async carregarAnoPessoal(): Promise<void> {
+private diasParaProximaCasa(dateStr: string): number {
 
-  if (!this.pessoa) return;
+  const nascimento = new Date(dateStr);
+  const diaNascimento = nascimento.getDate();
 
-  const d = new Date(this.pessoa.data);
+  const hoje = new Date();
 
-  const dia = d.getDate();
-  const mes = d.getMonth() + 1;
+  let proximaMudanca = new Date(
+    hoje.getFullYear(),
+    hoje.getMonth(),
+    diaNascimento
+  );
 
-  const anoAtual = new Date().getFullYear();
-  const anoProximo = anoAtual + 1;
+  // Se já passou o dia de mudança deste mês,
+  // a próxima mudança é no mês seguinte.
+  if (hoje.getDate() >= diaNascimento) {
 
-  // Calcular anos pessoais
-  this.anoPessoalAtual =
-    this.calcularAnoPessoal(mes, dia, anoAtual);
+    proximaMudanca = new Date(
+      hoje.getFullYear(),
+      hoje.getMonth() + 1,
+      diaNascimento
+    );
+  }
 
-  this.anoPessoalProximo =
-    this.calcularAnoPessoal(mes, dia, anoProximo);
+  const hojeZero = new Date(
+    hoje.getFullYear(),
+    hoje.getMonth(),
+    hoje.getDate()
+  );
 
-  // Carregar textos do JSON
-  this.descricaoAnoPessoalAtual =
-    await this.carregarTextoAnoPessoal(
-      this.anoPessoalAtual
+  const mudancaZero = new Date(
+    proximaMudanca.getFullYear(),
+    proximaMudanca.getMonth(),
+    proximaMudanca.getDate()
+  );
+
+  const ms = mudancaZero.getTime() - hojeZero.getTime();
+
+  return Math.ceil(
+    ms / (1000 * 60 * 60 * 24)
+  );
+}
+
+carregarCasasPestal(): void {
+
+  if (!this.pessoa?.data) {
+    return;
+  }
+
+  const casaAtual =
+    this.getCasaAtualPorDataNascimento(
+      this.pessoa.data
     );
 
-  this.descricaoAnoPessoalProximo =
-    await this.carregarTextoAnoPessoal(
-      this.anoPessoalProximo
+  this.casaAtual = casaAtual;
+
+  this.descricaoCasaAtual =
+    this.getDescricaoCasa(casaAtual);
+
+  const casaSeguinte =
+    this.proximaCasa(casaAtual);
+
+  this.casaSeguinte = casaSeguinte;
+
+  this.descricaoCasaSeguinte =
+    this.getDescricaoCasa(casaSeguinte);
+
+  this.diasParaCasaSeguinte =
+    this.diasParaProximaCasa(
+      this.pessoa.data
     );
 }
+
+   // =========================
+  // ANO CHINÊS (PÉSTAL)
+  // =========================
+
+  private obterSignoAnoChines(ano: number): string {
+
+    const signos = [
+      'Rato',
+      'Boi',
+      'Tigre',
+      'Coelho',
+      'Dragão',
+      'Serpente',
+      'Cavalo',
+      'Carneiro',
+      'Macaco',
+      'Galo',
+      'Cão',
+      'Porco'
+    ];
+
+    // 2020 foi ano do Rato
+    const indice = (ano - 2020) % 12;
+
+    return signos[(indice + 12) % 12];
+  }
+
+  private async carregarPrevisaoAnoChines(): Promise<void> {
+
+    if (!this.pessoa) return;
+    if (!this.signoChines) return;
+
+    const anoAtual = new Date().getFullYear();
+    const anoProximo = anoAtual + 1;
+
+    const signos = await this.http
+      .get<any[]>('assets/data/chineses.json')
+      .toPromise();
+
+    if (!signos) return;
+
+    // Encontrar o signo da pessoa (Rato, Boi, Tigre, etc.)
+    const signoChinesAtual = this.signoChines?.signo;
+
+    const signoPessoa = signos.find(
+      (s) => !!signoChinesAtual && s.signo === signoChinesAtual
+    );
+
+
+    if (!signoPessoa) {
+      this.previsaoAnoChinesAtual = '';
+      this.previsaoAnoChinesProximo = '';
+      return;
+    }
+
+    // Determinar qual o signo do ano atual e do próximo ano
+    const signoAnoAtual =
+      this.obterSignoAnoChines(anoAtual);
+
+    const signoAnoProximo =
+      this.obterSignoAnoChines(anoProximo);
+
+    this.anoChinesAtual = anoAtual;
+    this.anoChinesProximo = anoProximo;
+
+    this.previsaoAnoChinesAtual =
+      signoPessoa.interacao_com_outros_signos?.[signoAnoAtual]?.previsao_ano
+      ?? '';
+
+    this.previsaoAnoChinesProximo =
+      signoPessoa.interacao_com_outros_signos?.[signoAnoProximo]?.previsao_ano
+      ?? '';
+  }
+  // =========================
+  // ANO PESSOAL (PÉSTAL)
+  // =========================
+
+
+  private calcularAnoPessoal(mesNascimento: number, diaNascimento: number, anoReferencia: number): number {
+    let resultado = diaNascimento + mesNascimento + anoReferencia;
+
+    while (resultado >= 10) {
+      resultado = String(resultado)
+        .split('')
+        .reduce((acc, n) => acc + Number(n), 0);
+    }
+
+    return resultado;
+  }
+
+  private async carregarTextoAnoPessoal(numero: number): Promise<string> {
+    const data = await this.http.get<Record<string, string>>('assets/data/ano_pessoal.json').toPromise();
+    return data?.[String(numero)] ?? '';
+  }
+
+  async carregarAnoPessoal(): Promise<void> {
+    if (!this.pessoa) return;
+
+    const d = new Date(this.pessoa.data);
+    const dia = d.getDate();
+    const mes = d.getMonth() + 1;
+
+    this.anoSistemaAtual = new Date().getFullYear();
+    this.anoSistemaSeguinte = (this.anoSistemaAtual ?? 0) + 1;
+
+    const anoAtual = this.anoSistemaAtual ?? new Date().getFullYear();
+    const anoProximo = this.anoSistemaSeguinte ?? anoAtual + 1;
+
+    this.anoPessoalAtual = this.calcularAnoPessoal(mes, dia, anoAtual);
+    this.anoPessoalProximo = this.calcularAnoPessoal(mes, dia, anoProximo);
+
+    this.descricaoAnoPessoalAtual = await this.carregarTextoAnoPessoal(this.anoPessoalAtual);
+    this.descricaoAnoPessoalProximo = await this.carregarTextoAnoPessoal(this.anoPessoalProximo);
+  }
 
   // =========================
   // ENEAGRAMA
   // =========================
 
-  private carregarEneagrama(): void { 
-  if (!this.pessoa) return;
+  private carregarEneagrama(): void {
+    if (!this.pessoa) return;
 
-  const tipoNum = Number(this.pessoa.eneagrama_tipo);
+    const tipoNum = Number(this.pessoa.eneagrama_tipo);
 
-  if (!tipoNum) {
-    this.eneagramaAtual = null;
-    return;
-  }
+    if (!tipoNum) {
+      this.eneagramaAtual = null;
+      return;
+    }
 
-  this.http
-    .get<any[]>('assets/data/eneagrama.json')
-    .subscribe({
+    this.http.get<any[]>('assets/data/eneagrama.json').subscribe({
       next: (arr) => {
-        const data = arr?.find(x => x.tipo === tipoNum);
-
+        const data = arr?.find((x) => x.tipo === tipoNum);
         this.eneagramaAtual = data
           ? {
               infancia: data.infancia ?? '',
@@ -466,13 +687,12 @@ async carregarAnoPessoal(): Promise<void> {
       },
       error: () => {
         this.eneagramaAtual = null;
-      }
+      },
     });
-}
+  }
 
   // =========================
   // NAV
-
   // =========================
 
   voltar(): void {

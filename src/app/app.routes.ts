@@ -23,6 +23,19 @@ export const routes: Routes = [
   },
 
   {
+    path: 'linguagem-corpo-detalhe',
+    loadComponent: () => import('./linguagem-corpo-detalhe/linguagem-corpo-detalhe.page').then((m) => m.LinguagemCorpoDetalhePage),
+  },
+  {
+    path: 'a-tua-casa',
+    loadComponent: () => import('./a-tua-casa/a-tua-casa.page').then((m) => m.ATuaCasaPage),
+  },
+  {
+    path: 'o-que-comes',
+    loadComponent: () => import('./o-que-comes/o-que-comes.page').then((m) => m.OQueComesPage),
+  },
+
+  {
     path: 'perfil',
     loadComponent: () => import('./perfil/perfil.page').then((m) => m.PerfilPage),
   },

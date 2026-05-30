@@ -9,6 +9,38 @@
 
 <ion-content [fullscreen]="true" class="ion-padding">
   <h1>Metade sombra</h1>
-  <p>Conteúdo da Metade sombra aqui.</p>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6">
+        <ion-card button (click)="abrirLinguagemCorpoDetalhe()">
+          <ion-card-header>
+            <ion-card-title>Linguagem do corpo</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-card button (click)="abrirATuaCasa()">
+          <ion-card-header>
+            <ion-card-title>A tua casa</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="6">
+        <ion-card button (click)="abrirOQueComes()">
+          <ion-card-header>
+            <ion-card-title>O que comes</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="6" class="empty-col"></ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
+
 

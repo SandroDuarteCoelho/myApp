@@ -236,15 +236,50 @@
 
               <ng-container *ngIf="anoPessoalAtual !== null && anoPessoalProximo !== null; else pestalFallback">
 
-                <h2 style="margin-top: 0; margin-bottom: 10px;">Ano Pessoal</h2>
+                <p style="margin: 0;"><strong>Casa em que se encontra:</strong> {{ casaAtual }}</p>
+                <p style="white-space: pre-line; margin-top: 6px;">{{ descricaoCasaAtual }}</p>
 
-                <p style="margin: 0;">Ano pessoal atual ({{ anoPessoalAtual }}):</p>
+                <br>
+               
+                
+                <p style="margin: 0;">
+                  <strong>Casa seguinte:</strong> {{ casaSeguinte }}
+                  <span *ngIf="diasParaCasaSeguinte !== null">(faltam {{ diasParaCasaSeguinte }} dias)</span>
+                </p>
+                <p style="white-space: pre-line; margin-top: 6px;">{{ descricaoCasaSeguinte }}</p>
+
+                <br>
+                <br>
+
+                <p style="margin: 0;">
+                  <strong>Ano pessoal atual ({{ anoPessoalAtual }}):</strong>
+                  <span *ngIf="anoSistemaAtual !== null">{{ anoSistemaAtual }}</span>
+                </p>
                 <p style="white-space: pre-line; margin-top: 6px;">{{ descricaoAnoPessoalAtual }}</p>
 
                 <br>
 
-                <p style="margin: 0;">Ano pessoal do próximo ano ({{ anoPessoalProximo }}):</p>
+                <!-- 🔷 ANO CHINÊS -->
+                <p style="margin: 0;">
+                  <strong>Ano chinês atual ({{ anoChinesAtual }}):</strong>
+                </p>
+                <p style="white-space: pre-line; margin-top: 6px;">{{ previsaoAnoChinesAtual }}</p>
+
+                <br>
+
+                <p style="margin: 0;">
+                  <strong>Ano chinês do próximo ano ({{ anoChinesProximo }}):</strong>
+                </p>
+                <p style="white-space: pre-line; margin-top: 6px;">{{ previsaoAnoChinesProximo }}</p>
+
+                <br>
+
+                <p style="margin: 0;">
+                  <strong>Ano pessoal do próximo ano ({{ anoPessoalProximo }}):</strong>
+                  <span *ngIf="anoSistemaSeguinte !== null">{{ anoSistemaSeguinte }}</span>
+                </p>
                 <p style="white-space: pre-line; margin-top: 6px;">{{ descricaoAnoPessoalProximo }}</p>
+
 
               </ng-container>
 
@@ -255,6 +290,7 @@
             </div>
 
           </ion-accordion>
+
 
         </ion-accordion-group>
 

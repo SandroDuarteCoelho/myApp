@@ -1,9 +1,10 @@
-# TODO-in-progress (snapshot)
+# TODO
 
-- [x] Entender erros na página `linguagem-corpo-detalhe` (HTML/TS)
-- [x] Corrigir TypeScript: método `selecionarChacra` fora da classe e falta de import/uso
-- [x] Corrigir HTML: definir corretamente o `src` da imagem (usar assets relativo ao Angular) e revisar tags inválidas
-- [ ] Atualizar rota/autoload se necessário
-- [x] Validar com build/lint (build agora completa com warnings)
+- [x] Criar página destino “Outros” no detalhe da linguagem do corpo (/linguagem-corpo-detalhe/outros) com botão “Voltar”.
+- [x] Atualizar `app.routes.ts` para incluir rota `/linguagem-corpo-detalhe/outros`.
 
+- [x] Atualizar `raiz.page` para carregar `indice_raiz.json`, renderizar Searchbar + lista filtrada e mostrar detalhe de `significado/alimentos/sistemico` ao selecionar.
+
+
+- [ ] Testar navegação e funcionamento da busca.
 

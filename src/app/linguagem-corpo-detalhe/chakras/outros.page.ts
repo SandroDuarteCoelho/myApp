@@ -15,9 +15,9 @@ import {
 } from '@ionic/angular/standalone';
 
 @Component({
-  selector: 'app-chacra-cardiaco',
-  templateUrl: './cardiaco.page.html',
-  styleUrls: ['./cardiaco.page.scss'],
+  selector: 'app-chacra-outros',
+  templateUrl: './outros.page.html',
+  styleUrls: ['./outros.page.scss'],
   standalone: true,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
@@ -34,14 +34,14 @@ import {
     IonLabel,
   ],
 })
-export class CardiacoPage {
+export class OutrosPage {
   voltar(): void {
     window.history.back();
   }
 
   termoBusca = '';
 
-  indiceCardiaco: Array<{
+  indiceOutros: Array<{
     id: string;
     nome: string;
     ficheiro: string;
@@ -69,15 +69,15 @@ export class CardiacoPage {
 
   private async carregarIndice(): Promise<void> {
     try {
-      const data = await fetch('assets/data/doencas/indice_cardiaco.json').then((r) => r.json());
+      const data = await fetch('assets/data/doencas/indice_outros.json').then((r) => r.json());
 
-      this.indiceCardiaco = data;
+      this.indiceOutros = data;
       this.listaFiltrada = [...data];
       this.indiceCarregado = true;
     } catch (e) {
       console.error('Erro ao carregar índice', e);
 
-      this.indiceCardiaco = [];
+      this.indiceOutros = [];
       this.listaFiltrada = [];
       this.indiceCarregado = true;
     }

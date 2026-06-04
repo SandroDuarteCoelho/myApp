@@ -8,6 +8,10 @@ import {
   IonContent,
   IonButton,
   IonButtons,
+  IonSearchbar,
+  IonList,
+  IonItem,
+  IonLabel,
 } from '@ionic/angular/standalone';
 
 @Component({
@@ -24,11 +28,99 @@ import {
     IonContent,
     IonButton,
     IonButtons,
+    IonSearchbar,
+    IonList,
+    IonItem,
+    IonLabel,
   ],
 })
 export class SacralPage {
   voltar(): void {
     window.history.back();
   }
+
+  termoBusca = '';
+
+  indiceSacral: Array<{
+    id: string;
+    nome: string;
+    ficheiro: string;
+  }> = [];
+
+  listaFiltrada: Array<{
+    id: string;
+    nome: string;
+    ficheiro: string;
+  }> = [];
+
+  indiceCarregado = false;
+
+  cache: {
+    [key: string]: {
+      significado: string;
+      alimentos: any[];
+      sistemico: string;
+    };
+  } = {};
+
+  async ionViewWillEnter(): Promise<void> {
+    await this.carregarIndice();
+  }
+
+  private async carregarIndice(): Promise<void> {
+    try {
+      const data = await fetch('assets/data/doencas/indice_sacral.json').then((r) => r.json());
+
+      this.indiceSacral = data;
+      this.listaFiltrada = [...data];
+      this.indiceCarregado = true;
+    } catch (e) {
+      console.error('Erro ao carregar índice', e);
+
+      this.indiceSacral = [];
+      this.listaFiltrada = [];
+      this.indiceCarregado = true;
+    }
+  }
+
+  async selecionarDoenca(item: any): Promise<void> {
+    console.log('Selecionado:', item);
+
+    if (this.cache[item.id]) {
+      return;
+    }
+
+    this.cache[item.id] = {
+      significado: 'A carregar...',
+      alimentos: [],
+      sistemico: '',
+    };
+
+    try {
+      const url = `assets/data/doencas/${item.ficheiro}`;
+
+      console.log('A carregar:', url);
+
+      const response = await fetch(url);
+      const json = await response.json();
+
+      console.log('JSON carregado:', json);
+
+      this.cache[item.id] = {
+        significado: json.significado ?? '',
+        alimentos: json.alimentos ?? [],
+        sistemico: json.sistemico ?? '',
+      };
+    } catch (e) {
+      console.error('Erro ao carregar doença', e);
+
+      this.cache[item.id] = {
+        significado: 'Erro ao carregar dados.',
+        alimentos: [],
+        sistemico: '',
+      };
+    }
+  }
 }
+
 

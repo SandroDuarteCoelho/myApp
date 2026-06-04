@@ -3,12 +3,62 @@
     <ion-buttons slot="start">
       <ion-button fill="clear" size="small" (click)="voltar()">Voltar</ion-button>
     </ion-buttons>
-    <ion-title style="color: #e67e22">Chacra Sacral</ion-title>
+    <ion-title style="color: #e67e22; padding:6px 12px; border-radius:6px;">
+      Chacra Sacral
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
-  <h1>Chacra Sacral</h1>
-  <p>Conteúdo placeholder para o chakra Sacral.</p>
+  <p>
+    As pessoas que padecem de problemas neste chacra necessitam de coisas
+    exteriores - objetos ou pessoas - para sentirem segurança. Por outro lado
+    travam, com frequência, batalhas com circunstancias ou com pessoas que
+    consideram como ameaças à sua segurança. No fundo, estas pessoas que não
+    estão minimamente em contacto com a sua força interior têm falta de fé.
+  </p>
+
+  <ion-accordion-group *ngIf="indiceCarregado">
+    <ion-accordion
+      *ngFor="let item of listaFiltrada"
+      [value]="item.id"
+    >
+      <ion-item
+        slot="header"
+        button
+        (click)="selecionarDoenca(item)"
+      >
+        <ion-label>{{ item.nome }}</ion-label>
+      </ion-item>
+
+      <div class="ion-padding" slot="content">
+        <ng-container *ngIf="cache[item.id]">
+          <h3>Significado</h3>
+          <pre style="white-space: pre-wrap; font-family: inherit;">
+{{ cache[item.id].significado }}
+          </pre>
+
+          <h3>Alimentos</h3>
+          <div *ngIf="cache[item.id].alimentos?.length; else semAlimentos">
+            <ul>
+              <li *ngFor="let a of cache[item.id].alimentos">
+                {{ a }}
+              </li>
+            </ul>
+          </div>
+          <ng-template #semAlimentos>
+            <p>Nenhum alimento informado.</p>
+          </ng-template>
+
+          <h3>Sistémico</h3>
+          <pre style="white-space: pre-wrap; font-family: inherit;">
+{{ cache[item.id].sistemico }}
+          </pre>
+        </ng-container>
+      </div>
+    </ion-accordion>
+  </ion-accordion-group>
+  <br><br>
 </ion-content>
+
 

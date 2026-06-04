@@ -58,11 +58,15 @@ export const routes: Routes = [
     path: 'linguagem-corpo-detalhe/raiz',
     loadComponent: () => import('./linguagem-corpo-detalhe/chakras/raiz.page').then((m) => m.RaizPage),
   },
-
+  {
+    path: 'linguagem-corpo-detalhe/outros',
+    loadComponent: () => import('./linguagem-corpo-detalhe/chakras/outros.page').then((m) => m.OutrosPage),
+  },
   {
     path: 'a-tua-casa',
     loadComponent: () => import('./a-tua-casa/a-tua-casa.page').then((m) => m.ATuaCasaPage),
   },
+
   {
     path: 'o-que-comes',
     loadComponent: () => import('./o-que-comes/o-que-comes.page').then((m) => m.OQueComesPage),

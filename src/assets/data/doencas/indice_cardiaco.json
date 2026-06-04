@@ -1,0 +1,17 @@
+[
+  {
+    "id": "dedos",
+    "nome": "Dedos",
+    "ficheiro": "dedos.json"
+  },
+  {
+    "id": "coccix",
+    "nome": "Coccix",
+    "ficheiro": "coccix.json"
+  },
+  {
+    "id": "ciatica",
+    "nome": "Ciática",
+    "ficheiro": "ciatica.json"
+  }
+]

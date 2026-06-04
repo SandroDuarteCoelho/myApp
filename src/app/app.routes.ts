@@ -27,6 +27,39 @@ export const routes: Routes = [
     loadComponent: () => import('./linguagem-corpo-detalhe/linguagem-corpo-detalhe.page').then((m) => m.LinguagemCorpoDetalhePage),
   },
   {
+    path: 'linguagem-corpo-detalhe/coronario',
+    loadComponent: () => import('./linguagem-corpo-detalhe/chakras/coronario.page').then((m) => m.CoronarioPage),
+  },
+  {
+    path: 'linguagem-corpo-detalhe/segundo-olho',
+    loadComponent: () => import('./linguagem-corpo-detalhe/chakras/segundo-olho.page').then((m) => m.SegundoOlhoPage),
+  },
+  {
+    path: 'linguagem-corpo-detalhe/terceiro-olho',
+    loadComponent: () => import('./linguagem-corpo-detalhe/chakras/terceiro-olho.page').then((m) => m.TerceiroOlhoPage),
+  },
+  {
+    path: 'linguagem-corpo-detalhe/garganta',
+    loadComponent: () => import('./linguagem-corpo-detalhe/chakras/garganta.page').then((m) => m.GargantaPage),
+  },
+  {
+    path: 'linguagem-corpo-detalhe/cardiaco',
+    loadComponent: () => import('./linguagem-corpo-detalhe/chakras/cardiaco.page').then((m) => m.CardiacoPage),
+  },
+  {
+    path: 'linguagem-corpo-detalhe/plexo-solar',
+    loadComponent: () => import('./linguagem-corpo-detalhe/chakras/plexo-solar.page').then((m) => m.PlexoSolarPage),
+  },
+  {
+    path: 'linguagem-corpo-detalhe/sacral',
+    loadComponent: () => import('./linguagem-corpo-detalhe/chakras/sacral.page').then((m) => m.SacralPage),
+  },
+  {
+    path: 'linguagem-corpo-detalhe/raiz',
+    loadComponent: () => import('./linguagem-corpo-detalhe/chakras/raiz.page').then((m) => m.RaizPage),
+  },
+
+  {
     path: 'a-tua-casa',
     loadComponent: () => import('./a-tua-casa/a-tua-casa.page').then((m) => m.ATuaCasaPage),
   },

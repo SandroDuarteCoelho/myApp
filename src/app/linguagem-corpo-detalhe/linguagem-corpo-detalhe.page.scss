@@ -1,4 +1,73 @@
 :host {
   display: block;
+  height: 100%;
 }
 
+ion-grid, ion-row {
+  height: 100%;
+}
+
+ion-row {
+  align-items: stretch; /* 🔥 evita espaços mortos */
+}
+
+.imagem-col,
+.botoes-col {
+   display: flex;
+  flex-direction: column;
+  // justify-content: center;
+  height: 100%;
+}
+
+.imagem-corpo {
+  width: 100%;
+  max-height: 85vh;
+  object-fit: contain;
+}
+
+.botoes-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px;
+  height: 60%;
+}
+
+ion-button {
+  height: 38px;
+  font-size: 13px;
+  margin: 0;
+  width: 100%;
+  border-radius: 8px;
+}
+
+/* evita que Ionic mude estilos internos ao clicar */
+ion-button::part(native) {
+  height: 38px;
+}
+
+ion-button.ativo {
+  transform: scale(1.02);
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  filter: brightness(1.1);
+}
+
+.botao-outros {
+  margin-top: 8px;
+  height: 38px;
+  font-size: 13px;
+  width: 100%;
+  border-radius: 8px;
+
+  --background: #34495e;
+  --color: #fff;
+    border-radius: 8px;
+}
+
+.imagem-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* 🔥 imagem em cima, botão em baixo */
+  height: 50%;
+}

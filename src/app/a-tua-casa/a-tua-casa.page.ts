@@ -8,7 +8,12 @@ import {
   IonContent,
   IonButton,
   IonButtons,
+  IonAccordion,
+  IonAccordionGroup,
+  IonItem,
+  IonLabel,
 } from '@ionic/angular/standalone';
+
 
 @Component({
   selector: 'app-a-tua-casa',
@@ -23,7 +28,12 @@ import {
     IonContent,
     IonButton,
     IonButtons,
+    IonAccordion,
+    IonAccordionGroup,
+    IonItem,
+    IonLabel,
   ],
+
 })
 export class ATuaCasaPage {
   voltar(): void {

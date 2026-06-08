@@ -71,11 +71,20 @@ export const routes: Routes = [
     path: 'o-que-comes',
     loadComponent: () => import('./o-que-comes/o-que-comes.page').then((m) => m.OQueComesPage),
   },
+  {
+    path: 'o-que-ves',
+    loadComponent: () => import('./o-que-ves/o-que-ves.page').then((m) => m.OQueVesPage),
+  },
+  {
+    path: 'o-que-usas',
+    loadComponent: () => import('./o-que-usas/o-que-usas.page').then((m) => m.OQueUsasPage),
+  },
 
   {
     path: 'perfil',
     loadComponent: () => import('./perfil/perfil.page').then((m) => m.PerfilPage),
   },
+
   {
     path: 'signos',
     loadComponent: () => import('./signos/signos.page').then((m) => m.SignosPage),
@@ -91,6 +100,10 @@ export const routes: Routes = [
   {
     path: 'valores',
     loadComponent: () => import('./valores/valores.page').then((m) => m.ValoresPage),
+  },
+  {
+    path: 'valor/:id',
+    loadComponent: () => import('./valor-detalhe/valor-detalhe.page').then((m) => m.ValorDetalhePage),
   },
   {
     path: 'meditacoes',

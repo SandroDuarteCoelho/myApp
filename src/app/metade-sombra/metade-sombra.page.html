@@ -8,7 +8,6 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
-  <h1>Metade sombra</h1>
 
   <ion-grid>
     <ion-row>
@@ -38,9 +37,28 @@
         </ion-card>
       </ion-col>
 
+      <ion-col size="6">
+        <ion-card button (click)="abrirOQueVes()">
+          <ion-card-header>
+            <ion-card-title>O que vês</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="6">
+        <ion-card button (click)="abrirOQueUsas()">
+          <ion-card-header>
+            <ion-card-title>O que usas</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+
       <ion-col size="6" class="empty-col"></ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
+
 
 

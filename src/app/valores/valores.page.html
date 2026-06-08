@@ -9,6 +9,22 @@
 
 <ion-content [fullscreen]="true" class="ion-padding">
   <h1>Página de Valores</h1>
-  <p>Conteúdo sobre valores aqui.</p>
+  <p>Selecione um valor para ver a descrição.</p>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col
+        size="6"
+        *ngFor="let valor of valores; trackBy: trackById"
+      >
+        <ion-card class="valor-card" (click)="navigateDetalhe(valor.id)">
+          <div class="valor-overlay">
+            <ion-card-title>{{ valor.nome | uppercase }}</ion-card-title>
+          </div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
+
 

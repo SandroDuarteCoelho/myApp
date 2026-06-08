@@ -39,13 +39,13 @@
 
         <ng-container *ngIf="cache[item.id]">
 
-          <h3>Significado</h3>
+          <!-- <h3>Significado</h3> -->
 
           <pre style="white-space: pre-wrap; font-family: inherit;">
 {{ cache[item.id].significado }}
           </pre>
 
-          <h3>Alimentos</h3>
+          <h3>Alimentos aconselhados</h3>
 
           <div *ngIf="cache[item.id].alimentos?.length; else semAlimentos">
             <ul>
@@ -59,7 +59,7 @@
             <p>Nenhum alimento informado.</p>
           </ng-template>
 
-          <h3>Sistémico</h3>
+          <h3>Herança sistémica familiar</h3>
 
           <pre style="white-space: pre-wrap; font-family: inherit;">
 {{ cache[item.id].sistemico }}

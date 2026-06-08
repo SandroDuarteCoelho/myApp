@@ -1,0 +1,257 @@
+{
+  "valores": [
+    {
+      "nome": "Paz",
+      "perguntas": [
+        "De que forma se manifesta a Paz na minha vida atual ou como eu demonstro Paz (na minha vida)? com as diferentes pessoas no meu dia-a-dia?",
+        "Como posso melhorar cada vez mais a Paz na minha vida?",
+        "O que existe num mundo em conflito que não existe num mundo em paz?",
+        "Paz é mais do que ausência de guerra?",
+        "Se todo o mundo fosse pacifico, este seria um mundo pacífico? Como?",
+        "Como você se sente quando está pacifico?",
+        "Quando você fica inquieto?",
+        "Que pensamentos ou atividades o ajudam a sentir-se pacifico?",
+        "Que tipos de pensamento mantêm o conflito vivo?",
+        "O que faz com que a paz cresça?"
+      ]
+    },
+    {
+      "nome": "Respeito",
+      "perguntas": [
+        "De que forma se manifesta o Respeito na minha vida atual ou como eu demonstro Respeito (na minha vida)? com as diferentes pessoas no meu dia-a-dia?",
+        "Como posso melhorar cada vez mais o Respeito na minha vida?",
+        "De que modo as pessoas mostram desrespeito umas pelas outras?",
+        "Como você se sente quando isso acontece consigo?",
+        "Como você se sente quando isso acontece com outras pessoas?",
+        "Porque é que muitas vezes as pessoas são desrespeitosas ou mesquinhas?",
+        "O que o ajuda a si a permanecer com um sentimento de respeito por si mesmo? (Pensamentos, palavras, ações)",
+        "Quais desses são um sentimento temporário de respeito por si mesmo ou de orgulho, e quais duram mais?",
+        "Em que situações impor um limite significa respeitar a si mesmo?",
+        "Você consegue comunicar um limite mantendo internamente um estado de paz e respeito por si mesmo?"
+      ]
+    },
+    {
+      "nome": "Amor",
+      "perguntas": [
+        "De que forma se manifesta o Amor na minha vida atual ou como eu demonstro Amor (na minha vida)? com as diferentes pessoas no meu dia-a-dia?",
+        "Como posso melhorar cada vez mais o Amor na minha vida?",
+        "Porque o amor é importante?",
+        "Haveria um mundo diferente se todos fossem amorosos com todos?",
+        "Num mundo amoroso, o que os governantes/líderes quereriam para os cidadão?",
+        "O que acontece quando o círculo de compaixão é muito pequeno ou não existe?",
+        "Como podemos ampliar esse círculo de compaixão?",
+        "O que alguém deveria fazer para que não confiemos mais nessa pessoa?",
+        "Como você mostra que é um amigo confiável, que quer o bem do outro?",
+        "Como é ser competente e merecer amor ao mesmo tempo?",
+        "O que você pode fazer para ter esses sentimentos?",
+        "O que você pode dizer a si mesmo para se sentir assim?",
+        "Às vezes as pessoas dizem que nos amam, mas agem de maneira negativa e abusiva. Será isso amor verdadeiro? Que comportamentos são negativos ou abusivos?",
+        "Quais são os sinais de perigo que permitem reconhecer se um relacionamento é insalubre?",
+        "Você acha melhor evitar certas pessoas?",
+        "Que limites você gostaria de estabelecer nos seus relacionamentos?",
+        "Existem momentos em que você sente que merece ser amado?",
+        "Como é o amor verdadeiro? Como os pais amam de verdade?",
+        "Como o namorado ou a namorada, o marido ou a esposa amariam verdadeiramente?",
+        "Como você pode amar verdadeiramente o outro?",
+        "Como você pode amar verdadeiramente a si mesmo?",
+        "Como as pessoas podem ser amáveis e gentis com você?",
+        "Existe alguma coisa que você prefere evitar para ser amável consigo mesmo?",
+        "Como as pessoas da família demonstram amor (ou podem demonstrar)?",
+        "Como você gostaria de demonstrar amor por sua família?",
+        "Quais são os efeitos em casa de se praticar ações amorosas durante a semana?"
+      ]
+    },
+    {
+      "nome": "Tolerância",
+      "perguntas": [
+        "De que forma se manifesta a Tolerância na minha vida atual ou como eu demonstro Tolerância (na minha vida)? com as diferentes pessoas no meu dia-a-dia?",
+        "Como posso melhorar cada vez mais a Tolerância na minha vida?",
+        "A tolerância é vista como essencial para a paz mundial. Qual a relação entre paz mundial e tolerância?",
+        "Existe relação entre paz pessoal e tolerância? Qual?",
+        "As pessoas discriminam de vários modos (dinheiro, beleza, ser pobre, feio, pouco inteligente,etc.). Porque acha que fazem isso?",
+        "A semente da tolerância é o amor; sua água é a compaixão e o zelo. Se todos fossem tolerantes, como seria o mundo?",
+        "O que podemos dizer a nós mesmos para sermos mais tolerantes com os outros?",
+        "Quais são as pequenas coisas que as pessoas fazem que indicam preconceito ou intolerância?",
+        "Como podemos promover o entendimento e a tolerância?",
+        "Será que o medo da escassez é alimentado para aumentar a intolerância? Com que finalidade?",
+        "Há uma relação constante entre práticas de trabalho discriminatórias e ganho financeiro?"
+      ]
+    },
+    {
+      "nome": "Felicidade",
+      "perguntas": [
+        "De que forma se manifesta a Felicidade na minha vida atual ou como eu demonstro Felicidade (na minha vida)? com as diferentes pessoas no meu dia-a-dia?",
+        "Como posso melhorar cada vez mais a Felicidade na minha vida?",
+        "Como as pessoas tentam criar felicidade?",
+        "O que pode dar alegria duradoura?",
+        "Será que podemos criar a nossa própria felicidade?",
+        "Que tipos de sentimentos vêm à sua mente quando você pensa em felicidade?",
+        "Quando você experimenta esses sentimentos?",
+        "Como as pessoas afetam as outras em relação à felicidade?",
+        "Que palavras são ditas naturalmente pelas pessoas que estão felizes?",
+        "Como seria o mundo se todos fossem felizes?",
+        "Que palavras são como espinhos?",
+        "Quando uma pessoa o cumprimenta, mas você sente que não é sincero, como se sente?",
+        "É importante ser sincero? Porquê?",
+        "O que você gostaria de ouvir de seus pais?",
+        "O que podemos dizer a nós mesmos para nos sentirmos felizes?",
+        "O que acontece com sua energia emocional quando você fala gentilmente consigo mesmo?",
+        "O que acontece quando você cria dificuldade para si, quando é muito crítico consigo mesmo?",
+        "Você acha que será sempre feliz se conseguir o que quer?",
+        "Porque a felicidade é temporária quando vem de fontes externas (riqueza, posses materiais e status)?",
+        "Como você pode ser feliz sem conseguir o que quer?",
+        "O que são atitudes e ações puras e abnegadas?",
+        "Que pensamentos e ações trazem felicidade duradoura?",
+        "O que você faz para os outros que o deixa feliz?",
+        "Por que razão temos grupos de amigos? Qual a vantagem das “panelinhas”?",
+        "Como você acha que as pessoas se sentem ao serem postas de lado?",
+        "O que você faz que causa tristeza e que você gostaria de parar de fazer?"
+      ]
+    },
+    {
+      "nome": "Responsabilidade",
+      "perguntas": [
+        "De que forma se manifesta a Responsabilidade na minha vida atual ou como eu demonstro Responsabilidade (na minha vida)? com as diferentes pessoas no meu dia-a-dia?",
+        "Como posso melhorar cada vez mais a Responsabilidade na minha vida?",
+        "O que acontece quando os pais não cumprem suas responsabilidades?",
+        "Como você se sente quando outras pessoas não fazem o que prometem?",
+        "Quais são as responsabilidades dos filhos?",
+        "Que contribuições você faz para os seus familiares?",
+        "De quais contribuições você se orgulha?",
+        "Que responsabilidades você tem para com os outros? E para com a sociedade?",
+        "Se você fosse responsável pelo dinheiro do seu país, qual seria a sua meta?",
+        "A desonestidade está de acordo com a sua meta moral e pessoal, com a meta da sua família ou com a sua meta social?"
+      ]
+    },
+    {
+      "nome": "Cooperação",
+      "perguntas": [
+        "De que forma se manifesta a Cooperação na minha vida atual ou como eu demonstro Cooperação (na minha vida)? com as diferentes pessoas no meu dia-a-dia?",
+        "Como posso melhorar cada vez mais a Cooperação na minha vida?",
+        "Como se sente diante de uma tarefa, quando quem ajuda está feliz por ajudar ou está mal-humorado e bravo?",
+        "É fácil cooperar quando há amor e quando é divertido?",
+        "O que acontece internamente que facilita a cooperação?",
+        "O que acontece internamente que dificulta a cooperação?",
+        "O que você pode dizer a si mesmo para facilitar a cooperação?",
+        "Quando seria falta de ética ou imoral cooperar com alguém?",
+        "Como você coopera consigo mesmo?",
+        "Como você coopera com seus familiares?",
+        "Que valores são mais importantes para a cooperação?",
+        "Porque parece que certas pessoas parecem colocar de propósito obstáculos para outros?",
+        "Que qualidades pessoais são importantes para ser cooperativo?",
+        "Que comentários ajudam o sentimento de cooperação?",
+        "Que comentários diminuem o sentimento de cooperação?",
+        "Que fatores ajudam e atrapalham a cooperação?"
+      ]
+    },
+    {
+      "nome": "Humildade",
+      "perguntas": [
+        "De que forma se manifesta a Humildade na minha vida atual ou como eu demonstro Humildade (na minha vida)? com as diferentes pessoas no meu dia-a-dia?",
+        "Como posso melhorar cada vez mais a Humildade na minha vida?",
+        "O que é humildade para si?",
+        "O que uma pessoa ganha em ser humilde?",
+        "Como nos sentimos ao lado de uma pessoa humilde?",
+        "Que tipo de insensibilidade existe quando as pessoas agem com arrogância?",
+        "O que você sente quando ouve alguém se vangloriar?",
+        "O que se pensa de alguém que vive se vangloriando?",
+        "Por que às vezes queremos nos vangloriar? O que estamos pretendendo?",
+        "Será que ficar se vangloriando vai nos dar o que queremos?",
+        "Como a arrogância pode-se tornar uma violação dos direitos dos outros?",
+        "Quais são os perigos da fama?",
+        "O que significa querer controlar os outros? De que modo as pessoas tentam fazer?",
+        "Quando você percebe que alguém está tentando controlá-lo?",
+        "O que você sente quando alguém tenta controlá-los?",
+        "Por que as pessoas querem controlar as outras? (Por exemplo: Elas se sentem mais seguras se tudo estiver como ela quiserem.)",
+        "Isso é adequado em algum momento? Quando?",
+        "Quando é uma intromissão ou é inadequado?",
+        "Que problemas são criados porque alguém se sente “melhor que”?",
+        "Que comportamentos vocês observaram em pessoas que agem assim (comportamento, tom de voz, palavras etc.)",
+        "Onde as pessoas aprendem a agir assim? (Pode ser com os pais, os colegas etc.)",
+        "Você se torna arrogante quando alguém lhe faz uma crítica construtiva ou dá uma sugestão?"
+      ]
+    },
+    {
+      "nome": "Honestidade",
+      "perguntas": [
+        "De que forma se manifesta a Honestidade na minha vida atual ou como eu demonstro Honestidade (na minha vida)? com as diferentes pessoas no meu dia-a-dia?",
+        "Como posso melhorar cada vez mais a Honestidade na minha vida?",
+        "Será que ser corrupto acaba gerando felicidade e segurança?",
+        "Você quer que seus amigos sejam honestos? Por que?",
+        "Pense em alguém que você conhece que sempre cumpriu as promessas que fez. O que você sente por essa pessoa?",
+        "O que você sente quando alguém mente ou não cumpre o que promete?",
+        "O que você sente quando alguém descobre que você foi desonesto? E se não descobre?",
+        "Há situações em que é certo mentir? É possível mentir e manter-se íntegro?",
+        "Quais são as consequências da desonestidade?",
+        "Quando ser honesto demais não é realmente honestidade, mas falta de amor e respeito pela outra pessoa?",
+        "Que tipo de palavras e ações acabam com a confiança nos relacionamentos?",
+        "Que tipo de palavras e ações reforçam a confiança nos relacionamentos?"
+      ]
+    },
+    {
+      "nome": "Simplicidade",
+      "perguntas": [
+        "De que forma se manifesta a Simplicidade na minha vida atual ou como eu demonstro Simplicidade (na minha vida)? com as diferentes pessoas no meu dia-a-dia?",
+        "Como posso melhorar cada vez mais a Simplicidade na minha vida?",
+        "Como tornamos a vida muito complicada?",
+        "De que maneira a vida pode ser simplificada?",
+        "Como o valor da simplicidade nos ajuda a evitar o desperdício?",
+        "O que mudaria na minha vida se hoje eu me tornasse uma pessoa muito simples?",
+        "Uma pessoa simples descomplica a sua vida e a dos outros, como?",
+        "O que você sente que não precisa realmente, na sua vida neste momento?",
+        "O que você ganharia libertando-se disso, qual o benefício em espécie, energia e relacionamentos?",
+        "Que diferença interior você poderia experimentar? Isto faria diferença para os que estão à sua volta?"
+      ]
+    },
+    {
+      "nome": "Liberdade",
+      "perguntas": [
+        "De que forma se manifesta a Liberdade na minha vida atual ou como eu demonstro Liberdade (na minha vida)? com as diferentes pessoas no meu dia-a-dia?",
+        "Como posso melhorar cada vez mais a Liberdade na minha vida?",
+        "O que é liberdade interior?",
+        "Como é a liberdade interior?",
+        "Quando você se sente mais livre?",
+        "Que pensamentos fazem com que você se sinta livre?",
+        "Que pensamentos fazem com que você fique constrangido ou negativo?",
+        "Como desenvolvemos um sentimento de liberdade interior?",
+        "Dê exemplos de pessoas que não se sentem livres nem com todas as “liberdades” físicas ou materiais?",
+        "Dê exemplos de pessoas que eram interiormente livres não sendo livres fisicamente?",
+        "De que maneira as liberdades e as responsabilidades mudaram ao longo da sua vida? Que liberdades e responsabilidades temos quando bebês, quando começamos a andar, e quando somos maiores?",
+        "Como mãe/pai você tem alguma preocupação em relação a algumas “liberdades” que seu filho adolescente quer? Quais?",
+        "Nas sociedades que oferecem muitos tipos de liberdade e nas sociedades que não oferecem muitos tipos de liberdade, a liberdade de escolha pode ser limitada. Que fatores externos podem limitar a oportunidade de escolha do indivíduo? (Por exemplo, saúde e dinheiro.)",
+        "Certas pessoas têm sua liberdade drasticamente reduzida. Por exemplo, os refugiados não têm permissão de deixar seus acampamentos. Como vocês se sentiriam nessa situação?",
+        "Mesmo em circunstâncias extremas, como um acampamento de refugiados, que liberdade de escolha as pessoas têm (por exemplo, à liberdade de escolher ser bom ou mesquinho; liberdade de manter a dignidade; liberdade de ser amoroso; escolher experimentar a liberdade interior.)",
+        "Vocês sentem que sua liberdade está sendo violada? Como?",
+        "Que liberdades vocês gostariam de ter?",
+        "Elas são possíveis nas circunstâncias atuais? Se não, quais são os constrangimentos?",
+        "É possível fazer uma mudança construtiva (e segura) ou tentar mudar (de modo seguro)?",
+        "Como é possível enfrentar positivamente as circunstâncias atuais e aumentar sua experiência de liberdade e contentamento?",
+        "A autotransformação dá início ao processo de transformação mundial. O mundo não estará livre de guerras e injustiças até que todos os indivíduos sejam livres. Por que os oprimidos querem as mesmas liberdades?",
+        "Como o grupo que lhes nega a liberdade se beneficia?",
+        "É possível detectar os padrões no progresso da liberdade de uma cultura em particular?",
+        "A liberdade de expressão antecede a mudança histórica?",
+        "Todos os indivíduos de uma sociedade desfrutam das mesmas liberdades ou só os grupos privilegiados? Que fatores sociais ampliam ou limitam a liberdade de uma sociedade?"
+      ]
+    },
+    {
+      "nome": "União",
+      "perguntas": [
+        "De que forma se manifesta a União na minha vida atual ou como eu demonstro União (na minha vida)? com as diferentes pessoas no meu dia-a-dia?",
+        "Como posso melhorar cada vez mais a União na minha vida?",
+        "Que “inimigos comuns” desapareceriam (guerra civil, conflitos étnicos, pobreza, fome, violação direitos humanos, etc.) se todo o mundo começasse a ver toda a humanidade como uma família, com irmãos e irmãs?",
+        "Que sentimentos e atitudes nos ajudam a contribuir para a união?",
+        "Que habilidades precisamos ter para criar a união? Às vezes precisamos conduzir, outras precisamos seguir, às vezes precisamos gerar idéias, outras desistir de ser o melhor. Que outras habilidades são necessárias?",
+        "O que destrói o sentimento de união?",
+        "Vocês já sentiram dificuldade para trabalhar em projetos em união? O ego e o ciúme entraram no meio?",
+        "O que ajuda a lidar com esses sentimentos?",
+        "O que torna a união divertida?",
+        "Que qualidades vocês precisam para melhorar o mundo?",
+        "O que promove a união?",
+        "O que teria ajudado os grupos a não se dividir?",
+        "Se todos decidissem que não haveria mais suborno e corrupção, o que aconteceria?",
+        "Como é uma orquestra ou banda quando não há união?",
+        "Como podemos nos unir mais?"
+      ]
+    }
+  ]
+}

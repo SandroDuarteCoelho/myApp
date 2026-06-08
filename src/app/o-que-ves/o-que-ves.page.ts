@@ -16,9 +16,9 @@ import {
 
 
 @Component({
-  selector: 'app-o-que-comes',
-  templateUrl: './o-que-comes.page.html',
-  styleUrls: ['./o-que-comes.page.scss'],
+  selector: 'app-o-que-ves',
+  templateUrl: './o-que-ves.page.html',
+  styleUrls: ['./o-que-ves.page.scss'],
   standalone: true,
   imports: [
     CommonModule,
@@ -35,7 +35,7 @@ import {
   ],
 
 })
-export class OQueComesPage {
+export class OQueVesPage {
   voltar(): void {
     window.history.back();
   }

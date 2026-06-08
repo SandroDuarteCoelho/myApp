@@ -2,3 +2,35 @@
   display: block;
 }
 
+ion-grid {
+    --ion-grid-gap: 20px;
+    max-width: 400px;
+    ion-row {
+      --ion-grid-column-alignment: stretch;
+    }
+      ion-card {
+      width: 130px;
+      height: 70px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+
+      display: flex;
+      flex-direction: column;
+      &:hover, &:active {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      }
+      ion-card-title {
+        font-size: 1rem;
+        margin-top: auto;
+      }
+      ion-card-subtitle {
+        color: var(--ion-color-medium);
+        font-size: 0.8rem;
+      }
+      ion-card-content {
+        font-size: 0.8rem;
+        flex-grow: 1;
+      }
+    }
+  }

@@ -56,6 +56,17 @@ export class MetadeSombraPage {
   abrirOQueComes(): void {
     window.location.href = '/o-que-comes';
   }
+
+  abrirOQueVes(): void {
+    window.location.href = '/o-que-ves';
+  }
+
+  abrirOQueUsas(): void {
+    window.location.href = '/o-que-usas';
+  }
 }
+
+
+
 
 

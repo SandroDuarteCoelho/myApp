@@ -1,0 +1,23 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button fill="clear" size="small" (click)="voltar()">Voltar</ion-button>
+    </ion-buttons>
+    <ion-title>{{ getTitulo() }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-card>
+    <ion-card-content>
+      <h1 class="valor-title">{{ getTitulo() }}</h1>
+
+      <p *ngIf="texto" class="valor-text">{{ texto }}</p>
+
+      <p *ngIf="!texto" class="valor-text">
+        Não foi possível carregar a informação para este valor.
+      </p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+

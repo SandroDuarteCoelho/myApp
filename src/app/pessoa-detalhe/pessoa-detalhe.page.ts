@@ -222,7 +222,7 @@ export class PessoaDetalhePage implements OnInit {
         this.carregarEneagrama();
         this.carregarAnoPessoal();
         this.carregarCasasPestal();
-        this.carregarPrevisaoAnoChines();
+        
 
 
 
@@ -344,16 +344,35 @@ export class PessoaDetalhePage implements OnInit {
   // SIGNO CHINÊS
   // =========================
 
-  carregarSignoChines(): void {
+  private async carregarSignoChines(): Promise<void> {
 
-    if (!this.pessoa) return;
+  if (!this.pessoa) return;
 
-    const ano = new Date(this.pessoa.data).getFullYear();
+  const anoNascimento =
+    new Date(this.pessoa.data).getFullYear();
 
-    this.http.get<SignoChines[]>('assets/data/chineses.json').subscribe((data) => {
-      this.signoChines = data.find((s) => s.anos.includes(ano)) || null;
-    });
+  try {
+
+    const data = await this.http
+      .get<any[]>('assets/data/chineses.json')
+      .toPromise();
+
+    if (!data) return;
+
+    this.signoChines =
+      data.find(s =>
+        s.anos?.includes(anoNascimento)
+      ) ?? null;
+
+    // carregar previsões APENAS depois
+    await this.carregarPrevisaoAnoChines();
+
+  } catch (e) {
+
+    console.error(e);
+    this.signoChines = null;
   }
+}
 
   // =========================
   // SIGNO SOLAR
@@ -570,13 +589,32 @@ carregarCasasPestal(): void {
     return signos[(indice + 12) % 12];
   }
 
-  private async carregarPrevisaoAnoChines(): Promise<void> {
+  private getAnoChinesAtualPorData(d: Date): number {
+    // Ano Novo Chinês costuma cair entre janeiro e fevereiro.
+    // Sem uma tabela astronômica completa, usamos uma heurística: 
+    // - antes do corte (31/jan aprox.) considera-se que o ano chinês ainda é o do ano anterior.
+    // - após o corte, usa o ano do calendário.
+    // Isso resolve o "gap" comum ao usar apenas getFullYear().
+    const mes = d.getMonth() + 1; // 1-12
+    const dia = d.getDate();
 
+    const ano = d.getFullYear();
+
+    // Heurística de corte: 31/01
+    if (mes === 1 && dia <= 31) return ano - 1;
+
+    return ano;
+  }
+
+  private async carregarPrevisaoAnoChines(): Promise<void> {
     if (!this.pessoa) return;
     if (!this.signoChines) return;
 
-    const anoAtual = new Date().getFullYear();
-    const anoProximo = anoAtual + 1;
+    const hoje = new Date();
+
+    // Ajusta o ano chinês atual pela data (jan/fev)
+    const anoChinesAtual = this.getAnoChinesAtualPorData(hoje);
+    const anoChinesProximo = anoChinesAtual + 1;
 
     const signos = await this.http
       .get<any[]>('assets/data/chineses.json')
@@ -584,13 +622,11 @@ carregarCasasPestal(): void {
 
     if (!signos) return;
 
-    // Encontrar o signo da pessoa (Rato, Boi, Tigre, etc.)
     const signoChinesAtual = this.signoChines?.signo;
 
     const signoPessoa = signos.find(
       (s) => !!signoChinesAtual && s.signo === signoChinesAtual
     );
-
 
     if (!signoPessoa) {
       this.previsaoAnoChinesAtual = '';
@@ -598,23 +634,33 @@ carregarCasasPestal(): void {
       return;
     }
 
-    // Determinar qual o signo do ano atual e do próximo ano
-    const signoAnoAtual =
-      this.obterSignoAnoChines(anoAtual);
+    const signoAnoAtual = this.obterSignoAnoChines(anoChinesAtual);
+    const signoAnoProximo = this.obterSignoAnoChines(anoChinesProximo);
 
-    const signoAnoProximo =
-      this.obterSignoAnoChines(anoProximo);
+    this.anoChinesAtual = anoChinesAtual;
+    this.anoChinesProximo = anoChinesProximo;
 
-    this.anoChinesAtual = anoAtual;
-    this.anoChinesProximo = anoProximo;
+    const interacoes = signoPessoa.interacao_com_outros_signos ?? {};
 
-    this.previsaoAnoChinesAtual =
-      signoPessoa.interacao_com_outros_signos?.[signoAnoAtual]?.previsao_ano
-      ?? '';
+    // Leitura direta
+    const previsaoAtual = interacoes?.[signoAnoAtual]?.previsao_ano;
+    const previsaoProx = interacoes?.[signoAnoProximo]?.previsao_ano;
 
-    this.previsaoAnoChinesProximo =
-      signoPessoa.interacao_com_outros_signos?.[signoAnoProximo]?.previsao_ano
-      ?? '';
+    // Fallback: se a chave não existir (por qualquer divergência de offset), tenta o “outro lado”
+    this.previsaoAnoChinesAtual = (previsaoAtual ?? '').toString();
+    this.previsaoAnoChinesProximo = (previsaoProx ?? '').toString();
+
+    if (!this.previsaoAnoChinesAtual) {
+      const fallbackAno = anoChinesProximo;
+      const fallbackSigno = this.obterSignoAnoChines(fallbackAno);
+      this.previsaoAnoChinesAtual = (interacoes?.[fallbackSigno]?.previsao_ano ?? '').toString();
+    }
+
+    if (!this.previsaoAnoChinesProximo) {
+      const fallbackAno = anoChinesAtual;
+      const fallbackSigno = this.obterSignoAnoChines(fallbackAno);
+      this.previsaoAnoChinesProximo = (interacoes?.[fallbackSigno]?.previsao_ano ?? '').toString();
+    }
   }
   // =========================
   // ANO PESSOAL (PÉSTAL)

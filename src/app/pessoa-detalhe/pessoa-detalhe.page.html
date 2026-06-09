@@ -251,9 +251,10 @@
                 <br>
                 <br>
 
+                <span *ngIf="anoSistemaAtual !== null" style="font-size: 32px;">{{ anoSistemaAtual }}</span>
                 <p style="margin: 0;">
                   <strong>Ano pessoal atual ({{ anoPessoalAtual }}):</strong>
-                  <span *ngIf="anoSistemaAtual !== null">{{ anoSistemaAtual }}</span>
+                  
                 </p>
                 <p style="white-space: pre-line; margin-top: 6px;">{{ descricaoAnoPessoalAtual }}</p>
 
@@ -265,22 +266,25 @@
                 </p>
                 <p style="white-space: pre-line; margin-top: 6px;">{{ previsaoAnoChinesAtual }}</p>
 
+               
                 <br>
+<span *ngIf="anoSistemaSeguinte !== null" style="font-size: 32px;">{{ anoSistemaSeguinte }}</span>
+                <p style="margin: 0;">
+                  <strong>Ano pessoal do próximo ano ({{ anoPessoalProximo }}):</strong>
+                  
+                </p>
+                <p style="white-space: pre-line; margin-top: 6px;">{{ descricaoAnoPessoalProximo }}</p>
+
+ <br>
 
                 <p style="margin: 0;">
                   <strong>Ano chinês do próximo ano ({{ anoChinesProximo }}):</strong>
                 </p>
                 <p style="white-space: pre-line; margin-top: 6px;">{{ previsaoAnoChinesProximo }}</p>
 
-                <br>
-
-                <p style="margin: 0;">
-                  <strong>Ano pessoal do próximo ano ({{ anoPessoalProximo }}):</strong>
-                  <span *ngIf="anoSistemaSeguinte !== null">{{ anoSistemaSeguinte }}</span>
-                </p>
-                <p style="white-space: pre-line; margin-top: 6px;">{{ descricaoAnoPessoalProximo }}</p>
 
 
+                
               </ng-container>
 
               <ng-template #pestalFallback>

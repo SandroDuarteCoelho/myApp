@@ -185,6 +185,29 @@ export class PessoaDetalhePage implements OnInit {
       'perseguições, desavenças, brigas, escândalos e tudo de ruim que possa ocorrer no período do seu Inferno Astral.',
   };
 
+  // localStorage overrides (iguais às chaves de src/app/perfil/perfil.page.ts)
+  private readonly STORAGE_KEY_OVERRIDES = 'pessoas_overrides_v1';
+  private readonly STORAGE_KEY_DELETED = 'pessoas_deleted_v1';
+
+  private loadOverrides(): Record<number, { [k: string]: any }> {
+    try {
+      const raw = window.localStorage.getItem(this.STORAGE_KEY_OVERRIDES);
+      return raw ? (JSON.parse(raw) as Record<number, any>) : {};
+    } catch {
+      return {};
+    }
+  }
+
+  private loadDeleted(): Set<number> {
+    try {
+      const raw = window.localStorage.getItem(this.STORAGE_KEY_DELETED);
+      const arr = raw ? (JSON.parse(raw) as number[]) : [];
+      return new Set(arr);
+    } catch {
+      return new Set<number>();
+    }
+  }
+
   constructor(
     private readonly route: ActivatedRoute,
     private readonly http: HttpClient,
@@ -196,11 +219,44 @@ export class PessoaDetalhePage implements OnInit {
 
     if (!id || Number.isNaN(id)) return;
 
+    // 1) tentar carregar a pessoa do localStorage (novos perfis)
+    const overrides = this.loadOverrides();
+    const deleted = this.loadDeleted();
+
+    if (!deleted.has(id) && overrides && overrides[id]) {
+      const ov = overrides[id] as PessoaJson;
+      this.pessoa = ({ id, ...ov } as PessoaWithId);
+
+      this.idadeAtual = this.calcularIdade(this.pessoa.data);
+
+      const numeroVogais = this.somaVogais;
+      const numeroConsoantes = this.somaConsoantes;
+
+      Promise.all([
+        this.getForcaPorNumero(numeroVogais, 'força_espiritual'),
+        this.getForcaPorNumero(numeroConsoantes, 'atividade'),
+      ]).then(([forca, atividade]) => {
+        this.forcaVogais = forca;
+        this.atividadeConsoantes = atividade;
+      });
+
+      this.carregarSetenio();
+      this.carregarDescricaoDia();
+      this.carregarSignoChines();
+      this.carregarSignoSolar();
+      this.carregarEneagrama();
+      this.carregarAnoPessoal();
+      this.carregarCasasPestal();
+      return;
+    }
+
+    // 2) fallback: carregar do JSON base (perfis antigos)
     this.http.get<PessoaJson[]>('assets/data/pessoas.json').subscribe({
       next: (arr) => {
         const idx = id - 1;
         this.pessoa = arr[idx] ? ({ id, ...arr[idx] } as PessoaWithId) : null;
         if (!this.pessoa) return;
+
 
         this.idadeAtual = this.calcularIdade(this.pessoa.data);
 

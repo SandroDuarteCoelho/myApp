@@ -168,19 +168,47 @@ export class PerfilPage implements OnInit {
 
     this.http.get<Pessoa[]>('assets/data/pessoas.json').subscribe({
       next: (data) => {
-        // id = índice + 1 (já que JSON não tem id)
-        const base: PessoaPersistida[] = data.map((p, i) => ({ id: i + 1, ...p }));
 
-        // aplica overrides persistidos
-        this.people = base.map((p) => {
-          const ov = this.overrides[p.id];
-          return ov ? ({ ...p, ...ov } as PessoaPersistida) : p;
-        });
+  const base: PessoaPersistida[] =
+    data.map((p, i) => ({
+      id: i + 1,
+      ...p
+    }));
 
-        this.grupos = [...new Set(this.people.map((p) => p.grupo))];
-        this.localidades = [...new Set(this.people.map((p) => p.localidade))];
+  this.people = base.map((p) => {
+    const ov = this.overrides[p.id];
 
-      },
+    return ov
+      ? ({ ...p, ...ov } as PessoaPersistida)
+      : p;
+  });
+
+  // 🔥 adicionar perfis criados localmente
+  const idsBase = new Set(base.map(p => p.id));
+
+  for (const [idStr, pessoa] of Object.entries(this.overrides)) {
+
+    const id = Number(idStr);
+
+    if (!idsBase.has(id)) {
+
+      this.people.unshift({
+        id,
+        ...pessoa
+      });
+
+    }
+  }
+
+  this.grupos = [
+    ...new Set(this.people.map((p) => p.grupo))
+  ];
+
+  this.localidades = [
+    ...new Set(this.people.map((p) => p.localidade))
+  ];
+
+},
       error: (err) => {
         console.error('Erro ao carregar pessoas.json', err);
       },

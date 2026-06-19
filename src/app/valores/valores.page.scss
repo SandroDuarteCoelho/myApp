@@ -2,12 +2,12 @@ ion-content {
   --background: linear-gradient(135deg, #9C27B0, #E1BEE7);
 }
 
-.valor-card {
-  position: relative;
-  width: 100%;
-  height: 180px;
-  overflow: hidden;
-}
+// .valor-card {
+//   position: relative;
+//   width: 100%;
+//   height: 180px;
+//   overflow: hidden;
+// }
 
 .valor-overlay {
   position: absolute;
@@ -20,15 +20,29 @@ ion-content {
   padding: 8px;
 }
 
-.valor-overlay ion-card-title {
-  color: white;
-  font-size: 1.4rem;
-  text-transform: lowercase;
-  font-weight: 700;
-  margin: 0;
-  text-align: center;
+// .valor-overlay ion-card-title {
+//   color: white;
+//   font-size: 1.4rem;
+//   text-transform: lowercase;
+//   font-weight: 700;
+//   margin: 0;
+//   text-align: center;
+// }
+
+
+
+.valor-card {
+  position: relative;
+  width: 100%;
+  height: 120px; /* antes 180px */
+  overflow: hidden;
 }
 
-
-
-
+.valor-overlay ion-card-title {
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.2;
+  word-break: break-word;
+}

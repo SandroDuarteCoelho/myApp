@@ -3,6 +3,16 @@
     <ion-buttons slot="start">
       <ion-button fill="clear" size="small" (click)="voltar()">Voltar</ion-button>
     </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button
+        fill="clear"
+        size="small"
+        (click)="irLateralidade()"
+      >
+        Lateralidade
+      </ion-button>
+    </ion-buttons>
+
     <ion-title style="background: #e67e22; color:#fff;padding:6px 12px; border-radius:6px;">
       Chacra Sacral
     </ion-title>
@@ -11,11 +21,7 @@
 
 <ion-content [fullscreen]="true" class="ion-padding">
   <p>
-    As pessoas que padecem de problemas neste chacra necessitam de coisas
-    exteriores - objetos ou pessoas - para sentirem segurança. Por outro lado
-    travam, com frequência, batalhas com circunstancias ou com pessoas que
-    consideram como ameaças à sua segurança. No fundo, estas pessoas que não
-    estão minimamente em contacto com a sua força interior têm falta de fé.
+    A pessoa que padece de problemas na região do ventre é aquela que, ao invés de criar a sua própria vida, pretende criar a vida dos outros. Esta pessoa tem medo de não ter suficiente poder, e também teme que os outros adquiram poder sobre si. Pode igualmente acontecer que ela permita que os outros tenham poder sobre si. Como se sente impotente perante alguém ou perante uma situação, tudo se desenvolve em torno do medo, medo esse que, como podes constatar, afeta tanto a região do ventre como a região da base. Os problemas que afetam esta região também se manifestam, com frequência, naquelas pessoas que, de forma exacerbada, buscam sensações provenientes do exterior. As pessoas que padecem de culpa sexual apresentam igualmente sintomas na região do ventre. 
   </p>
 
   <ion-accordion-group *ngIf="indiceCarregado">

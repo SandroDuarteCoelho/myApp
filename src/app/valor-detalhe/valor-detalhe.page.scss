@@ -15,3 +15,23 @@ ion-content {
   --background: linear-gradient(135deg, #9C27B0, #E1BEE7);
 }
 
+// .no-padding {
+//   --padding-start: 0;
+//   --padding-end: 0;
+//   --padding-top: 12px;
+//   --padding-bottom: 12px;
+// }
+
+// ion-card-content {
+//   padding: 8px 12px; // ou até 0 se quiseres full width
+// }
+ion-card {
+  margin: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+ion-content {
+  --padding-start: 0;
+  --padding-end: 0;
+}

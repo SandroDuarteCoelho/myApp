@@ -39,6 +39,10 @@ export class OutrosPage {
     window.history.back();
   }
 
+  irLateralidade(): void {
+    window.location.href = '/linguagem-corpo-detalhe/lateralidade';
+  }
+
   termoBusca = '';
 
   indiceOutros: Array<{

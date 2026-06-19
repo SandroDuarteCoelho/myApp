@@ -3,6 +3,17 @@
     <ion-buttons slot="start">
       <ion-button fill="clear" size="small" (click)="voltar()">Voltar</ion-button>
     </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button
+        fill="clear"
+        size="small"
+        (click)="irLateralidade()"
+      >
+        Lateralidade
+      </ion-button>
+    </ion-buttons>
+
     <ion-title style="background: #5dade2; color:#fff;padding:6px 12px; border-radius:6px;">
       Chacra Terceiro Olho
     </ion-title>
@@ -11,11 +22,7 @@
 
 <ion-content [fullscreen]="true" class="ion-padding">
   <p>
-    As pessoas que padecem de problemas neste chacra necessitam de coisas
-    exteriores - objetos ou pessoas - para sentirem segurança. Por outro lado
-    travam, com frequência, batalhas com circunstancias ou com pessoas que
-    consideram como ameaças à sua segurança. No fundo, estas pessoas que não
-    estão minimamente em contacto com a sua força interior têm falta de fé.
+    Como referi anteriormente, a tua inteligência localiza-se na região do plexo solar, estando esta diretamente conectada com o centro frontal. Quando uma pessoa abusa do seu intelecto, o centro frontal - onde se encontra a energia da intuição e da inteligência pura - é afetado. O centro frontal também é aquele a que estão alocados os dons psíquicos. Uma pessoa que pretenda desenvolver os seus DONS PSÍQUICOS de forma rápida, apressando-se a frequentar toda a sorte de cursos ou a ler muito com o propósito de acelerar esse processo, corre o risco de desequilibrar completamente a sua glândula pituitária e toda a região da cabeça. É muito importante que os demais centros de energia estejam harmonizados antes de desenvolvermos o centro frontal de uma forma mais específica. A melhor maneira de desenvolvermos os nossos dons psíquicos consiste em utilizar os sentidos que se encontram localizados na região do rosto para ver, escutar e sentir Deus em todos os lugares e situações. 
   </p>
 
   <ion-accordion-group *ngIf="indiceCarregado">

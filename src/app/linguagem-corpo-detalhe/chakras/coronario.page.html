@@ -3,6 +3,17 @@
     <ion-buttons slot="start">
       <ion-button fill="clear" size="small" (click)="voltar()">Voltar</ion-button>
     </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button
+        fill="clear"
+        size="small"
+        (click)="irLateralidade()"
+      >
+        Lateralidade
+      </ion-button>
+    </ion-buttons>
+
     <ion-title style="background: #9b59b6; color:#fff;padding:6px 12px; border-radius:6px;">
       Chacra Coronário
     </ion-title>
@@ -11,11 +22,8 @@
 
 <ion-content [fullscreen]="true" class="ion-padding">
   <p>
-    As pessoas que padecem de problemas neste chacra necessitam de coisas
-    exteriores - objetos ou pessoas - para sentirem segurança. Por outro lado
-    travam, com frequência, batalhas com circunstancias ou com pessoas que
-    consideram como ameaças à sua segurança. No fundo, estas pessoas que não
-    estão minimamente em contacto com a sua força interior têm falta de fé.
+    Esta região corresponde ao centro de energia da coroa onde se encontra a GLÂNDULA PINEAL e diz respeito à parte alta da cabeça. Trata-se do centro que alberga o «Eu sou Deus», ou seja, o centro de identificação com Deus. 
+
   </p>
 
   <ion-accordion-group *ngIf="indiceCarregado">

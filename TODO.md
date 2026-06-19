@@ -1,8 +1,8 @@
-# TODO
-
-## Pessoa detalhe (suporte a perfis criados via localStorage)
-- [x] Identificado problema: `pessoa-detalhe.page.ts` lê apenas `assets/data/pessoas.json`.
-- [x] Atualizar `src/app/pessoa-detalhe/pessoa-detalhe.page.ts` para também considerar `localStorage` (`pessoas_overrides_v1` e `pessoas_deleted_v1`).
-- [x] Validar navegação `/pessoa/:id` para IDs novos criados na página `perfil` (carrega overrides).
-
+- [ ] Ler/entender a página de detalhe "Linguagem do corpo" (linguagem-corpo-detalhe.page.html / .ts)
+- [ ] Criar nova página "Lateralidade" com cabeçalho + botão voltar
+- [ ] Adicionar rota no app.routes.ts para a nova página
+- [ ] Adicionar botão no título (lado direito) na página linguagem-corpo-detalhe/chakras/sacral.page.html
+ao clicar abrir rota da lateralidade
+- [ ] Ajustar layout do botão no header (lado direito)
+- [ ] Validar navegação (abrir lateralidade e voltar)
 

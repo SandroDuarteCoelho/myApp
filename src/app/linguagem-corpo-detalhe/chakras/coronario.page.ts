@@ -39,6 +39,10 @@ export class CoronarioPage {
     window.history.back();
   }
 
+  irLateralidade(): void {
+    window.location.href = '/linguagem-corpo-detalhe/lateralidade';
+  }
+
   termoBusca = '';
 
   indiceCoronario: Array<{

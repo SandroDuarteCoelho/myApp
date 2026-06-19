@@ -3,6 +3,17 @@
     <ion-buttons slot="start">
       <ion-button fill="clear" size="small" (click)="voltar()">Voltar</ion-button>
     </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button
+        fill="clear"
+        size="small"
+        (click)="irLateralidade()"
+      >
+        Lateralidade
+      </ion-button>
+    </ion-buttons>
+
     <ion-title style="background: #f1c40f; color:#fff; padding:6px 12px; border-radius:6px;">
      
       Chacra Plexo Solar
@@ -12,11 +23,9 @@
 
 <ion-content [fullscreen]="true" class="ion-padding">
   <p>
-    As pessoas que padecem de problemas neste chacra necessitam de coisas
-    exteriores - objetos ou pessoas - para sentirem segurança. Por outro lado
-    travam, com frequência, batalhas com circunstancias ou com pessoas que
-    consideram como ameaças à sua segurança. No fundo, estas pessoas que não
-    estão minimamente em contacto com a sua força interior têm falta de fé.
+    Os problemas que afetam a região do plexo solar revelam que os desejos da pessoa apontam, sobretudo, para a busca de gratificações físicas, em detrimento do aprimoramento do ser. Neste caso, a pessoa é constantemente dominada pelas suas expectativas e quer ser amada, ao invés de amar os outros; por tudo isto, padece de rancor, inveja e possessividade. Os problemas localizados nesta região ocorrem igualmente nas pessoas propensas a sentirem-se atacadas e que, como tal, nutrem a necessidade de se defenderem, acumulando raiva reprimida. Muitas vezes, a raiva é gerada pela falta de afirmação dos seus desejos. <br><br>
+
+Esta zona do corpo também pode ser afetada quando uma pessoa utiliza o intelecto de uma forma egoísta, exclusivamente para tratar dos seus próprios assuntos, ao invés de se dispor a amar os outros e a aceitá-los tal como são. Quanto mais analisamos, racionalizamos e nos obstinamos em compreender tudo à nossa maneira, mais emoções desgastantes desenvolvemos. Quando aceitamos os outros tal como eles são, não experienciamos tais emoções. O intelecto do ser humano deve servir-lhe para adquirir novos conhecimentos e para compreender dados novos. 
   </p>
 
   <ion-accordion-group *ngIf="indiceCarregado">

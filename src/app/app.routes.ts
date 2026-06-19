@@ -2,6 +2,12 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
+  path: 'linguagem-corpo-detalhe/lateralidade',
+  loadComponent: () =>
+    import('./linguagem-corpo-detalhe/chakras/lateralidade.page')
+      .then(m => m.LateralidadePage)
+},
+  {
     path: 'home',
     loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
   },

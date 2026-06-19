@@ -3,7 +3,18 @@
     <ion-buttons slot="start">
       <ion-button fill="clear" size="small" (click)="voltar()">Voltar</ion-button>
     </ion-buttons>
-    <ion-title style="background:#2ecc71; color:#fff; padding:6px 12px; border-radius:6px;">
+
+    <ion-buttons slot="end">
+      <ion-button
+        fill="clear"
+        size="small"
+        (click)="irLateralidade()"
+      >
+        Lateralidade
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title style="background: #2ecc71; color:#fff; padding:6px 12px; border-radius:6px;">
       Chacra Cardíaco
     </ion-title>
   </ion-toolbar>
@@ -11,11 +22,8 @@
 
 <ion-content [fullscreen]="true" class="ion-padding">
   <p>
-    As pessoas que padecem de problemas neste chacra necessitam de coisas
-    exteriores - objetos ou pessoas - para sentirem segurança. Por outro lado
-    travam, com frequência, batalhas com circunstancias ou com pessoas que
-    consideram como ameaças à sua segurança. No fundo, estas pessoas que não
-    estão minimamente em contacto com a sua força interior têm falta de fé.
+    Esta região abrange as doze vértebras dorsais que partem do meio das costas e vão até à nuca, da zona dos seios à base do pescoço. A energia do coração deve ser direcionada para o amor e a compaixão, e não para a autocrítica ou a crítica dos outros. Quanto mais nos criticamos a nós, mais criticamos os outros, e mais essa região do corpo é afetada. A energia do coração é a do perdão — tanto em relação a nós próprios como em relação aos outros. <br><br>
+    Todos os problemas do CORAÇÃO assinalam falta de alegria. A pessoa que padece destes problemas sufoca a sua criança intenor. Ela acredita profundamente nos grandes esforços e vive em constante stresse. Com frequência, é uma pessoa que se sente frustrada, nutrindo a necessidade de amar alguém para ser feliz, em vez de simplesmente amar porque é feliz. Aqui, a mensagem vai no sentido de encorajar a pessoa que padece de problemas de coração a entrar em contacto com as suas necessidades afetivas.
   </p>
 
   <ion-accordion-group *ngIf="indiceCarregado">

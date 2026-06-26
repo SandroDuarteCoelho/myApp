@@ -9,6 +9,12 @@
 
 <ion-content [fullscreen]="true" class="no-padding">
   <ion-card>
+    <img
+      *ngIf="imagem"
+      [src]="imagem"
+      [alt]="getTitulo()"
+      class="valor-imagem"
+    />
     <ion-card-content>
       <h1 class="valor-title">{{ getTitulo() }}</h1>
 

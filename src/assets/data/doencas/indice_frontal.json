@@ -1,17 +1,22 @@
 [
   {
-    "id": "dedos",
-    "nome": "Dedos",
-    "ficheiro": "dedos.json"
+    "id": "fotofobia",
+    "nome": "Fotofobia",
+    "ficheiro": "Fotofobia.json"
   },
   {
-    "id": "coccix",
-    "nome": "Coccix",
-    "ficheiro": "coccix.json"
+    "id": "glaucoma",
+    "nome": "Glaucoma",
+    "ficheiro": "Glaucoma.json"
   },
   {
-    "id": "ciatica",
-    "nome": "Ciática",
-    "ficheiro": "ciatica.json"
+    "id": "hidrocefalia",
+    "nome": "Hidrocefalia",
+    "ficheiro": "hidrocefalia.json"
+  },
+  {
+    "id": "olhos",
+    "nome": "Olhos",
+    "ficheiro": "olhos.json"
   }
 ]

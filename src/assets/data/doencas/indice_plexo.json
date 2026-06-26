@@ -1,5 +1,20 @@
 [
   {
+    "id": "abdomen",
+    "nome": "Abdomen",
+    "ficheiro": "abdomen.json"
+  },
+  {
+    "id": "alcoolismo",
+    "nome": "Alcoolismo",
+    "ficheiro": "Alcoolismo.json"
+  },
+  {
+    "id": "alergia",
+    "nome": "Alergia",
+    "ficheiro": "Alergia.json"
+  },
+  {
     "id": "anorexia",
     "nome": "Anorexia",
     "ficheiro": "Anorexia.json"
@@ -10,9 +25,34 @@
     "ficheiro": "ansiedade.json"
   },
   {
+    "id": "apendicite",
+    "nome": "Apendicite",
+    "ficheiro": "apendicite.json"
+  },
+  {
+    "id": "artrite",
+    "nome": "Artrite",
+    "ficheiro": "Artrite.json"
+  },
+  {
     "id": "azia",
     "nome": "Azia",
     "ficheiro": "Azia.json"
+  },
+  {
+    "id": "baço",
+    "nome": "Baço",
+    "ficheiro": "Baço.json"
+  },
+  {
+    "id": "boca",
+    "nome": "Boca",
+    "ficheiro": "Boca.json"
+  },
+  {
+    "id": "borbulhas",
+    "nome": "Borbulhas",
+    "ficheiro": "Borbulhas.json"
   },
   {
     "id": "bulimia",
@@ -20,9 +60,49 @@
     "ficheiro": "bulimia.json"
   },
   {
+    "id": "cancro",
+    "nome": "Cancro",
+    "ficheiro": "cancro.json"
+  },
+  {
+    "id": "cansaço",
+    "nome": "Cansaço",
+    "ficheiro": "cansaço.json"
+  },
+  {
+    "id": "carie",
+    "nome": "Carie",
+    "ficheiro": "carie.json"
+  },
+  {
+    "id": "cirrose",
+    "nome": "Cirrose",
+    "ficheiro": "cirrose.json"
+  },
+  {
+    "id": "colicas menstruais",
+    "nome": "Cólicas menstruais",
+    "ficheiro": "colicas menstruais.json"
+  },
+  {
+    "id": "comichoes",
+    "nome": "Comichões",
+    "ficheiro": "comichoes.json"
+  },
+  {
+    "id": "dentes",
+    "nome": "Dentes",
+    "ficheiro": "dentes.json"
+  },
+  {
     "id": "diabetes",
     "nome": "Diabetes",
     "ficheiro": "diabetes.json"
+  },
+  {
+    "id": "ejaculação precoce",
+    "nome": "Ejaculação precoce",
+    "ficheiro": "Ejaculação precoce.json"
   },
   {
     "id": "enjoos",
@@ -30,9 +110,24 @@
     "ficheiro": "enjoos.json"
   },
   {
+    "id": "enxaqueca",
+    "nome": "Enxaqueca",
+    "ficheiro": "enxaqueca.json"
+  },
+  {
+    "id": "estafa",
+    "nome": "Estafa",
+    "ficheiro": "estafa.json"
+  },
+  {
     "id": "estomago",
     "nome": "Estomago",
     "ficheiro": "estomago.json"
+  },
+  {
+    "id": "febre",
+    "nome": "Febre",
+    "ficheiro": "febre.json"
   },
   {
     "id": "figado",
@@ -40,9 +135,59 @@
     "ficheiro": "figado.json"
   },
   {
+    "id": "flatulencia",
+    "nome": "Flatulencia",
+    "ficheiro": "Flatulencia.json"
+  },
+  {
+    "id": "gaguez",
+    "nome": "Gaguez",
+    "ficheiro": "Gaguez.json"
+  },
+  {
     "id": "gastrite",
     "nome": "Gastrite",
     "ficheiro": "gastrite.json"
+  },
+  {
+    "id": "gengivite",
+    "nome": "Gengivite",
+    "ficheiro": "Gengivite.json"
+  },
+  {
+    "id": "hepatite",
+    "nome": "Hepatite",
+    "ficheiro": "hepatite.json"
+  },
+  {
+    "id": "hipoglicemia",
+    "nome": "Hipoglicemia",
+    "ficheiro": "hipoglicemia.json"
+  },
+  {
+    "id": "histeria",
+    "nome": "Histeria",
+    "ficheiro": "histeria.json"
+  },
+  {
+    "id": "ictericia",
+    "nome": "Ictericia",
+    "ficheiro": "ictericia.json"
+  },
+  {
+    "id": "inchaço",
+    "nome": "Inchaço",
+    "ficheiro": "inchaço.json"
+  },
+  {
+    "id": "infeção",
+    "nome": "Infeção e inflamação",
+    "ficheiro": "infeção e inflamação.json"
+  },
+  {
+    "id": "insonia",
+    "nome": "Insónia",
+    "ficheiro": "insónia.json"
   },
   {
     "id": "intestinos",
@@ -55,8 +200,68 @@
     "ficheiro": "intoxicação.json"
   },
   {
+    "id": "manchas",
+    "nome": "Manchas",
+    "ficheiro": "manchas.json"
+  },
+  {
+    "id": "osteoporose",
+    "nome": "Osteoporose",
+    "ficheiro": "osteoporose.json"
+  },
+  {
     "id": "pancreas",
     "nome": "Pancreas",
     "ficheiro": "pancreas.json"
+  },
+  {
+    "id": "panico",
+    "nome": "Pânico",
+    "ficheiro": "panico.json"
+  },
+  {
+    "id": "papada",
+    "nome": "Papada",
+    "ficheiro": "papada.json"
+  },
+  {
+    "id": "pele",
+    "nome": "Pele",
+    "ficheiro": "pele.json"
+  },
+  {
+    "id": "rugas",
+    "nome": "Rugas",
+    "ficheiro": "rugas.json"
+  },
+  {
+    "id": "tensaoalta",
+    "nome": "Tensão alta",
+    "ficheiro": "tensaoalta.json"
+  },
+  {
+    "id": "tensaobaixa",
+    "nome": "Tensão baixa",
+    "ficheiro": "tensaobaixa.json"
+  },
+  {
+    "id": "tpm",
+    "nome": "TPM (Tensão Pré-Menstrual)",
+    "ficheiro": "tpm.json"
+  },
+  {
+    "id": "ulcera",
+    "nome": "Úlcera",
+    "ficheiro": "ulcera.json"
+  },
+  {
+    "id": "vaginite",
+    "nome": "Vaginite",
+    "ficheiro": "vaginite.json"
+  },
+  {
+    "id": "vesicula",
+    "nome": "Vesicula",
+    "ficheiro": "vesicula.json"
   }
 ]

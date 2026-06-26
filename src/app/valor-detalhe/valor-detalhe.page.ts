@@ -37,6 +37,7 @@ import {
 export class ValorDetalhePage implements OnInit {
   valorId: string | null = null;
   texto: string | null = null;
+  imagem: string | null = null;
 
   constructor(
     private readonly route: ActivatedRoute,
@@ -53,6 +54,15 @@ export class ValorDetalhePage implements OnInit {
 
     // valorId vem decodificado do URL, mas fazemos o decode explícito por segurança
     const key = decodeURIComponent(this.valorId);
+
+    this.imagem =
+  'assets/fotos_valores/' +
+  key
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/\s+/g, '-') +
+  '.webp';
 
     this.http
       .get<Record<string, string>>('assets/data/valores.json')

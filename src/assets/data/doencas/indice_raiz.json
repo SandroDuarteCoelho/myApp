@@ -5,9 +5,29 @@
     "ficheiro": "abdomen.json"
   },
   {
+    "id": "ancas",
+    "nome": "Ancas",
+    "ficheiro": "Ancas.json"
+  },
+  {
+    "id": "anemia",
+    "nome": "Anemia",
+    "ficheiro": "anemia.json"
+  },
+  {
     "id": "anus",
     "nome": "Anus",
     "ficheiro": "Anus.json"
+  },
+  {
+    "id": "aneurisma",
+    "nome": "Aneurisma",
+    "ficheiro": "Aneurisma.json"
+  },
+  {
+    "id": "apendicite",
+    "nome": "Apendicite",
+    "ficheiro": "apendicite.json"
   },
   {
     "id": "arteriosclerose",
@@ -30,14 +50,49 @@
     "ficheiro": "Artrose.json"
   },
   {
+    "id": "azia",
+    "nome": "Azia",
+    "ficheiro": "Azia.json"
+  },
+  {
+    "id": "bexiga",
+    "nome": "Bexiga",
+    "ficheiro": "Bexiga.json"
+  },
+  {
+    "id": "cabelo",
+    "nome": "Cabelo",
+    "ficheiro": "cabelo.json"
+  },
+  {
     "id": "caibras",
     "nome": "Caibras",
     "ficheiro": "caibras.json"
   },
   {
+    "id": "cansaço",
+    "nome": "Cansaço",
+    "ficheiro": "cansaço.json"
+  },
+  {
+    "id": "celulite",
+    "nome": "Celulite",
+    "ficheiro": "celulite.json"
+  },
+  {
     "id": "ciatica",
     "nome": "Ciática",
     "ficheiro": "ciatica.json"
+  },
+  {
+    "id": "cintura",
+    "nome": "Cintura",
+    "ficheiro": "cintura.json"
+  },
+  {
+    "id": "cistite",
+    "nome": "Cistite",
+    "ficheiro": "cistite.json"
   },
   {
     "id": "coccix",
@@ -50,9 +105,14 @@
     "ficheiro": "coluna.json"
   },
   {
-    "id": "comichoes",
-    "nome": "Comichões",
-    "ficheiro": "comichoes.json"
+    "id": "corcunda",
+    "nome": "Corcunda",
+    "ficheiro": "corcunda.json"
+  },
+  {
+    "id": "culote",
+    "nome": "Culote",
+    "ficheiro": "culote.json"
   },
   {
     "id": "dedos",
@@ -60,19 +120,64 @@
     "ficheiro": "dedos.json"
   },
   {
+    "id": "endometriose",
+    "nome": "Endometriose",
+    "ficheiro": "Endometriose.json"
+  },
+  {
     "id": "entorses",
     "nome": "Entorses",
     "ficheiro": "entorses.json"
   },
   {
+    "id": "enurese",
+    "nome": "Enurese",
+    "ficheiro": "Enurese.json"
+  },
+  {
+    "id": "epilepsia",
+    "nome": "Epilepsia",
+    "ficheiro": "epilepsia.json"
+  },
+  {
+    "id": "erisipela",
+    "nome": "Erisipela",
+    "ficheiro": "Erisipela.json"
+  },
+  {
+    "id": "esclerose",
+    "nome": "Esclerose múltipla",
+    "ficheiro": "Esclerose multipla.json"
+  },
+  {
+    "id": "estafa",
+    "nome": "Estafa",
+    "ficheiro": "estafa.json"
+  },
+  {
+    "id": "estrias",
+    "nome": "Estrias",
+    "ficheiro": "Estrias.json"
+  },
+  {
+    "id": "febre",
+    "nome": "Febre",
+    "ficheiro": "febre.json"
+  },
+  {
+    "id": "fibroma",
+    "nome": "Fibroma",
+    "ficheiro": "Fibroma.json"
+  },
+  {
+    "id": "fibromialgia",
+    "nome": "Fibromialgia",
+    "ficheiro": "fibromialgia.json"
+  },
+  {
     "id": "fistula",
     "nome": "Fístula",
     "ficheiro": "Fistula.json"
-  },
-  {
-    "id": "flatulencia",
-    "nome": "Flatulencia",
-    "ficheiro": "Flatulencia.json"
   },
   {
     "id": "flebite",
@@ -85,6 +190,11 @@
     "ficheiro": "fraturas.json"
   },
   {
+    "id": "ganglio",
+    "nome": "Ganglio",
+    "ficheiro": "Ganglio.json"
+  },
+  {
     "id": "gangrena",
     "nome": "Gangrena",
     "ficheiro": "Gangrena.json"
@@ -93,6 +203,21 @@
     "id": "gluteos",
     "nome": "Gluteos",
     "ficheiro": "gluteos.json"
+  },
+  {
+    "id": "gripe",
+    "nome": "Gripe",
+    "ficheiro": "gripe.json"
+  },
+  {
+    "id": "hemofilia",
+    "nome": "Hemofilia",
+    "ficheiro": "Hemofilia.json"
+  },
+  {
+    "id": "hemorragia",
+    "nome": "Hemorragia",
+    "ficheiro": "hemorragia.json"
   },
   {
     "id": "hemorroidas",
@@ -105,14 +230,69 @@
     "ficheiro": "hernia.json"
   },
   {
+    "id": "hipoglicemia",
+    "nome": "Hipoglicemia",
+    "ficheiro": "hipoglicemia.json"
+  },
+  {
+    "id": "hpv",
+    "nome": "HPV (papiloma humano)",
+    "ficheiro": "hpv (papiloma humano).json"
+  },
+  {
     "id": "inchaço",
     "nome": "Inchaço",
     "ficheiro": "inchaço.json"
   },
   {
+    "id": "incontinencia",
+    "nome": "Incontinencia",
+    "ficheiro": "incontinencia.json"
+  },
+  {
+    "id": "infeção",
+    "nome": "Infeção e inflamação",
+    "ficheiro": "infeção e inflamação.json"
+  },
+  {
+    "id": "intoxicação",
+    "nome": "Intoxicação",
+    "ficheiro": "intoxicação.json"
+  },
+  {
     "id": "joelhos",
     "nome": "Joelhos",
     "ficheiro": "joelhos.json"
+  },
+  {
+    "id": "lepra",
+    "nome": "Lepra",
+    "ficheiro": "Lepra.json"
+  },
+  {
+    "id": "leucemia",
+    "nome": "Leucemia",
+    "ficheiro": "leucemia.json"
+  },
+  {
+    "id": "linfoma",
+    "nome": "Linfoma",
+    "ficheiro": "linfoma.json"
+  },
+  {
+    "id": "lordose",
+    "nome": "Lordose",
+    "ficheiro": "lordose.json"
+  },
+  {
+    "id": "musculos",
+    "nome": "Músculos",
+    "ficheiro": "musculos.json"
+  },
+  {
+    "id": "ombros",
+    "nome": "Ombros",
+    "ficheiro": "ombros.json"
   },
   {
     "id": "ossos",
@@ -130,11 +310,15 @@
     "ficheiro": "osteoporose.json"
   },
   {
+    "id": "panico",
+    "nome": "Pânico",
+    "ficheiro": "panico.json"
+  },
+  {
     "id": "panturrilha",
     "nome": "Panturrilha",
     "ficheiro": "panturrilha.json"
-  }
-  ,
+  },
   {
     "id": "pernas",
     "nome": "Pernas",
@@ -146,9 +330,54 @@
     "ficheiro": "pes.json"
   },
   {
+    "id": "prostata",
+    "nome": "Próstata",
+    "ficheiro": "prostata.json"
+  },
+  {
+    "id": "reumatismonosangue",
+    "nome": "Reumatismo no sangue",
+    "ficheiro": "reumatismonosangue.json"
+  },
+  {
+    "id": "rins",
+    "nome": "Rins",
+    "ficheiro": "rins.json"
+  },
+  {
+    "id": "sacro",
+    "nome": "Sacro",
+    "ficheiro": "sacro.json"
+  },
+  {
+    "id": "sarna",
+    "nome": "Sarna escabiose",
+    "ficheiro": "Sarna escabiose.json"
+  },
+  {
+    "id": "sida",
+    "nome": "Sida",
+    "ficheiro": "sida.json"
+  },
+  {
+    "id": "tensaobaixa",
+    "nome": "Tensão baixa",
+    "ficheiro": "tensaobaixa.json"
+  },
+  {
     "id": "tornozelo",
     "nome": "Tornozelo",
     "ficheiro": "tornozelo.json"
+  },
+  {
+    "id": "tuberculose",
+    "nome": "Tuberculose",
+    "ficheiro": "tuberculose.json"
+  },
+  {
+    "id": "ulcera",
+    "nome": "Úlcera",
+    "ficheiro": "ulcera.json"
   },
   {
     "id": "unhas",
@@ -156,8 +385,28 @@
     "ficheiro": "unhas.json"
   },
   {
+    "id": "utero",
+    "nome": "Utero",
+    "ficheiro": "utero.json"
+  },
+  {
+    "id": "varicela",
+    "nome": "Varicela",
+    "ficheiro": "varicela.json"
+  },
+  {
     "id": "varizes",
     "nome": "Varizes",
     "ficheiro": "varizes.json"
+  },
+  {
+    "id": "verruga",
+    "nome": "Verruga",
+    "ficheiro": "verruga.json"
+  },
+  {
+    "id": "vertebras",
+    "nome": "Vértebras",
+    "ficheiro": "vertebras.json"
   }
 ]

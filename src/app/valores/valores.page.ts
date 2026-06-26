@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+
 import {
   IonHeader,
   IonToolbar,
@@ -37,9 +38,14 @@ import {
   ],
 })
 export class ValoresPage implements OnInit {
-  valores: { id: string; nome: string; descricao: string }[] = [];
 
-  // A ordem deve seguir exatamente a listagem pedida
+  valores: {
+    id: string;
+    nome: string;
+    descricao: string;
+    imagem: string;
+  }[] = [];
+
   private readonly ordem = [
     'Paz',
     'Respeito',
@@ -68,6 +74,14 @@ export class ValoresPage implements OnInit {
               id: key,
               nome: key,
               descricao: data[key],
+              imagem:
+                'assets/fotos_valores/' +
+                key
+                  .toLowerCase()
+                  .normalize('NFD')
+                  .replace(/[\u0300-\u036f]/g, '')
+                  .replace(/\s+/g, '-') +
+                '.webp',
             }));
         },
         error: () => {
@@ -88,5 +102,3 @@ export class ValoresPage implements OnInit {
     window.location.href = `/valor/${encodeURIComponent(id)}`;
   }
 }
-
-

@@ -1,17 +1,102 @@
 [
   {
-    "id": "dedos",
-    "nome": "Dedos",
-    "ficheiro": "dedos.json"
+    "id": "alzheimer",
+    "nome": "Alzheimer",
+    "ficheiro": "Alzheimer.json"
   },
   {
-    "id": "coccix",
-    "nome": "Coccix",
-    "ficheiro": "coccix.json"
+    "id": "cabeça",
+    "nome": "Cabeça",
+    "ficheiro": "cabeça.json"
   },
   {
-    "id": "ciatica",
-    "nome": "Ciática",
-    "ficheiro": "ciatica.json"
+    "id": "cabelo",
+    "nome": "Cabelo",
+    "ficheiro": "cabelo.json"
+  },
+  {
+    "id": "coração",
+    "nome": "Coração",
+    "ficheiro": "coração.json"
+  },
+  {
+    "id": "depressão",
+    "nome": "Depressão",
+    "ficheiro": "depressão.json"
+  },
+  {
+    "id": "derrame",
+    "nome": "Derrame",
+    "ficheiro": "derrame.json"
+  },
+  {
+    "id": "dislexia",
+    "nome": "Dislexia",
+    "ficheiro": "Dislexia.json"
+  },
+  {
+    "id": "enxaqueca",
+    "nome": "Enxaqueca",
+    "ficheiro": "enxaqueca.json"
+  },
+  {
+    "id": "epilepsia",
+    "nome": "Epilepsia",
+    "ficheiro": "epilepsia.json"
+  },
+  {
+    "id": "esclerose",
+    "nome": "Esclerose múltipla",
+    "ficheiro": "Esclerose multipla.json"
+  },
+  {
+    "id": "esquizofrenia",
+    "nome": "Esquizofrenia",
+    "ficheiro": "Esquizofrenia.json"
+  },
+  {
+    "id": "fotofobia",
+    "nome": "Fotofobia",
+    "ficheiro": "Fotofobia.json"
+  },
+  {
+    "id": "glaucoma",
+    "nome": "Glaucoma",
+    "ficheiro": "Glaucoma.json"
+  },
+  {
+    "id": "hidrocefalia",
+    "nome": "Hidrocefalia",
+    "ficheiro": "hidrocefalia.json"
+  },
+  {
+    "id": "insonia",
+    "nome": "Insónia",
+    "ficheiro": "insónia.json"
+  },
+  {
+    "id": "nariz",
+    "nome": "Nariz",
+    "ficheiro": "nariz.json"
+  },
+  {
+    "id": "olhos",
+    "nome": "Olhos",
+    "ficheiro": "olhos.json"
+  },
+  {
+    "id": "ouvidos",
+    "nome": "Ouvidos",
+    "ficheiro": "ouvidos.json"
+  },
+  {
+    "id": "rosto",
+    "nome": "Rosto",
+    "ficheiro": "rosto.json"
+  },
+  {
+    "id": "tiroide",
+    "nome": "Tiroide",
+    "ficheiro": "tiroide.json"
   }
 ]

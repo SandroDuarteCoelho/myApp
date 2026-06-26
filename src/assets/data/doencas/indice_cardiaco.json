@@ -1,17 +1,297 @@
 [
   {
+    "id": "alergia",
+    "nome": "Alergia",
+    "ficheiro": "Alergia.json"
+  },
+  {
+    "id": "alzheimer",
+    "nome": "Alzheimer",
+    "ficheiro": "Alzheimer.json"
+  },
+  {
+    "id": "anemia",
+    "nome": "Anemia",
+    "ficheiro": "anemia.json"
+  },
+  {
+    "id": "aneurisma",
+    "nome": "Aneurisma",
+    "ficheiro": "Aneurisma.json"
+  },
+  {
+    "id": "apneia",
+    "nome": "Apneia",
+    "ficheiro": "apneia.json"
+  },
+  {
+    "id": "arteriosclerose",
+    "nome": "Arteriosclerose",
+    "ficheiro": "arteriosclerose.json"
+  },
+  {
+    "id": "asfixia",
+    "nome": "Asfixia",
+    "ficheiro": "Asfixia.json"
+  },
+  {
+    "id": "asma",
+    "nome": "Asma",
+    "ficheiro": "asma.json"
+  },
+  {
+    "id": "baço",
+    "nome": "Baço",
+    "ficheiro": "Baço.json"
+  },
+  {
+    "id": "borbulhas",
+    "nome": "Borbulhas",
+    "ficheiro": "Borbulhas.json"
+  },
+  {
+    "id": "braços",
+    "nome": "Braços",
+    "ficheiro": "Braços.json"
+  },
+  {
+    "id": "bronquite",
+    "nome": "Bronquite",
+    "ficheiro": "bronquite.json"
+  },
+  {
+    "id": "cancro",
+    "nome": "Cancro",
+    "ficheiro": "cancro.json"
+  },
+  {
+    "id": "cirrose",
+    "nome": "Cirrose",
+    "ficheiro": "cirrose.json"
+  },
+  {
+    "id": "comichoes",
+    "nome": "Comichões",
+    "ficheiro": "comichoes.json"
+  },
+  {
+    "id": "coração",
+    "nome": "Coração",
+    "ficheiro": "coração.json"
+  },
+  {
+    "id": "corcunda",
+    "nome": "Corcunda",
+    "ficheiro": "corcunda.json"
+  },
+  {
+    "id": "cotovelos",
+    "nome": "Cotovelos",
+    "ficheiro": "cotovelos.json"
+  },
+  {
     "id": "dedos",
     "nome": "Dedos",
     "ficheiro": "dedos.json"
   },
   {
-    "id": "coccix",
-    "nome": "Coccix",
-    "ficheiro": "coccix.json"
+    "id": "depressão",
+    "nome": "Depressão",
+    "ficheiro": "depressão.json"
   },
   {
-    "id": "ciatica",
-    "nome": "Ciática",
-    "ficheiro": "ciatica.json"
+    "id": "derrame",
+    "nome": "Derrame",
+    "ficheiro": "derrame.json"
+  },
+  {
+    "id": "diabetes",
+    "nome": "Diabetes",
+    "ficheiro": "diabetes.json"
+  },
+  {
+    "id": "enfisema",
+    "nome": "Enfisema pulmonar DPOC",
+    "ficheiro": "Enfisema pulmonar DPOC.json"
+  },
+  {
+    "id": "erisipela",
+    "nome": "Erisipela",
+    "ficheiro": "Erisipela.json"
+  },
+  {
+    "id": "estomago",
+    "nome": "Estomago",
+    "ficheiro": "estomago.json"
+  },
+  {
+    "id": "faringite",
+    "nome": "Faringite",
+    "ficheiro": "Faringite.json"
+  },
+  {
+    "id": "fibromialgia",
+    "nome": "Fibromialgia",
+    "ficheiro": "fibromialgia.json"
+  },
+  {
+    "id": "figado",
+    "nome": "Figado",
+    "ficheiro": "figado.json"
+  },
+  {
+    "id": "flebite",
+    "nome": "Flebite",
+    "ficheiro": "Flebite.json"
+  },
+  {
+    "id": "frigidez",
+    "nome": "Frigidez",
+    "ficheiro": "frigidez.json"
+  },
+  {
+    "id": "ganglio",
+    "nome": "Ganglio",
+    "ficheiro": "Ganglio.json"
+  },
+  {
+    "id": "gangrena",
+    "nome": "Gangrena",
+    "ficheiro": "Gangrena.json"
+  },
+  {
+    "id": "garganta",
+    "nome": "Garganta",
+    "ficheiro": "garganta.json"
+  },
+  {
+    "id": "gripe",
+    "nome": "Gripe",
+    "ficheiro": "gripe.json"
+  },
+  {
+    "id": "hemofilia",
+    "nome": "Hemofilia",
+    "ficheiro": "Hemofilia.json"
+  },
+  {
+    "id": "hemorragia",
+    "nome": "Hemorragia",
+    "ficheiro": "hemorragia.json"
+  },
+  {
+    "id": "hepatite",
+    "nome": "Hepatite",
+    "ficheiro": "hepatite.json"
+  },
+  {
+    "id": "ictericia",
+    "nome": "Ictericia",
+    "ficheiro": "ictericia.json"
+  },
+  {
+    "id": "infeção",
+    "nome": "Infeção e inflamação",
+    "ficheiro": "infeção e inflamação.json"
+  },
+  {
+    "id": "lepra",
+    "nome": "Lepra",
+    "ficheiro": "Lepra.json"
+  },
+  {
+    "id": "leucemia",
+    "nome": "Leucemia",
+    "ficheiro": "leucemia.json"
+  },
+  {
+    "id": "linfoma",
+    "nome": "Linfoma",
+    "ficheiro": "linfoma.json"
+  },
+  {
+    "id": "maos",
+    "nome": "Mãos",
+    "ficheiro": "maos.json"
+  },
+  {
+    "id": "musculos",
+    "nome": "Músculos",
+    "ficheiro": "musculos.json"
+  },
+  {
+    "id": "nariz",
+    "nome": "Nariz",
+    "ficheiro": "nariz.json"
+  },
+  {
+    "id": "ombros",
+    "nome": "Ombros",
+    "ficheiro": "ombros.json"
+  },
+  {
+    "id": "ossos deformados",
+    "nome": "Ossos deformados",
+    "ficheiro": "ossos_deformados.json"
+  },
+  {
+    "id": "pancreas",
+    "nome": "Pancreas",
+    "ficheiro": "pancreas.json"
+  },
+  {
+    "id": "papada",
+    "nome": "Papada",
+    "ficheiro": "papada.json"
+  },
+  {
+    "id": "peito",
+    "nome": "Peito",
+    "ficheiro": "peito.json"
+  },
+  {
+    "id": "pneumonia",
+    "nome": "Pneumonia",
+    "ficheiro": "pneumonia.json"
+  },
+  {
+    "id": "pulmoes",
+    "nome": "Pulmões",
+    "ficheiro": "pulmoes.json"
+  },
+  {
+    "id": "pulsos",
+    "nome": "Pulsos",
+    "ficheiro": "pulsos.json"
+  },
+  {
+    "id": "reumatismonosangue",
+    "nome": "Reumatismo no sangue",
+    "ficheiro": "reumatismonosangue.json"
+  },
+  {
+    "id": "sida",
+    "nome": "Sida",
+    "ficheiro": "sida.json"
+  },
+  {
+    "id": "tensaoalta",
+    "nome": "Tensão alta",
+    "ficheiro": "tensaoalta.json"
+  },
+  {
+    "id": "tuberculose",
+    "nome": "Tuberculose",
+    "ficheiro": "tuberculose.json"
+  },
+  {
+    "id": "varizes",
+    "nome": "Varizes",
+    "ficheiro": "varizes.json"
+  },
+  {
+    "id": "vesicula",
+    "nome": "Vesicula",
+    "ficheiro": "vesicula.json"
   }
 ]

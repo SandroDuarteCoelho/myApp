@@ -1,17 +1,147 @@
 [
   {
-    "id": "dedos",
-    "nome": "Dedos",
-    "ficheiro": "dedos.json"
+    "id": "ansiedade",
+    "nome": "Ansiedade",
+    "ficheiro": "ansiedade.json"
   },
   {
-    "id": "coccix",
-    "nome": "Coccix",
-    "ficheiro": "coccix.json"
+    "id": "apneia",
+    "nome": "Apneia",
+    "ficheiro": "apneia.json"
+  },
+  {
+    "id": "asfixia",
+    "nome": "Asfixia",
+    "ficheiro": "Asfixia.json"
+  },
+  {
+    "id": "asma",
+    "nome": "Asma",
+    "ficheiro": "asma.json"
+  },
+  {
+    "id": "boca",
+    "nome": "Boca",
+    "ficheiro": "Boca.json"
+  },
+  {
+    "id": "braços",
+    "nome": "Braços",
+    "ficheiro": "Braços.json"
+  },
+  {
+    "id": "bronquite",
+    "nome": "Bronquite",
+    "ficheiro": "bronquite.json"
+  },
+  {
+    "id": "cabeça",
+    "nome": "Cabeça",
+    "ficheiro": "cabeça.json"
+  },
+  {
+    "id": "carie",
+    "nome": "Carie",
+    "ficheiro": "carie.json"
   },
   {
     "id": "ciatica",
     "nome": "Ciática",
     "ficheiro": "ciatica.json"
+  },
+  {
+    "id": "cotovelos",
+    "nome": "Cotovelos",
+    "ficheiro": "cotovelos.json"
+  },
+  {
+    "id": "dedos",
+    "nome": "Dedos",
+    "ficheiro": "dedos.json"
+  },
+  {
+    "id": "dentes",
+    "nome": "Dentes",
+    "ficheiro": "dentes.json"
+  },
+  {
+    "id": "dislexia",
+    "nome": "Dislexia",
+    "ficheiro": "Dislexia.json"
+  },
+  {
+    "id": "enfisema",
+    "nome": "Enfisema pulmonar DPOC",
+    "ficheiro": "Enfisema pulmonar DPOC.json"
+  },
+  {
+    "id": "esquizofrenia",
+    "nome": "Esquizofrenia",
+    "ficheiro": "Esquizofrenia.json"
+  },
+  {
+    "id": "faringite",
+    "nome": "Faringite",
+    "ficheiro": "Faringite.json"
+  },
+  {
+    "id": "gaguez",
+    "nome": "Gaguez",
+    "ficheiro": "Gaguez.json"
+  },
+  {
+    "id": "garganta",
+    "nome": "Garganta",
+    "ficheiro": "garganta.json"
+  },
+  {
+    "id": "gengivite",
+    "nome": "Gengivite",
+    "ficheiro": "Gengivite.json"
+  },
+  {
+    "id": "labioleporino",
+    "nome": "Lábio Leporino",
+    "ficheiro": "labio leporino.json"
+  },
+  {
+    "id": "maos",
+    "nome": "Mãos",
+    "ficheiro": "maos.json"
+  },
+  {
+    "id": "ouvidos",
+    "nome": "Ouvidos",
+    "ficheiro": "ouvidos.json"
+  },
+  {
+    "id": "peito",
+    "nome": "Peito",
+    "ficheiro": "peito.json"
+  },
+  {
+    "id": "pneumonia",
+    "nome": "Pneumonia",
+    "ficheiro": "pneumonia.json"
+  },
+  {
+    "id": "pulmoes",
+    "nome": "Pulmões",
+    "ficheiro": "pulmoes.json"
+  },
+  {
+    "id": "pulsos",
+    "nome": "Pulsos",
+    "ficheiro": "pulsos.json"
+  },
+  {
+    "id": "rosto",
+    "nome": "Rosto",
+    "ficheiro": "rosto.json"
+  },
+  {
+    "id": "tiroide",
+    "nome": "Tiroide",
+    "ficheiro": "tiroide.json"
   }
 ]

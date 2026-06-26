@@ -1,30 +1,47 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button fill="clear" size="small" (click)="voltar()">Voltar</ion-button>
+      <ion-button fill="clear" size="small" (click)="voltar()">
+        Voltar
+      </ion-button>
     </ion-buttons>
+
     <ion-title>Valores</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
-  <h1>Página de Valores</h1>
-  <p>Selecione um valor para ver a descrição.</p>
 
   <ion-grid>
     <ion-row>
+
       <ion-col
         size="6"
         *ngFor="let valor of valores; trackBy: trackById"
       >
-        <ion-card class="valor-card" (click)="navigateDetalhe(valor.id)">
+
+        <ion-card
+          class="valor-card"
+          (click)="navigateDetalhe(valor.id)"
+        >
+
+          <img
+            [src]="valor.imagem"
+            [alt]="valor.nome"
+            class="valor-imagem"
+          />
+
           <div class="valor-overlay">
-            <ion-card-title>{{ valor.nome | uppercase }}</ion-card-title>
+            <ion-card-title>
+              {{ valor.nome | uppercase }}
+            </ion-card-title>
           </div>
+
         </ion-card>
+
       </ion-col>
+
     </ion-row>
   </ion-grid>
+
 </ion-content>
-
-

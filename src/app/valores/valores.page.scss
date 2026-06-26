@@ -46,3 +46,45 @@ ion-content {
   line-height: 1.2;
   word-break: break-word;
 }
+
+
+ion-content {
+  --background: linear-gradient(135deg, #6a1b9a, #ab47bc);
+}
+
+h1,
+p {
+  text-align: center;
+  color: white;
+}
+
+.valor-card {
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 14px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover,
+  &:active {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+  }
+}
+
+.valor-imagem {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  display: block;
+}
+
+.valor-overlay {
+  padding: 10px;
+  text-align: center;
+}
+
+ion-card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #6a1b9a;
+}

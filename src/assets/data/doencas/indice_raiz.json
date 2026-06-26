@@ -1,8 +1,43 @@
 [
   {
-    "id": "dedos",
-    "nome": "Dedos",
-    "ficheiro": "dedos.json"
+    "id": "abdomen",
+    "nome": "Abdomen",
+    "ficheiro": "abdomen.json"
+  },
+  {
+    "id": "anus",
+    "nome": "Anus",
+    "ficheiro": "Anus.json"
+  },
+  {
+    "id": "arteriosclerose",
+    "nome": "Arteriosclerose",
+    "ficheiro": "arteriosclerose.json"
+  },
+  {
+    "id": "articulações",
+    "nome": "Articulações",
+    "ficheiro": "Articulações.json"
+  },
+  {
+    "id": "artrite",
+    "nome": "Artrite",
+    "ficheiro": "Artrite.json"
+  },
+  {
+    "id": "artrose",
+    "nome": "Artrose",
+    "ficheiro": "Artrose.json"
+  },
+  {
+    "id": "caibras",
+    "nome": "Caibras",
+    "ficheiro": "caibras.json"
+  },
+  {
+    "id": "ciatica",
+    "nome": "Ciática",
+    "ficheiro": "ciatica.json"
   },
   {
     "id": "coccix",
@@ -10,8 +45,119 @@
     "ficheiro": "coccix.json"
   },
   {
-    "id": "ciatica",
-    "nome": "Ciática",
-    "ficheiro": "ciatica.json"
+    "id": "coluna",
+    "nome": "Coluna vertebral",
+    "ficheiro": "coluna.json"
+  },
+  {
+    "id": "comichoes",
+    "nome": "Comichões",
+    "ficheiro": "comichoes.json"
+  },
+  {
+    "id": "dedos",
+    "nome": "Dedos",
+    "ficheiro": "dedos.json"
+  },
+  {
+    "id": "entorses",
+    "nome": "Entorses",
+    "ficheiro": "entorses.json"
+  },
+  {
+    "id": "fistula",
+    "nome": "Fístula",
+    "ficheiro": "Fistula.json"
+  },
+  {
+    "id": "flatulencia",
+    "nome": "Flatulencia",
+    "ficheiro": "Flatulencia.json"
+  },
+  {
+    "id": "flebite",
+    "nome": "Flebite",
+    "ficheiro": "Flebite.json"
+  },
+  {
+    "id": "fraturas",
+    "nome": "Fraturas",
+    "ficheiro": "fraturas.json"
+  },
+  {
+    "id": "gangrena",
+    "nome": "Gangrena",
+    "ficheiro": "Gangrena.json"
+  },
+  {
+    "id": "gluteos",
+    "nome": "Gluteos",
+    "ficheiro": "gluteos.json"
+  },
+  {
+    "id": "hemorroidas",
+    "nome": "Hemorróidas",
+    "ficheiro": "hemorroidas.json"
+  },
+  {
+    "id": "hernia",
+    "nome": "Hérnia",
+    "ficheiro": "hernia.json"
+  },
+  {
+    "id": "inchaço",
+    "nome": "Inchaço",
+    "ficheiro": "inchaço.json"
+  },
+  {
+    "id": "joelhos",
+    "nome": "Joelhos",
+    "ficheiro": "joelhos.json"
+  },
+  {
+    "id": "ossos",
+    "nome": "Ossos",
+    "ficheiro": "ossos.json"
+  },
+  {
+    "id": "ossos deformados",
+    "nome": "Ossos deformados",
+    "ficheiro": "ossos_deformados.json"
+  },
+  {
+    "id": "osteoporose",
+    "nome": "Osteoporose",
+    "ficheiro": "osteoporose.json"
+  },
+  {
+    "id": "panturrilha",
+    "nome": "Panturrilha",
+    "ficheiro": "panturrilha.json"
+  }
+  ,
+  {
+    "id": "pernas",
+    "nome": "Pernas",
+    "ficheiro": "pernas.json"
+  },
+  {
+    "id": "pés",
+    "nome": "Pés",
+    "ficheiro": "pes.json"
+  },
+  {
+    "id": "tornozelo",
+    "nome": "Tornozelo",
+    "ficheiro": "tornozelo.json"
+  },
+  {
+    "id": "unhas",
+    "nome": "Unhas",
+    "ficheiro": "unhas.json"
+  },
+  {
+    "id": "varizes",
+    "nome": "Varizes",
+    "ficheiro": "varizes.json"
   }
 ]

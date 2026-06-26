@@ -1,17 +1,107 @@
 [
   {
-    "id": "dedos",
-    "nome": "Dedos",
-    "ficheiro": "dedos.json"
+    "id": "abdomen",
+    "nome": "Abdomen",
+    "ficheiro": "abdomen.json"
   },
   {
-    "id": "coccix",
-    "nome": "Coccix",
-    "ficheiro": "coccix.json"
+    "id": "ancas",
+    "nome": "Ancas",
+    "ficheiro": "Ancas.json"
   },
   {
-    "id": "ciatica",
-    "nome": "Ciática",
-    "ficheiro": "ciatica.json"
+    "id": "apendicite",
+    "nome": "Apendicite",
+    "ficheiro": "apendicite.json"
+  },
+  {
+    "id": "bexiga",
+    "nome": "Bexiga",
+    "ficheiro": "Bexiga.json"
+  },
+  {
+    "id": "cistite",
+    "nome": "Cistite",
+    "ficheiro": "cistite.json"
+  },
+  {
+    "id": "colicas menstruais",
+    "nome": "Cólicas menstruais",
+    "ficheiro": "colicas menstruais.json"
+  },
+  {
+    "id": "ejaculação precoce",
+    "nome": "Ejaculação precoce",
+    "ficheiro": "Ejaculação precoce.json"
+  },
+  {
+    "id": "endometriose",
+    "nome": "Endometriose",
+    "ficheiro": "Endometriose.json"
+  },
+  {
+    "id": "enurese",
+    "nome": "Enurese",
+    "ficheiro": "Enurese.json"
+  },
+  {
+    "id": "estrias",
+    "nome": "Estrias",
+    "ficheiro": "Estrias.json"
+  },
+  {
+    "id": "fibroma",
+    "nome": "Fibroma",
+    "ficheiro": "Fibroma.json"
+  },
+  {
+    "id": "gluteos",
+    "nome": "Gluteos",
+    "ficheiro": "gluteos.json"
+  },
+  {
+    "id": "hpv",
+    "nome": "HPV (papiloma humano)",
+    "ficheiro": "hpv (papiloma humano).json"
+  },
+  {
+    "id": "inchaço",
+    "nome": "Inchaço",
+    "ficheiro": "inchaço.json"
+  },
+  {
+    "id": "incontinencia",
+    "nome": "Incontinencia",
+    "ficheiro": "incontinencia.json"
+  },
+  {
+    "id": "prostata",
+    "nome": "Próstata",
+    "ficheiro": "prostata.json"
+  },
+  {
+    "id": "rins",
+    "nome": "Rins",
+    "ficheiro": "rins.json"
+  },
+  {
+    "id": "sacro",
+    "nome": "Sacro",
+    "ficheiro": "sacro.json"
+  },
+  {
+    "id": "tpm",
+    "nome": "TPM (Tensão Pré-Menstrual)",
+    "ficheiro": "tpm.json"
+  },
+  {
+    "id": "utero",
+    "nome": "Utero",
+    "ficheiro": "utero.json"
+  },
+  {
+    "id": "vaginite",
+    "nome": "Vaginite",
+    "ficheiro": "vaginite.json"
   }
 ]

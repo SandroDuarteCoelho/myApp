@@ -2,3 +2,12 @@
   display: block;
 }
 
+.img-left {
+  width: 140px;        /* tamanho pequeno */
+  height: auto;
+
+  float: left;         /* 👈 isto faz o texto contornar */
+  margin: 0 8px 0px 0;
+
+  border-radius: 8px;
+}

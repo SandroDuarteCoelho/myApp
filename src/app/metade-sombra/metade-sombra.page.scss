@@ -1,8 +1,64 @@
-:host {
-  display: block;
+.player {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  background: #070707;
+  padding: 10px;
+
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
 }
 
-ion-grid {
+.player audio {
+  width: 100%;
+  margin-top: 6px;
+}
+
+.player .title {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.audio-row {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 8px 0;
+}
+
+.audio-item {
+  white-space: nowrap;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.audio-item:active {
+  background: #ccc;
+}
+
+ion-content {
+  --padding-bottom: 120px;
+}
+
+
+
+
+
+
+
+  ion-grid {
+    position: relative;
+    z-index: 1;
+  }
+
+
+
+
+  ion-grid {
     --ion-grid-gap: 20px;
     max-width: 400px;
     ion-row {

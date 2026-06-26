@@ -1,8 +1,8 @@
-- [ ] Ler/entender a página de detalhe "Linguagem do corpo" (linguagem-corpo-detalhe.page.html / .ts)
-- [ ] Criar nova página "Lateralidade" com cabeçalho + botão voltar
-- [ ] Adicionar rota no app.routes.ts para a nova página
-- [ ] Adicionar botão no título (lado direito) na página linguagem-corpo-detalhe/chakras/sacral.page.html
-ao clicar abrir rota da lateralidade
-- [ ] Ajustar layout do botão no header (lado direito)
-- [ ] Validar navegação (abrir lateralidade e voltar)
+# TODO
+
+- [ ] Implementar na página `src/app/metade-sombra/metade-sombra.page.*` opção para ouvir 3 áudios (`sombra1.m4a`, `sombra2.m4a`, `sombra3.m4a`) em `src/assets/audio/`.
+- [ ] Atualizar `metade-sombra.page.html` com UI (cards/botões) para Play/Pause de cada áudio.
+- [ ] Atualizar `metade-sombra.page.ts` com lógica para tocar/pausar e garantir que ao iniciar um áudio o anterior pare.
+- [ ] Ajustar `metade-sombra.page.scss` para layout/estilo consistente.
+- [ ] Testar build/servir e verificar reprodução dos 3 ficheiros.
 

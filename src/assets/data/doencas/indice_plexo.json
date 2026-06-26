@@ -1,17 +1,62 @@
 [
   {
-    "id": "dedos",
-    "nome": "Dedos",
-    "ficheiro": "dedos.json"
+    "id": "anorexia",
+    "nome": "Anorexia",
+    "ficheiro": "Anorexia.json"
   },
   {
-    "id": "coccix",
-    "nome": "Coccix",
-    "ficheiro": "coccix.json"
+    "id": "ansiedade",
+    "nome": "Ansiedade",
+    "ficheiro": "ansiedade.json"
   },
   {
-    "id": "ciatica",
-    "nome": "Ciática",
-    "ficheiro": "ciatica.json"
+    "id": "azia",
+    "nome": "Azia",
+    "ficheiro": "Azia.json"
+  },
+  {
+    "id": "bulimia",
+    "nome": "Bulimia",
+    "ficheiro": "bulimia.json"
+  },
+  {
+    "id": "diabetes",
+    "nome": "Diabetes",
+    "ficheiro": "diabetes.json"
+  },
+  {
+    "id": "enjoos",
+    "nome": "Enjoos",
+    "ficheiro": "enjoos.json"
+  },
+  {
+    "id": "estomago",
+    "nome": "Estomago",
+    "ficheiro": "estomago.json"
+  },
+  {
+    "id": "figado",
+    "nome": "Figado",
+    "ficheiro": "figado.json"
+  },
+  {
+    "id": "gastrite",
+    "nome": "Gastrite",
+    "ficheiro": "gastrite.json"
+  },
+  {
+    "id": "intestinos",
+    "nome": "Intestinos",
+    "ficheiro": "intestinos.json"
+  },
+  {
+    "id": "intoxicação",
+    "nome": "Intoxicação",
+    "ficheiro": "intoxicação.json"
+  },
+  {
+    "id": "pancreas",
+    "nome": "Pancreas",
+    "ficheiro": "pancreas.json"
   }
 ]

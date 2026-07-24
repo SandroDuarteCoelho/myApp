@@ -8,8 +8,6 @@ import {
   IonContent,
   IonButton,
   IonButtons,
-  IonSearchbar,
-  IonList,
   IonItem,
   IonLabel,
 } from '@ionic/angular/standalone';
@@ -28,8 +26,6 @@ import {
     IonContent,
     IonButton,
     IonButtons,
-    IonSearchbar,
-    IonList,
     IonItem,
     IonLabel,
   ],

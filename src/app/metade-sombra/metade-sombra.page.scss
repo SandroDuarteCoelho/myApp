@@ -1,92 +1,191 @@
-.player {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+ion-content {
 
-  background: #070707;
-  padding: 10px;
+  --padding-bottom: 180px;
 
-  box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
 }
 
-.player audio {
-  width: 100%;
-  margin-top: 6px;
+
+.secao {
+
+  padding: 10px 14px;
+
 }
 
-.player .title {
-  font-size: 14px;
+
+h2 {
+
+  font-size: 18px;
   font-weight: 600;
-  margin-bottom: 6px;
+
+  margin: 10px 0 12px;
+
 }
+
+
+
+/* Áudios */
 
 .audio-row {
-  display: flex;
-  gap: 10px;
-  overflow-x: auto;
-  padding: 8px 0;
+
+  display:flex;
+
+  gap:10px;
+
+  overflow-x:auto;
+
 }
+
+
 
 .audio-item {
-  white-space: nowrap;
-  padding: 6px 10px;
-  border-radius: 20px;
-  font-size: 12px;
-  flex-shrink: 0;
+
+  background:#222;
+
+  color:white;
+
+  padding:8px 14px;
+
+  border-radius:25px;
+
+  font-size:13px;
+
+  white-space:nowrap;
+
 }
 
-.audio-item:active {
-  background: #ccc;
+
+
+/* Cards */
+
+
+ion-grid {
+
+  max-width:420px;
+
+  margin:auto;
+
 }
 
-ion-content {
-  --padding-bottom: 120px;
+
+
+ion-col {
+
+  padding:8px;
+
+}
+
+
+
+ion-card {
+
+
+  height:120px;
+
+  margin:0;
+
+  border-radius:18px;
+
+  display:flex;
+
+  flex-direction:column;
+
+  justify-content:center;
+
+  align-items:center;
+
+  text-align:center;
+
+
+  box-shadow:
+  0 4px 12px rgba(0,0,0,.12);
+
+
+  transition:.2s;
+
+
+}
+
+
+
+ion-card:active {
+
+  transform:scale(.96);
+
+}
+
+
+
+ion-card-title {
+
+  font-size:14px;
+
+  padding:8px;
+
+}
+
+
+
+.icone {
+
+  font-size:35px;
+
 }
 
 
 
 
 
+/* Player */
 
 
-  ion-grid {
-    position: relative;
-    z-index: 1;
-  }
+.player {
+
+
+ position:fixed;
+
+ bottom:0;
+
+ left:0;
+
+ right:0;
+
+
+ background:#111;
+
+ color:white;
+
+
+ padding:12px;
+
+
+ border-radius:20px 20px 0 0;
+
+
+ box-shadow:
+ 0 -4px 20px rgba(0,0,0,.3);
+
+
+ z-index:999;
+
+
+}
 
 
 
+.player audio {
 
-  ion-grid {
-    --ion-grid-gap: 20px;
-    max-width: 400px;
-    ion-row {
-      --ion-grid-column-alignment: stretch;
-    }
-      ion-card {
-      width: 130px;
-      height: 70px;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
+ width:100%;
 
-      display: flex;
-      flex-direction: column;
-      &:hover, &:active {
-        transform: translateY(-4px);
-        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-      }
-      ion-card-title {
-        font-size: 1rem;
-        margin-top: auto;
-      }
-      ion-card-subtitle {
-        color: var(--ion-color-medium);
-        font-size: 0.8rem;
-      }
-      ion-card-content {
-        font-size: 0.8rem;
-        flex-grow: 1;
-      }
-    }
-  }
+}
+
+
+
+.player .title {
+
+ font-size:14px;
+
+ font-weight:600;
+
+ margin-bottom:8px;
+
+}

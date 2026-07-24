@@ -85,4 +85,8 @@ export class MetadeSombraPage {
   abrirOQueUsas() {
     window.location.href = '/o-que-usas';
   }
+
+  abrirCasaPorta() {
+    window.location.href = '/casa-porta';
+  }
 }

@@ -13,6 +13,10 @@
   <ion-button fill="clear" size="small" (click)="abrirEneagrama()">
     Eneagrama
   </ion-button>
+
+  <ion-button fill="clear" size="small" (click)="exportarTudo()">
+    Exportar
+  </ion-button>
 </ion-buttons>
 
     <!-- Dropdown Button -->
@@ -192,7 +196,7 @@
             <p><strong>Eneagrama:</strong> {{ p.eneagrama_tipo }}</p>
             <p><strong>Data:</strong> {{ p.data }}</p>
 
-            <div style="margin-top: 12px; display:flex; gap:8px;">
+            <div style="margin-top: 12px; display:flex; gap:8px; flex-wrap: wrap;">
   <ion-button class="mini-btn" size="small" fill="outline" (click)="escolher(p)">
     Escolher
   </ion-button>
@@ -203,6 +207,14 @@
 
   <ion-button class="mini-btn" size="small" color="danger" fill="outline" (click)="apagar(p)">
     Apagar
+  </ion-button>
+
+  <ion-button class="mini-btn" size="small" fill="outline" (click)="comparar(p)">
+    Comparar
+  </ion-button>
+
+  <ion-button class="mini-btn" size="small" fill="outline" (click)="exportarPerfil(p)">
+    Exportar
   </ion-button>
 </div>
           </ion-card-content>

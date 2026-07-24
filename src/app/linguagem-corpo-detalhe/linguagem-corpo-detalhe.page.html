@@ -1,23 +1,159 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button fill="clear" size="small" (click)="voltar()">Voltar</ion-button>
+      <ion-button fill="clear" size="small" (click)="voltar()">
+        Voltar
+      </ion-button>
     </ion-buttons>
-    <ion-title>Linguagem do corpo</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button fill="clear" size="small" (click)="irLateralidade()">
+        Lateralidade
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>
+      Linguagem do corpo
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="ion-padding">
-  <!-- <h1>Linguagem do corpo</h1>
-  <p>Conteúdo para a página dddddddetalhe da Linguagem do corpo.</p> -->
 
+<ion-content [fullscreen]="true">
+
+
+  <!-- Barra de pesquisa -->
+  <div class="pesquisa-container">
+
+    <ion-searchbar
+      [(ngModel)]="textoPesquisa"
+      (ionInput)="pesquisar()"
+      placeholder="Pesquisar doença..."
+      animated="true"
+      clearInput="true">
+    </ion-searchbar>
+
+
+    <ion-list *ngIf="resultados.length > 0">
+
+      <ion-item
+        button
+        *ngFor="let doenca of resultados"
+        (click)="abrirDoenca(doenca)">
+
+        {{ doenca.nome }}
+
+      </ion-item>
+
+    </ion-list>
+
+  </div>
+
+
+
+  <!-- Conteúdo da doença selecionada -->
+  <ng-container *ngIf="doencaSelecionada">
+
+    <ion-card class="doenca-card">
+
+
+      <ion-button
+        class="botao-fechar"
+        fill="clear"
+        size="small"
+        (click)="fecharDoenca()">
+
+        ✕ Fechar
+
+      </ion-button>
+
+
+
+      <ion-card-content>
+
+
+        <h2>
+          {{ doencaSelecionada.nome }}
+        </h2>
+
+
+
+        <div
+          *ngIf="doencaSelecionada.significado"
+          class="texto-doenca">
+
+          {{ doencaSelecionada.significado }}
+
+        </div>
+
+
+
+        <div
+          *ngIf="doencaSelecionada.sistemico"
+          class="secao-doenca">
+
+
+          <h3>
+            Sistémico
+          </h3>
+
+
+          <div class="texto-doenca">
+
+            {{ doencaSelecionada.sistemico }}
+
+          </div>
+
+
+        </div>
+
+
+
+        <div
+          *ngIf="doencaSelecionada.alimentos?.length > 0"
+          class="secao-doenca">
+
+
+          <h3>
+            Alimentos
+          </h3>
+
+
+          <ul>
+
+            <li *ngFor="let alimento of doencaSelecionada.alimentos">
+
+              {{ alimento }}
+
+            </li>
+
+          </ul>
+
+
+        </div>
+
+
+      </ion-card-content>
+
+
+    </ion-card>
+
+
+  </ng-container>
+
+
+
+
+
+  <!-- Grelha inicial -->
   <ion-grid>
+
     <ion-row>
 
-      <!-- Coluna esquerda: imagem -->
+
+      <!-- Imagem -->
       <ion-col size="6" class="imagem-col">
 
-        <!-- <div class="imagem-wrapper"> -->
 
         <img
           src="assets/corpo/chacras.webp"
@@ -25,37 +161,38 @@
           class="imagem-corpo"
         />
 
-         <!-- <ion-button
-    expand="block"
-    class="botao-outros"
-    (click)="selecionarChacra('outros')"
-  >
-    OUTROS
-  </ion-button> -->
 
-        <!-- </div> -->
       </ion-col>
 
-      <!-- Coluna direita: botões -->
+
+
+      <!-- Botões -->
       <ion-col size="6" class="botoes-col">
 
-      <ion-button
-        *ngFor="let c of chakras"
-        expand="block"
-        (click)="selecionarChacra(c.id)"
-        [class.ativo]="c.id === selecionado"
-        [ngStyle]="{
-          '--background': c.cor,
-          '--color': '#fff'
-        }"
-      >
-        {{ c.nome }}
-      </ion-button>
+
+        <ion-button
+          *ngFor="let c of chakras"
+          expand="block"
+          (click)="selecionarChacra(c.id)"
+          [class.ativo]="c.id === selecionado"
+          [ngStyle]="{
+            '--background': c.cor,
+            '--color': '#fff'
+          }">
+
+          {{ c.nome }}
+
+        </ion-button>
 
 
       </ion-col>
 
+
     </ion-row>
+
+
   </ion-grid>
 
 
+
+</ion-content>

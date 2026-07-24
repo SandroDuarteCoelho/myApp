@@ -1,8 +1,23 @@
-# TODO
+# TODO - Implementação de funcionalidades
 
-- [ ] Implementar na página `src/app/metade-sombra/metade-sombra.page.*` opção para ouvir 3 áudios (`sombra1.m4a`, `sombra2.m4a`, `sombra3.m4a`) em `src/assets/audio/`.
-- [ ] Atualizar `metade-sombra.page.html` com UI (cards/botões) para Play/Pause de cada áudio.
-- [ ] Atualizar `metade-sombra.page.ts` com lógica para tocar/pausar e garantir que ao iniciar um áudio o anterior pare.
-- [ ] Ajustar `metade-sombra.page.scss` para layout/estilo consistente.
-- [ ] Testar build/servir e verificar reprodução dos 3 ficheiros.
+## ✅ 1. linguagem-corpo-detalhe — Adicionar botão "Lateralidade"
+- [x] Editar `linguagem-corpo-detalhe.page.html`: adicionar `<ion-buttons slot="end">` com botão "Lateralidade"
+- [x] Editar `linguagem-corpo-detalhe.page.ts`: adicionar método `irLateralidade()`
+
+## ✅ 2. Criar nova página "casa-porta" para "Nº porta da casa"
+- [x] Criar `src/app/casa-porta/casa-porta.page.html`
+- [x] Criar `src/app/casa-porta/casa-porta.page.ts`
+- [x] Criar `src/app/casa-porta/casa-porta.page.scss`
+- [x] Adicionar rota em `app.routes.ts`
+- [x] Editar `metade-sombra.page.html`: substituir coluna vazia por card "Nº porta da casa" que navega para a nova página
+- [x] Editar `metade-sombra.page.ts`: adicionar método `abrirCasaPorta()`
+
+## ✅ 3. perfil — Adicionar botão "Exportar" no header
+- [x] Editar `perfil.page.html`: adicionar botão "Exportar" após "Eneagrama" no header
+
+## ✅ 4. perfil — Adicionar botões "Comparar" e "Exportar" nos cartões
+- [x] Editar `perfil.page.html`: adicionar botões "Comparar" e "Exportar" em cada cartão
+- [x] Editar `perfil.page.ts`: adicionar métodos `comparar(p)`, `exportarPerfil(p)` e `exportarTudo()`
+
+## ✅ Todas as tarefas concluídas!
 

@@ -1,89 +1,261 @@
 <ion-header [translucent]="true">
+
   <ion-toolbar>
+
     <ion-buttons slot="start">
-      <ion-button fill="clear" size="small" (click)="voltar()">Voltar</ion-button>
+      <ion-button fill="clear" size="small" (click)="voltar()">
+        Voltar
+      </ion-button>
     </ion-buttons>
-    <ion-title>Metade sombra</ion-title>
+
+    <ion-title>
+      Metade sombra
+    </ion-title>
+
   </ion-toolbar>
+
 </ion-header>
 
-<ion-content [fullscreen]="true" class="ion-padding">
 
-  <!-- LISTA SIMPLES EM LINHA -->
-  <div class="audio-row">
-    <div
-      class="audio-item"
-      *ngFor="let audio of audios"
-      (click)="selecionarAudio(audio)"
-    >
-      {{ audio.nome }}
+
+<ion-content [fullscreen]="true">
+
+
+  <!-- Áudios -->
+  <section class="secao">
+
+    <h2>
+      Áudios de reflexão
+    </h2>
+
+
+    <div class="audio-row">
+
+      <div
+        class="audio-item"
+        *ngFor="let audio of audios"
+        (click)="selecionarAudio(audio)">
+
+        🎧 {{ audio.nome }}
+
+      </div>
+
     </div>
-  </div>
 
-  <!-- TUA GRID NORMAL -->
-  <ion-grid>
-    <ion-row>
-      <ion-col size="6">
-        <ion-card button (click)="abrirLinguagemCorpoDetalhe()">
-          <ion-card-header>
-            <ion-card-title>Linguagem do corpo</ion-card-title>
-          </ion-card-header>
-        </ion-card>
-      </ion-col>
+  </section>
 
-      <ion-col size="6">
-        <ion-card button (click)="abrirATuaCasa()">
-          <ion-card-header>
-            <ion-card-title>A tua casa</ion-card-title>
-          </ion-card-header>
-        </ion-card>
-      </ion-col>
-    </ion-row>
 
-    <ion-row>
-      <ion-col size="6">
-        <ion-card button (click)="abrirOQueComes()">
-          <ion-card-header>
-            <ion-card-title>O que comes</ion-card-title>
-          </ion-card-header>
-        </ion-card>
-      </ion-col>
 
-      <ion-col size="6">
-        <ion-card button (click)="abrirOQueVes()">
-          <ion-card-header>
-            <ion-card-title>O que vês</ion-card-title>
-          </ion-card-header>
-        </ion-card>
-      </ion-col>
-    </ion-row>
 
-    <ion-row>
-      <ion-col size="6">
-        <ion-card button (click)="abrirOQueUsas()">
-          <ion-card-header>
-            <ion-card-title>O que usas</ion-card-title>
-          </ion-card-header>
-        </ion-card>
-      </ion-col>
+  <!-- Conteúdos -->
+  <section class="secao">
 
-      <ion-col size="6"></ion-col>
-    </ion-row>
-  </ion-grid>
+
+    <h2>
+      Explorar
+    </h2>
+
+
+    <ion-grid>
+
+
+      <ion-row>
+
+
+        <ion-col size="6">
+
+          <ion-card
+            button
+            class="card-corpo"
+            (click)="abrirLinguagemCorpoDetalhe()">
+
+            <div class="icone">
+              🧍
+            </div>
+
+            <ion-card-title>
+              Linguagem do corpo
+            </ion-card-title>
+
+          </ion-card>
+
+        </ion-col>
+
+
+
+
+        <ion-col size="6">
+
+          <ion-card
+            button
+            class="card-casa"
+            (click)="abrirATuaCasa()">
+
+
+            <div class="icone">
+              🏠
+            </div>
+
+            <ion-card-title>
+              A tua casa
+            </ion-card-title>
+
+
+          </ion-card>
+
+        </ion-col>
+
+
+
+
+
+        <ion-col size="6">
+
+          <ion-card
+            button
+            class="card-comida"
+            (click)="abrirOQueComes()">
+
+
+            <div class="icone">
+              🍎
+            </div>
+
+
+            <ion-card-title>
+              O que comes
+            </ion-card-title>
+
+
+          </ion-card>
+
+        </ion-col>
+
+
+
+
+        <ion-col size="6">
+
+          <ion-card
+            button
+            class="card-visao"
+            (click)="abrirOQueVes()">
+
+
+            <div class="icone">
+              👁️
+            </div>
+
+
+            <ion-card-title>
+              O que vês
+            </ion-card-title>
+
+
+          </ion-card>
+
+        </ion-col>
+
+
+
+
+
+        <ion-col size="6">
+
+          <ion-card
+            button
+            class="card-usas"
+            (click)="abrirOQueUsas()">
+
+
+            <div class="icone">
+              🧰
+            </div>
+
+
+            <ion-card-title>
+              O que usas
+            </ion-card-title>
+
+
+          </ion-card>
+
+        </ion-col>
+
+
+
+
+
+        <ion-col size="6">
+
+          <ion-card
+            button
+            class="card-porta"
+            (click)="abrirCasaPorta()">
+
+
+            <div class="icone">
+              🚪
+            </div>
+
+
+            <ion-card-title>
+              Nº porta da casa
+            </ion-card-title>
+
+
+          </ion-card>
+
+
+        </ion-col>
+
+
+
+      </ion-row>
+
+
+    </ion-grid>
+
+
+  </section>
+
 
 </ion-content>
 
-<!-- PLAYER SIMPLES -->
+
+
+
+<!-- PLAYER -->
 <div class="player" *ngIf="audioSelecionado">
+
+
   <div class="title">
-    {{ audioSelecionado.nome }}
+
+    🎵 {{ audioSelecionado.nome }}
+
   </div>
 
+
+
   <audio controls autoplay>
-    <source [src]="audioSelecionado.src" type="audio/mp4" />
+
+    <source
+      [src]="audioSelecionado.src"
+      type="audio/mp4" />
+
   </audio>
 
-  <ion-button size="small" color="danger" (click)="parar()">
+
+
+  <ion-button
+    expand="block"
+    size="small"
+    color="danger"
+    (click)="parar()">
+
     Parar
+
   </ion-button>
+
+
 </div>

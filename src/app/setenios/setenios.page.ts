@@ -7,65 +7,121 @@ import {
   IonToolbar,
   IonTitle,
   IonContent,
-  IonCard,
-  IonCardHeader,
-  IonCardTitle,
-  IonCardContent,
   IonButton,
-  IonButtons
+  IonButtons,
+
+  IonAccordion,
+  IonAccordionGroup,
+  IonItem,
+  IonLabel
+
 } from '@ionic/angular/standalone';
 
+
 type Setenio = {
+
   id: number;
   nome: string;
   descricao: string;
+
 };
 
+
+
 @Component({
+
   selector: 'app-setenios',
+
   templateUrl: './setenios.page.html',
+
   styleUrls: ['./setenios.page.scss'],
+
   standalone: true,
+
+
   imports: [
+
     CommonModule,
+
     HttpClientModule,
+
 
     IonHeader,
     IonToolbar,
     IonTitle,
     IonContent,
 
-      IonButtons,
-  IonButton,
 
-    IonCard,
-    IonCardHeader,
-    IonCardTitle,
-    IonCardContent
+    IonButtons,
+    IonButton,
+
+
+    IonAccordion,
+    IonAccordionGroup,
+    IonItem,
+    IonLabel
+
   ]
+
 })
+
+
 export class SeteniosPage implements OnInit {
+
+
 
   setenios: Setenio[] = [];
 
-  constructor(private http: HttpClient) {}
+
+
+  constructor(
+    private http: HttpClient
+  ) {}
+
+
+
 
   ngOnInit() {
 
+
     this.http
+
       .get<Setenio[]>('assets/data/setenios.json')
+
+
       .subscribe({
+
         next: (data) => {
+
           this.setenios = data;
+
         },
+
+
         error: (err) => {
-          console.error('Erro ao carregar setenios.json', err);
+
+          console.error(
+            'Erro ao carregar setenios.json',
+            err
+          );
+
         }
+
       });
+
+
   }
+
+
+
 
 
   voltar(): void {
+
     window.history.back();
+
   }
+
+
+
 }

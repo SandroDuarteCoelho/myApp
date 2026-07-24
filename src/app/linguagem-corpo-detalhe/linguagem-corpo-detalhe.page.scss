@@ -71,3 +71,97 @@ ion-button.ativo {
   justify-content: space-between; /* 🔥 imagem em cima, botão em baixo */
   height: 50%;
 }
+
+
+
+.doenca-card {
+
+  margin: 0;
+  padding: 0;
+  background: #222;
+
+  color: #fff;
+
+  width: 100%;
+
+}
+
+
+.doenca-card ion-card-content {
+
+  padding: 12px;
+
+}
+
+
+.doenca-card h2 {
+
+  color: #fff;
+
+  font-size: 1.5rem;
+
+  margin-top: 0;
+  margin-bottom: 16px;
+
+}
+
+
+.doenca-card h3 {
+
+  color: #ddd;
+
+  font-size: 1.1rem;
+
+  margin-bottom: 8px;
+
+}
+
+
+.texto-doenca {
+
+  color: #fff;
+
+  font-size: 1rem;
+
+  line-height: 1.6;
+
+  white-space: pre-line;
+
+}
+
+
+.secao-doenca {
+
+  margin-top: 18px;
+
+}
+
+
+.secao-doenca ul {
+
+  padding-left: 20px;
+
+  color: #fff;
+
+}
+
+
+.fechar-doenca {
+
+  position: absolute;
+
+  top: 4px;
+  right: 4px;
+
+  z-index: 10;
+
+  --color: #fff;
+
+}
+
+
+ion-card.doenca-card {
+
+  position: relative;
+
+}

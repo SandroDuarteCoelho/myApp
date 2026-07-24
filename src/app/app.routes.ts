@@ -27,6 +27,10 @@ export const routes: Routes = [
     path: 'metade-sombra',
     loadComponent: () => import('./metade-sombra/metade-sombra.page').then((m) => m.MetadeSombraPage),
   },
+  {
+    path: 'casa-porta',
+    loadComponent: () => import('./casa-porta/casa-porta.page').then((m) => m.CasaPortaPage),
+  },
 
   {
     path: 'linguagem-corpo-detalhe',

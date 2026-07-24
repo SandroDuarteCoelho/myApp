@@ -1,25 +1,56 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+
     <ion-buttons slot="start">
-      <ion-button fill="clear" size="small" (click)="voltar()">Voltar</ion-button>
+      <ion-button fill="clear" size="small" (click)="voltar()">
+        Voltar
+      </ion-button>
     </ion-buttons>
-    <ion-title>Setenios</ion-title>
+
+    <ion-title>
+      Setenios
+    </ion-title>
+
   </ion-toolbar>
 </ion-header>
 
+
 <ion-content [fullscreen]="true" class="ion-padding">
-  <ion-card *ngFor="let s of setenios">
 
-    <ion-card-header>
-      <ion-card-title>
-        {{ s.nome }}
-      </ion-card-title>
-    </ion-card-header>
 
-   <ion-card-content class="setenio-descricao">
-  {{ s.descricao }}
-</ion-card-content>
+  <ion-accordion-group>
 
-  </ion-card>
+
+    <ion-accordion
+      *ngFor="let s of setenios"
+      [value]="s.id">
+
+
+      <!-- Cabeçalho do acordeão -->
+      <ion-item slot="header">
+
+        <ion-label>
+          {{ s.nome }}
+        </ion-label>
+
+      </ion-item>
+
+
+
+      <!-- Conteúdo aberto -->
+      <div
+        slot="content"
+        class="setenio-descricao ion-padding">
+
+        {{ s.descricao }}
+
+      </div>
+
+
+    </ion-accordion>
+
+
+  </ion-accordion-group>
+
+
 </ion-content>
-

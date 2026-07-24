@@ -396,6 +396,33 @@ export class PerfilPage implements OnInit {
     this.people = this.people.filter((x) => x.id !== p.id);
   }
 
+  comparar(p: PessoaPersistida): void {
+    window.location.href = `/pessoa/${p.id}`;
+  }
+
+  exportarPerfil(p: PessoaPersistida): void {
+    const json = JSON.stringify(p, null, 2);
+    const blob = new Blob([json], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${p.nome}_${p.apelido}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  exportarTudo(): void {
+    const dados = this.people.filter((p) => !this.deletedIds.has(p.id));
+    const json = JSON.stringify(dados, null, 2);
+    const blob = new Blob([json], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'perfis.json';
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
 
 }
 

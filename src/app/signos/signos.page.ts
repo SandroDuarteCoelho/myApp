@@ -9,6 +9,10 @@ import {
   IonContent,
   IonButton,
   IonButtons,
+  IonAccordionGroup,
+  IonAccordion,
+  IonItem,
+  IonLabel
 } from '@ionic/angular/standalone';
 
 @Component({
@@ -16,12 +20,31 @@ import {
   templateUrl: './signos.page.html',
   styleUrls: ['./signos.page.scss'],
   standalone: true,
-  imports: [CommonModule, FormsModule, IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonButtons],
+
+  imports: [
+    CommonModule,
+    FormsModule,
+
+    IonHeader,
+    IonToolbar,
+    IonTitle,
+    IonContent,
+
+    IonButton,
+    IonButtons,
+
+    IonAccordionGroup,
+    IonAccordion,
+    IonItem,
+    IonLabel
+  ],
 })
 export class SignosPage {
+
+
   voltar(): void {
     window.history.back();
   }
 
-}
 
+}

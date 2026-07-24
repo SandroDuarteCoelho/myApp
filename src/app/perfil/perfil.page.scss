@@ -1,21 +1,856 @@
-ion-content {
-  --background: linear-gradient(135deg, var(--ion-color-primary), var(--ion-color-secondary));
+/* =====================================
+   PÁGINA PRINCIPAL
+===================================== */
+
+.perfil-page {
+
+  --background:
+    linear-gradient(
+      180deg,
+      #f5f7ff 0%,
+      #ffffff 100%
+    );
+
 }
 
-.vertical-buttons {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; /* encosta à esquerda */
-  gap: 6px; /* espaço entre botões */
+
+
+/* =====================================
+   ÁREA SUPERIOR
+===================================== */
+
+
+.top-container {
+
+  padding: 12px;
+
 }
+
+
+
+/* Botão criar */
+
+.criar-btn {
+
+  --border-radius: 14px;
+
+  margin-bottom: 12px;
+
+  height: 42px;
+
+  font-weight: 600;
+
+}
+
+
+
+/* Pesquisa */
+
+
+ion-searchbar {
+
+  --border-radius: 14px;
+
+  --background: #ffffff;
+
+  margin-bottom: 10px;
+
+}
+
+
+
+/* =====================================
+   FILTROS
+===================================== */
+
+
+.filtros {
+
+  display: flex;
+
+  gap: 10px;
+
+  width: 100%;
+
+}
+
+
+
+.filtros ion-item {
+
+  flex: 1;
+
+  --background: #ffffff;
+
+  border-radius: 14px;
+
+  margin: 0;
+
+  box-shadow:
+    0 3px 10px rgba(0,0,0,0.08);
+
+}
+
+
+
+.filtros ion-label {
+
+  font-size: 13px;
+
+}
+
+
+
+/* =====================================
+   HEADER
+===================================== */
+
+
+ion-toolbar {
+
+  --background:
+    linear-gradient(
+      135deg,
+      #667eea,
+      #764ba2
+    );
+
+}
+
+
+
+ion-title {
+
+  color:white;
+
+  font-weight:700;
+
+}
+
+
+
+ion-button {
+
+  --border-radius:12px;
+
+}
+
+/* =====================================
+   CARTÕES DOS PERFIS
+===================================== */
+
+
+ion-grid {
+
+  padding: 8px;
+
+}
+
+
+
+ion-card.person-card {
+
+  margin: 12px 4px;
+
+  border-radius: 20px;
+
+  background: #ffffff;
+
+  box-shadow:
+
+    0 6px 18px rgba(0,0,0,0.12);
+
+  overflow: hidden;
+
+  transition:
+
+    transform 0.2s ease,
+
+    box-shadow 0.2s ease;
+
+}
+
+
+
+ion-card.person-card:active {
+
+  transform: scale(0.98);
+
+  box-shadow:
+
+    0 3px 10px rgba(0,0,0,0.15);
+
+}
+
+
+
+
+/* =====================================
+   CABEÇALHO DO CARTÃO
+===================================== */
+
+
+.person-card ion-card-header {
+
+  display:flex;
+
+  align-items:center;
+
+  gap:15px;
+
+  padding:16px;
+
+}
+
+
+
+
+/* Avatar */
+
+.avatar {
+
+  width:50px;
+
+  height:50px;
+
+  border-radius:50%;
+
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+
+  background:
+
+    linear-gradient(
+      135deg,
+      #667eea,
+      #764ba2
+    );
+
+
+  color:white;
+
+  font-size:22px;
+
+  font-weight:700;
+
+
+  flex-shrink:0;
+
+}
+
+
+
+
+.person-info {
+
+  display:flex;
+
+  flex-direction:column;
+
+}
+
+
+
+
+.person-info ion-card-title {
+
+
+  font-size:18px;
+
+  font-weight:700;
+
+  color:#222;
+
+
+}
+
+
+
+
+.person-info ion-card-subtitle {
+
+
+  margin-top:4px;
+
+  font-size:13px;
+
+  color:#666;
+
+
+}
+
+
+
+/* =====================================
+   DADOS DO PERFIL
+===================================== */
+
+
+.dados {
+
+  background:#f7f7fb;
+
+  border-radius:14px;
+
+  padding:12px;
+
+  margin-bottom:14px;
+
+}
+
+
+
+.dados p {
+
+  margin:6px 0;
+
+  font-size:14px;
+
+  color:#555;
+
+}
+
+
+
+.dados strong {
+
+  color:#333;
+
+}
+
+/* =====================================
+   BOTÕES DOS CARTÕES
+===================================== */
+
+
+.card-actions {
+
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:8px;
+
+  margin-top:14px;
+
+}
+
+
+
 
 .mini-btn {
-  --padding-start: 4px;
-  --padding-end: 4px;
-  min-height: 22px;
-  font-size: 10px;
+
+  --border-radius:20px;
+
+  height:30px;
+
+  font-size:11px;
+
+  --padding-start:10px;
+
+  --padding-end:10px;
+
 }
 
+
+
+.mini-btn ion-icon {
+
+  font-size:14px;
+
+  margin-right:4px;
+
+}
+
+
+
+.mini-btn.apagar {
+
+  --border-color:#eb445a;
+
+}
+
+
+
+
+/* =====================================
+   POPOVER CRIAR NOVO
+===================================== */
+
+
+ion-popover {
+
+  --width:90%;
+
+  --max-width:420px;
+
+  --border-radius:20px;
+
+}
+
+
+
+ion-popover ion-content {
+
+  --background:#ffffff;
+
+}
+
+
+
+
+ion-list {
+
+  background:transparent;
+
+}
+
+
+
+ion-list ion-item {
+
+  --background:#f7f7fb;
+
+  --border-radius:14px;
+
+  margin-bottom:12px;
+
+  --padding-start:12px;
+
+  --padding-end:12px;
+
+}
+
+
+
+
+ion-label[position="stacked"] {
+
+  font-size:13px;
+
+  font-weight:600;
+
+  color:#555;
+
+  margin-bottom:5px;
+
+}
+
+
+
+
+ion-input {
+
+  --background:#ffffff;
+
+  --border-radius:10px;
+
+  font-size:14px;
+
+}
+
+
+
+
+
+/* Botão guardar */
+
+
+.guardar-container {
+
+  padding-top:15px;
+
+}
+
+
+
+.guardar-container ion-button {
+
+  height:44px;
+
+  --border-radius:14px;
+
+  font-weight:600;
+
+}
+
+/* =====================================
+   BOTÕES DO HEADER
+===================================== */
+
+
+ion-header ion-button {
+
+  font-size:12px;
+
+}
+
+
 .thin-outline {
-  --border-width: 0.5px;
+
+  --border-width:1px;
+
+  --border-radius:12px;
+
+}
+
+
+
+/* =====================================
+   ESPAÇAMENTO GERAL
+===================================== */
+
+
+ion-content {
+
+  padding-bottom:20px;
+
+}
+
+
+
+/* =====================================
+   EFEITO DE ELEVAÇÃO NOS ELEMENTOS
+===================================== */
+
+
+.top-container ion-searchbar,
+.filtros ion-item {
+
+  transition:
+
+    transform 0.2s ease,
+
+    box-shadow 0.2s ease;
+
+}
+
+
+
+.top-container ion-searchbar:focus-within,
+.filtros ion-item:active {
+
+  transform:translateY(-2px);
+
+  box-shadow:
+
+    0 6px 15px rgba(0,0,0,0.12);
+
+}
+
+
+
+
+/* =====================================
+   RESPONSIVO PARA TELEMÓVEL
+===================================== */
+
+
+@media(max-width:480px){
+
+
+
+  .filtros {
+
+    flex-direction:column;
+
+    gap:8px;
+
+  }
+
+
+
+  .person-card ion-card-header {
+
+    padding:14px;
+
+  }
+
+
+
+  .avatar {
+
+    width:44px;
+
+    height:44px;
+
+    font-size:18px;
+
+  }
+
+
+
+  .person-info ion-card-title {
+
+    font-size:16px;
+
+  }
+
+
+
+  .dados p {
+
+    font-size:13px;
+
+  }
+
+
+
+  .card-actions {
+
+    gap:6px;
+
+  }
+
+
+
+  .mini-btn {
+
+    font-size:10px;
+
+    height:28px;
+
+  }
+
+
+
+}
+
+
+
+/* =====================================
+   MELHOR LEITURA EM MODO ESCURO
+===================================== */
+
+
+@media (prefers-color-scheme: dark) {
+
+
+  .perfil-page {
+
+    --background:#121212;
+
+  }
+
+
+
+  ion-card.person-card {
+
+    background:#1e1e1e;
+
+    color:white;
+
+  }
+
+
+
+  .person-info ion-card-title {
+
+    color:white;
+
+  }
+
+
+
+  .person-info ion-card-subtitle {
+
+    color:#cccccc;
+
+  }
+
+
+
+  .dados {
+
+    background:#252525;
+
+  }
+
+
+
+  .dados p {
+
+    color:#dddddd;
+
+  }
+
+
+
+  .dados strong {
+
+    color:white;
+
+  }
+
+
+}
+
+
+/* =====================================
+   TEXTO DOS CAMPOS - FUNDO CLARO
+===================================== */
+
+
+ion-item,
+ion-input,
+ion-select,
+ion-label,
+ion-select-option {
+
+  color:#222 !important;
+
+}
+
+
+
+ion-input {
+
+  --color:#222 !important;
+
+  --placeholder-color:#777;
+
+}
+
+
+
+ion-select {
+
+  --placeholder-color:#777;
+
+}
+
+
+
+ion-item ion-label {
+
+  color:#333 !important;
+
+}
+
+
+
+/* Campos do popover */
+
+ion-popover ion-item {
+
+  --background:#ffffff;
+
+}
+
+
+
+ion-popover ion-label {
+
+  color:#333 !important;
+
+}
+
+
+
+ion-popover ion-input {
+
+  --color:#222 !important;
+
+}
+
+
+
+/* Cartões */
+
+.person-card {
+
+  color:#222;
+
+}
+
+
+.person-card ion-card-title {
+
+  color:#222 !important;
+
+}
+
+
+.person-card ion-card-subtitle {
+
+  color:#666 !important;
+
+}
+
+
+.dados p {
+
+  color:#444 !important;
+
+}
+
+
+.dados strong {
+
+  color:#222 !important;
+
+}
+
+
+/* =====================================
+   DADOS DO PERFIL (JSON)
+===================================== */
+
+.person-card .dados {
+  color: #ffffff !important;
+}
+
+
+.person-card .dados p {
+  color: #ffffff !important;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 8px 0;
+}
+
+
+.person-card .dados strong {
+  color: #ffffff !important;
+  font-weight: 700;
+}
+
+/* =====================================
+   CABEÇALHO DO CARTÃO
+===================================== */
+
+.person-card ion-card-title {
+  color: #ffffff !important;
+}
+
+
+.person-card ion-card-subtitle {
+  color: #dddddd !important;
+}
+
+/* =====================================
+   TEXTO DA BARRA DE PESQUISA
+===================================== */
+
+ion-searchbar {
+  --color: #222 !important;
+  --placeholder-color: #777 !important;
+  --icon-color: #555 !important;
+}
+
+
+/* texto que o utilizador escreve */
+ion-searchbar::part(input) {
+  color: #222 !important;
+  font-weight: 500;
+}
+
+
+/* placeholder */
+ion-searchbar::part(native) {
+  color: #222 !important;
 }

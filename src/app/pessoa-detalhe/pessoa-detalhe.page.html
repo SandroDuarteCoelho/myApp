@@ -1,346 +1,1089 @@
 <ion-header [translucent]="true">
+
   <ion-toolbar>
+
 
     <!-- ESQUERDA -->
     <ion-buttons slot="start">
-      <ion-button fill="clear" size="small" (click)="voltar()">
-        Voltar
+
+      <ion-button
+        fill="clear"
+        size="small"
+        (click)="voltar()">
+
+        ← Voltar
+
       </ion-button>
+
     </ion-buttons>
+
+
+
+
+    <!-- TITULO -->
+    <!-- <ion-title>
+
+      {{ pessoa ? pessoa.nome : 'Pessoa' }}
+
+    </ion-title> -->
+
+
+
+
 
     <!-- DIREITA -->
-    <ion-buttons slot="end" class="right-buttons">
+    <ion-buttons slot="end" class="perfil-menu">
 
-      <ion-button fill="clear" size="small" (click)="abrirSignos()">
+
+      <ion-button
+        fill="clear"
+        size="small"
+        (click)="abrirSignos()">
+
         Signos
+
       </ion-button>
 
-      <ion-button fill="clear" size="small" (click)="abrirEneagrama()">
+
+
+      <ion-button
+        fill="clear"
+        size="small"
+        (click)="abrirEneagrama()">
+
         Eneagrama
+
       </ion-button>
 
-      <ion-button fill="clear" size="small" (click)="abrirSetenios()">
-        Setenios
+
+
+      <ion-button
+        fill="clear"
+        size="small"
+        (click)="abrirSetenios()">
+
+        Seténios
+
       </ion-button>
+
 
     </ion-buttons>
 
-    <ion-title>
-      {{ pessoa ? pessoa.nome + ' ' + pessoa.apelido : 'Pessoa' }}
-    </ion-title>
+
 
   </ion-toolbar>
+
 </ion-header>
 
-<ion-content [fullscreen]="true" class="no-padding">
 
-  <ng-container *ngIf="pessoa; else notFound">
 
-    <ion-card>
+<ion-content fullscreen>
 
-      <ion-card-header>
-        <ion-card-title>
-          {{ pessoa.nome }} {{ pessoa.apelido }}
-        </ion-card-title>
 
-        <ion-card-subtitle *ngIf="idadeAtual !== null">
-          Idade atual: {{ idadeAtual }} anos
-        </ion-card-subtitle>
-      </ion-card-header>
+<ng-container *ngIf="pessoa; else notFound">
 
 
-      <ion-card-content class="text-zoom">
+<!-- =========================
+     PERFIL HEADER
+========================= -->
 
-        <p><strong>Grupo:</strong> {{ pessoa.grupo }}</p>
-        <p><strong>Localidade:</strong> {{ pessoa.localidade }}</p>
-        <p><strong>Eneagrama:</strong> {{ pessoa.eneagrama_tipo }}</p>
-        <p><strong>Data:</strong> {{ pessoa.data }}</p>
 
-        <ion-card-subtitle class="ion-margin-top">
+<section class="perfil-header">
 
-          <p style="margin: 0;">
-            <strong>força_espiritual</strong>:
-            {{ forcaVogais }}
-          </p>
 
-          <p style="margin: 0;">
-            <strong>atividade</strong>:
-            {{ atividadeConsoantes }}
-          </p>
+  <div class="avatar">
 
-        </ion-card-subtitle>
+    {{ pessoa.nome.charAt(0) }}
 
-        <br>
+  </div>
 
-        <!-- 🔽 ACORDEÃO -->
-        <ion-accordion-group>
 
-          <!-- SETÉNIO -->
-          <ion-accordion value="setenio">
 
-            <ion-item slot="header">
-              <ion-label>Seténio atual</ion-label>
-            </ion-item>
+  <h1>
 
-            <div class="ion-padding" slot="content">
+    {{ pessoa.nome }}
+    {{ pessoa.apelido }}
 
-              <div *ngIf="setenioAtual">
-                <h2>{{ setenioAtual.nome }}</h2>
-                <p style="white-space: pre-line;">
-                  {{ setenioAtual.descricao }}
-                </p>
-              </div>
+  </h1>
 
-            </div>
 
-          </ion-accordion>
 
-          <!-- DIA NASCIMENTO -->
-          <ion-accordion value="dia">
+  <p>
 
-            <ion-item slot="header">
-              <ion-label>Dia de nascimento</ion-label>
-            </ion-item>
+    {{ idadeAtual }} anos
+    ·
+    {{ pessoa.localidade }}
 
-            <div class="ion-padding" slot="content">
+  </p>
 
-              <p style="white-space: pre-line;">
-                {{ descricaoDia }}
-              </p>
 
-            </div>
+</section>
 
-          </ion-accordion>
 
-          <!-- 🟡 SIGNO CHINÊS (NOVO) -->
-          <ion-accordion value="chines">
 
-            <ion-item slot="header">
-              <ion-label>Signo chinês</ion-label>
-            </ion-item>
 
-            <div class="ion-padding" slot="content">
 
-              <div *ngIf="signoChines">
+<!-- =========================
+     INFORMAÇÃO PESSOAL
+========================= -->
 
-                <h2>
-                  {{ signoChines.signo }} ({{ signoChines.elemento }})
-                </h2>
 
-                <p style="white-space: pre-line;">
-                  {{ signoChines.descricao }}
-                </p>
+<ion-card class="card-moderno">
 
-              </div>
 
-            </div>
+<ion-card-header>
 
-          </ion-accordion>
+<ion-card-title>
 
-          <!-- 🟢 SIGNO SOLAR -->
-          <ion-accordion value="solar">
+👤 Dados pessoais
 
+</ion-card-title>
 
-            <ion-item slot="header">
-              <ion-label>Signo solar</ion-label>
-            </ion-item>
+</ion-card-header>
 
-            <div class="ion-padding" slot="content">
 
-              <div *ngIf="signoSolarAtual">
 
-                <h2>{{ signoSolarAtual.signo }}</h2>
+<ion-card-content>
 
-                <p style="white-space: pre-line; margin-bottom: 14px;">
-                  <strong>objetivo:</strong>
-                  {{ signoSolarAtual.objetivo }}
-                </p>
 
-                <p style="white-space: pre-line;">
-                  <strong>personalidade:</strong>
-                  {{ signoSolarAtual.personalidade }}
-                </p>
+<div class="info-grid">
 
-              </div>
 
-            </div>
+<div>
 
-          </ion-accordion>
+<span>
+Grupo
+</span>
 
-          <!-- 🔥 ENEAGRAMA -->
-          <ion-accordion value="eneagrama">
+<strong>
+{{ pessoa.grupo }}
+</strong>
 
-            <ion-item slot="header">
-              <ion-label>Eneagrama</ion-label>
-            </ion-item>
+</div>
 
-            <div class="ion-padding" slot="content">
 
-              <div *ngIf="eneagramaAtual; else eneagramaFallback">
 
-                <p style="margin: 0; white-space: pre-line;">
-                  <strong>Infância:</strong>
-                  {{ eneagramaAtual.infancia }}
-                </p>
+<div>
 
-                <p style="margin-top: 12px;">
-                  <strong>Dificuldades:</strong>
-                </p>
+<span>
+Nascimento
+</span>
 
-                <ul style="margin-top: 0; padding-left: 18px;">
-                  <li *ngFor="let d of eneagramaAtual.dificuldades" style="white-space: pre-line;">
-                    {{ d }}
-                  </li>
-                </ul>
+<strong>
+{{ pessoa.data }}
+</strong>
 
-                <p style="margin-top: 12px;">
-                  <strong>Gostos:</strong>
-                </p>
+</div>
 
-                <ul style="margin-top: 0; padding-left: 18px;">
-                  <li *ngFor="let g of eneagramaAtual.gostos" style="white-space: pre-line;">
-                    {{ g }}
-                  </li>
-                </ul>
 
-                <p style="margin-top: 12px; white-space: pre-line;">
-                  <strong>Autoajuda:</strong>
-                  {{ eneagramaAtual.autoajuda }}
-                </p>
 
-                <p style="margin-top: 12px; white-space: pre-line;">
-                  <strong>Exercícios práticos:</strong>
-                  {{ eneagramaAtual.exercicios_praticos }}
-                </p>
+<div>
 
-              </div>
+<span>
+Eneagrama
+</span>
 
-              <ng-template #eneagramaFallback>
-                <p style="margin: 0;">
-                  Não foi possível carregar o conteúdo do Eneagrama.
-                </p>
-              </ng-template>
+<strong>
+{{ pessoa.eneagrama_tipo }}
+</strong>
 
-            </div>
+</div>
 
-          </ion-accordion>
 
-          <!-- 🔶 ANÁLISE PESTAL -->
-          <ion-accordion value="pestal">
 
-            <ion-item slot="header">
-              <ion-label>Análise Pestal</ion-label>
-            </ion-item>
+</div>
 
-            <div class="ion-padding" slot="content">
 
-              <ng-container *ngIf="anoPessoalAtual !== null && anoPessoalProximo !== null; else pestalFallback">
+</ion-card-content>
 
-                <p style="margin: 0;"><strong>Casa em que se encontra:</strong> {{ casaAtual }}</p>
-                <p style="white-space: pre-line; margin-top: 6px;">{{ descricaoCasaAtual }}</p>
+</ion-card>
 
-                <br>
-               
-                
-                <p style="margin: 0;">
-                  <strong>Casa seguinte:</strong> {{ casaSeguinte }}
-                  <span *ngIf="diasParaCasaSeguinte !== null">(faltam {{ diasParaCasaSeguinte }} dias)</span>
-                </p>
-                <p style="white-space: pre-line; margin-top: 6px;">{{ descricaoCasaSeguinte }}</p>
 
-                <br>
-                <br>
 
-          <ion-accordion-group expand="inset">
 
-  <ion-accordion
-    *ngFor="let ano of anosPestal; let i = index"
-    [value]="ano.ano">
 
-    <!-- Cabeçalho -->
-    <ion-item slot="header">
-      <ion-label>
+<!-- =========================
+ PERFIL INTERIOR
+========================= -->
 
-        <strong>{{ ano.ano }}</strong>
 
-        <span *ngIf="i==0"> (Ano atual)</span>
-        <span *ngIf="i==1"> (Próximo ano)</span>
+<ion-card class="card-moderno">
 
-      </ion-label>
-    </ion-item>
 
-    <!-- Conteúdo -->
-    <!-- <div class="ion-padding" slot="content"> -->
-<div class="ano-card" slot="content">
-      <span style="font-size:32px;">
-        {{ ano.ano }}
-      </span>
+<ion-card-header>
 
-      <p style="margin-top:12px; margin-bottom:0;">
-        <strong>
-          Ano pessoal ({{ ano.anoPessoal }})
-        </strong>
-      </p>
+<ion-card-title>
 
-      <p style="white-space:pre-line;">
-        {{ ano.descricaoAnoPessoal }}
-      </p>
+✨ Perfil interior
 
-      <br>
+</ion-card-title>
 
-      <p style="margin-bottom:0;">
-        <strong>
-          Ano chinês ({{ ano.anoChines }})
-        </strong>
-      </p>
+</ion-card-header>
 
-      <p style="white-space:pre-line;">
-        {{ ano.previsaoAnoChines }}
-      </p>
 
-    </div>
 
-  </ion-accordion>
+<ion-card-content>
+
+
+
+<div class="energia-grid">
+
+
+
+<div>
+
+<span>
+Força espiritual
+</span>
+
+
+<strong>
+{{ forcaVogais }}
+</strong>
+
+
+</div>
+
+
+
+
+<div>
+
+<span>
+Atividade
+</span>
+
+
+<strong>
+{{ atividadeConsoantes }}
+</strong>
+
+
+</div>
+
+
+
+</div>
+
+
+
+</ion-card-content>
+
+</ion-card>
+
+
+
+
+
+
+
+<!-- =========================
+      CAPÍTULOS
+========================= -->
+
+
+<ion-card class="card-moderno">
+
+
+<ion-accordion-group>
+
+
+
+
+
+<!-- SETÉNIO -->
+
+
+<ion-accordion value="setenio">
+
+
+<ion-item slot="header">
+
+<ion-label>
+
+🌱 Seténio atual
+
+</ion-label>
+
+</ion-item>
+
+
+
+<div 
+slot="content"
+class="conteudo">
+
+
+<div *ngIf="setenioAtual">
+
+
+<h2>
+
+{{ setenioAtual.nome }}
+
+</h2>
+
+
+
+<p class="descricao">
+
+{{ setenioAtual.descricao }}
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+</ion-accordion>
+
+
+
+
+
+
+
+<!-- DIA NASCIMENTO -->
+
+
+<ion-accordion value="dia">
+
+
+<ion-item slot="header">
+
+<ion-label>
+
+🌞 Dia de nascimento
+
+</ion-label>
+
+</ion-item>
+
+
+<div 
+slot="content"
+class="conteudo">
+
+
+<p class="descricao">
+
+{{ descricaoDia }}
+
+</p>
+
+
+</div>
+
+
+</ion-accordion>
+
+
+
+
+
+
+
+<!-- SIGNO CHINÊS -->
+
+
+<ion-accordion value="chines">
+
+
+<ion-item slot="header">
+
+<ion-label>
+
+🐉 Signo chinês
+
+</ion-label>
+
+</ion-item>
+
+
+
+<div
+slot="content"
+class="conteudo">
+
+
+<div *ngIf="signoChines">
+
+
+<h2>
+
+{{ signoChines.signo }}
+
+({{ signoChines.elemento }})
+
+</h2>
+
+
+<p class="descricao">
+
+{{ signoChines.descricao }}
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+</ion-accordion>
+
+
+
+
+
+
+
+<!-- SIGNO SOLAR -->
+
+
+<ion-accordion value="solar">
+
+
+<ion-item slot="header">
+
+<ion-label>
+
+☀️ Signo solar
+
+</ion-label>
+
+</ion-item>
+
+
+
+
+<div
+slot="content"
+class="conteudo">
+
+
+<div *ngIf="signoSolarAtual">
+
+
+<h2>
+
+{{ signoSolarAtual.signo }}
+
+</h2>
+
+
+
+
+<div class="texto-box">
+
+<strong>
+Objetivo
+</strong>
+
+
+<p>
+
+{{ signoSolarAtual.objetivo }}
+
+</p>
+
+
+</div>
+
+
+
+
+
+<div class="texto-box">
+
+<strong>
+Personalidade
+</strong>
+
+
+<p>
+
+{{ signoSolarAtual.personalidade }}
+
+</p>
+
+
+</div>
+
+
+
+
+</div>
+
+
+</div>
+
+
+</ion-accordion>
+
+
+
+
+<!-- =========================
+     ENEAGRAMA
+========================= -->
+
+
+<ion-accordion value="eneagrama">
+
+
+<ion-item slot="header">
+
+<ion-label>
+
+🔺 Eneagrama
+
+</ion-label>
+
+</ion-item>
+
+
+
+
+<div 
+slot="content"
+class="conteudo">
+
+
+<div *ngIf="eneagramaAtual; else eneagramaFallback">
+
+
+<div class="texto-box">
+
+
+<strong>
+Infância
+</strong>
+
+
+<p class="descricao">
+
+{{ eneagramaAtual.infancia }}
+
+</p>
+
+
+</div>
+
+
+
+
+
+<div class="texto-box">
+
+
+<strong>
+Dificuldades
+</strong>
+
+
+<ul>
+
+<li 
+*ngFor="let d of eneagramaAtual.dificuldades">
+
+{{ d }}
+
+</li>
+
+</ul>
+
+
+</div>
+
+
+
+
+
+
+<div class="texto-box">
+
+
+<strong>
+Gostos
+</strong>
+
+
+<ul>
+
+<li 
+*ngFor="let g of eneagramaAtual.gostos">
+
+{{ g }}
+
+</li>
+
+</ul>
+
+
+</div>
+
+
+
+
+
+
+<div class="texto-box">
+
+
+<strong>
+Autoajuda
+</strong>
+
+
+<p class="descricao">
+
+{{ eneagramaAtual.autoajuda }}
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+<div class="texto-box">
+
+
+<strong>
+Exercícios práticos
+</strong>
+
+
+<p class="descricao">
+
+{{ eneagramaAtual.exercicios_praticos }}
+
+</p>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+<ng-template #eneagramaFallback>
+
+
+<p>
+
+Não foi possível carregar o conteúdo do Eneagrama.
+
+</p>
+
+
+</ng-template>
+
+
+
+</div>
+
+
+</ion-accordion>
+
+
+
+
+
+
+
+
+
+<!-- =========================
+        PESTAL
+========================= -->
+
+
+<ion-accordion value="pestal">
+
+
+<ion-item slot="header">
+
+
+<ion-label>
+
+🏠 Análise Pestal
+
+</ion-label>
+
+
+</ion-item>
+
+
+
+
+
+<div 
+slot="content"
+class="conteudo">
+
+
+
+<ng-container 
+*ngIf="
+anoPessoalAtual !== null 
+&& 
+anoPessoalProximo !== null;
+else pestalFallback
+">
+
+
+
+
+
+<div class="texto-box">
+
+
+<strong>
+
+Casa atual
+
+</strong>
+
+
+
+<p class="descricao">
+
+{{ casaAtual }}
+
+</p>
+
+
+<p class="descricao">
+
+{{ descricaoCasaAtual }}
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="texto-box">
+
+
+<strong>
+
+Próxima casa
+
+</strong>
+
+
+
+<p class="descricao">
+
+{{ casaSeguinte }}
+
+<span 
+*ngIf="diasParaCasaSeguinte !== null">
+
+<br>
+
+Faltam 
+{{ diasParaCasaSeguinte }}
+dias
+
+</span>
+
+
+</p>
+
+
+
+<p class="descricao">
+
+{{ descricaoCasaSeguinte }}
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<h3 class="titulo-secao">
+
+📅 Ciclos anuais
+
+</h3>
+
+
+
+
+
+
+
+
+<ion-accordion-group expand="inset">
+
+
+
+
+
+<ion-accordion
+
+*ngFor="
+let ano of anosPestal;
+let i=index
+"
+
+[value]="ano.ano"
+
+>
+
+
+
+
+
+<ion-item slot="header">
+
+
+<ion-label>
+
+
+<strong>
+
+{{ ano.ano }}
+
+</strong>
+
+
+
+<span *ngIf="i===0">
+
+(Atual)
+
+</span>
+
+
+
+<span *ngIf="i===1">
+
+(Próximo)
+
+</span>
+
+
+
+</ion-label>
+
+
+</ion-item>
+
+
+
+
+
+
+
+<div 
+slot="content"
+class="ano-card">
+
+
+
+
+
+<div class="ano-numero">
+
+{{ ano.ano }}
+
+</div>
+
+
+
+
+
+
+<div class="texto-box">
+
+
+<strong>
+
+Ano pessoal
+
+({{ ano.anoPessoal }})
+
+</strong>
+
+
+
+<p class="descricao">
+
+{{ ano.descricaoAnoPessoal }}
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="texto-box">
+
+
+<strong>
+
+Ano chinês
+
+({{ ano.anoChines }})
+
+</strong>
+
+
+
+
+<p class="descricao">
+
+{{ ano.previsaoAnoChines }}
+
+</p>
+
+
+
+</div>
+
+
+
+
+
+</div>
+
+
+
+
+
+</ion-accordion>
+
+
 
 </ion-accordion-group>
 
+
+
+
+
+
 </ng-container>
-              <ng-template #pestalFallback>
-                <p style="margin: 0; white-space: pre-line;">Em desenvolvimento.</p>
-              </ng-template>
-
-            </div>
-
-          </ion-accordion>
 
 
-        </ion-accordion-group>
 
 
-      </ion-card-content>
 
-    </ion-card>
-<br><br><br>
-  </ng-container>
+<ng-template #pestalFallback>
 
-  <ng-template #notFound>
 
-    <ion-card>
+<p>
 
-      <ion-card-content>
+Em desenvolvimento.
 
-        <h2>
-          Não foi possível carregar a pessoa
-        </h2>
+</p>
 
-        <p>
-          ID inválido ou dados indisponíveis.
-        </p>
 
-      </ion-card-content>
+</ng-template>
 
-    </ion-card>
 
-  </ng-template>
+
+</div>
+
+
+
+</ion-accordion>
+
+
+
+
+
+
+</ion-accordion-group>
+
+
+</ion-card>
+
+
+
+
+
+</ng-container>
+
+
+
+
+
+
+
+
+
+<!-- =========================
+       NÃO ENCONTRADO
+========================= -->
+
+
+<ng-template #notFound>
+
+
+<ion-card class="card-moderno">
+
+
+<ion-card-content>
+
+
+<h2>
+
+Pessoa não encontrada
+
+</h2>
+
+
+<p>
+
+ID inválido ou dados indisponíveis.
+
+</p>
+
+
+</ion-card-content>
+
+
+</ion-card>
+
+
+
+</ng-template>
+
+
+
 
 </ion-content>

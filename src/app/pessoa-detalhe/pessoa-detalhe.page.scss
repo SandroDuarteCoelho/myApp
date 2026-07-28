@@ -1,75 +1,694 @@
-:host {
-  ion-card {
-    margin-top: 12px;
-  }
-}
+/* ==========================
+   FUNDO GERAL
+========================== */
 
-.right-buttons {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 4px;
-}
 
-.text-zoom {
-  font-size: 18px;
-  line-height: 1.5;
-}
+ion-content {
 
-.text-zoom p {
-  font-size: 18px;
-}
+  --background: #f6f3ee;
 
-.text-zoom ion-label,
-.text-zoom ion-item,
-.text-zoom h2,
-.text-zoom h3 {
-  font-size: 18px;
-}
-
-ion-card {
-  margin: 12px 0 0 0;
-  width: 100%;
-  border-radius: 0; // opcional (fica “colado” tipo app full width)
 }
 
 
-.pestal-content {
-  padding: 2px;
+
+
+
+
+/* ==========================
+   HEADER PERFIL
+========================== */
+
+
+.perfil-header {
+
+  text-align: center;
+
+  padding: 30px 20px;
+
+  background:
+  linear-gradient(
+    135deg,
+    #667eea,
+    #764ba2
+  );
+
+  color:white;
+
+  margin-bottom:15px;
+
 }
 
-.pestal-ano-content {
-  padding: 6px;
+
+
+.perfil-header h1 {
+
+  margin:12px 0 5px;
+
+  font-size:28px;
+
+  font-weight:600;
+
 }
 
-.pestal-content ion-accordion-group {
-  margin: 0;
+
+
+.perfil-header p {
+
+  margin:0;
+
+  opacity:.9;
+
+  font-size:17px;
+
 }
 
-.pestal-content ion-item {
-  --padding-start: 6px;
-  --inner-padding-end: 6px;
+
+
+
+
+
+.avatar {
+
+
+  width:95px;
+
+  height:95px;
+
+
+  margin:auto;
+
+
+  border-radius:50%;
+
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+
+  background:white;
+
+
+  color:#764ba2;
+
+
+  font-size:42px;
+
+  font-weight:bold;
+
+
+  box-shadow:
+  0 5px 15px rgba(0,0,0,.2);
+
+
 }
 
-.ano-card {
-  padding: 10px;
+
+
+
+
+
+
+
+
+/* ==========================
+   CARTÕES PRINCIPAIS
+========================== */
+
+
+.card-moderno {
+
+  margin:15px;
+
+  border-radius:18px;
+
+  --background:#ffffff;
+
+  color:#333;
+
+  box-shadow:
+  0 4px 15px rgba(0,0,0,.08);
+
 }
 
-.ano-card p {
-  margin: 8px 0;
+
+
+
+ion-card-title {
+
+
+  font-size:20px;
+
+  font-weight:600;
+
+
 }
 
-ion-item {
-  --padding-start: 10px;
-  --inner-padding-end: 10px;
+
+
+
+
+
+/* ==========================
+   GRELHAS
+========================== */
+
+
+
+.info-grid {
+
+
+display:grid;
+
+
+grid-template-columns:
+repeat(3,1fr);
+
+
+gap:10px;
+
+
 }
+
+
+
+
+.info-grid div,
+.energia-grid div {
+
+
+background:#f5f5f5;
+
+
+border-radius:14px;
+
+
+padding:14px 8px;
+
+
+text-align:center;
+
+
+}
+
+
+
+
+
+.info-grid span,
+.energia-grid span {
+
+
+display:block;
+
+
+font-size:13px;
+
+
+color:#777;
+
+
+margin-bottom:5px;
+
+
+}
+
+
+
+
+
+.info-grid strong,
+.energia-grid strong {
+
+
+font-size:12px;
+
+
+color:#333;
+
+
+}
+
+
+
+
+
+
+.energia-grid {
+
+
+display:grid;
+
+
+grid-template-columns:
+repeat(2,1fr);
+
+
+gap:15px;
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ==========================
+   ACORDEÕES
+========================== */
+
 
 ion-accordion-group {
-  margin: 0;
-  width: 100%;
+
+
+width:100%;
+
+}
+
+
+
+ion-accordion {
+
+
+margin-bottom:8px;
+
+
+border-radius:12px;
+
+
+overflow:hidden;
+
+
+}
+
+
+
+ion-item {
+
+
+--background:#ffffff;
+
+
+--padding-start:12px;
+
+
+--inner-padding-end:12px;
+
+
+}
+
+
+
+ion-label {
+
+
+font-size:17px;
+
+font-weight:500;
+
+}
+
+
+
+
+
+/* ==========================
+   CONTEÚDOS
+========================== */
+
+
+.conteudo {
+
+
+padding:15px;
+
+
+background:#fff;
+
+
+}
+
+
+
+.conteudo h2 {
+
+
+font-size:22px;
+
+
+margin-top:0;
+
+
+color:#4a4a4a;
+
+
+}
+
+
+
+
+
+.descricao {
+
+
+white-space:pre-line;
+
+
+line-height:1.7;
+
+
+font-size:17px;
+
+
+color:#333;
+
+
+}
+
+
+
+
+
+
+
+
+/* ==========================
+   CAIXAS DE TEXTO
+========================== */
+
+
+.texto-box {
+
+
+background:#fafafa;
+
+
+border-left:
+4px solid #8bc34a;
+
+
+border-radius:12px;
+
+
+padding:15px;
+
+
+margin-bottom:15px;
+
+
+}
+
+
+
+.texto-box strong {
+
+
+display:block;
+
+
+font-size:17px;
+
+
+margin-bottom:8px;
+
+
+color:#555;
+
+
+}
+
+
+
+
+
+
+
+/* ==========================
+   TITULOS INTERNOS
+========================== */
+
+
+.titulo-secao {
+
+
+margin:
+
+25px 0 10px;
+
+
+font-size:20px;
+
+
+color:#555;
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ==========================
+   PESTAL ANOS
+========================== */
+
+
+.ano-card {
+
+
+padding:15px;
+
+
+background:#fff;
+
+
+}
+
+
+
+.ano-numero {
+
+
+font-size:36px;
+
+
+font-weight:bold;
+
+
+text-align:center;
+
+
+color:#764ba2;
+
+
+margin-bottom:15px;
+
+
+}
+
+
+
+
+
+
+
+
+/* ==========================
+   LISTAS
+========================== */
+
+
+ul {
+
+
+padding-left:20px;
+
+
+}
+
+
+
+li {
+
+
+margin-bottom:8px;
+
+
+font-size:16px;
+
+
+line-height:1.5;
+
+
+}
+
+
+
+
+
+
+
+
+/* ==========================
+   RESPONSIVO MOBILE
+========================== */
+
+
+@media(max-width:600px){
+
+
+.info-grid {
+
+
+grid-template-columns:
+repeat(2,1fr);
+
+
+}
+
+
+
+.perfil-header h1 {
+
+
+font-size:24px;
+
+
+}
+
+
+
+.avatar {
+
+
+width:80px;
+
+height:80px;
+
+
+font-size:36px;
+
+
+}
+
+
+}
+
+
+
+
+
+
+
+
+/* ==========================
+   TEXTO GLOBAL
+========================== */
+
+
+p,
+ion-label {
+
+
+line-height:1.5;
+
+
+}
+
+
+
+
+ion-card-content {
+
+
+font-size:17px;
+
+
+}
+
+
+.card-moderno,
+.card-moderno ion-card-content,
+.card-moderno ion-card-title,
+.card-moderno ion-card-subtitle,
+.card-moderno p,
+.card-moderno span,
+.card-moderno strong,
+.card-moderno li,
+.card-moderno h2,
+.card-moderno h3 {
+
+  color:#333 !important;
+
 }
 
 ion-accordion ion-item {
-  --padding-start: 8px;
-  --inner-padding-end: 8px;
+
+  --background:#ffffff;
+
+}
+
+
+ion-accordion ion-label {
+
+  color:#333 !important;
+
+}
+
+
+ion-accordion .conteudo {
+
+  color:#333;
+
+}
+
+
+ion-accordion p {
+
+  color:#333;
+
+}
+
+.perfil-header h1,
+.perfil-header p {
+
+color:white !important;
+
+}
+
+ion-content {
+
+--color:#333;
+
+}
+
+.perfil-menu {
+
+  display:flex;
+
+  gap:2px;
+
+}
+
+
+.perfil-menu ion-button {
+
+  font-size:12px;
+
+  --padding-start:4px;
+
+  --padding-end:4px;
+
+  min-width:auto;
+
 }

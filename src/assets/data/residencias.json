@@ -1,0 +1,49 @@
+{
+  "residencias": [
+    {
+      "numero": 1,
+      "titulo": "Residência Número 1",
+      "descricao": "É a típica residência onde as pessoas são agitadas, dinâmicas, alegres, falantes e inquietas. Esta casa é a que mais se destaca na vizinhança, pois seus moradores tendem a gostar de coisas diferentes, exóticas e chamativas. Possui pessoas que têm uma vida social intensa e uma agenda sempre cheia. A vida profissional também tende a ser muito movimentada. São pessoas que saem muito e gostam de promover reuniões com amigos e parentes, bem movimentadas, alegres e barulhentas. É uma casa que traz aos moradores prosperidade e sucesso."
+    },
+    {
+      "numero": 2,
+      "titulo": "Residência Número 2",
+      "descricao": "É uma típica casa que lembra a época da infância, quando não saíamos da casa da madrinha, da avó ou da própria família. É uma moradia bem cuidada nos pequenos detalhes, com feminilidade e acolhimento. É um local tranquilo, bonito e harmonioso. As pessoas, em geral, são simpáticas, amáveis e ótimas anfitriãs. Os moradores preferem receber os amigos em casa em vez de fazer visitas. A sala e a cozinha são os locais mais movimentados da residência."
+    },
+    {
+      "numero": 3,
+      "titulo": "Residência Número 3",
+      "descricao": "Com toda a certeza, esta é uma das residências mais alegres e de alto astral do bairro. Será difícil encontrar alguém triste, desanimado ou de mal com a vida. As melhores festas e reuniões costumam acontecer nesta casa. É uma residência associada a pessoas animadas, joviais e otimistas. Geralmente é uma casa de cores claras e alegres. Os moradores são dinâmicos e expansivos, estando sempre a mudar algo na casa, como pinturas, móveis ou pequenas reformas."
+    },
+    {
+      "numero": 4,
+      "titulo": "Residência Número 4",
+      "descricao": "É uma típica residência onde tudo está no lugar certo. É uma casa funcional, organizada, prática e cheia de normas, obrigações e deveres que devem ser seguidos pelos moradores. Em geral, são pessoas conservadoras e ligadas às tradições familiares. Nesta casa tudo costuma ir para a agenda: listas de compras, despesas, telefones úteis, receitas e organização diária. A decoração tende a ser básica ou tradicional, com móveis de madeira. As pessoas são equilibradas, reservadas e representam uma típica casa familiar."
+    },
+    {
+      "numero": 5,
+      "titulo": "Residência Número 5",
+      "descricao": "É uma residência alegre, agitada, dinâmica e cheia de movimento. Os moradores possuem capacidade de adaptação e sabem lidar com mudanças constantes. São pessoas que promovem transformações na vida e não gostam de monotonia. Por isso, costumam trocar móveis de lugar e fazer reformas. Gostam de se manter informadas através de jornais, televisão, rádio, livros e internet. A sua agitação pode, por vezes, incomodar os vizinhos."
+    },
+    {
+      "numero": 6,
+      "titulo": "Residência Número 6",
+      "descricao": "É uma típica residência familiar e estável. Para quem pensa em casar, uma casa com este número é associada à sorte, harmonia e união familiar. Os moradores são ótimos anfitriões e amigos, preocupando-se muito com o bem-estar das visitas. Gostam de conforto e luxo, trabalhando bastante para alcançar prosperidade. Cuidam muito bem da casa, mantendo-a organizada e agradável. A sala de estar, televisão e cozinha são os locais preferidos. É comum os amigos dos filhos gostarem de permanecer nesta casa."
+    },
+    {
+      "numero": 7,
+      "titulo": "Residência Número 7",
+      "descricao": "É uma residência discreta e reservada, com moradores que valorizam privacidade e não gostam de fofocas ou confusão. Os habitantes desta casa gostam de ler, estudar e praticar ensinamentos espirituais, místicos e filosóficos. As reuniões realizadas nesta residência costumam envolver conversas profundas sobre espiritualidade, filosofia ou reflexões pessoais. Normalmente não possui muitos moradores, sendo comum um casal com um filho. Pode existir espaço dedicado à leitura e meditação."
+    },
+    {
+      "numero": 8,
+      "titulo": "Residência Número 8",
+      "descricao": "É considerada a casa dos famosos, dos artistas ou das pessoas que alcançaram sucesso material. O número 8 transmite uma vibração associada a sucesso, riqueza, segurança, poder e prosperidade. Os moradores aprendem a trabalhar com carreira, abundância e realização material. Muitas pessoas podem sentir evolução profissional e financeira depois de viverem numa casa 8, através de trabalho, confiança e determinação."
+    },
+    {
+      "numero": 9,
+      "titulo": "Residência Número 9",
+      "descricao": "É uma residência acolhedora, amistosa e com uma energia que faz as pessoas desejarem permanecer. É uma casa associada ao amor pelo próximo, desapego e preocupação com a comunidade. Os moradores tendem a compreender os problemas dos outros e podem estar ligados a profissões ou atividades de ajuda, como medicina, liderança comunitária, assistência social ou voluntariado. É importante que os habitantes mantenham limites saudáveis para preservar a sua intimidade."
+    }
+  ]
+}

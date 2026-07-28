@@ -1,4 +1,100 @@
-.resultado-card {
-  margin-top: 20px;
+ion-content {
+
+  --background:#f6f3ee;
+
 }
 
+
+
+
+ion-accordion-group {
+
+  margin-top:20px;
+
+}
+
+
+
+
+
+ion-item {
+
+
+  --background:#ffffff;
+
+  --color:#333333;
+
+
+}
+
+
+
+
+
+ion-label {
+
+
+  color:#333 !important;
+
+  font-size:17px;
+
+
+}
+
+
+
+
+
+
+.conteudo {
+
+
+  padding:20px;
+
+
+  background:#ffffff;
+
+
+  color:#333;
+
+
+}
+
+
+
+
+
+.conteudo h2 {
+
+
+  font-size:24px;
+
+
+  color:#444;
+
+
+  margin-top:0;
+
+
+}
+
+
+
+
+
+.descricao {
+
+
+  white-space:pre-line;
+
+
+  font-size:17px;
+
+
+  line-height:1.7;
+
+
+  color:#333 !important;
+
+
+}

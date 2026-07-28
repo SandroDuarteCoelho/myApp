@@ -1,14 +1,115 @@
 <ion-header [translucent]="true">
+
   <ion-toolbar>
+
+
     <ion-buttons slot="start">
-      <ion-button fill="clear" size="small" (click)="voltar()">Voltar</ion-button>
+
+      <ion-button
+        fill="clear"
+        size="small"
+        (click)="voltar()">
+
+        Voltar
+
+      </ion-button>
+
+
     </ion-buttons>
-    <ion-title>Nº porta da casa</ion-title>
+
+
+
+    <ion-title>
+      Nº porta da casa
+    </ion-title>
+
+
   </ion-toolbar>
+
 </ion-header>
 
-<ion-content [fullscreen]="true" class="ion-padding">
+
+
+
+
+<ion-content
+[fullscreen]="true"
+class="ion-padding">
+
+
+
+
+
+<ion-accordion-group>
+
+
+
+  <ion-accordion
+    *ngFor="let residencia of residencias"
+    [value]="residencia.numero">
+
+
+
+
+
+    <!-- CABEÇALHO -->
+
+    <ion-item slot="header">
+
+
+      <ion-label>
+
+        🏠 Residência {{ residencia.numero }}
+
+      </ion-label>
+
+
+    </ion-item>
+
+
+
+
+
+
+    <!-- CONTEÚDO -->
+
+    <div
+    slot="content"
+    class="conteudo">
+
+
+
+      <h2>
+
+        {{ residencia.titulo }}
+
+      </h2>
+
+
+
+
+      <p class="descricao">
+
+        {{ residencia.descricao }}
+
+      </p>
+
+
+
+    </div>
+
+
+
+  </ion-accordion>
+
+
+
+
+
+</ion-accordion-group>
+
+
+
 
 
 </ion-content>
-

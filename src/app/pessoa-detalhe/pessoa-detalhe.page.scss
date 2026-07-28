@@ -32,3 +32,44 @@ ion-card {
   width: 100%;
   border-radius: 0; // opcional (fica “colado” tipo app full width)
 }
+
+
+.pestal-content {
+  padding: 2px;
+}
+
+.pestal-ano-content {
+  padding: 6px;
+}
+
+.pestal-content ion-accordion-group {
+  margin: 0;
+}
+
+.pestal-content ion-item {
+  --padding-start: 6px;
+  --inner-padding-end: 6px;
+}
+
+.ano-card {
+  padding: 10px;
+}
+
+.ano-card p {
+  margin: 8px 0;
+}
+
+ion-item {
+  --padding-start: 10px;
+  --inner-padding-end: 10px;
+}
+
+ion-accordion-group {
+  margin: 0;
+  width: 100%;
+}
+
+ion-accordion ion-item {
+  --padding-start: 8px;
+  --inner-padding-end: 8px;
+}

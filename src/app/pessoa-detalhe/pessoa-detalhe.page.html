@@ -251,42 +251,60 @@
                 <br>
                 <br>
 
-                <span *ngIf="anoSistemaAtual !== null" style="font-size: 32px;">{{ anoSistemaAtual }}</span>
-                <p style="margin: 0;">
-                  <strong>Ano pessoal atual ({{ anoPessoalAtual }}):</strong>
-                  
-                </p>
-                <p style="white-space: pre-line; margin-top: 6px;">{{ descricaoAnoPessoalAtual }}</p>
+          <ion-accordion-group expand="inset">
 
-                <br>
+  <ion-accordion
+    *ngFor="let ano of anosPestal; let i = index"
+    [value]="ano.ano">
 
-                <!-- 🔷 ANO CHINÊS -->
-                <p style="margin: 0;">
-                  <strong>Ano chinês atual ({{ anoChinesAtual }}):</strong>
-                </p>
-                <p style="white-space: pre-line; margin-top: 6px;">{{ previsaoAnoChinesAtual }}</p>
+    <!-- Cabeçalho -->
+    <ion-item slot="header">
+      <ion-label>
 
-               
-                <br>
-<span *ngIf="anoSistemaSeguinte !== null" style="font-size: 32px;">{{ anoSistemaSeguinte }}</span>
-                <p style="margin: 0;">
-                  <strong>Ano pessoal do próximo ano ({{ anoPessoalProximo }}):</strong>
-                  
-                </p>
-                <p style="white-space: pre-line; margin-top: 6px;">{{ descricaoAnoPessoalProximo }}</p>
+        <strong>{{ ano.ano }}</strong>
 
- <br>
+        <span *ngIf="i==0"> (Ano atual)</span>
+        <span *ngIf="i==1"> (Próximo ano)</span>
 
-                <p style="margin: 0;">
-                  <strong>Ano chinês do próximo ano ({{ anoChinesProximo }}):</strong>
-                </p>
-                <p style="white-space: pre-line; margin-top: 6px;">{{ previsaoAnoChinesProximo }}</p>
+      </ion-label>
+    </ion-item>
 
+    <!-- Conteúdo -->
+    <!-- <div class="ion-padding" slot="content"> -->
+<div class="ano-card" slot="content">
+      <span style="font-size:32px;">
+        {{ ano.ano }}
+      </span>
 
+      <p style="margin-top:12px; margin-bottom:0;">
+        <strong>
+          Ano pessoal ({{ ano.anoPessoal }})
+        </strong>
+      </p>
 
-                
-              </ng-container>
+      <p style="white-space:pre-line;">
+        {{ ano.descricaoAnoPessoal }}
+      </p>
 
+      <br>
+
+      <p style="margin-bottom:0;">
+        <strong>
+          Ano chinês ({{ ano.anoChines }})
+        </strong>
+      </p>
+
+      <p style="white-space:pre-line;">
+        {{ ano.previsaoAnoChines }}
+      </p>
+
+    </div>
+
+  </ion-accordion>
+
+</ion-accordion-group>
+
+</ng-container>
               <ng-template #pestalFallback>
                 <p style="margin: 0; white-space: pre-line;">Em desenvolvimento.</p>
               </ng-template>

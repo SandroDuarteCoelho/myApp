@@ -279,10 +279,6 @@ export class PessoaDetalhePage implements OnInit {
         this.carregarAnoPessoal();
         this.carregarCasasPestal();
         
-
-
-
-
       },
     });
   }
@@ -421,7 +417,7 @@ export class PessoaDetalhePage implements OnInit {
       ) ?? null;
 
     // carregar previsões APENAS depois
-    await this.carregarPrevisaoAnoChines();
+   
 
   } catch (e) {
 
@@ -618,6 +614,15 @@ carregarCasasPestal(): void {
     );
 }
 
+
+anosPestal: {
+  ano: number;
+  anoPessoal: number;
+  descricaoAnoPessoal: string;
+  anoChines: number;
+  previsaoAnoChines: string;
+}[] = [];
+
    // =========================
   // ANO CHINÊS (PÉSTAL)
   // =========================
@@ -636,7 +641,7 @@ carregarCasasPestal(): void {
       'Macaco',
       'Galo',
       'Cão',
-      'Porco'
+      'Javali'
     ];
 
     // 2020 foi ano do Rato
@@ -662,62 +667,51 @@ carregarCasasPestal(): void {
     return ano;
   }
 
-  private async carregarPrevisaoAnoChines(): Promise<void> {
-    if (!this.pessoa) return;
-    if (!this.signoChines) return;
+ private async carregarPrevisaoAnoChines(): Promise<void> {
 
-    const hoje = new Date();
+  if (!this.pessoa) return;
+  if (!this.signoChines) return;
 
-    // Ajusta o ano chinês atual pela data (jan/fev)
-    const anoChinesAtual = this.getAnoChinesAtualPorData(hoje);
-    const anoChinesProximo = anoChinesAtual + 1;
+  const signos = await this.http
+    .get<any[]>('assets/data/chineses.json')
+    .toPromise();
 
-    const signos = await this.http
-      .get<any[]>('assets/data/chineses.json')
-      .toPromise();
+  if (!signos) return;
 
-    if (!signos) return;
+  const signoPessoa = signos.find(
+    s => s.signo === this.signoChines?.signo
+  );
 
-    const signoChinesAtual = this.signoChines?.signo;
+  if (!signoPessoa) return;
 
-    const signoPessoa = signos.find(
-      (s) => !!signoChinesAtual && s.signo === signoChinesAtual
-    );
+  const interacoes = signoPessoa.interacao_com_outros_signos ?? {};
 
-    if (!signoPessoa) {
-      this.previsaoAnoChinesAtual = '';
-      this.previsaoAnoChinesProximo = '';
-      return;
-    }
+  const hoje = new Date();
+  const anoChinesBase = this.getAnoChinesAtualPorData(hoje);
 
-    const signoAnoAtual = this.obterSignoAnoChines(anoChinesAtual);
-    const signoAnoProximo = this.obterSignoAnoChines(anoChinesProximo);
+  for (let i = 0; i < this.anosPestal.length; i++) {
 
-    this.anoChinesAtual = anoChinesAtual;
-    this.anoChinesProximo = anoChinesProximo;
+    const anoChines = anoChinesBase + i;
 
-    const interacoes = signoPessoa.interacao_com_outros_signos ?? {};
+    const signoAno = this.obterSignoAnoChines(anoChines);
 
-    // Leitura direta
-    const previsaoAtual = interacoes?.[signoAnoAtual]?.previsao_ano;
-    const previsaoProx = interacoes?.[signoAnoProximo]?.previsao_ano;
+    this.anosPestal[i].anoChines = anoChines;
 
-    // Fallback: se a chave não existir (por qualquer divergência de offset), tenta o “outro lado”
-    this.previsaoAnoChinesAtual = (previsaoAtual ?? '').toString();
-    this.previsaoAnoChinesProximo = (previsaoProx ?? '').toString();
+    this.anosPestal[i].previsaoAnoChines =
+      (interacoes?.[signoAno]?.previsao_ano ?? '').toString();
 
-    if (!this.previsaoAnoChinesAtual) {
-      const fallbackAno = anoChinesProximo;
-      const fallbackSigno = this.obterSignoAnoChines(fallbackAno);
-      this.previsaoAnoChinesAtual = (interacoes?.[fallbackSigno]?.previsao_ano ?? '').toString();
-    }
-
-    if (!this.previsaoAnoChinesProximo) {
-      const fallbackAno = anoChinesAtual;
-      const fallbackSigno = this.obterSignoAnoChines(fallbackAno);
-      this.previsaoAnoChinesProximo = (interacoes?.[fallbackSigno]?.previsao_ano ?? '').toString();
-    }
   }
+
+  // Compatibilidade com o código existente
+  this.anoChinesAtual = this.anosPestal[0].anoChines;
+  this.previsaoAnoChinesAtual = this.anosPestal[0].previsaoAnoChines;
+
+  this.anoChinesProximo = this.anosPestal[1].anoChines;
+  this.previsaoAnoChinesProximo = this.anosPestal[1].previsaoAnoChines;
+
+}
+
+
   // =========================
   // ANO PESSOAL (PÉSTAL)
   // =========================
@@ -741,24 +735,52 @@ carregarCasasPestal(): void {
   }
 
   async carregarAnoPessoal(): Promise<void> {
-    if (!this.pessoa) return;
 
-    const d = new Date(this.pessoa.data);
-    const dia = d.getDate();
-    const mes = d.getMonth() + 1;
+  if (!this.pessoa) return;
 
-    this.anoSistemaAtual = new Date().getFullYear();
-    this.anoSistemaSeguinte = (this.anoSistemaAtual ?? 0) + 1;
+  const nascimento = new Date(this.pessoa.data);
 
-    const anoAtual = this.anoSistemaAtual ?? new Date().getFullYear();
-    const anoProximo = this.anoSistemaSeguinte ?? anoAtual + 1;
+  const dia = nascimento.getDate();
+  const mes = nascimento.getMonth() + 1;
 
-    this.anoPessoalAtual = this.calcularAnoPessoal(mes, dia, anoAtual);
-    this.anoPessoalProximo = this.calcularAnoPessoal(mes, dia, anoProximo);
+  const anoAtual = new Date().getFullYear();
 
-    this.descricaoAnoPessoalAtual = await this.carregarTextoAnoPessoal(this.anoPessoalAtual);
-    this.descricaoAnoPessoalProximo = await this.carregarTextoAnoPessoal(this.anoPessoalProximo);
+  this.anoSistemaAtual = anoAtual;
+  this.anoSistemaSeguinte = anoAtual + 1;
+
+  this.anosPestal = [];
+
+  for (let i = 0; i <= 5; i++) {
+
+    const ano = anoAtual + i;
+
+    const numero = this.calcularAnoPessoal(
+      mes,
+      dia,
+      ano
+    );
+
+    const descricao = await this.carregarTextoAnoPessoal(numero);
+
+    this.anosPestal.push({
+      ano,
+      anoPessoal: numero,
+      descricaoAnoPessoal: descricao,
+      anoChines: ano,
+      previsaoAnoChines: ''
+    });
+
   }
+
+  // Mantém compatibilidade com o resto do código
+  this.anoPessoalAtual = this.anosPestal[0].anoPessoal;
+  this.descricaoAnoPessoalAtual = this.anosPestal[0].descricaoAnoPessoal;
+
+  this.anoPessoalProximo = this.anosPestal[1].anoPessoal;
+  this.descricaoAnoPessoalProximo = this.anosPestal[1].descricaoAnoPessoal;
+
+  await this.carregarPrevisaoAnoChines();
+}
 
   // =========================
   // ENEAGRAMA

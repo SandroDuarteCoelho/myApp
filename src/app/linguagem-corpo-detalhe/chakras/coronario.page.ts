@@ -39,6 +39,10 @@ export class CoronarioPage {
     window.location.href = '/linguagem-corpo-detalhe/lateralidade';
   }
 
+  irAutoavaliacao(): void {
+    window.location.href = '/linguagem-corpo-detalhe/autoavaliacao-coronario';
+  }
+
   termoBusca = '';
 
   indiceCoronario: Array<{

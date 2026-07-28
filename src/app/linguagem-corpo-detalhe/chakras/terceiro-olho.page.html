@@ -1,23 +1,66 @@
 <ion-header [translucent]="true">
+
   <ion-toolbar>
+
+
+    <!-- BOTÃO VOLTAR -->
     <ion-buttons slot="start">
-      <ion-button fill="clear" size="small" (click)="voltar()">Voltar</ion-button>
+
+      <ion-button 
+        fill="clear" 
+        size="small" 
+        (click)="voltar()">
+
+        Voltar
+
+      </ion-button>
+
     </ion-buttons>
 
-    <ion-buttons slot="end">
+
+
+
+    <!-- BOTÕES DIREITA -->
+    <div slot="end" class="menu-header">
+
+
       <ion-button
         fill="clear"
         size="small"
-        (click)="irLateralidade()"
-      >
-        Lateralidade
-      </ion-button>
-    </ion-buttons>
+        (click)="irLateralidade()">
 
-    <ion-title style="background: #5dade2; color:#fff;padding:6px 12px; border-radius:6px;font-size:12px;">
+        Lateralidade
+
+      </ion-button>
+
+
+
+      <ion-button
+        fill="clear"
+        size="small"
+        (click)="irAutoavaliacao()">
+
+        Autoavaliação
+
+      </ion-button>
+
+
+    </div>
+
+
+
+
+
+    <ion-title class="titulo-chacra">
+
       Chacra Terceiro Olho
+
     </ion-title>
+
+
+
   </ion-toolbar>
+
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">

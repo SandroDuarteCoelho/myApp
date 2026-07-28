@@ -39,6 +39,10 @@ export class CardiacoPage {
     window.location.href = '/linguagem-corpo-detalhe/lateralidade';
   }
 
+  irAutoavaliacao(): void {
+    window.location.href = '/linguagem-corpo-detalhe/autoavaliacao-cardiaco';
+  }
+
   termoBusca = '';
 
   indiceCardiaco: Array<{

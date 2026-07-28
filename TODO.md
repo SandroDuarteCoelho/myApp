@@ -1,23 +1,40 @@
-# TODO - Implementação de funcionalidades
+# TODO: Adicionar botão "Autoavaliação" nas páginas dos chakras
 
-## ✅ 1. linguagem-corpo-detalhe — Adicionar botão "Lateralidade"
-- [x] Editar `linguagem-corpo-detalhe.page.html`: adicionar `<ion-buttons slot="end">` com botão "Lateralidade"
-- [x] Editar `linguagem-corpo-detalhe.page.ts`: adicionar método `irLateralidade()`
+## Etapas
 
-## ✅ 2. Criar nova página "casa-porta" para "Nº porta da casa"
-- [x] Criar `src/app/casa-porta/casa-porta.page.html`
-- [x] Criar `src/app/casa-porta/casa-porta.page.ts`
-- [x] Criar `src/app/casa-porta/casa-porta.page.scss`
-- [x] Adicionar rota em `app.routes.ts`
-- [x] Editar `metade-sombra.page.html`: substituir coluna vazia por card "Nº porta da casa" que navega para a nova página
-- [x] Editar `metade-sombra.page.ts`: adicionar método `abrirCasaPorta()`
+### 1. Criar 9 páginas de autoavaliação (cada chakra)
+- [x] autoavaliacao-raiz (page.ts + page.html + page.scss)
+- [x] autoavaliacao-sacral
+- [x] autoavaliacao-plexo-solar
+- [x] autoavaliacao-cardiaco
+- [x] autoavaliacao-garganta
+- [x] autoavaliacao-terceiro-olho
+- [x] autoavaliacao-coronario
+- [x] autoavaliacao-segundo-olho
+- [x] autoavaliacao-outros
 
-## ✅ 3. perfil — Adicionar botão "Exportar" no header
-- [x] Editar `perfil.page.html`: adicionar botão "Exportar" após "Eneagrama" no header
+### 2. Adicionar 9 rotas no app.routes.ts
+- [x] Adicionar rotas para cada autoavaliacao-{chakra}
 
-## ✅ 4. perfil — Adicionar botões "Comparar" e "Exportar" nos cartões
-- [x] Editar `perfil.page.html`: adicionar botões "Comparar" e "Exportar" em cada cartão
-- [x] Editar `perfil.page.ts`: adicionar métodos `comparar(p)`, `exportarPerfil(p)` e `exportarTudo()`
+### 3. Adicionar botão "Autoavaliação" nos headers das 9 páginas HTML dos chakras
+- [x] raiz.page.html
+- [x] sacral.page.html
+- [x] plexo-solar.page.html
+- [x] cardiaco.page.html
+- [x] garganta.page.html
+- [x] terceiro-olho.page.html
+- [x] coronario.page.html
+- [x] segundo-olho.page.html
+- [x] outros.page.html
 
-## ✅ Todas as tarefas concluídas!
+### 4. Adicionar método irAutoavaliacao() nos 9 TS dos chakras
+- [x] raiz.page.ts
+- [x] sacral.page.ts
+- [x] plexo-solar.page.ts
+- [x] cardiaco.page.ts
+- [x] garganta.page.ts
+- [x] terceiro-olho.page.ts
+- [x] coronario.page.ts
+- [x] segundo-olho.page.ts
+- [x] outros.page.ts
 

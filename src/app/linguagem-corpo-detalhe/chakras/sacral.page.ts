@@ -39,6 +39,10 @@ export class SacralPage {
     window.location.href = '/linguagem-corpo-detalhe/lateralidade';
   }
 
+  irAutoavaliacao(): void {
+    window.location.href = '/linguagem-corpo-detalhe/autoavaliacao-sacral';
+  }
+
   termoBusca = '';
 
   indiceSacral: Array<{

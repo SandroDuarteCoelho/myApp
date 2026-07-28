@@ -39,6 +39,10 @@ export class RaizPage {
     window.location.href = '/linguagem-corpo-detalhe/lateralidade';
   }
 
+  irAutoavaliacao(): void {
+    window.location.href = '/linguagem-corpo-detalhe/autoavaliacao-raiz';
+  }
+
 termoBusca = '';
 
 indiceRaiz: Array<{

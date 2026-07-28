@@ -39,6 +39,10 @@ export class TerceiroOlhoPage {
     window.location.href = '/linguagem-corpo-detalhe/lateralidade';
   }
 
+  irAutoavaliacao(): void {
+    window.location.href = '/linguagem-corpo-detalhe/autoavaliacao-terceiro-olho';
+  }
+
   termoBusca = '';
 
   indiceFrontal: Array<{

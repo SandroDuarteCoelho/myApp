@@ -7,3 +7,45 @@ ion-content {
   --padding-top: 16px;
 }
 
+.menu-header {
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:flex-end;
+
+  gap:0;
+
+  margin-right:5px;
+
+}
+
+
+.menu-header ion-button {
+
+  height:26px;
+
+  font-size:12px;
+
+  --padding-start:4px;
+
+  --padding-end:4px;
+
+}
+
+
+
+.titulo-chacra {
+
+  background:#5dade2;
+
+  color:white;
+
+  padding:6px 12px;
+
+  border-radius:6px;
+
+  font-size:12px;
+
+}

@@ -11,9 +11,9 @@ import {
 } from '@ionic/angular/standalone';
 
 @Component({
-  selector: 'app-chacra-segundo-olho',
-  templateUrl: './segundo-olho.page.html',
-  styleUrls: ['./segundo-olho.page.scss'],
+  selector: 'app-autoavaliacao-garganta',
+  templateUrl: './autoavaliacao-garganta.page.html',
+  styleUrls: ['./autoavaliacao-garganta.page.scss'],
   standalone: true,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
@@ -26,17 +26,9 @@ import {
     IonButtons,
   ],
 })
-export class SegundoOlhoPage {
+export class AutoavaliacaoGargantaPage {
   voltar(): void {
     window.history.back();
-  }
-
-  irLateralidade(): void {
-    window.location.href = '/linguagem-corpo-detalhe/lateralidade';
-  }
-
-  irAutoavaliacao(): void {
-    window.location.href = '/linguagem-corpo-detalhe/autoavaliacao-segundo-olho';
   }
 }
 

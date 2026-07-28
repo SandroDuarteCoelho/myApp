@@ -73,6 +73,42 @@ export const routes: Routes = [
     loadComponent: () => import('./linguagem-corpo-detalhe/chakras/outros.page').then((m) => m.OutrosPage),
   },
   {
+    path: 'linguagem-corpo-detalhe/autoavaliacao-raiz',
+    loadComponent: () => import('./linguagem-corpo-detalhe/chakras/autoavaliacao-raiz.page').then((m) => m.AutoavaliacaoRaizPage),
+  },
+  {
+    path: 'linguagem-corpo-detalhe/autoavaliacao-sacral',
+    loadComponent: () => import('./linguagem-corpo-detalhe/chakras/autoavaliacao-sacral.page').then((m) => m.AutoavaliacaoSacralPage),
+  },
+  {
+    path: 'linguagem-corpo-detalhe/autoavaliacao-plexo-solar',
+    loadComponent: () => import('./linguagem-corpo-detalhe/chakras/autoavaliacao-plexo-solar.page').then((m) => m.AutoavaliacaoPlexoSolarPage),
+  },
+  {
+    path: 'linguagem-corpo-detalhe/autoavaliacao-cardiaco',
+    loadComponent: () => import('./linguagem-corpo-detalhe/chakras/autoavaliacao-cardiaco.page').then((m) => m.AutoavaliacaoCardiacoPage),
+  },
+  {
+    path: 'linguagem-corpo-detalhe/autoavaliacao-garganta',
+    loadComponent: () => import('./linguagem-corpo-detalhe/chakras/autoavaliacao-garganta.page').then((m) => m.AutoavaliacaoGargantaPage),
+  },
+  {
+    path: 'linguagem-corpo-detalhe/autoavaliacao-terceiro-olho',
+    loadComponent: () => import('./linguagem-corpo-detalhe/chakras/autoavaliacao-terceiro-olho.page').then((m) => m.AutoavaliacaoTerceiroOlhoPage),
+  },
+  {
+    path: 'linguagem-corpo-detalhe/autoavaliacao-coronario',
+    loadComponent: () => import('./linguagem-corpo-detalhe/chakras/autoavaliacao-coronario.page').then((m) => m.AutoavaliacaoCoronarioPage),
+  },
+  {
+    path: 'linguagem-corpo-detalhe/autoavaliacao-segundo-olho',
+    loadComponent: () => import('./linguagem-corpo-detalhe/chakras/autoavaliacao-segundo-olho.page').then((m) => m.AutoavaliacaoSegundoOlhoPage),
+  },
+  {
+    path: 'linguagem-corpo-detalhe/autoavaliacao-outros',
+    loadComponent: () => import('./linguagem-corpo-detalhe/chakras/autoavaliacao-outros.page').then((m) => m.AutoavaliacaoOutrosPage),
+  },
+  {
     path: 'a-tua-casa',
     loadComponent: () => import('./a-tua-casa/a-tua-casa.page').then((m) => m.ATuaCasaPage),
   },

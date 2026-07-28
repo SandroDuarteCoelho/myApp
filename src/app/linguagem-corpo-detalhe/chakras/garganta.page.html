@@ -1,18 +1,51 @@
 <ion-header [translucent]="true">
+
   <ion-toolbar>
+
+
+    <!-- BOTÃO VOLTAR -->
     <ion-buttons slot="start">
-      <ion-button fill="clear" size="small" (click)="voltar()">Voltar</ion-button>
+
+      <ion-button 
+        fill="clear" 
+        size="small" 
+        (click)="voltar()">
+
+        Voltar
+
+      </ion-button>
+
     </ion-buttons>
 
-    <ion-buttons slot="end">
+
+
+
+    <!-- BOTÕES DIREITA -->
+    <div slot="end" class="menu-header">
+
+
       <ion-button
         fill="clear"
         size="small"
-        (click)="irLateralidade()"
-      >
+        (click)="irLateralidade()">
+
         Lateralidade
+
       </ion-button>
-    </ion-buttons>
+
+
+
+      <ion-button
+        fill="clear"
+        size="small"
+        (click)="irAutoavaliacao()">
+
+        Autoavaliação
+
+      </ion-button>
+
+
+    </div>
 
     <ion-title style="background: #3498db; color:#fff;padding:6px 12px; border-radius:6px;font-size:12px;">
       Chacra Garganta

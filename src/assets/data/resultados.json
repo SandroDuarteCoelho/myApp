@@ -1,0 +1,104 @@
+{
+  "chakras": {
+    "raiz": {
+      "A": {
+        "intervalos": [
+          {
+            "min": 0,
+            "max": 3,
+            "titulo": "Necessita atenção",
+            "texto": "Fico feliz por teres feito este teste para que possas tomar consciência da importância de alterares as tuas rotinas..."
+          },
+          {
+            "min": 4,
+            "max": 6,
+            "titulo": "Pode melhorar",
+            "texto": "Precisas de prestar alguma atenção e incluir nas tuas rotinas atividades como desporto, passeios na Natureza..."
+          },
+          {
+            "min": 7,
+            "max": 9,
+            "titulo": "Excelente",
+            "texto": "Parabéns! Estás claramente em contacto contigo, enraizado, estável e confiante..."
+          }
+        ]
+      },
+      "B": {
+        "comparacoes": [
+          {
+            "condicao": "menor_ou_igual_A",
+            "titulo": "Relacionamento saudável",
+            "texto": "Estás de parabéns! Consciente de que a paz do teu próprio mundo é partilhada de forma harmoniosa..."
+          },
+          {
+            "condicao": "maior_A",
+            "titulo": "Atenção",
+            "texto": "Deves tomar muita atenção porque estás a carregar o relacionamento de expectativas..."
+          }
+        ]
+      },
+      "C": {
+        "comparacoes": [
+          {
+            "condicao": "menor_A",
+            "titulo": "Boa evolução",
+            "texto": "Estás de parabéns e claramente a passar um período da vida em que estás mais focado em ti..."
+          },
+          {
+            "condicao": "maior_A",
+            "titulo": "Recuperar hábitos",
+            "texto": "Deves procurar recordar-te da fase da tua vida em que estavas mais presente e consciente..."
+          }
+        ]
+      },
+      "D": {
+        "intervalos": [
+          {
+            "min": 0,
+            "max": 3,
+            "titulo": "Equilibrado",
+            "texto": "Parabéns! Estás claramente em contacto contigo..."
+          },
+          {
+            "min": 4,
+            "max": 6,
+            "titulo": "Alguns sinais",
+            "texto": "Precisas de prestar alguma atenção e incluir novas rotinas..."
+          },
+          {
+            "min": 7,
+            "max": 9,
+            "titulo": "Alerta",
+            "texto": "Deves ter muito cuidado. Poderás estar sob grande stresse e cansaço..."
+          }
+        ]
+      },
+      "E": {
+        "comparacoes": [
+          {
+            "condicao": "menor_ou_igual_D",
+            "titulo": "Boa gestão emocional",
+            "texto": "Embora tenhas de observar os sinais da coluna D, não estás a projetar excessivamente essas dificuldades no relacionamento."
+          },
+          {
+            "condicao": "maior_D",
+            "titulo": "Alerta máximo",
+            "texto": "Os alertas estão todos em ação. Recomendo que tires uns dias para te encontrares contigo..."
+          }
+        ]
+      }
+    },
+
+    "sacral": {},
+
+    "plexo": {},
+
+    "coracao": {},
+
+    "garganta": {},
+
+    "terceiro_olho": {},
+
+    "coroa": {}
+  }
+}

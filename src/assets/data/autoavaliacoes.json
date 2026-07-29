@@ -1,0 +1,236 @@
+{
+  "chakras": [
+    {
+      "id": "raiz",
+      "nome": "Chacra Raiz",
+      "cor": "#e74c3c",
+      "grupos": [
+        {
+          "id": "positivo",
+          "titulo": "Práticas de equilíbrio",
+          "colunas": [
+            {
+              "id": "A",
+              "titulo": "Praticas para ti"
+            },
+            {
+              "id": "B",
+              "titulo": "Relacionamentos"
+            },
+            {
+              "id": "C",
+              "titulo": "Praticavas no passado"
+            }
+          ],
+          "perguntas": [
+            {
+              "id": "P1",
+              "texto": "Escutas o teu corpo e dás-lhe o que ele precisa no dia a dia? (alimentação, sono, desporto, pausas...)"
+            },
+            {
+              "id": "P2",
+              "texto": "Sentes que tens um lugar seguro? (segurança, proteção, casa, alimento, pertença...)"
+            },
+            {
+              "id": "P3",
+              "texto": "Conheces e confias nos teus talentos, habilidades e dons, colocando-os em prática?"
+            },
+            {
+              "id": "P4",
+              "texto": "Ao longo do dia, tens contacto profundo com a Natureza e a Terra?"
+            },
+            {
+              "id": "P5",
+              "texto": "Reconheces em ti o legado da tua família e do teu meio cultural?"
+            },
+            {
+              "id": "P6",
+              "texto": "Reconheces e aceitas o teu lado sombra como sendo a parte de ti que mais precisa de receber amor e compreensão?"
+            },
+            {
+              "id": "P7",
+              "texto": "Tens rotinas diárias de autocuidado interno para trazer equilíbrio e harmonia ao teu lado sombra?"
+            },
+            {
+              "id": "P8",
+              "texto": "Perante um novo desafio, buscas uma mudança de atitude dentro de ti e não fora de ti?"
+            },
+            {
+              "id": "P9",
+              "texto": "Ao longo do teu dia, aceitas e agradeces os acontecimentos que se vão sucedendo?"
+            }
+          ]
+        },
+        {
+          "id": "desequilibrio",
+          "titulo": "Sinais de desequilíbrio",
+          "colunas": [
+            {
+              "id": "D",
+              "titulo": "Na tua vida"
+            },
+            {
+              "id": "E",
+              "titulo": "Relacionamento amoroso"
+            }
+          ],
+          "perguntas": [
+            {
+              "id": "P10",
+              "texto": "Ao longo do teu dia, sentes muitas vezes insegurança e medo?"
+            },
+            {
+              "id": "P11",
+              "texto": "Sentes necessidade de antecipar o futuro para estar preparado para todos os cenários possíveis?"
+            },
+            {
+              "id": "P12",
+              "texto": "Vives em permanente preocupação para salvaguardar as tuas necessidades essenciais?"
+            },
+            {
+              "id": "P13",
+              "texto": "Vives em permanente preocupação com o dinheiro?"
+            },
+            {
+              "id": "P14",
+              "texto": "Tens problemas de saúde relacionados com os sistemas musculoesquelético, imunológico ou circulatório?"
+            },
+            {
+              "id": "P15",
+              "texto": "Negligencias as necessidades do teu corpo?"
+            },
+            {
+              "id": "P16",
+              "texto": "Tendes a repetir comportamentos destrutivos ou viciantes?"
+            },
+            {
+              "id": "P17",
+              "texto": "Deparas-te muitas vezes com problemas de relacionamento interpessoal?"
+            },
+            {
+              "id": "P18",
+              "texto": "Sentes-te muitas vezes esgotado física e emocionalmente?"
+            }
+          ]
+        }
+      ]
+    },
+
+    
+        {
+      "id": "raiz",
+      "nome": "Chacra Raiz",
+      "cor": "#e74c3c",
+      "grupos": [
+        {
+          "id": "positivo",
+          "titulo": "Práticas de equilíbrio",
+          "colunas": [
+            {
+              "id": "A",
+              "titulo": "Praticas para ti"
+            },
+            {
+              "id": "B",
+              "titulo": "Relacionamentos"
+            },
+            {
+              "id": "C",
+              "titulo": "Praticavas no passado"
+            }
+          ],
+          "perguntas": [
+            {
+              "id": "P1",
+              "texto": "Escutas o teu corpo e dás-lhe o que ele precisa no dia a dia? (alimentação, sono, desporto, pausas...)"
+            },
+            {
+              "id": "P2",
+              "texto": "Sentes que tens um lugar seguro? (segurança, proteção, casa, alimento, pertença...)"
+            },
+            {
+              "id": "P3",
+              "texto": "Conheces e confias nos teus talentos, habilidades e dons, colocando-os em prática?"
+            },
+            {
+              "id": "P4",
+              "texto": "Ao longo do dia, tens contacto profundo com a Natureza e a Terra?"
+            },
+            {
+              "id": "P5",
+              "texto": "Reconheces em ti o legado da tua família e do teu meio cultural?"
+            },
+            {
+              "id": "P6",
+              "texto": "Reconheces e aceitas o teu lado sombra como sendo a parte de ti que mais precisa de receber amor e compreensão?"
+            },
+            {
+              "id": "P7",
+              "texto": "Tens rotinas diárias de autocuidado interno para trazer equilíbrio e harmonia ao teu lado sombra?"
+            },
+            {
+              "id": "P8",
+              "texto": "Perante um novo desafio, buscas uma mudança de atitude dentro de ti e não fora de ti?"
+            },
+            {
+              "id": "P9",
+              "texto": "Ao longo do teu dia, aceitas e agradeces os acontecimentos que se vão sucedendo?"
+            }
+          ]
+        },
+        {
+          "id": "desequilibrio",
+          "titulo": "Sinais de desequilíbrio",
+          "colunas": [
+            {
+              "id": "D",
+              "titulo": "Na tua vida"
+            },
+            {
+              "id": "E",
+              "titulo": "Relacionamento amoroso"
+            }
+          ],
+          "perguntas": [
+            {
+              "id": "P10",
+              "texto": "Ao longo do teu dia, sentes muitas vezes insegurança e medo?"
+            },
+            {
+              "id": "P11",
+              "texto": "Sentes necessidade de antecipar o futuro para estar preparado para todos os cenários possíveis?"
+            },
+            {
+              "id": "P12",
+              "texto": "Vives em permanente preocupação para salvaguardar as tuas necessidades essenciais?"
+            },
+            {
+              "id": "P13",
+              "texto": "Vives em permanente preocupação com o dinheiro?"
+            },
+            {
+              "id": "P14",
+              "texto": "Tens problemas de saúde relacionados com os sistemas musculoesquelético, imunológico ou circulatório?"
+            },
+            {
+              "id": "P15",
+              "texto": "Negligencias as necessidades do teu corpo?"
+            },
+            {
+              "id": "P16",
+              "texto": "Tendes a repetir comportamentos destrutivos ou viciantes?"
+            },
+            {
+              "id": "P17",
+              "texto": "Deparas-te muitas vezes com problemas de relacionamento interpessoal?"
+            },
+            {
+              "id": "P18",
+              "texto": "Sentes-te muitas vezes esgotado física e emocionalmente?"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

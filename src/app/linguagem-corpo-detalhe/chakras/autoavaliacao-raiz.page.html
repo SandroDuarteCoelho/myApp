@@ -1,16 +1,221 @@
-<<ion-header [translucent]="true">  
+<ion-header [translucent]="true">
   <ion-toolbar>
+
     <ion-buttons slot="start">
-      <ion-button fill="clear" size="small" (click)="voltar()">Voltar</ion-button>
+      <ion-button
+        fill="clear"
+        size="small"
+        (click)="voltar()">
+        Voltar
+      </ion-button>
     </ion-buttons>
-    <ion-title style="background:#e74c3c; color:#fff; padding:6px 12px; border-radius:6px; font-size:12px;">
-      Autoavaliação - Chacra Raiz
+
+    <ion-title
+      class="titulo"
+      [style.background]="chakra?.cor">
+
+      {{ chakra?.nome }}
+
     </ion-title>
+
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="ion-padding">
-  <h2>Autoavaliação Chacra Raiz</h2>
-  <p>Conteúdo de autoavaliação para o Chacra Raiz.</p>
-</ion-content>
 
+
+
+
+<ion-content
+  [fullscreen]="true"
+  class="ion-padding">
+
+<ng-container *ngIf="chakra">
+
+<h2 class="pagina-titulo">
+
+Autoavaliação
+
+</h2>
+
+<p class="pagina-subtitulo">
+
+Assinale as afirmações que considera verdadeiras para si.
+
+</p>
+
+
+
+
+
+<!-- ===================================================== -->
+<!-- GRUPOS -->
+<!-- ===================================================== -->
+
+<ion-card
+*ngFor="let grupo of chakra.grupos">
+
+<ion-card-header>
+
+<ion-card-title>
+
+{{ grupo.titulo }}
+
+</ion-card-title>
+
+</ion-card-header>
+
+
+
+
+
+<ion-card-content>
+
+<div
+class="pergunta-card"
+*ngFor="let pergunta of grupo.perguntas">
+
+
+
+<p class="pergunta">
+
+{{ pergunta.texto }}
+
+</p>
+
+
+
+
+
+<!-- COLUNAS -->
+
+<div
+class="toggle-row"
+*ngFor="let coluna of grupo.colunas">
+
+<ion-item
+lines="none">
+
+<ion-label>
+
+{{ coluna.titulo }}
+
+</ion-label>
+
+<ion-toggle
+slot="end"
+[(ngModel)]="respostas[pergunta.id][coluna.id]">
+
+</ion-toggle>
+
+</ion-item>
+
+</div>
+
+
+
+
+
+</div>
+
+</ion-card-content>
+
+</ion-card>
+
+
+
+
+
+<ion-button
+
+expand="block"
+
+size="large"
+
+color="danger"
+
+(click)="calcularResultado()">
+
+Calcular resultado
+
+</ion-button>
+
+
+
+
+
+<!-- ===================================================== -->
+<!-- RESULTADOS -->
+<!-- ===================================================== -->
+
+
+
+
+
+
+
+<ion-card *ngIf="mostrarResultado">
+
+<ion-card-header>
+
+<ion-card-title>
+Resultado da Autoavaliação
+</ion-card-title>
+
+</ion-card-header>
+
+
+<ion-card-content>
+
+
+<div
+*ngFor="let item of ['A','B','C','D','E']">
+
+
+<h3>
+
+{{item}}
+
+-
+{{interpretacoes[item]?.titulo}}
+
+</h3>
+
+
+<p>
+
+{{interpretacoes[item]?.texto}}
+
+</p>
+
+
+</div>
+
+
+</ion-card-content>
+
+
+</ion-card>
+
+</ng-container>
+
+
+
+
+
+<ng-container *ngIf="!chakra">
+
+<ion-card>
+
+<ion-card-content>
+
+A carregar questionário...
+
+</ion-card-content>
+
+</ion-card>
+
+</ng-container>
+
+<br><br><br><br>
+
+</ion-content>

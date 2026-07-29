@@ -1,2 +1,289 @@
-/* Autoavaliação Raiz */
+:host {
 
+  ion-content {
+
+    --background: #f7f7f7;
+
+  }
+
+}
+
+
+
+
+
+.titulo {
+
+  color: white;
+
+  padding: 6px 12px;
+
+  border-radius: 8px;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+}
+
+
+
+
+
+
+
+.pagina-titulo {
+
+  text-align: center;
+
+  font-size: 24px;
+
+  font-weight: 700;
+
+  margin-top: 10px;
+
+  color: #333;
+
+}
+
+
+
+
+
+.pagina-subtitulo {
+
+  text-align: center;
+
+  font-size: 16px;
+
+  line-height: 1.5;
+
+  color: #666;
+
+  margin-bottom: 20px;
+
+}
+
+
+
+
+
+
+
+ion-card {
+
+  margin-bottom: 20px;
+
+  border-radius: 14px;
+
+  background: white;
+
+  box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+
+}
+
+
+
+
+
+
+
+ion-card-header {
+
+  background: #e74c3c;
+
+  color:white;
+
+  border-radius:14px 14px 0 0;
+
+}
+
+
+
+
+
+ion-card-title {
+
+  color:white;
+
+  font-size:18px;
+
+  font-weight:600;
+
+}
+
+
+
+
+
+
+
+ion-card-content {
+
+  padding-top:20px;
+
+}
+
+
+
+
+
+
+
+.pergunta-card {
+
+  margin-bottom:25px;
+
+  padding-bottom:15px;
+
+  border-bottom:1px solid #ddd;
+
+}
+
+
+
+
+
+
+
+.pergunta {
+
+  font-size:17px;
+
+  line-height:1.5;
+
+  color:#333;
+
+  margin-bottom:12px;
+
+}
+
+
+
+
+
+
+
+.toggle-row {
+
+  margin-bottom:5px;
+
+}
+
+
+
+
+
+.toggle-row ion-item {
+
+  --background:#fafafa;
+
+  --color:#333;
+
+  border-radius:10px;
+
+  margin-bottom:6px;
+
+}
+
+
+
+
+
+.toggle-row ion-label {
+
+  font-size:15px;
+
+  color:#333;
+
+}
+
+
+
+
+
+ion-toggle {
+
+  --handle-background:white;
+
+  --background:#ccc;
+
+  --background-checked:#e74c3c;
+
+  --handle-background-checked:white;
+
+}
+
+
+
+
+
+
+
+ion-button {
+
+  margin-top:25px;
+
+  --border-radius:12px;
+
+  font-size:17px;
+
+  font-weight:600;
+
+}
+
+
+
+
+
+
+
+/* Resultado */
+
+
+
+
+ion-card:last-child {
+
+
+  ion-card-header {
+
+    background:#555;
+
+  }
+
+
+}
+
+
+
+
+
+@media(max-width:600px){
+
+
+
+  .pergunta {
+
+    font-size:16px;
+
+  }
+
+
+
+  ion-card-title {
+
+    font-size:16px;
+
+  }
+
+
+
+  .toggle-row ion-label {
+
+    font-size:14px;
+
+  }
+
+
+}

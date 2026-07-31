@@ -152,47 +152,54 @@ Calcular resultado
 
 
 
-
 <ion-card *ngIf="mostrarResultado">
 
-<ion-card-header>
+  <ion-card-header>
 
-<ion-card-title>
-Resultado da Autoavaliação
-</ion-card-title>
+    <ion-card-title>
 
-</ion-card-header>
+      Resultado da Autoavaliação
 
+    </ion-card-title>
 
-<ion-card-content>
-
-
-<div
-*ngFor="let item of ['A','B','C','D','E']">
+  </ion-card-header>
 
 
-<h3>
+  <ion-card-content>
 
-{{item}}
+    <div *ngFor="let item of ['A','B','C','D','E']">
 
--
-{{interpretacoes[item]?.titulo}}
+      <h3>
 
-</h3>
+        <strong>
 
+          {{ item }} ({{ titulosColunas[item] }})
 
-<p>
+        </strong>
 
-{{interpretacoes[item]?.texto}}
+        - {{ resultados.totais[item] }} respostas
 
-</p>
-
-
-</div>
+      </h3>
 
 
-</ion-card-content>
+      <h4 *ngIf="interpretacoes[item]">
 
+        {{ interpretacoes[item].titulo }}
+
+      </h4>
+
+
+      <p>
+
+        {{ interpretacoes[item]?.texto }}
+
+      </p>
+
+      <hr>
+
+    </div>
+
+  </ion-card-content>
 
 </ion-card>
 
@@ -200,19 +207,17 @@ Resultado da Autoavaliação
 
 
 
-
-
 <ng-container *ngIf="!chakra">
 
-<ion-card>
+  <ion-card>
 
-<ion-card-content>
+    <ion-card-content>
 
-A carregar questionário...
+      A carregar questionário...
 
-</ion-card-content>
+    </ion-card-content>
 
-</ion-card>
+  </ion-card>
 
 </ng-container>
 

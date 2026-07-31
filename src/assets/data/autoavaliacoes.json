@@ -11,15 +11,15 @@
           "colunas": [
             {
               "id": "A",
-              "titulo": "Praticas para ti"
+              "titulo": "Sentes que o praticas para ti"
             },
             {
               "id": "B",
-              "titulo": "Relacionamentos"
+              "titulo": "Procuras viver essa realidade nos relacionamentos"
             },
             {
               "id": "C",
-              "titulo": "Praticavas no passado"
+              "titulo": "Praticaste no passado e não praticas atualmente"
             }
           ],
           "perguntas": [
@@ -67,11 +67,11 @@
           "colunas": [
             {
               "id": "D",
-              "titulo": "Na tua vida"
+              "titulo": "Sentes no dia a dia na tua vida"
             },
             {
               "id": "E",
-              "titulo": "Relacionamento amoroso"
+              "titulo": "Sentes no teu relacionamento amoroso"
             }
           ],
           "perguntas": [

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 import {
 
@@ -67,6 +68,8 @@ interface Grupo {
   imports:[
 
     CommonModule,
+    FormsModule,
+    HttpClientModule,
 
     IonHeader,
     IonToolbar,
@@ -91,6 +94,10 @@ interface Grupo {
 export class AutoavaliacaoRaizPage implements OnInit {
 
 
+
+  // chakra carregado
+
+  chakra:any=null;
 
   // perguntas carregadas
 
@@ -125,7 +132,7 @@ export class AutoavaliacaoRaizPage implements OnInit {
   mostrarResultado=false;
 
 
-
+ titulosColunas: { [key: string]: string } = {};
 
 
   constructor(
@@ -179,10 +186,10 @@ export class AutoavaliacaoRaizPage implements OnInit {
 
 
 
-      next:(dados)=>{
+next:(dados)=>{
 
 
-        const chakra =
+        this.chakra =
 
         dados.chakras.find(
 
@@ -193,9 +200,22 @@ export class AutoavaliacaoRaizPage implements OnInit {
         );
 
 
+this.grupos = this.chakra.grupos;
 
-        this.grupos =
-        chakra.grupos;
+
+
+  // Guarda os títulos das colunas (A, B, C, D e E)
+
+  this.grupos.forEach(grupo => {
+
+    grupo.colunas.forEach(coluna => {
+
+      this.titulosColunas[coluna.id] = coluna.titulo;
+
+    });
+
+  });
+
 
 
 
@@ -318,7 +338,7 @@ export class AutoavaliacaoRaizPage implements OnInit {
 
 
 
-  calcular(){
+calcularResultado(){
 
 
 

@@ -1,11 +1,10 @@
-# TODO-in-progress
+# TODO - Corrigir interpretação de resultados na autoavaliacao-raiz
 
-- [x] Inserir componente “acordeao” com 4 botões nas páginas:
-  - [x] src/app/a-tua-casa/a-tua-casa.page.html
-  - [x] src/app/o-que-comes/o-que-comes.page.html
-  - [x] src/app/o-que-usas/o-que-usas.page.html
-  - [x] src/app/o-que-ves/o-que-ves.page.html
-- [ ] Garantir estilos mínimos (se necessário) para alinhamento/visual dos botões
-- [x] Validar build/compilação do Angular/Ionic
-
+- [x] 1. Editar `autoavaliacao-raiz.page.ts`:
+  - Adicionar mapa `totais` à componente
+  - Popular `totais` em `calcularResultado()`
+  - Tornar `gerarInterpretacoes()` defensivo (verificar se `resultados` carregou)
+- [x] 2. Editar `autoavaliacao-raiz.page.html`:
+  - Substituir `{{ resultados.totais[item] }}` por `{{ totais[item] }}`
+- [x] 3. Verificar build/compilação
 

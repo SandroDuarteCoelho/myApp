@@ -118,8 +118,8 @@
 
     
         {
-      "id": "raiz",
-      "nome": "Chacra Raiz",
+      "id": "sacral",
+      "nome": "Chacra Sacral",
       "cor": "#e74c3c",
       "grupos": [
         {
@@ -128,53 +128,61 @@
           "colunas": [
             {
               "id": "A",
-              "titulo": "Praticas para ti"
+              "titulo": "Sentes que o praticas para ti"
             },
             {
               "id": "B",
-              "titulo": "Relacionamentos"
+              "titulo": "Procuras viver essa realidade nos relacionamentos"
             },
             {
               "id": "C",
-              "titulo": "Praticavas no passado"
+              "titulo": "Praticaste no passado e não praticas atualmente"
             }
           ],
           "perguntas": [
             {
               "id": "P1",
-              "texto": "Escutas o teu corpo e dás-lhe o que ele precisa no dia a dia? (alimentação, sono, desporto, pausas...)"
+              "texto": "Reconheces, ao longo do teu dia, as várias emoções que sentes?"
             },
             {
               "id": "P2",
-              "texto": "Sentes que tens um lugar seguro? (segurança, proteção, casa, alimento, pertença...)"
+              "texto": "Aceitas com naturalidade o que sentes ao longo do teu dia?"
             },
             {
               "id": "P3",
-              "texto": "Conheces e confias nos teus talentos, habilidades e dons, colocando-os em prática?"
+              "texto": "Expressas de forma saudável aquilo que sentes?"
             },
             {
               "id": "P4",
-              "texto": "Ao longo do dia, tens contacto profundo com a Natureza e a Terra?"
+              "texto": "Dás espaço e expressão aos teus desejos e emoções mais profundos?"
             },
             {
               "id": "P5",
-              "texto": "Reconheces em ti o legado da tua família e do teu meio cultural?"
+              "texto": "Gostas de cultivar novas ideias e ter novas experiências? (experimentar novos hobbies, formas de expressão...)"
             },
             {
               "id": "P6",
-              "texto": "Reconheces e aceitas o teu lado sombra como sendo a parte de ti que mais precisa de receber amor e compreensão?"
+              "texto": "Sentes que aquilo que dás aos outros está em equilíbrio com o que dás a ti mesmo e ao que te permites receber dos outros?"
             },
             {
               "id": "P7",
-              "texto": "Tens rotinas diárias de autocuidado interno para trazer equilíbrio e harmonia ao teu lado sombra?"
+              "texto": "Crias momentos na tua vida nos quais desfrutas saudavelmente dos prazeres sensoriais da vida? (alimentação, toque, Natureza e intimidade sexual…)"
             },
             {
               "id": "P8",
-              "texto": "Perante um novo desafio, buscas uma mudança de atitude dentro de ti e não fora de ti?"
+              "texto": "Aquilo que sentes internamente é expressado para o mundo exterior de forma autêntica?"
             },
             {
               "id": "P9",
-              "texto": "Ao longo do teu dia, aceitas e agradeces os acontecimentos que se vão sucedendo?"
+              "texto": "Quem és para ti é igual a quem és para os outros?"
+            },
+            {
+              "id": "P10",
+              "texto": "Honras e vives de acordo com os teus desejos, necessidades e valores pessoais?"
+            },
+            {
+              "id": "P11",
+              "texto": "Sentes-te seguro e confiante a viver na tua própria pele?"
             }
           ]
         },
@@ -184,49 +192,53 @@
           "colunas": [
             {
               "id": "D",
-              "titulo": "Na tua vida"
+              "titulo": "Sentes no dia a dia na tua vida"
             },
             {
               "id": "E",
-              "titulo": "Relacionamento amoroso"
+              "titulo": "Sentes no teu relacionamento amoroso"
             }
           ],
           "perguntas": [
             {
-              "id": "P10",
-              "texto": "Ao longo do teu dia, sentes muitas vezes insegurança e medo?"
-            },
-            {
-              "id": "P11",
-              "texto": "Sentes necessidade de antecipar o futuro para estar preparado para todos os cenários possíveis?"
-            },
-            {
               "id": "P12",
-              "texto": "Vives em permanente preocupação para salvaguardar as tuas necessidades essenciais?"
+              "texto": "Deparas-te muitas vezes com problemas nos relacionamentos? (falta de intimidade emocional, conflitos interpessoais e padrões disfuncionais de comunicação…)"
             },
             {
               "id": "P13",
-              "texto": "Vives em permanente preocupação com o dinheiro?"
+              "texto": "Sentes muitas vezes falta de inspiração e dificuldade em encontrar fontes de realização?"
             },
             {
               "id": "P14",
-              "texto": "Tens problemas de saúde relacionados com os sistemas musculoesquelético, imunológico ou circulatório?"
+              "texto": "Ouves uma voz crítica interna que te acompanha diariamente?"
             },
             {
               "id": "P15",
-              "texto": "Negligencias as necessidades do teu corpo?"
+              "texto": "Sentes que emocionalmente tendes a estar em extremos?"
             },
             {
               "id": "P16",
-              "texto": "Tendes a repetir comportamentos destrutivos ou viciantes?"
+              "texto": "É frequente sentires falta de libido, dificuldades em atingir o orgasmo ou desconforto com a intimidade sexual?"
             },
             {
               "id": "P17",
-              "texto": "Deparas-te muitas vezes com problemas de relacionamento interpessoal?"
+              "texto": "Procuras satisfazer as tuas carências emocionais com pequenos prazeres instantâneos? (comida, álcool, drogas, compras compulsivas, pornografia...)"
             },
             {
               "id": "P18",
-              "texto": "Sentes-te muitas vezes esgotado física e emocionalmente?"
+              "texto": "Estás muitas vezes num estado de apatia, com uma sensação de vazio interno, sem força para seguir numa direção?"
+            },
+            {
+              "id": "P19",
+              "texto": "Tens problemas de saúde física relacionados com o sistema reprodutivo? (problemas menstruais, disfunções hormonais, infertilidade ou dificuldades durante a gravidez e parto…)"
+            },
+            {
+              "id": "P20",
+              "texto": "Sentes dificuldade em compreender os teus próprios limites e em estabelecer limites para com os outros?"
+            },
+            {
+              "id": "P21",
+              "texto": "Sentes que bloqueias a tua criatividade e tens receio de a expressar?"
             }
           ]
         }

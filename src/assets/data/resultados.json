@@ -7,19 +7,19 @@
             "min": 0,
             "max": 3,
             "titulo": "Necessita atenção",
-            "texto": "Fico feliz por teres feito este teste para que possas tomar consciência da importância de alterares as tuas rotinas..."
+            "texto": "Fico feliz por teres feito este teste para que possas tomar consciência da importância de alterares as tuas rotinas do teu dia a dia de forma a te incluíres e alterar o “turbilhão” em que te encontras."
           },
           {
             "min": 4,
             "max": 6,
             "titulo": "Pode melhorar",
-            "texto": "Precisas de prestar alguma atenção e incluir nas tuas rotinas atividades como desporto, passeios na Natureza..."
+            "texto": "Precisas de prestar alguma atenção e incluir nas tuas rotinas atividades como desporto, passeios na Natureza e momentos de pausa para te sentires e cuidares de ti. Uma ótima solução é incluíres na tua agenda coisas que gostas de fazer, por exemplo, desporto, ioga ou meditação, que te fazem bem e te ajudam a enraizar e voltar a reforçar a presença em ti."
           },
           {
             "min": 7,
             "max": 9,
             "titulo": "Excelente",
-            "texto": "Parabéns! Estás claramente em contacto contigo, enraizado, estável e confiante..."
+            "texto": "Parabéns! Estás claramente em contacto contigo, enraizado, estável e confiante com força, determinação e capacidade para enfrentar desafios. A tua conexão com a Terra é forte e reconheces a tua interdependência com todos os seres vivos. Tens uma forte vocação para desenvolver a tua capacidade de aceitação e gratidão."
           }
         ]
       },
@@ -28,12 +28,12 @@
           {
             "condicao": "menor_ou_igual_A",
             "titulo": "Relacionamento saudável",
-            "texto": "Estás de parabéns! Consciente de que a paz do teu próprio mundo é partilhada de forma harmoniosa..."
+            "texto": "Estás de parabéns! Consciente de que a paz do teu próprio mundo é partilhada de forma harmoniosa com o teu relacionamento, sem esperar que ele te vá nutrir do que só tu podes fazer por ti! Estás consciente de que uma relação adulta e madura é de troca em equilíbrio e da importância de seres a tua prioridade como o ser divino que és ao serviço da vida e do amor neste plano."
           },
           {
             "condicao": "maior_A",
             "titulo": "Atenção",
-            "texto": "Deves tomar muita atenção porque estás a carregar o relacionamento de expectativas..."
+            "texto": "Deves tomar muita atenção porque estás a carregar o relacionamento de expectativas e de uma vontade inconsciente de te alimentares da relação no que diz respeito às tuas inseguranças, medos, instabilidades e vontades. Neste momento, deixas de ser adulto e passas a um lugar de criança, carregando o relacionamento com um peso que o tornará difícil e repleto de desilusões e jogos psicológicos. Já sabemos que o relacionamento não te pode dar aquilo de que precisas e apenas te pode mostrar e identificar o que tens para curar e transmutar dentro de ti."
           }
         ]
       },
@@ -42,12 +42,12 @@
           {
             "condicao": "menor_A",
             "titulo": "Boa evolução",
-            "texto": "Estás de parabéns e claramente a passar um período da vida em que estás mais focado em ti..."
+            "texto": "Estás de parabéns e claramente a passar um período da vida em que estás mais focado em ti do que já estiveste no passado e, com certeza, isso oferece-te, e faz transbordar, muitos benefícios para a tua vida. Experienciares um momento de investimento e tomada de consciência do caminho espiritual que tens para percorrer é ganhar a força para todos os dias ires ocupando o teu lugar no palco da tua vida. Esse lugar só é possível quando te dás a oportunidade de o viver em intimidade, consciência e alegria, criando rotinas de presença e atenção plena. Na verdade, o caminho somos nós e o lugar de chegada somos nós!"
           },
           {
             "condicao": "maior_A",
             "titulo": "Recuperar hábitos",
-            "texto": "Deves procurar recordar-te da fase da tua vida em que estavas mais presente e consciente..."
+            "texto": "Deves procurar recordar-te da fase da tua vida em que estavas mais presente e consciente de ti mesmo, mais enraizado e seguro, de forma a ires buscar a esses momentos algumas boas sinapses e trazê-las para o momento presente. Deves cuidar de trazer de volta algumas rotinas que tinhas nessa época e, aos poucos, com muito amor por ti, incluí-las de novo para que possas rapidamente voltar a esse lugar de segurança, confiança, enraizamento e amor-próprio."
           }
         ]
       },
@@ -57,19 +57,19 @@
             "min": 0,
             "max": 3,
             "titulo": "Equilibrado",
-            "texto": "Parabéns! Estás claramente em contacto contigo..."
+            "texto": "Parabéns! Estás claramente em contacto contigo , enraizado, estável, confiante, com força, determinação e capacidade para enfrentar desafios. A tua conexão com a Terra é forte e reconheces a tua interdependência com todos os seres vivos. Tens uma forte vocação para desenvolver a tua capacidade de aceitação, gratidão, presença e conexão espiritual."
           },
           {
             "min": 4,
             "max": 6,
             "titulo": "Alguns sinais",
-            "texto": "Precisas de prestar alguma atenção e incluir novas rotinas..."
+            "texto": "Precisas de prestar alguma atenção e incluir nas tuas rotinas atuais atividades como desporto, momentos de lazer, passeios na Natureza e momentos de pausa para te sentires e cuidares de ti. Uma ótima solução é incluíres na tua agenda coisas que gostas de fazer, por exemplo, desporto, ioga ou meditação, que te fazem bem e te ajudam a enraizar.."
           },
           {
             "min": 7,
             "max": 9,
             "titulo": "Alerta",
-            "texto": "Deves ter muito cuidado. Poderás estar sob grande stresse e cansaço..."
+            "texto": "Deves ter muito cuidado. Poderás estar sob grande stresse e cansaço, e sem capacidade de discernimento no dia a dia para te dares conta que o campo do FAZER nos pode arrancar do campo do SER. Fico feliz por teres feito este teste para que possas ver a importância e urgência de alterares as rotinas de forma a te incluíres e alterar o “turbilhão” em que te encontras. Tens aqui muitos sinais e até orientação do lugar por onde deves começar e o tipo de ações que poderás fazer."
           }
         ]
       },
@@ -78,27 +78,549 @@
           {
             "condicao": "menor_ou_igual_D",
             "titulo": "Boa gestão emocional",
-            "texto": "Embora tenhas de observar os sinais da coluna D, não estás a projetar excessivamente essas dificuldades no relacionamento."
+            "texto": "Embora tenhas de observar e cuidar de todos os sinais que acabas de receber com a coluna D como informação relevante para perceberes o que precisas de trabalhar em concreto para ti, também ficas a saber que, de alguma maneira, não estás a projetar em demasia no teu relacionamento as inseguranças, os medos e as dificuldades do presente. Deverás estar atento para que essa ordem não seja alterada, de forma a aliviar sempre o relacionamento de se transformar numa compensação dos teus vazios de amor."
           },
           {
             "condicao": "maior_D",
             "titulo": "Alerta máximo",
-            "texto": "Os alertas estão todos em ação. Recomendo que tires uns dias para te encontrares contigo..."
+            "texto": "Os alertas estão todos em ação. Recomendo que tires uns dias de afastamento para te encontrares contigo, fazeres uma análise da tua vida, das tuas queixas com o teu relacionamento, de forma a poderes transformar essas queixas em objetivos de melhoria para ti. Na realidade, o que te queixas do outro estás a fazer a ti próprio a dobrar, razão pela qual é tão difícil lidares com isso. Se observares bem, verás que estás, há muito tempo, a descurar o teu relacionamento contigo próprio, estando a praticar o mesmo nível de ofensas e sensações de que te queixas agora."
           }
         ]
       }
     },
 
-    "sacral": {},
+    "sacral": {
+      "A": {
+        "intervalos": [
+          {
+            "min": 0,
+            "max": 3,
+            "titulo": "Necessita atenção",
+            "texto": "Fico feliz por teres feito este teste para que possas ver a importância e urgência de alterares as rotinas do teu dia a dia, de forma a te incluíres, seres leal a ti próprio e atenderes às tuas necessidades e vontades."
+          },
+          {
+            "min": 4,
+            "max": 6,
+            "titulo": "Pode melhorar",
+            "texto": "Precisas de prestar alguma atenção ao teu corpo emocional, à tua alimentação e aos teus desejos e vontades. Procurar criar momentos em que possas usufruir de forma saudável dos prazeres sensoriais da vida. Observar se estás a dizer muitos “Não” a ti, representando um “Sim” aos outros, deixando, assim, de cuidar do teu próprio mundo e de ser leal a ti próprio. Deves perceber se estás bem na tua própria pele e se estás aberto a novas ideias e paradigmas."
+          },
+          {
+            "min": 7,
+            "max": 10,
+            "titulo": "Excelente",
+            "texto": "Parabéns! Estás claramente em contacto contigo, és criativo, com expressão artística, emocionalmente conectado e virado para os relacionamentos. Com capacidade de expressar e processar emoções, reconhecer, aceitar e expressar os teus sentimentos de forma saudável e equilibrada, promovendo relacionamentos satisfatórios. Sentes-te vivo, saudável e em contacto com os teus desejos e emoções mais profundos. Capaz de explorar novas ideias e consciente da importância do equilíbrio entre dar e receber, estando numa fase aberta à troca de amor, a nutrir e cuidar de ti mesmo. A sensualidade e o prazer estão associados a este chakra, permitindo-te desfrutar dos prazeres sensoriais da vida, incluindo a alimentação, o toque, a Natureza e a intimidade sexual de uma maneira saudável e gratificante. És capaz de viver de forma autêntica, expressando com naturalidade as tuas verdadeiras necessidades, tendo a coragem de viver de acordo com as mesmas. Estás seguro na tua própria pele e és confiante. Estás num momento de vida plena e significativa."
+          }
+        ]
+      },
+      "B": {
+        "comparacoes": [
+          {
+            "condicao": "menor_ou_igual_A",
+            "titulo": "Relacionamento saudável",
+            "texto": "Estás de parabéns! Consciente das tuas necessidades emocionais e da importância que têm na tua vida e na harmonia do teu relacionamento! Estás consciente de que uma relação adulta e madura é de troca em equilíbrio e da importância de seres tu a cuidar do teu mundo emocional e das projeções que fazes no teu quotidiano. A tua inteligência emocional permite-te separar os vários mundos e compreender o teu lugar em cada um deles."
+          },
+          {
+            "condicao": "maior_A",
+            "titulo": "Atenção",
+            "texto": "Deves tomar muita atenção, porque estás a carregar o relacionamento de expectativas e de uma vontade inconsciente de te alimentares da relação, no que diz respeito às tuas fomes, necessidades emocionais, expectativas e vazios de amor. Neste momento, deixas de ser adulto e passas a um lugar de criança, carregando o relacionamento com um peso que o tornará difícil e repleto de desilusões e jogos psicológicos. Já sabemos que o relacionamento não te pode dar o que precisas e apenas te pode mostrar e identificar o que tens para curar e transmutar dentro de ti. "
+          }
+        ]
+      },
+      "C": {
+        "comparacoes": [
+          {
+            "condicao": "menor_A",
+            "titulo": "Boa evolução",
+            "texto": "Estás de parabéns e claramente a passar um período da vida em que estás mais focado em ti do que já estiveste no passado e, com certeza, isso oferece-te, e faz transbordar, muitos benefícios para a tua vida. Experienciares um momento de investimento e tomada de consciência do caminho espiritual que tens para percorrer é ganhar a força para todos os dias ires ocupando o teu lugar no palco da tua vida. Esse lugar só é possível quando te dás a oportunidade de o viver em intimidade, consciência e alegria, criando rotinas de presença e atenção plena. Na verdade, o caminho somos nós e o lugar de chegada somos nós!"
+          },
+          {
+            "condicao": "maior_A",
+            "titulo": "Recuperar hábitos",
+            "texto": "Deves procurar recordar-te da fase da tua vida em que estavas mais presente e consciente de ti mesmo, mais enraizado e seguro, de forma a ires buscar a esses momentos algumas boas sinapses e trazê-las para o momento presente. Deves cuidar de trazer de volta algumas rotinas que tinhas nessa época e, aos poucos, com muito amor por ti, incluí-las de novo para que possas rapidamente voltar a esse lugar de segurança, confiança, enraizamento e amor-próprio."
+          }
+        ]
+      },
+      "D": {
+        "intervalos": [
+          {
+            "min": 0,
+            "max": 3,
+            "titulo": "Equilibrado",
+            "texto": "Parabéns! Estás claramente em contacto contigo, és criativo, tens expressão artística e estás emocionalmente conectado e virado para os relacionamentos. Tens capacidade de expressar e processar emoções, reconhecer, aceitar e expressar os teus sentimentos de forma saudável e equilibrada, promovendo relacionamentos satisfatórios. Sentes-te vivo, saudável e em contacto com os teus desejos e emoções mais profundas. Capaz de explorar novas ideias e de ser consciente da importância do equilíbrio entre dar e receber, estando numa fase aberta à troca do amor, a nutrir e cuidar de ti mesmo."
+          },
+          {
+            "min": 4,
+            "max": 6,
+            "titulo": "Alguns sinais",
+            "texto": "Precisas de prestar alguma atenção e incluir nas tuas rotinas momentos de lazer, passeios na Natureza, escuta ativa das tuas emoções e necessidades, e reaprender a criar momentos de pausa para te sentires e cuidares de ti. Uma ótima solução é colocares na tua agenda coisas que gostas de fazer, por exemplo, pintura ou algo criativo, música, dança, atividades que te fazem bem e te ajudam a equilibrar o corpo emocional e a reforçar a presença em ti."
+          },
+          {
+            "min": 7,
+            "max": 10,
+            "titulo": "Alerta",
+            "texto": "Deves ter muito cuidado. Poderás estar sob grande stresse e cansaço, e sem capacidade de discernimento no dia a dia para te dares conta que o campo do FAZER nos pode arrancar do campo do SER. Fico feliz por teres feito este teste para que possas ver a importância e urgência de alterares as rotinas de forma a te incluíres e alterar o “turbilhão” em que te encontras. Tens aqui muitos sinais e até orientação do lugar por onde deves começar e o tipo de ações que poderás fazer."
+          }
+        ]
+      },
+      "E": {
+        "comparacoes": [
+          {
+            "condicao": "menor_ou_igual_D",
+            "titulo": "Boa gestão emocional",
+            "texto": "Embora tenhas de observar e cuidar de todos os sinais que acabas de receber com a coluna D como informação relevante para perceberes o que precisas de trabalhar em concreto para ti, também ficas a saber que, de alguma maneira, não estás a projetar tanto no teu relacionamento as necessidades emocionais, bloqueios, falta de inspiração, problemas sexuais, dificuldade em estabelecer limites saudáveis, entre outros. Deverás estar atento para que essa ordem não seja alterada, de forma a aliviar sempre o relacionamento de se transformar numa compensação dos teus vazios de amor."
+          },
+          {
+            "condicao": "maior_D",
+            "titulo": "Alerta máximo",
+            "texto": "Os alertas estão todos em ação. Recomendo que tires uns dias de afastamento para te encontrares contigo, fazeres uma análise da tua vida, das tuas queixas com o teu relacionamento, de forma a poderes transformar essas queixas em objetivos de melhoria para ti. Na realidade, o que te queixas do outro estás a fazer a ti próprio a dobrar, razão pela qual é tão difícil lidares com isso. Se observares bem, verás que estás, há muito tempo, a descurar o teu relacionamento contigo próprio, estando a praticar o mesmo nível de ofensas e sensações de que te queixas agora."
+          }
+        ]
+      }
+    },
 
-    "plexo": {},
+    "plexo": {
+      "A": {
+        "intervalos": [
+          {
+            "min": 0,
+            "max": 3,
+            "titulo": "Necessita atenção",
+            "texto": "Fico feliz por teres feito este teste para que possas tomar consciência da importância de alterares as tuas rotinas do teu dia a dia de forma a te incluíres e alterar o “turbilhão” em que te encontras."
+          },
+          {
+            "min": 4,
+            "max": 6,
+            "titulo": "Pode melhorar",
+            "texto": "Precisas de prestar alguma atenção e incluir nas tuas rotinas atividades como desporto, passeios na Natureza e momentos de pausa para te sentires e cuidares de ti. Uma ótima solução é incluíres na tua agenda coisas que gostas de fazer, por exemplo, desporto, ioga ou meditação, que te fazem bem e te ajudam a enraizar e voltar a reforçar a presença em ti."
+          },
+          {
+            "min": 7,
+            "max": 9,
+            "titulo": "Excelente",
+            "texto": "Parabéns! Estás claramente em contacto contigo, enraizado, estável e confiante com força, determinação e capacidade para enfrentar desafios. A tua conexão com a Terra é forte e reconheces a tua interdependência com todos os seres vivos. Tens uma forte vocação para desenvolver a tua capacidade de aceitação e gratidão."
+          }
+        ]
+      },
+      "B": {
+        "comparacoes": [
+          {
+            "condicao": "menor_ou_igual_A",
+            "titulo": "Relacionamento saudável",
+            "texto": "Estás de parabéns! Consciente de que a paz do teu próprio mundo é partilhada de forma harmoniosa com o teu relacionamento, sem esperar que ele te vá nutrir do que só tu podes fazer por ti! Estás consciente de que uma relação adulta e madura é de troca em equilíbrio e da importância de seres a tua prioridade como o ser divino que és ao serviço da vida e do amor neste plano."
+          },
+          {
+            "condicao": "maior_A",
+            "titulo": "Atenção",
+            "texto": "Deves tomar muita atenção porque estás a carregar o relacionamento de expectativas e de uma vontade inconsciente de te alimentares da relação no que diz respeito às tuas inseguranças, medos, instabilidades e vontades. Neste momento, deixas de ser adulto e passas a um lugar de criança, carregando o relacionamento com um peso que o tornará difícil e repleto de desilusões e jogos psicológicos. Já sabemos que o relacionamento não te pode dar aquilo de que precisas e apenas te pode mostrar e identificar o que tens para curar e transmutar dentro de ti."
+          }
+        ]
+      },
+      "C": {
+        "comparacoes": [
+          {
+            "condicao": "menor_A",
+            "titulo": "Boa evolução",
+            "texto": "Estás de parabéns e claramente a passar um período da vida em que estás mais focado em ti do que já estiveste no passado e, com certeza, isso oferece-te, e faz transbordar, muitos benefícios para a tua vida. Experienciares um momento de investimento e tomada de consciência do caminho espiritual que tens para percorrer é ganhar a força para todos os dias ires ocupando o teu lugar no palco da tua vida. Esse lugar só é possível quando te dás a oportunidade de o viver em intimidade, consciência e alegria, criando rotinas de presença e atenção plena. Na verdade, o caminho somos nós e o lugar de chegada somos nós!"
+          },
+          {
+            "condicao": "maior_A",
+            "titulo": "Recuperar hábitos",
+            "texto": "Deves procurar recordar-te da fase da tua vida em que estavas mais presente e consciente de ti mesmo, mais enraizado e seguro, de forma a ires buscar a esses momentos algumas boas sinapses e trazê-las para o momento presente. Deves cuidar de trazer de volta algumas rotinas que tinhas nessa época e, aos poucos, com muito amor por ti, incluí-las de novo para que possas rapidamente voltar a esse lugar de segurança, confiança, enraizamento e amor-próprio."
+          }
+        ]
+      },
+      "D": {
+        "intervalos": [
+          {
+            "min": 0,
+            "max": 3,
+            "titulo": "Equilibrado",
+            "texto": "Parabéns! Estás claramente em contacto contigo , enraizado, estável, confiante, com força, determinação e capacidade para enfrentar desafios. A tua conexão com a Terra é forte e reconheces a tua interdependência com todos os seres vivos. Tens uma forte vocação para desenvolver a tua capacidade de aceitação, gratidão, presença e conexão espiritual."
+          },
+          {
+            "min": 4,
+            "max": 6,
+            "titulo": "Alguns sinais",
+            "texto": "Precisas de prestar alguma atenção e incluir nas tuas rotinas atuais atividades como desporto, momentos de lazer, passeios na Natureza e momentos de pausa para te sentires e cuidares de ti. Uma ótima solução é incluíres na tua agenda coisas que gostas de fazer, por exemplo, desporto, ioga ou meditação, que te fazem bem e te ajudam a enraizar.."
+          },
+          {
+            "min": 7,
+            "max": 9,
+            "titulo": "Alerta",
+            "texto": "Deves ter muito cuidado. Poderás estar sob grande stresse e cansaço, e sem capacidade de discernimento no dia a dia para te dares conta que o campo do FAZER nos pode arrancar do campo do SER. Fico feliz por teres feito este teste para que possas ver a importância e urgência de alterares as rotinas de forma a te incluíres e alterar o “turbilhão” em que te encontras. Tens aqui muitos sinais e até orientação do lugar por onde deves começar e o tipo de ações que poderás fazer."
+          }
+        ]
+      },
+      "E": {
+        "comparacoes": [
+          {
+            "condicao": "menor_ou_igual_D",
+            "titulo": "Boa gestão emocional",
+            "texto": "Embora tenhas de observar e cuidar de todos os sinais que acabas de receber com a coluna D como informação relevante para perceberes o que precisas de trabalhar em concreto para ti, também ficas a saber que, de alguma maneira, não estás a projetar em demasia no teu relacionamento as inseguranças, os medos e as dificuldades do presente. Deverás estar atento para que essa ordem não seja alterada, de forma a aliviar sempre o relacionamento de se transformar numa compensação dos teus vazios de amor."
+          },
+          {
+            "condicao": "maior_D",
+            "titulo": "Alerta máximo",
+            "texto": "Os alertas estão todos em ação. Recomendo que tires uns dias de afastamento para te encontrares contigo, fazeres uma análise da tua vida, das tuas queixas com o teu relacionamento, de forma a poderes transformar essas queixas em objetivos de melhoria para ti. Na realidade, o que te queixas do outro estás a fazer a ti próprio a dobrar, razão pela qual é tão difícil lidares com isso. Se observares bem, verás que estás, há muito tempo, a descurar o teu relacionamento contigo próprio, estando a praticar o mesmo nível de ofensas e sensações de que te queixas agora."
+          }
+        ]
+      }
+    },
 
-    "coracao": {},
+    "coracao": {
+      "A": {
+        "intervalos": [
+          {
+            "min": 0,
+            "max": 3,
+            "titulo": "Necessita atenção",
+            "texto": "Fico feliz por teres feito este teste para que possas tomar consciência da importância de alterares as tuas rotinas do teu dia a dia de forma a te incluíres e alterar o “turbilhão” em que te encontras."
+          },
+          {
+            "min": 4,
+            "max": 6,
+            "titulo": "Pode melhorar",
+            "texto": "Precisas de prestar alguma atenção e incluir nas tuas rotinas atividades como desporto, passeios na Natureza e momentos de pausa para te sentires e cuidares de ti. Uma ótima solução é incluíres na tua agenda coisas que gostas de fazer, por exemplo, desporto, ioga ou meditação, que te fazem bem e te ajudam a enraizar e voltar a reforçar a presença em ti."
+          },
+          {
+            "min": 7,
+            "max": 9,
+            "titulo": "Excelente",
+            "texto": "Parabéns! Estás claramente em contacto contigo, enraizado, estável e confiante com força, determinação e capacidade para enfrentar desafios. A tua conexão com a Terra é forte e reconheces a tua interdependência com todos os seres vivos. Tens uma forte vocação para desenvolver a tua capacidade de aceitação e gratidão."
+          }
+        ]
+      },
+      "B": {
+        "comparacoes": [
+          {
+            "condicao": "menor_ou_igual_A",
+            "titulo": "Relacionamento saudável",
+            "texto": "Estás de parabéns! Consciente de que a paz do teu próprio mundo é partilhada de forma harmoniosa com o teu relacionamento, sem esperar que ele te vá nutrir do que só tu podes fazer por ti! Estás consciente de que uma relação adulta e madura é de troca em equilíbrio e da importância de seres a tua prioridade como o ser divino que és ao serviço da vida e do amor neste plano."
+          },
+          {
+            "condicao": "maior_A",
+            "titulo": "Atenção",
+            "texto": "Deves tomar muita atenção porque estás a carregar o relacionamento de expectativas e de uma vontade inconsciente de te alimentares da relação no que diz respeito às tuas inseguranças, medos, instabilidades e vontades. Neste momento, deixas de ser adulto e passas a um lugar de criança, carregando o relacionamento com um peso que o tornará difícil e repleto de desilusões e jogos psicológicos. Já sabemos que o relacionamento não te pode dar aquilo de que precisas e apenas te pode mostrar e identificar o que tens para curar e transmutar dentro de ti."
+          }
+        ]
+      },
+      "C": {
+        "comparacoes": [
+          {
+            "condicao": "menor_A",
+            "titulo": "Boa evolução",
+            "texto": "Estás de parabéns e claramente a passar um período da vida em que estás mais focado em ti do que já estiveste no passado e, com certeza, isso oferece-te, e faz transbordar, muitos benefícios para a tua vida. Experienciares um momento de investimento e tomada de consciência do caminho espiritual que tens para percorrer é ganhar a força para todos os dias ires ocupando o teu lugar no palco da tua vida. Esse lugar só é possível quando te dás a oportunidade de o viver em intimidade, consciência e alegria, criando rotinas de presença e atenção plena. Na verdade, o caminho somos nós e o lugar de chegada somos nós!"
+          },
+          {
+            "condicao": "maior_A",
+            "titulo": "Recuperar hábitos",
+            "texto": "Deves procurar recordar-te da fase da tua vida em que estavas mais presente e consciente de ti mesmo, mais enraizado e seguro, de forma a ires buscar a esses momentos algumas boas sinapses e trazê-las para o momento presente. Deves cuidar de trazer de volta algumas rotinas que tinhas nessa época e, aos poucos, com muito amor por ti, incluí-las de novo para que possas rapidamente voltar a esse lugar de segurança, confiança, enraizamento e amor-próprio."
+          }
+        ]
+      },
+      "D": {
+        "intervalos": [
+          {
+            "min": 0,
+            "max": 3,
+            "titulo": "Equilibrado",
+            "texto": "Parabéns! Estás claramente em contacto contigo , enraizado, estável, confiante, com força, determinação e capacidade para enfrentar desafios. A tua conexão com a Terra é forte e reconheces a tua interdependência com todos os seres vivos. Tens uma forte vocação para desenvolver a tua capacidade de aceitação, gratidão, presença e conexão espiritual."
+          },
+          {
+            "min": 4,
+            "max": 6,
+            "titulo": "Alguns sinais",
+            "texto": "Precisas de prestar alguma atenção e incluir nas tuas rotinas atuais atividades como desporto, momentos de lazer, passeios na Natureza e momentos de pausa para te sentires e cuidares de ti. Uma ótima solução é incluíres na tua agenda coisas que gostas de fazer, por exemplo, desporto, ioga ou meditação, que te fazem bem e te ajudam a enraizar.."
+          },
+          {
+            "min": 7,
+            "max": 9,
+            "titulo": "Alerta",
+            "texto": "Deves ter muito cuidado. Poderás estar sob grande stresse e cansaço, e sem capacidade de discernimento no dia a dia para te dares conta que o campo do FAZER nos pode arrancar do campo do SER. Fico feliz por teres feito este teste para que possas ver a importância e urgência de alterares as rotinas de forma a te incluíres e alterar o “turbilhão” em que te encontras. Tens aqui muitos sinais e até orientação do lugar por onde deves começar e o tipo de ações que poderás fazer."
+          }
+        ]
+      },
+      "E": {
+        "comparacoes": [
+          {
+            "condicao": "menor_ou_igual_D",
+            "titulo": "Boa gestão emocional",
+            "texto": "Embora tenhas de observar e cuidar de todos os sinais que acabas de receber com a coluna D como informação relevante para perceberes o que precisas de trabalhar em concreto para ti, também ficas a saber que, de alguma maneira, não estás a projetar em demasia no teu relacionamento as inseguranças, os medos e as dificuldades do presente. Deverás estar atento para que essa ordem não seja alterada, de forma a aliviar sempre o relacionamento de se transformar numa compensação dos teus vazios de amor."
+          },
+          {
+            "condicao": "maior_D",
+            "titulo": "Alerta máximo",
+            "texto": "Os alertas estão todos em ação. Recomendo que tires uns dias de afastamento para te encontrares contigo, fazeres uma análise da tua vida, das tuas queixas com o teu relacionamento, de forma a poderes transformar essas queixas em objetivos de melhoria para ti. Na realidade, o que te queixas do outro estás a fazer a ti próprio a dobrar, razão pela qual é tão difícil lidares com isso. Se observares bem, verás que estás, há muito tempo, a descurar o teu relacionamento contigo próprio, estando a praticar o mesmo nível de ofensas e sensações de que te queixas agora."
+          }
+        ]
+      }
+    },
 
-    "garganta": {},
+    "garganta": {
+      "A": {
+        "intervalos": [
+          {
+            "min": 0,
+            "max": 3,
+            "titulo": "Necessita atenção",
+            "texto": "Fico feliz por teres feito este teste para que possas tomar consciência da importância de alterares as tuas rotinas do teu dia a dia de forma a te incluíres e alterar o “turbilhão” em que te encontras."
+          },
+          {
+            "min": 4,
+            "max": 6,
+            "titulo": "Pode melhorar",
+            "texto": "Precisas de prestar alguma atenção e incluir nas tuas rotinas atividades como desporto, passeios na Natureza e momentos de pausa para te sentires e cuidares de ti. Uma ótima solução é incluíres na tua agenda coisas que gostas de fazer, por exemplo, desporto, ioga ou meditação, que te fazem bem e te ajudam a enraizar e voltar a reforçar a presença em ti."
+          },
+          {
+            "min": 7,
+            "max": 9,
+            "titulo": "Excelente",
+            "texto": "Parabéns! Estás claramente em contacto contigo, enraizado, estável e confiante com força, determinação e capacidade para enfrentar desafios. A tua conexão com a Terra é forte e reconheces a tua interdependência com todos os seres vivos. Tens uma forte vocação para desenvolver a tua capacidade de aceitação e gratidão."
+          }
+        ]
+      },
+      "B": {
+        "comparacoes": [
+          {
+            "condicao": "menor_ou_igual_A",
+            "titulo": "Relacionamento saudável",
+            "texto": "Estás de parabéns! Consciente de que a paz do teu próprio mundo é partilhada de forma harmoniosa com o teu relacionamento, sem esperar que ele te vá nutrir do que só tu podes fazer por ti! Estás consciente de que uma relação adulta e madura é de troca em equilíbrio e da importância de seres a tua prioridade como o ser divino que és ao serviço da vida e do amor neste plano."
+          },
+          {
+            "condicao": "maior_A",
+            "titulo": "Atenção",
+            "texto": "Deves tomar muita atenção porque estás a carregar o relacionamento de expectativas e de uma vontade inconsciente de te alimentares da relação no que diz respeito às tuas inseguranças, medos, instabilidades e vontades. Neste momento, deixas de ser adulto e passas a um lugar de criança, carregando o relacionamento com um peso que o tornará difícil e repleto de desilusões e jogos psicológicos. Já sabemos que o relacionamento não te pode dar aquilo de que precisas e apenas te pode mostrar e identificar o que tens para curar e transmutar dentro de ti."
+          }
+        ]
+      },
+      "C": {
+        "comparacoes": [
+          {
+            "condicao": "menor_A",
+            "titulo": "Boa evolução",
+            "texto": "Estás de parabéns e claramente a passar um período da vida em que estás mais focado em ti do que já estiveste no passado e, com certeza, isso oferece-te, e faz transbordar, muitos benefícios para a tua vida. Experienciares um momento de investimento e tomada de consciência do caminho espiritual que tens para percorrer é ganhar a força para todos os dias ires ocupando o teu lugar no palco da tua vida. Esse lugar só é possível quando te dás a oportunidade de o viver em intimidade, consciência e alegria, criando rotinas de presença e atenção plena. Na verdade, o caminho somos nós e o lugar de chegada somos nós!"
+          },
+          {
+            "condicao": "maior_A",
+            "titulo": "Recuperar hábitos",
+            "texto": "Deves procurar recordar-te da fase da tua vida em que estavas mais presente e consciente de ti mesmo, mais enraizado e seguro, de forma a ires buscar a esses momentos algumas boas sinapses e trazê-las para o momento presente. Deves cuidar de trazer de volta algumas rotinas que tinhas nessa época e, aos poucos, com muito amor por ti, incluí-las de novo para que possas rapidamente voltar a esse lugar de segurança, confiança, enraizamento e amor-próprio."
+          }
+        ]
+      },
+      "D": {
+        "intervalos": [
+          {
+            "min": 0,
+            "max": 3,
+            "titulo": "Equilibrado",
+            "texto": "Parabéns! Estás claramente em contacto contigo , enraizado, estável, confiante, com força, determinação e capacidade para enfrentar desafios. A tua conexão com a Terra é forte e reconheces a tua interdependência com todos os seres vivos. Tens uma forte vocação para desenvolver a tua capacidade de aceitação, gratidão, presença e conexão espiritual."
+          },
+          {
+            "min": 4,
+            "max": 6,
+            "titulo": "Alguns sinais",
+            "texto": "Precisas de prestar alguma atenção e incluir nas tuas rotinas atuais atividades como desporto, momentos de lazer, passeios na Natureza e momentos de pausa para te sentires e cuidares de ti. Uma ótima solução é incluíres na tua agenda coisas que gostas de fazer, por exemplo, desporto, ioga ou meditação, que te fazem bem e te ajudam a enraizar.."
+          },
+          {
+            "min": 7,
+            "max": 9,
+            "titulo": "Alerta",
+            "texto": "Deves ter muito cuidado. Poderás estar sob grande stresse e cansaço, e sem capacidade de discernimento no dia a dia para te dares conta que o campo do FAZER nos pode arrancar do campo do SER. Fico feliz por teres feito este teste para que possas ver a importância e urgência de alterares as rotinas de forma a te incluíres e alterar o “turbilhão” em que te encontras. Tens aqui muitos sinais e até orientação do lugar por onde deves começar e o tipo de ações que poderás fazer."
+          }
+        ]
+      },
+      "E": {
+        "comparacoes": [
+          {
+            "condicao": "menor_ou_igual_D",
+            "titulo": "Boa gestão emocional",
+            "texto": "Embora tenhas de observar e cuidar de todos os sinais que acabas de receber com a coluna D como informação relevante para perceberes o que precisas de trabalhar em concreto para ti, também ficas a saber que, de alguma maneira, não estás a projetar em demasia no teu relacionamento as inseguranças, os medos e as dificuldades do presente. Deverás estar atento para que essa ordem não seja alterada, de forma a aliviar sempre o relacionamento de se transformar numa compensação dos teus vazios de amor."
+          },
+          {
+            "condicao": "maior_D",
+            "titulo": "Alerta máximo",
+            "texto": "Os alertas estão todos em ação. Recomendo que tires uns dias de afastamento para te encontrares contigo, fazeres uma análise da tua vida, das tuas queixas com o teu relacionamento, de forma a poderes transformar essas queixas em objetivos de melhoria para ti. Na realidade, o que te queixas do outro estás a fazer a ti próprio a dobrar, razão pela qual é tão difícil lidares com isso. Se observares bem, verás que estás, há muito tempo, a descurar o teu relacionamento contigo próprio, estando a praticar o mesmo nível de ofensas e sensações de que te queixas agora."
+          }
+        ]
+      }
+    },
 
-    "terceiro_olho": {},
+    "terceiro_olho": {
+      "A": {
+        "intervalos": [
+          {
+            "min": 0,
+            "max": 3,
+            "titulo": "Necessita atenção",
+            "texto": "Fico feliz por teres feito este teste para que possas tomar consciência da importância de alterares as tuas rotinas do teu dia a dia de forma a te incluíres e alterar o “turbilhão” em que te encontras."
+          },
+          {
+            "min": 4,
+            "max": 6,
+            "titulo": "Pode melhorar",
+            "texto": "Precisas de prestar alguma atenção e incluir nas tuas rotinas atividades como desporto, passeios na Natureza e momentos de pausa para te sentires e cuidares de ti. Uma ótima solução é incluíres na tua agenda coisas que gostas de fazer, por exemplo, desporto, ioga ou meditação, que te fazem bem e te ajudam a enraizar e voltar a reforçar a presença em ti."
+          },
+          {
+            "min": 7,
+            "max": 9,
+            "titulo": "Excelente",
+            "texto": "Parabéns! Estás claramente em contacto contigo, enraizado, estável e confiante com força, determinação e capacidade para enfrentar desafios. A tua conexão com a Terra é forte e reconheces a tua interdependência com todos os seres vivos. Tens uma forte vocação para desenvolver a tua capacidade de aceitação e gratidão."
+          }
+        ]
+      },
+      "B": {
+        "comparacoes": [
+          {
+            "condicao": "menor_ou_igual_A",
+            "titulo": "Relacionamento saudável",
+            "texto": "Estás de parabéns! Consciente de que a paz do teu próprio mundo é partilhada de forma harmoniosa com o teu relacionamento, sem esperar que ele te vá nutrir do que só tu podes fazer por ti! Estás consciente de que uma relação adulta e madura é de troca em equilíbrio e da importância de seres a tua prioridade como o ser divino que és ao serviço da vida e do amor neste plano."
+          },
+          {
+            "condicao": "maior_A",
+            "titulo": "Atenção",
+            "texto": "Deves tomar muita atenção porque estás a carregar o relacionamento de expectativas e de uma vontade inconsciente de te alimentares da relação no que diz respeito às tuas inseguranças, medos, instabilidades e vontades. Neste momento, deixas de ser adulto e passas a um lugar de criança, carregando o relacionamento com um peso que o tornará difícil e repleto de desilusões e jogos psicológicos. Já sabemos que o relacionamento não te pode dar aquilo de que precisas e apenas te pode mostrar e identificar o que tens para curar e transmutar dentro de ti."
+          }
+        ]
+      },
+      "C": {
+        "comparacoes": [
+          {
+            "condicao": "menor_A",
+            "titulo": "Boa evolução",
+            "texto": "Estás de parabéns e claramente a passar um período da vida em que estás mais focado em ti do que já estiveste no passado e, com certeza, isso oferece-te, e faz transbordar, muitos benefícios para a tua vida. Experienciares um momento de investimento e tomada de consciência do caminho espiritual que tens para percorrer é ganhar a força para todos os dias ires ocupando o teu lugar no palco da tua vida. Esse lugar só é possível quando te dás a oportunidade de o viver em intimidade, consciência e alegria, criando rotinas de presença e atenção plena. Na verdade, o caminho somos nós e o lugar de chegada somos nós!"
+          },
+          {
+            "condicao": "maior_A",
+            "titulo": "Recuperar hábitos",
+            "texto": "Deves procurar recordar-te da fase da tua vida em que estavas mais presente e consciente de ti mesmo, mais enraizado e seguro, de forma a ires buscar a esses momentos algumas boas sinapses e trazê-las para o momento presente. Deves cuidar de trazer de volta algumas rotinas que tinhas nessa época e, aos poucos, com muito amor por ti, incluí-las de novo para que possas rapidamente voltar a esse lugar de segurança, confiança, enraizamento e amor-próprio."
+          }
+        ]
+      },
+      "D": {
+        "intervalos": [
+          {
+            "min": 0,
+            "max": 3,
+            "titulo": "Equilibrado",
+            "texto": "Parabéns! Estás claramente em contacto contigo , enraizado, estável, confiante, com força, determinação e capacidade para enfrentar desafios. A tua conexão com a Terra é forte e reconheces a tua interdependência com todos os seres vivos. Tens uma forte vocação para desenvolver a tua capacidade de aceitação, gratidão, presença e conexão espiritual."
+          },
+          {
+            "min": 4,
+            "max": 6,
+            "titulo": "Alguns sinais",
+            "texto": "Precisas de prestar alguma atenção e incluir nas tuas rotinas atuais atividades como desporto, momentos de lazer, passeios na Natureza e momentos de pausa para te sentires e cuidares de ti. Uma ótima solução é incluíres na tua agenda coisas que gostas de fazer, por exemplo, desporto, ioga ou meditação, que te fazem bem e te ajudam a enraizar.."
+          },
+          {
+            "min": 7,
+            "max": 9,
+            "titulo": "Alerta",
+            "texto": "Deves ter muito cuidado. Poderás estar sob grande stresse e cansaço, e sem capacidade de discernimento no dia a dia para te dares conta que o campo do FAZER nos pode arrancar do campo do SER. Fico feliz por teres feito este teste para que possas ver a importância e urgência de alterares as rotinas de forma a te incluíres e alterar o “turbilhão” em que te encontras. Tens aqui muitos sinais e até orientação do lugar por onde deves começar e o tipo de ações que poderás fazer."
+          }
+        ]
+      },
+      "E": {
+        "comparacoes": [
+          {
+            "condicao": "menor_ou_igual_D",
+            "titulo": "Boa gestão emocional",
+            "texto": "Embora tenhas de observar e cuidar de todos os sinais que acabas de receber com a coluna D como informação relevante para perceberes o que precisas de trabalhar em concreto para ti, também ficas a saber que, de alguma maneira, não estás a projetar em demasia no teu relacionamento as inseguranças, os medos e as dificuldades do presente. Deverás estar atento para que essa ordem não seja alterada, de forma a aliviar sempre o relacionamento de se transformar numa compensação dos teus vazios de amor."
+          },
+          {
+            "condicao": "maior_D",
+            "titulo": "Alerta máximo",
+            "texto": "Os alertas estão todos em ação. Recomendo que tires uns dias de afastamento para te encontrares contigo, fazeres uma análise da tua vida, das tuas queixas com o teu relacionamento, de forma a poderes transformar essas queixas em objetivos de melhoria para ti. Na realidade, o que te queixas do outro estás a fazer a ti próprio a dobrar, razão pela qual é tão difícil lidares com isso. Se observares bem, verás que estás, há muito tempo, a descurar o teu relacionamento contigo próprio, estando a praticar o mesmo nível de ofensas e sensações de que te queixas agora."
+          }
+        ]
+      }
+    },
 
-    "coroa": {}
+    "coroa": {
+      "A": {
+        "intervalos": [
+          {
+            "min": 0,
+            "max": 3,
+            "titulo": "Necessita atenção",
+            "texto": "Fico feliz por teres feito este teste para que possas tomar consciência da importância de alterares as tuas rotinas do teu dia a dia de forma a te incluíres e alterar o “turbilhão” em que te encontras."
+          },
+          {
+            "min": 4,
+            "max": 6,
+            "titulo": "Pode melhorar",
+            "texto": "Precisas de prestar alguma atenção e incluir nas tuas rotinas atividades como desporto, passeios na Natureza e momentos de pausa para te sentires e cuidares de ti. Uma ótima solução é incluíres na tua agenda coisas que gostas de fazer, por exemplo, desporto, ioga ou meditação, que te fazem bem e te ajudam a enraizar e voltar a reforçar a presença em ti."
+          },
+          {
+            "min": 7,
+            "max": 9,
+            "titulo": "Excelente",
+            "texto": "Parabéns! Estás claramente em contacto contigo, enraizado, estável e confiante com força, determinação e capacidade para enfrentar desafios. A tua conexão com a Terra é forte e reconheces a tua interdependência com todos os seres vivos. Tens uma forte vocação para desenvolver a tua capacidade de aceitação e gratidão."
+          }
+        ]
+      },
+      "B": {
+        "comparacoes": [
+          {
+            "condicao": "menor_ou_igual_A",
+            "titulo": "Relacionamento saudável",
+            "texto": "Estás de parabéns! Consciente de que a paz do teu próprio mundo é partilhada de forma harmoniosa com o teu relacionamento, sem esperar que ele te vá nutrir do que só tu podes fazer por ti! Estás consciente de que uma relação adulta e madura é de troca em equilíbrio e da importância de seres a tua prioridade como o ser divino que és ao serviço da vida e do amor neste plano."
+          },
+          {
+            "condicao": "maior_A",
+            "titulo": "Atenção",
+            "texto": "Deves tomar muita atenção porque estás a carregar o relacionamento de expectativas e de uma vontade inconsciente de te alimentares da relação no que diz respeito às tuas inseguranças, medos, instabilidades e vontades. Neste momento, deixas de ser adulto e passas a um lugar de criança, carregando o relacionamento com um peso que o tornará difícil e repleto de desilusões e jogos psicológicos. Já sabemos que o relacionamento não te pode dar aquilo de que precisas e apenas te pode mostrar e identificar o que tens para curar e transmutar dentro de ti."
+          }
+        ]
+      },
+      "C": {
+        "comparacoes": [
+          {
+            "condicao": "menor_A",
+            "titulo": "Boa evolução",
+            "texto": "Estás de parabéns e claramente a passar um período da vida em que estás mais focado em ti do que já estiveste no passado e, com certeza, isso oferece-te, e faz transbordar, muitos benefícios para a tua vida. Experienciares um momento de investimento e tomada de consciência do caminho espiritual que tens para percorrer é ganhar a força para todos os dias ires ocupando o teu lugar no palco da tua vida. Esse lugar só é possível quando te dás a oportunidade de o viver em intimidade, consciência e alegria, criando rotinas de presença e atenção plena. Na verdade, o caminho somos nós e o lugar de chegada somos nós!"
+          },
+          {
+            "condicao": "maior_A",
+            "titulo": "Recuperar hábitos",
+            "texto": "Deves procurar recordar-te da fase da tua vida em que estavas mais presente e consciente de ti mesmo, mais enraizado e seguro, de forma a ires buscar a esses momentos algumas boas sinapses e trazê-las para o momento presente. Deves cuidar de trazer de volta algumas rotinas que tinhas nessa época e, aos poucos, com muito amor por ti, incluí-las de novo para que possas rapidamente voltar a esse lugar de segurança, confiança, enraizamento e amor-próprio."
+          }
+        ]
+      },
+      "D": {
+        "intervalos": [
+          {
+            "min": 0,
+            "max": 3,
+            "titulo": "Equilibrado",
+            "texto": "Parabéns! Estás claramente em contacto contigo , enraizado, estável, confiante, com força, determinação e capacidade para enfrentar desafios. A tua conexão com a Terra é forte e reconheces a tua interdependência com todos os seres vivos. Tens uma forte vocação para desenvolver a tua capacidade de aceitação, gratidão, presença e conexão espiritual."
+          },
+          {
+            "min": 4,
+            "max": 6,
+            "titulo": "Alguns sinais",
+            "texto": "Precisas de prestar alguma atenção e incluir nas tuas rotinas atuais atividades como desporto, momentos de lazer, passeios na Natureza e momentos de pausa para te sentires e cuidares de ti. Uma ótima solução é incluíres na tua agenda coisas que gostas de fazer, por exemplo, desporto, ioga ou meditação, que te fazem bem e te ajudam a enraizar.."
+          },
+          {
+            "min": 7,
+            "max": 9,
+            "titulo": "Alerta",
+            "texto": "Deves ter muito cuidado. Poderás estar sob grande stresse e cansaço, e sem capacidade de discernimento no dia a dia para te dares conta que o campo do FAZER nos pode arrancar do campo do SER. Fico feliz por teres feito este teste para que possas ver a importância e urgência de alterares as rotinas de forma a te incluíres e alterar o “turbilhão” em que te encontras. Tens aqui muitos sinais e até orientação do lugar por onde deves começar e o tipo de ações que poderás fazer."
+          }
+        ]
+      },
+      "E": {
+        "comparacoes": [
+          {
+            "condicao": "menor_ou_igual_D",
+            "titulo": "Boa gestão emocional",
+            "texto": "Embora tenhas de observar e cuidar de todos os sinais que acabas de receber com a coluna D como informação relevante para perceberes o que precisas de trabalhar em concreto para ti, também ficas a saber que, de alguma maneira, não estás a projetar em demasia no teu relacionamento as inseguranças, os medos e as dificuldades do presente. Deverás estar atento para que essa ordem não seja alterada, de forma a aliviar sempre o relacionamento de se transformar numa compensação dos teus vazios de amor."
+          },
+          {
+            "condicao": "maior_D",
+            "titulo": "Alerta máximo",
+            "texto": "Os alertas estão todos em ação. Recomendo que tires uns dias de afastamento para te encontrares contigo, fazeres uma análise da tua vida, das tuas queixas com o teu relacionamento, de forma a poderes transformar essas queixas em objetivos de melhoria para ti. Na realidade, o que te queixas do outro estás a fazer a ti próprio a dobrar, razão pela qual é tão difícil lidares com isso. Se observares bem, verás que estás, há muito tempo, a descurar o teu relacionamento contigo próprio, estando a praticar o mesmo nível de ofensas e sensações de que te queixas agora."
+          }
+        ]
+      }
+    }
   }
 }

@@ -132,6 +132,10 @@ export class AutoavaliacaoRaizPage implements OnInit {
   mostrarResultado=false;
 
 
+
+  totais: { [key: string]: number } = {};
+
+
  titulosColunas: { [key: string]: string } = {};
 
 
@@ -341,14 +345,11 @@ this.grupos = this.chakra.grupos;
 calcularResultado(){
 
 
-
     this.totalA=0;
     this.totalB=0;
     this.totalC=0;
     this.totalD=0;
     this.totalE=0;
-
-
 
 
 
@@ -362,30 +363,35 @@ calcularResultado(){
       this.respostas[id];
 
 
-
       if(resposta.A)
         this.totalA++;
-
 
       if(resposta.B)
         this.totalB++;
 
-
       if(resposta.C)
         this.totalC++;
-
 
       if(resposta.D)
         this.totalD++;
 
-
       if(resposta.E)
         this.totalE++;
 
-
-
     });
 
+
+
+
+    this.totais = {
+
+      A: this.totalA,
+      B: this.totalB,
+      C: this.totalC,
+      D: this.totalD,
+      E: this.totalE
+
+    };
 
 
 
@@ -439,6 +445,25 @@ calcularResultado(){
 
 
   gerarInterpretacoes(){
+
+
+
+    // Se os resultados ainda não carregaram, não faz nada
+
+    if(
+
+      !this.resultados ||
+      !this.resultados.A ||
+      !this.resultados.B ||
+      !this.resultados.C ||
+      !this.resultados.D ||
+      !this.resultados.E
+
+    ){
+
+      return;
+
+    }
 
 
 

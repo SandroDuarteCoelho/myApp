@@ -89,7 +89,19 @@
 
         <ng-container *ngIf="cache[item.id]">
 
-          <!-- <h3>Significado</h3> -->
+          <div *ngIf="cache[item.id].link">
+
+            <ion-button
+              expand="block"
+              color="danger"
+              fill="outline"
+              (click)="abrirVideo(cache[item.id].link!)">
+
+              ▶ Ver vídeo relacionado
+
+            </ion-button>
+
+          </div>
 
           <pre style="white-space: pre-wrap; font-family: inherit;">
 {{ cache[item.id].significado }}
@@ -109,7 +121,7 @@
             <p>Nenhum alimento informado.</p>
           </ng-template>
 
-          <h3>Herança sistémica familiar</h3>
+          <h3>Herança antepassados familiares</h3>
 
           <pre style="white-space: pre-wrap; font-family: inherit;">
 {{ cache[item.id].sistemico }}

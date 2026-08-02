@@ -220,6 +220,11 @@
     "ficheiro": "manchas.json"
   },
   {
+    "id": "obesidade",
+    "nome": "Obesidade",
+    "ficheiro": "obesidade.json"
+  },
+  {
     "id": "ossos",
     "nome": "Ossos",
     "ficheiro": "ossos.json"

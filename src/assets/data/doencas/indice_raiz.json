@@ -290,6 +290,11 @@
     "ficheiro": "musculos.json"
   },
   {
+    "id": "obesidade",
+    "nome": "Obesidade",
+    "ficheiro": "obesidade.json"
+  },
+  {
     "id": "ombros",
     "nome": "Ombros",
     "ficheiro": "ombros.json"

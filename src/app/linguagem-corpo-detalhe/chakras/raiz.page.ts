@@ -61,9 +61,10 @@ indiceCarregado = false;
 
 cache: {
   [key: string]: {
+    link?: string;
     significado: string;
     alimentos: any[];
-    sistemico: string;
+    sistemico?: string;
   };
 } = {};
 
@@ -102,6 +103,7 @@ async selecionarDoenca(item: any): Promise<void> {
   }
 
   this.cache[item.id] = {
+    link: '',
     significado: 'A carregar...',
     alimentos: [],
     sistemico: ''
@@ -120,6 +122,7 @@ async selecionarDoenca(item: any): Promise<void> {
     console.log('JSON carregado:', json);
 
     this.cache[item.id] = {
+      link: json.link ?? '',
       significado: json.significado ?? '',
       alimentos: json.alimentos ?? [],
       sistemico: json.sistemico ?? ''
@@ -130,11 +133,22 @@ async selecionarDoenca(item: any): Promise<void> {
     console.error('Erro ao carregar doença', e);
 
     this.cache[item.id] = {
+      link: '',
       significado: 'Erro ao carregar dados.',
       alimentos: [],
       sistemico: ''
     };
   }
+}
+
+abrirVideo(link: string): void {
+
+  if (!link) {
+    return;
+  }
+
+  window.open(link, '_blank');
+
 }
 }
 

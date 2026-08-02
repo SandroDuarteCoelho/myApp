@@ -1,40 +1,6 @@
-# TODO: Adicionar botão "Autoavaliação" nas páginas dos chakras
+# TODO - Corrigir página Chacra Raiz (linguagem-corpo-detalhe/raiz)
 
-## Etapas
-
-### 1. Criar 9 páginas de autoavaliação (cada chakra)
-- [x] autoavaliacao-raiz (page.ts + page.html + page.scss)
-- [x] autoavaliacao-sacral
-- [x] autoavaliacao-plexo-solar
-- [x] autoavaliacao-cardiaco
-- [x] autoavaliacao-garganta
-- [x] autoavaliacao-terceiro-olho
-- [x] autoavaliacao-coronario
-- [x] autoavaliacao-segundo-olho
-- [x] autoavaliacao-outros
-
-### 2. Adicionar 9 rotas no app.routes.ts
-- [x] Adicionar rotas para cada autoavaliacao-{chakra}
-
-### 3. Adicionar botão "Autoavaliação" nos headers das 9 páginas HTML dos chakras
-- [x] raiz.page.html
-- [x] sacral.page.html
-- [x] plexo-solar.page.html
-- [x] cardiaco.page.html
-- [x] garganta.page.html
-- [x] terceiro-olho.page.html
-- [x] coronario.page.html
-- [x] segundo-olho.page.html
-- [x] outros.page.html
-
-### 4. Adicionar método irAutoavaliacao() nos 9 TS dos chakras
-- [x] raiz.page.ts
-- [x] sacral.page.ts
-- [x] plexo-solar.page.ts
-- [x] cardiaco.page.ts
-- [x] garganta.page.ts
-- [x] terceiro-olho.page.ts
-- [x] coronario.page.ts
-- [x] segundo-olho.page.ts
-- [x] outros.page.ts
+- [x] Analisar o problema (cache[item.id] indefinido no carregamento)
+- [x] Reestruturar `raiz.page.html`: mover o botão do vídeo e o significado para dentro do `<ng-container *ngIf="cache[item.id]">`
+- [x] Verificar que a página carrega sem erros e que o botão de vídeo aparece apenas quando existe `link`
 

@@ -205,6 +205,11 @@
     "ficheiro": "manchas.json"
   },
   {
+    "id": "obesidade",
+    "nome": "Obesidade",
+    "ficheiro": "obesidade.json"
+  },
+  {
     "id": "osteoporose",
     "nome": "Osteoporose",
     "ficheiro": "osteoporose.json"

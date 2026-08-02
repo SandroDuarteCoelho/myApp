@@ -61,6 +61,7 @@ export class GargantaPage {
 
   cache: {
     [key: string]: {
+      link?: string;
       significado: string;
       alimentos: any[];
       sistemico: string;
@@ -95,6 +96,7 @@ export class GargantaPage {
     }
 
     this.cache[item.id] = {
+      link: '',
       significado: 'A carregar...',
       alimentos: [],
       sistemico: '',
@@ -111,6 +113,7 @@ export class GargantaPage {
       console.log('JSON carregado:', json);
 
       this.cache[item.id] = {
+        link: json.link ?? '',
         significado: json.significado ?? '',
         alimentos: json.alimentos ?? [],
         sistemico: json.sistemico ?? '',
@@ -119,11 +122,20 @@ export class GargantaPage {
       console.error('Erro ao carregar doença', e);
 
       this.cache[item.id] = {
+        link: '',
         significado: 'Erro ao carregar dados.',
         alimentos: [],
         sistemico: '',
       };
     }
+  }
+
+  abrirVideo(link: string): void {
+    if (!link) {
+      return;
+    }
+
+    window.open(link, '_blank');
   }
 }
 

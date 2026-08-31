@@ -1,52 +1,262 @@
+
+/* ===================================================== */
+/* TEXTO DAS ORAÇÕES */
+/* ===================================================== */
+
 .prayer-text {
+
   font-size: 1.2em;
-  line-height: 1.6;
-  padding: 20px;
-  max-width: 90%;
+
+  line-height: 1.3;
+
+  padding: 20px 8px;
+
+  max-width: 100%;
+
   margin: 0 auto;
+
 }
+
+
+/* ===================================================== */
+/* DATA + BOTÃO OUTROS */
+/* ===================================================== */
 
 .date-container {
+
   display: flex;
+
   align-items: center;
+
   justify-content: center;
+
   gap: 20px;
+
 }
+
 
 .date-container h1 {
+
   margin: 0;
+
   flex-shrink: 0;
+
 }
+
+
+/* ===================================================== */
+/* BOTÃO OUTROS */
+/* ===================================================== */
 
 #outros-btn {
+
   --border-radius: 20px;
+
   --padding-start: 8px;
+
   --padding-end: 8px;
+
   height: 36px;
+
   font-size: 0.8em;
+
 }
+
+
+/* ===================================================== */
+/* ===================================================== */
+/* 90 VELAS */
+/* ===================================================== */
+/* ===================================================== */
+
+.velas-section {
+
+  width: 100%;
+
+  padding: 10px 8px 20px;
+
+  box-sizing: border-box;
+
+}
+
+
+/* ===================================================== */
+/* TÍTULO DAS VELAS */
+/* ===================================================== */
+
+.velas-titulo {
+
+  text-align: center;
+
+  font-size: 1.1em;
+
+  font-weight: 600;
+
+  margin-bottom: 15px;
+
+}
+
+
+/* ===================================================== */
+/* GRELHA DAS 90 VELAS */
+/* ===================================================== */
+
+.velas-grid {
+
+  display: grid;
+
+  grid-template-columns: repeat(10, 1fr);
+
+  gap: 7px;
+
+  width: 100%;
+
+  max-width: 500px;
+
+  margin: 0 auto;
+
+}
+
+
+/* ===================================================== */
+/* CADA VELA */
+/* ===================================================== */
+
+.vela {
+
+  width: 100%;
+
+  max-width: 42px;
+
+  height: auto;
+
+  display: block;
+
+  margin: 0 auto;
+
+}
+
+
+/* ===================================================== */
+/* CONTADOR DAS VELAS */
+/* ===================================================== */
+
+.velas-contador {
+
+  text-align: center;
+
+  margin-top: 15px;
+
+  font-size: 1em;
+
+  font-weight: 600;
+
+}
+
+
+/* ===================================================== */
+/* CONTAINER ORIGINAL */
+/* ===================================================== */
 
 #container {
+
   text-align: center;
+
   position: absolute;
+
   left: 0;
+
   right: 0;
+
   top: 50%;
+
   transform: translateY(-50%);
+
 }
+
+
+/* ===================================================== */
+/* CONTAINER - STRONG */
+/* ===================================================== */
 
 #container strong {
+
   font-size: 20px;
+
   line-height: 26px;
+
 }
+
+
+/* ===================================================== */
+/* CONTAINER - PARÁGRAFOS */
+/* ===================================================== */
 
 #container p {
+
   font-size: 16px;
+
   line-height: 22px;
+
   color: #8c8c8c;
+
   margin: 0;
+
 }
 
+
+/* ===================================================== */
+/* CONTAINER - LINKS */
+/* ===================================================== */
+
 #container a {
+
   text-decoration: none;
+
 }
+
+
+/* ===================================================== */
+/* AJUSTES PARA ECRÃS PEQUENOS */
+/* ===================================================== */
+
+@media (max-width: 480px) {
+
+  .velas-section {
+
+    padding-left: 4px;
+
+    padding-right: 4px;
+
+  }
+
+
+  .velas-grid {
+
+    gap: 5px;
+
+  }
+
+
+  .vela {
+
+    max-width: 36px;
+
+  }
+
+
+  .velas-titulo {
+
+    font-size: 1em;
+
+  }
+
+
+  .velas-contador {
+
+    font-size: 0.95em;
+
+  }
+
+}
+

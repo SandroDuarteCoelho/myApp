@@ -1,61 +1,297 @@
+
 <ion-header [translucent]="true">
+
   <ion-toolbar>
+
     <ion-buttons slot="start">
-      <ion-button fill="clear" size="small" (click)="goBack()">Voltar</ion-button>
+
+      <ion-button
+        fill="clear"
+        size="small"
+        (click)="goBack()">
+        Voltar
+      </ion-button>
+
     </ion-buttons>
+
     <ion-title class="ion-text-center">
       Oração do Perdão
     </ion-title>
+
   </ion-toolbar>
+
 </ion-header>
 
+
 <ion-content [fullscreen]="true">
+
   <ion-header collapse="condense">
+
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+
+      <ion-title size="large">
+        Oração do Perdão
+      </ion-title>
+
     </ion-toolbar>
+
   </ion-header>
 
-  <div class="ion-text-center">
-    <h1>
-      Dias feitos: {{ totalClicks }} 
-    </h1>
 
-    <div class="date-container">
-      <h1>
-        <strong>{{ displayLabel }} -- {{ currentDate | date:'dd/MM/yyyy' }}</strong>
-      </h1>
-    <ion-button id="outros-btn" (click)="openOutros()" size="small">Outros</ion-button>
+  <!-- ================================================= -->
+  <!-- 90 VELAS -->
+  <!-- ================================================= -->
+
+  <div class="velas-section">
+
+    <div class="velas-titulo">
+      O teu caminho em luz
     </div>
+
+
+    <div class="velas-grid">
+
+      <img
+        *ngFor="let vela of velas"
+        [src]="vela < totalClicks
+          ? 'assets/oracoes/vela-acesa.svg'
+          : 'assets/oracoes/vela-apagada.svg'"
+        class="vela"
+        alt="Vela"
+      >
+
+    </div>
+
+
+    <div class="velas-contador">
+
+      {{ totalClicks }} / 90 velas acesas
+
+    </div>
+
   </div>
 
-  <p class="prayer-text ion-padding">Eu perdoo-te, por favor, perdoa-me.<br>
-Nunca tiveste culpa,<br>
-Eu também nunca tive culpa,<br>
-Eu perdoo-te, perdoa-me, por favor.<br>
-A vida ensina-nos através das discórdias....<br>
-E eu aprendi a amar-te e a deixar-te ir da minha mente.
-<br><br>
-Precisas de viver as tuas próprias lições e eu também.<br>
-Eu perdoo-te. . . perdoa-me em nome de Deus.<br>
-Agora, vai ser feliz, para que eu seja também.<br>
-Que Deus te proteja e perdoe os nossos mundos,<br>
-As mágoas desapareceram do meu coração e só há luz e paz na minha vida.<br>
-Quero-te alegre, sorrindo, onde quer que estejas...
-<br><br>
-É tão bom soltar, parar de resistir e deixar fluir novos sentimentos!<br>
-Eu perdoei-te do fundo da minha alma, porque sei que nunca fizeste nada por mal,<br>
-E sim, porque acreditaste que era a melhor maneira de ser feliz...
-<br><br>
-Perdoa-me por ter nutrido ódio e mágoa por tanto tempo no meu coração.<br>
-Eu não sabia como era bom perdoar e soltar; eu não sabia como era bom deixar ir o que nunca me pertenceu.
-<br><br>
-Agora sei que só podemos ser felizes quando soltamos as vidas, para que sigam os seus próprios sonhos e os seus próprios erros.<br>
-Não quero mais controlar nada, nem ninguém. Por isso, peço que me perdoes e solta-me também, para que o teu coração se encha de amor, assim como o meu.</p>
 
-  <ion-button (click)="gravar()" [disabled]="!buttonEnabled" color="primary" expand="block">
+  <!-- ================================================= -->
+  <!-- CONTADOR E DATA -->
+  <!-- ================================================= -->
+
+  <div class="ion-text-center">
+
+    <h1>
+      Dias feitos: {{ totalClicks }}
+    </h1>
+
+
+    <div class="date-container">
+
+      <h1>
+
+        <strong>
+          {{ displayLabel }} --
+          {{ currentDate | date:'dd/MM/yyyy' }}
+        </strong>
+
+      </h1>
+
+
+      <ion-button
+        id="outros-btn"
+        (click)="openOutros()"
+        size="small">
+
+        Outros
+
+      </ion-button>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================================================= -->
+  <!-- ORAÇÃO PRINCIPAL -->
+  <!-- ================================================= -->
+
+  <p class="prayer-text ion-padding">
+
+    Eu perdoo-te, por favor, perdoa-me.<br>
+
+    Nunca tiveste culpa,<br>
+
+    Eu também nunca tive culpa,<br>
+
+    Eu perdoo-te, perdoa-me, por favor.<br>
+
+    A vida ensina-nos através das discórdias....<br>
+
+    E eu aprendi a amar-te e a deixar-te ir da minha mente.
+
+    <br><br>
+
+    Precisas de viver as tuas próprias lições e eu também.<br>
+
+    Eu perdoo-te. . . perdoa-me em nome de Deus.<br>
+
+    Agora, vai ser feliz, para que eu seja também.<br>
+
+    Que Deus te proteja e perdoe os nossos mundos,<br>
+
+    As mágoas desapareceram do meu coração e só há luz e paz na minha vida.<br>
+
+    Quero-te alegre, sorrindo, onde quer que estejas...
+
+    <br><br>
+
+    É tão bom soltar, parar de resistir e deixar fluir novos sentimentos!<br>
+
+    Eu perdoei-te do fundo da minha alma, porque sei que nunca fizeste nada por mal,<br>
+
+    E sim, porque acreditaste que era a melhor maneira de ser feliz...
+
+    <br><br>
+
+    Perdoa-me por ter nutrido ódio e mágoa por tanto tempo no meu coração.<br>
+
+    Eu não sabia como era bom perdoar e soltar;
+    eu não sabia como era bom deixar ir o que nunca me pertenceu.
+
+    <br><br>
+
+    Agora sei que só podemos ser felizes quando soltamos as vidas,
+    para que sigam os seus próprios sonhos e os seus próprios erros.<br>
+
+    Não quero mais controlar nada, nem ninguém.
+    Por isso, peço que me perdoes e solta-me também,
+    para que o teu coração se encha de amor, assim como o meu.
+
+  </p>
+
+
+  <!-- ================================================= -->
+  <!-- PRIMEIRO BOTÃO GRAVAR -->
+  <!-- ================================================= -->
+
+  <ion-button
+    (click)="gravar()"
+    [disabled]="!buttonEnabled"
+    color="primary"
+    expand="block">
+
     Gravar
+
   </ion-button>
 
-  <p>{{ mensagem }}</p>
+
+  <p>
+    {{ mensagem }}
+  </p>
+
+
+  <!-- ================================================= -->
+  <!-- PARTE DO SANDRO -->
+  <!-- APARECE APENAS NO DIA DA MÃE -->
+  <!-- ================================================= -->
+
+  <div *ngIf="displayLabel === 'Mãe'">
+
+
+    <div class="ion-text-center">
+
+      <h1>
+
+        Sandro --
+        <strong>
+          {{ displayLabel }}
+        </strong>
+
+      </h1>
+
+    </div>
+
+
+    <p class="prayer-text ion-padding">
+
+      Mãe, reconheço que queres o melhor para mim.
+      E reconheço também que eu sou quem vive a minha vida.
+
+      <br><br>
+
+      Mãe, recebo os teus sonhos e a tua história com respeito.
+      Mas devolvo-te aquilo que pertence à tua vida.
+      Eu não preciso concretizar os teus sonhos para te amar.
+
+      <br><br>
+
+      Mãe, percebo que muitas das tuas escolhas vieram do medo
+      de que alguma coisa me acontecesse.
+      Agradeço a intenção de me proteger.
+      Mas já não preciso que o teu medo conduza a minha vida.<br>
+
+      Escolho por mim.
+
+      <br><br>
+
+      Mãe, vejo o quanto fizeste para cuidar de mim.
+      Posso honrar esse amor aprendendo uma maneira diferente de cuidar:
+      respeitando a liberdade do outro e a minha própria liberdade.<br>
+
+      Recebo o amor e escolho transformar a forma como ele continua em mim.
+
+      <br><br>
+
+      Mãe, eu sou teu filho.
+      Não sou o teu companheiro, o teu cuidador nem aquele que precisa resolver a tua vida.
+      Amo-te como filho.
+      E deixo contigo aquilo que pertence à tua vida.<br>
+
+      Não preciso abandonar-te para viver a minha vida.
+
+      <br><br>
+
+      Queridos antepassados, reconheço o destino que tiveram.
+      Respeito o vosso sofrimento e aquilo que viveram.
+      Não preciso repeti-lo para pertencer.
+      Vou receber a vida que chegou até mim e procurar vivê-la
+      da melhor maneira possível.
+
+      <br><br>
+
+      Mãe, não preciso provar que estiveste errada para poder viver a minha verdade.
+      Posso reconhecer tudo aquilo que recebeste e me deste,
+      agradecer-te por isso e, ao mesmo tempo,
+      seguir o meu próprio caminho.
+
+      Se eu descobrir algo que estava escondido,
+      recebo essa verdade com respeito.
+
+      Se não descobrir nada e as coisas não mudarem,
+      continuarei a escolher a minha vida
+      sem deixar de reconhecer a tua.
+
+    </p>
+
+
+    <!-- ================================================= -->
+    <!-- SEGUNDO BOTÃO GRAVAR -->
+    <!-- ================================================= -->
+
+    <ion-button
+      (click)="gravar()"
+      [disabled]="!buttonEnabled"
+      color="primary"
+      expand="block">
+
+      Gravar
+
+    </ion-button>
+
+
+    <p>
+      {{ mensagem }}
+    </p>
+
+  </div>
+
 </ion-content>
+

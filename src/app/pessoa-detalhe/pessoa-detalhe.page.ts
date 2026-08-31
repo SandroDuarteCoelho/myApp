@@ -59,6 +59,21 @@ type EneagramaData = {
   exercicios_praticos: string;
 };
 
+// type AnaliseDia = {
+//   ferida: string;
+//   questao_sistemica: string;
+//   afirmacao: string;
+//   frase_matriz: string;
+// };
+
+type DiaNascimento = {
+  descricao: string;
+  ferida: string;
+  questao_sistemica: string;
+  afirmacao: string;
+  frase_matriz: string;
+};
+
 @Component({
   selector: 'app-pessoa-detalhe',
   templateUrl: './pessoa-detalhe.page.html',
@@ -96,7 +111,14 @@ export class PessoaDetalhePage implements OnInit {
   atividadeConsoantes = '';
 
   setenioAtual: Setenio | null = null;
-  descricaoDia = '';
+  diaNascimento: DiaNascimento = {
+  descricao: '',
+  ferida: '',
+  questao_sistemica: '',
+  afirmacao: '',
+  frase_matriz: ''
+};
+  analiseDia = '';
 
   signoChines: SignoChines | null = null;
   signoSolarAtual: SignoSolar | null = null;
@@ -383,14 +405,26 @@ export class PessoaDetalhePage implements OnInit {
   // =========================
 
   carregarDescricaoDia(): void {
-    if (!this.pessoa) return;
 
-    const dia = new Date(this.pessoa.data).getDate();
+  if (!this.pessoa) return;
 
-    this.http.get<Record<string, string>>('assets/data/dia_nascimento.json').subscribe((data) => {
-      this.descricaoDia = data[String(dia)] || '';
+  const dia = new Date(this.pessoa.data).getDate();
+
+  this.http
+    .get<Record<string, DiaNascimento>>(
+      'assets/data/dia_nascimento.json'
+    )
+    .subscribe((data) => {
+
+      const dadosDia = data[String(dia)];
+
+      if (dadosDia) {
+        this.diaNascimento = dadosDia;
+      }
+
     });
-  }
+
+}
 
   // =========================
   // SIGNO CHINÊS

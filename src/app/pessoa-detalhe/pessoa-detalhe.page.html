@@ -346,43 +346,62 @@ class="conteudo">
 
 
 
-<!-- DIA NASCIMENTO -->
 
+<!-- DIA NASCIMENTO -->
 
 <ion-accordion value="dia">
 
+  <ion-item slot="header">
+    <ion-label>
+      🌞 Dia de nascimento
+    </ion-label>
+  </ion-item>
 
-<ion-item slot="header">
+  <div
+    slot="content"
+    class="conteudo">
 
-<ion-label>
+    <!-- ANÁLISE -->
+    <div class="analise">
 
-🌞 Dia de nascimento
+      <!-- <h3>🔎 Análise</h3> -->
 
-</ion-label>
+      <p>
+        <strong>Ferida possível:</strong>
+        {{ diaNascimento.ferida }}
+      </p>
 
-</ion-item>
+      <p>
+        <strong>Questão sistémica central:</strong>
+        {{ diaNascimento.questao_sistemica }}
+      </p>
 
+      <p>
+        <strong>Afirmação:</strong>
+        {{ diaNascimento.afirmacao }}
+      </p>
 
-<div 
-slot="content"
-class="conteudo">
+      <p>
+        <strong>Frase matriz:</strong>
+        {{ diaNascimento.frase_matriz }}
+      </p>
 
+    </div>
 
-<p class="descricao">
+    <!-- DESCRIÇÃO ORIGINAL -->
+    <div class="descricao">
 
-{{ descricaoDia }}
+      <!-- <h3>📖 Descrição</h3> -->
+<br><br>
+      <p>
+        {{ diaNascimento.descricao }}
+      </p>
 
-</p>
+    </div>
 
-
-</div>
-
+  </div>
 
 </ion-accordion>
-
-
-
-
 
 
 

@@ -43,12 +43,22 @@ type SignoChines = {
   elemento: string;
   anos: number[];
   descricao: string;
+
+  ferida: string;
+  questao_sistemica: string;
+  afirmacao: string;
+  frase_matriz: string;
 };
 
 type SignoSolar = {
   signo: string;
   objetivo: string;
   personalidade: string;
+
+  ferida: string;
+  questao_sistemica: string;
+  afirmacao: string;
+  frase_matriz: string;
 };
 
 type EneagramaData = {
@@ -59,12 +69,6 @@ type EneagramaData = {
   exercicios_praticos: string;
 };
 
-// type AnaliseDia = {
-//   ferida: string;
-//   questao_sistemica: string;
-//   afirmacao: string;
-//   frase_matriz: string;
-// };
 
 type DiaNascimento = {
   descricao: string;
@@ -426,11 +430,11 @@ export class PessoaDetalhePage implements OnInit {
 
 }
 
-  // =========================
-  // SIGNO CHINÊS
-  // =========================
+ // =========================
+// SIGNO CHINÊS
+// =========================
 
-  private async carregarSignoChines(): Promise<void> {
+private async carregarSignoChines(): Promise<void> {
 
   if (!this.pessoa) return;
 
@@ -440,23 +444,24 @@ export class PessoaDetalhePage implements OnInit {
   try {
 
     const data = await this.http
-      .get<any[]>('assets/data/chineses.json')
+      .get<SignoChines[]>('assets/data/chineses.json')
       .toPromise();
 
-    if (!data) return;
+    if (!data) {
+      this.signoChines = null;
+      return;
+    }
 
     this.signoChines =
       data.find(s =>
         s.anos?.includes(anoNascimento)
       ) ?? null;
 
-    // carregar previsões APENAS depois
-   
-
   } catch (e) {
 
     console.error(e);
     this.signoChines = null;
+
   }
 }
 
@@ -489,31 +494,54 @@ export class PessoaDetalhePage implements OnInit {
   }
 
   private async carregarSignoSolar(): Promise<void> {
-    if (!this.pessoa) return;
 
-    const key = this.getSignoSolarKeyPorDataNascimento(this.pessoa.data);
-    if (!key) {
-      this.signoSolarAtual = null;
-      return;
-    }
+  if (!this.pessoa) return;
 
-    try {
-      const json = await this.http
-        .get<Array<{ signo?: string; objetivo?: string; personalidade?: string }>>(`assets/data/solares/${key}.json`)
-        .toPromise();
+  const key =
+    this.getSignoSolarKeyPorDataNascimento(this.pessoa.data);
 
-      const primeiro = json?.[0];
-      this.signoSolarAtual = primeiro
-        ? {
-            signo: primeiro.signo ?? '',
-            objetivo: primeiro.objetivo ?? '',
-            personalidade: primeiro.personalidade ?? '',
-          }
-        : null;
-    } catch {
-      this.signoSolarAtual = null;
-    }
+  if (!key) {
+    this.signoSolarAtual = null;
+    return;
   }
+
+  try {
+
+    const json = await this.http
+      .get<Array<{
+        signo?: string;
+        objetivo?: string;
+        personalidade?: string;
+
+        ferida?: string;
+        questao_sistemica?: string;
+        afirmacao?: string;
+        frase_matriz?: string;
+
+      }>>(`assets/data/solares/${key}.json`)
+      .toPromise();
+
+    const primeiro = json?.[0];
+
+    this.signoSolarAtual = primeiro
+      ? {
+          signo: primeiro.signo ?? '',
+          objetivo: primeiro.objetivo ?? '',
+          personalidade: primeiro.personalidade ?? '',
+
+          ferida: primeiro.ferida ?? '',
+          questao_sistemica: primeiro.questao_sistemica ?? '',
+          afirmacao: primeiro.afirmacao ?? '',
+          frase_matriz: primeiro.frase_matriz ?? '',
+        }
+      : null;
+
+  } catch {
+
+    this.signoSolarAtual = null;
+
+  }
+}
 
 // =========================
 // CASAS (PÉSTAL)

@@ -1,14 +1,69 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+
     <ion-buttons slot="start">
-      <ion-button fill="clear" size="small" (click)="voltar()">Voltar</ion-button>
+      <ion-button fill="clear" size="small" (click)="voltar()">
+        Voltar
+      </ion-button>
     </ion-buttons>
+
     <ion-title>Meditações</ion-title>
+
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
-  <h1>Página de Meditações</h1>
-  <p>Conteúdo de meditações aqui.</p>
-</ion-content>
 
+  <h1>Meditações</h1>
+
+  <p class="intro">
+    Escolhe uma meditação para ouvir.
+  </p>
+
+  <!-- Áudios -->
+  <section class="secao">
+
+    <h2>🎧 Meditações disponíveis</h2>
+
+    <div class="audio-row">
+
+      <div
+        class="audio-item"
+        *ngFor="let audio of audios"
+        [class.selecionado]="audioSelecionado === audio"
+        (click)="selecionarAudio(audio)"
+      >
+        🎧 {{ audio.nome }}
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Áudio selecionado -->
+  <section
+    class="audio-player"
+    *ngIf="audioSelecionado"
+  >
+
+    <h2>{{ audioSelecionado.nome }}</h2>
+
+    <audio
+      controls
+      autoplay
+      [src]="audioSelecionado.src"
+    >
+      O teu dispositivo não suporta a reprodução deste áudio.
+    </audio>
+
+    <ion-button
+      expand="block"
+      fill="outline"
+      (click)="parar()"
+    >
+      ⏹ Parar áudio
+    </ion-button>
+
+  </section>
+
+</ion-content>

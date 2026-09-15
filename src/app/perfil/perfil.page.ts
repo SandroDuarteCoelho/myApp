@@ -43,6 +43,19 @@ import {
   IonInfiniteScrollContent
 } from '@ionic/angular/standalone';
 
+import { Capacitor } from '@capacitor/core';
+import {
+  Filesystem,
+  Directory,
+  Encoding
+} from '@capacitor/filesystem';
+
+import { Share } from '@capacitor/share';
+
+
+/* =====================================================
+   TIPOS
+   ===================================================== */
 
 export type Pessoa = {
   nome: string;
@@ -59,6 +72,22 @@ export type PessoaPersistida = Pessoa & {
 };
 
 
+/*
+ * Estrutura utilizada apenas durante a importação.
+ *
+ * O updatedAt não faz parte do Pessoa normal.
+ * É utilizado para comparar qual versão do perfil
+ * é mais recente.
+ */
+type PessoaImportada = PessoaPersistida & {
+  updatedAt?: number;
+};
+
+
+/* =====================================================
+   COMPONENTE
+   ===================================================== */
+
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.page.html',
@@ -70,6 +99,7 @@ export type PessoaPersistida = Pessoa & {
     CommonModule,
     FormsModule,
     HttpClientModule,
+
     IonHeader,
     IonToolbar,
     IonTitle,
@@ -123,6 +153,12 @@ export class PerfilPage implements OnInit {
   private readonly STORAGE_KEY_DELETED =
     'pessoas_deleted_v1';
 
+  /*
+   * Guarda a data/hora da última alteração de cada perfil.
+   */
+  private readonly STORAGE_KEY_UPDATED =
+    'pessoas_updated_v1';
+
 
   /* =====================================================
      PERFIS
@@ -162,12 +198,24 @@ export class PerfilPage implements OnInit {
 
 
   /* =====================================================
-     OVERRIDES / APAGADOS
+     OVERRIDES / APAGADOS / ALTERAÇÕES
      ===================================================== */
 
   private overrides: Record<number, Pessoa> = {};
 
   private deletedIds = new Set<number>();
+
+  /*
+   * ID -> timestamp da última alteração.
+   *
+   * Exemplo:
+   *
+   * {
+   *   "1": 1757910000000,
+   *   "2": 1757911000000
+   * }
+   */
+  private updatedAt: Record<number, number> = {};
 
 
   /* =====================================================
@@ -190,6 +238,10 @@ export class PerfilPage implements OnInit {
   fileInput?: ElementRef<HTMLInputElement>;
 
 
+  /* =====================================================
+     CONSTRUTOR
+     ===================================================== */
+
   constructor(
     private readonly http: HttpClient,
     private readonly cdr: ChangeDetectorRef
@@ -203,11 +255,16 @@ export class PerfilPage implements OnInit {
   ngOnInit(): void {
 
     this.loadOverrides();
+
     this.loadDeleted();
+
+    this.loadUpdatedAt();
+
 
     this.http
       .get<Pessoa[]>('assets/data/pessoas.json')
       .subscribe({
+
         next: (data) => {
 
           const base: PessoaPersistida[] =
@@ -217,6 +274,10 @@ export class PerfilPage implements OnInit {
             }));
 
 
+          /*
+           * Aplicar alterações locais aos perfis
+           * existentes no pessoas.json.
+           */
           this.people = base.map((p) => {
 
             const ov = this.overrides[p.id];
@@ -239,16 +300,15 @@ export class PerfilPage implements OnInit {
            * Adicionar perfis criados localmente
            * que não existem no pessoas.json.
            *
-           * Perfis marcados como apagados NÃO
-           * voltam a aparecer.
+           * Perfis apagados não voltam a aparecer.
            */
-
           for (
             const [idStr, pessoa]
             of Object.entries(this.overrides)
           ) {
 
             const id = Number(idStr);
+
 
             if (
               !idsBase.has(id) &&
@@ -266,6 +326,7 @@ export class PerfilPage implements OnInit {
 
 
           this.atualizarFiltros();
+
           this.atualizarLista();
 
           this.cdr.markForCheck();
@@ -280,12 +341,12 @@ export class PerfilPage implements OnInit {
           );
 
         }
+
       });
 
   }
 
-
- /* =====================================================
+/* =====================================================
    STORAGE — OVERRIDES
    ===================================================== */
 
@@ -303,6 +364,7 @@ private loadOverrides(): void {
   }
 }
 
+
 private persistOverrides(): void {
   window.localStorage.setItem(
     this.STORAGE_KEY_OVERRIDES,
@@ -310,45 +372,75 @@ private persistOverrides(): void {
   );
 }
 
-  /* =====================================================
-     STORAGE — APAGADOS
-     ===================================================== */
 
-  private loadDeleted(): void {
+/* =====================================================
+   STORAGE — APAGADOS
+   ===================================================== */
 
-    try {
+private loadDeleted(): void {
+  try {
+    const raw = window.localStorage.getItem(
+      this.STORAGE_KEY_DELETED
+    );
 
-      const raw =
-        window.localStorage.getItem(
-          this.STORAGE_KEY_DELETED
-        );
+    const arr = raw
+      ? (JSON.parse(raw) as number[])
+      : [];
 
-      const arr =
-        raw
-          ? (JSON.parse(raw) as number[])
-          : [];
+    this.deletedIds = new Set<number>(arr);
+  } catch {
+    this.deletedIds = new Set<number>();
+  }
+}
 
-      this.deletedIds =
-        new Set<number>(arr);
 
-    } catch {
+private persistDeleted(): void {
+  window.localStorage.setItem(
+    this.STORAGE_KEY_DELETED,
+    JSON.stringify(
+      Array.from(this.deletedIds)
+    )
+  );
+}
 
-      this.deletedIds =
-        new Set<number>();
 
-    }
+/* =====================================================
+   STORAGE — DATA DE ALTERAÇÃO
+   ===================================================== */
+
+private loadUpdatedAt(): void {
+  try {
+    const raw = window.localStorage.getItem(
+      this.STORAGE_KEY_UPDATED
+    );
+
+    this.updatedAt = raw
+      ? (JSON.parse(raw) as Record<number, number>)
+      : {};
+  } catch {
+    this.updatedAt = {};
+  }
+}
+
+  private persistUpdatedAt(): void {
+
+    window.localStorage.setItem(
+      this.STORAGE_KEY_UPDATED,
+      JSON.stringify(this.updatedAt)
+    );
 
   }
 
 
-  private persistDeleted(): void {
+  /*
+   * Registar uma nova alteração local.
+   */
+  private marcarComoAlterado(id: number): void {
 
-    window.localStorage.setItem(
-      this.STORAGE_KEY_DELETED,
-      JSON.stringify(
-        Array.from(this.deletedIds)
-      )
-    );
+    this.updatedAt[id] =
+      Date.now();
+
+    this.persistUpdatedAt();
 
   }
 
@@ -385,7 +477,6 @@ private persistOverrides(): void {
      * Se o grupo selecionado deixou de existir,
      * voltar automaticamente para "Todos".
      */
-
     if (
       this.selectedGroup &&
       !this.grupos.includes(this.selectedGroup)
@@ -400,7 +491,6 @@ private persistOverrides(): void {
      * Se a localidade selecionada deixou de existir,
      * voltar automaticamente para "Todas".
      */
-
     if (
       this.selectedLocalidade &&
       !this.localidades.includes(
@@ -475,7 +565,6 @@ private persistOverrides(): void {
      * Sempre que há uma nova pesquisa/filtro,
      * voltar aos primeiros 30 perfis.
      */
-
     this.visibleCount =
       this.PAGE_SIZE;
 
@@ -697,16 +786,26 @@ private persistOverrides(): void {
       this.editingId !== null
     ) {
 
-      this.overrides[this.editingId] =
+      const id =
+        this.editingId;
+
+
+      this.overrides[id] =
         payload;
 
 
       this.persistOverrides();
 
 
+      /*
+       * Registar a hora da alteração.
+       */
+      this.marcarComoAlterado(id);
+
+
       this.people =
         this.people.map(p =>
-          p.id === this.editingId
+          p.id === id
             ? ({
                 ...p,
                 ...payload
@@ -716,10 +815,12 @@ private persistOverrides(): void {
 
 
       this.atualizarFiltros();
+
       this.atualizarLista();
 
 
       this.editingId = null;
+
       this.popoverMode = 'create';
 
     }
@@ -742,25 +843,39 @@ private persistOverrides(): void {
       this.persistOverrides();
 
 
+      /*
+       * Registar a hora de criação.
+       */
+      this.marcarComoAlterado(newId);
+
+
       const newPerson: PessoaPersistida = {
+
         id: newId,
+
         ...payload
+
       };
 
 
       this.people = [
+
         newPerson,
+
         ...this.people
+
       ];
 
 
       this.atualizarFiltros();
+
       this.atualizarLista();
 
     }
 
 
     this.limparFormulario();
+
     this.fecharPopover();
 
   }
@@ -780,7 +895,9 @@ private persistOverrides(): void {
       const pessoa of this.people
     ) {
 
-      idsUsados.add(pessoa.id);
+      idsUsados.add(
+        pessoa.id
+      );
 
     }
 
@@ -789,7 +906,6 @@ private persistOverrides(): void {
      * IDs apagados também ficam reservados.
      * Assim nunca são reutilizados.
      */
-
     for (
       const id of this.deletedIds
     ) {
@@ -828,20 +944,26 @@ private persistOverrides(): void {
 
     this.editingId = p.id;
 
+
     this.primeiroNome =
       p.nome ?? '';
+
 
     this.ultimoNome =
       p.apelido ?? '';
 
+
     this.dataNascimento =
       p.data ?? '';
+
 
     this.localidade =
       p.localidade ?? '';
 
+
     this.grupo =
       p.grupo ?? '';
+
 
     this.eneagrama =
       String(
@@ -861,10 +983,15 @@ private persistOverrides(): void {
   private limparFormulario(): void {
 
     this.primeiroNome = '';
+
     this.ultimoNome = '';
+
     this.dataNascimento = '';
+
     this.localidade = '';
+
     this.grupo = '';
+
     this.eneagrama = '';
 
   }
@@ -927,8 +1054,10 @@ private persistOverrides(): void {
     /*
      * Marcar o ID como apagado.
      */
+    this.deletedIds.add(
+      p.id
+    );
 
-    this.deletedIds.add(p.id);
 
     this.persistDeleted();
 
@@ -936,7 +1065,6 @@ private persistOverrides(): void {
     /*
      * Retirar da lista atual.
      */
-
     this.people =
       this.people.filter(
         x => x.id !== p.id
@@ -945,12 +1073,9 @@ private persistOverrides(): void {
 
     /*
      * Atualizar filtros.
-     *
-     * Se era a última pessoa de Porto,
-     * Porto desaparece.
      */
-
     this.atualizarFiltros();
+
     this.atualizarLista();
 
   }
@@ -960,17 +1085,31 @@ private persistOverrides(): void {
      EXPORTAR
      ===================================================== */
 
-  exportarTudo(): void {
+  async exportarTudo(): Promise<void> {
 
     /*
      * Exportar apenas perfis ativos.
+     *
+     * O updatedAt é incluído no ficheiro exportado
+     * para permitir comparar versões quando o JSON
+     * voltar a ser importado.
      */
+    const dados: PessoaImportada[] =
+      this.people
 
-    const dados =
-      this.people.filter(
-        p =>
-          !this.deletedIds.has(p.id)
-      );
+        .filter(
+          p =>
+            !this.deletedIds.has(p.id)
+        )
+
+        .map(p => ({
+
+          ...p,
+
+          updatedAt:
+            this.updatedAt[p.id] ?? 0
+
+        }));
 
 
     const json =
@@ -981,31 +1120,130 @@ private persistOverrides(): void {
       );
 
 
-    const blob =
-      new Blob(
-        [json],
-        {
-          type: 'application/json'
-        }
+    const nomeFicheiro =
+      'perfis.json';
+
+
+    /*
+     * ===================================================
+     * PC / BROWSER
+     * ===================================================
+     *
+     * No PC continua a funcionar através do download
+     * normal do navegador.
+     */
+    if (
+      !Capacitor.isNativePlatform()
+    ) {
+
+      const blob =
+        new Blob(
+          [json],
+          {
+            type:
+              'application/json;charset=utf-8'
+          }
+        );
+
+
+      const url =
+        URL.createObjectURL(blob);
+
+
+      const link =
+        document.createElement('a');
+
+
+      link.href = url;
+
+      link.download =
+        nomeFicheiro;
+
+      link.style.display =
+        'none';
+
+
+      document.body.appendChild(
+        link
       );
 
 
-    const url =
-      URL.createObjectURL(blob);
+      link.click();
 
 
-    const a =
-      document.createElement('a');
+      document.body.removeChild(
+        link
+      );
 
 
-    a.href = url;
-
-    a.download = 'perfis.json';
-
-    a.click();
+      URL.revokeObjectURL(
+        url
+      );
 
 
-    URL.revokeObjectURL(url);
+      return;
+
+    }
+
+
+    /*
+     * ===================================================
+     * TELEMÓVEL / CAPACITOR
+     * ===================================================
+     *
+     * Guardar primeiro na área temporária da aplicação
+     * e depois abrir o menu nativo de partilha/guardar.
+     */
+    try {
+
+      const resultado =
+        await Filesystem.writeFile({
+
+          path:
+            nomeFicheiro,
+
+          data:
+            json,
+
+          directory:
+            Directory.Cache,
+
+          encoding:
+            Encoding.UTF8
+
+        });
+
+
+      await Share.share({
+
+        title:
+          'Exportar perfis',
+
+        text:
+          'Ficheiro de perfis',
+
+        url:
+          resultado.uri,
+
+        dialogTitle:
+          'Guardar ou partilhar perfis'
+
+      });
+
+
+    } catch (error) {
+
+      console.error(
+        'Erro ao exportar perfis:',
+        error
+      );
+
+
+      alert(
+        'Não foi possível exportar os perfis.'
+      );
+
+    }
 
   }
 
@@ -1063,7 +1301,6 @@ private persistOverrides(): void {
         /*
          * O JSON tem de ser um array.
          */
-
         if (
           !Array.isArray(parsed)
         ) {
@@ -1085,6 +1322,8 @@ private persistOverrides(): void {
 
         let ignorados = 0;
 
+        let antigosIgnorados = 0;
+
 
         /* =============================================
            PROCESSAR PERFIS
@@ -1097,7 +1336,6 @@ private persistOverrides(): void {
           /*
            * Verificar se é um objeto.
            */
-
           if (
             item === null ||
             typeof item !== 'object'
@@ -1111,13 +1349,12 @@ private persistOverrides(): void {
 
 
           const pessoa =
-            item as Partial<PessoaPersistida>;
+            item as Partial<PessoaImportada>;
 
 
           /*
            * Nome é obrigatório.
            */
-
           if (
             typeof pessoa.nome !== 'string' ||
             pessoa.nome.trim() === ''
@@ -1131,10 +1368,8 @@ private persistOverrides(): void {
 
 
           /*
-           * Verificar se o ID importado
-           * é válido.
+           * Verificar se o ID importado é válido.
            */
-
           const idImportado =
             typeof pessoa.id === 'number' &&
             Number.isInteger(pessoa.id) &&
@@ -1147,7 +1382,6 @@ private persistOverrides(): void {
            * Se o ID foi apagado nesta instalação,
            * NÃO voltar a criar esse perfil.
            */
-
           if (
             idImportado !== null &&
             this.deletedIds.has(idImportado)
@@ -1163,7 +1397,6 @@ private persistOverrides(): void {
           /*
            * Preparar os dados do perfil.
            */
-
           const payload: Pessoa = {
 
             nome:
@@ -1195,6 +1428,20 @@ private persistOverrides(): void {
           };
 
 
+          /*
+           * Timestamp vindo do JSON.
+           *
+           * Um JSON antigo, que não tenha updatedAt,
+           * recebe 0.
+           */
+          const importedUpdatedAt =
+            typeof pessoa.updatedAt === 'number' &&
+            Number.isFinite(pessoa.updatedAt) &&
+            pessoa.updatedAt > 0
+              ? pessoa.updatedAt
+              : 0;
+
+
           /* =========================================
              IMPORTAÇÃO COM ID
              ========================================= */
@@ -1211,14 +1458,58 @@ private persistOverrides(): void {
 
 
             /*
-             * O ID já existe:
-             * atualizar esse perfil.
+             * O ID já existe.
              */
-
             if (existente) {
 
+              const currentUpdatedAt =
+                this.updatedAt[idImportado] ?? 0;
+
+
+              /*
+               * Se o ficheiro não tiver timestamp,
+               * consideramos que é um JSON antigo.
+               *
+               * Não permitimos que ele substitua
+               * uma alteração local.
+               */
+              if (
+                importedUpdatedAt === 0
+              ) {
+
+                antigosIgnorados++;
+
+                continue;
+
+              }
+
+
+              /*
+               * Se a versão local for igual ou mais recente,
+               * ignorar o perfil importado.
+               */
+              if (
+                importedUpdatedAt <=
+                currentUpdatedAt
+              ) {
+
+                antigosIgnorados++;
+
+                continue;
+
+              }
+
+
+              /*
+               * Só chega aqui se o JSON importado
+               * for realmente mais recente.
+               */
               this.overrides[idImportado] =
                 payload;
+
+
+              this.updatedAt[idImportado] =
+                importedUpdatedAt;
 
 
               this.people =
@@ -1234,31 +1525,42 @@ private persistOverrides(): void {
 
               atualizados++;
 
+              continue;
+
             }
 
 
             /*
-             * O ID não existe:
-             * criar o perfil usando o ID
-             * que veio no ficheiro.
+             * O ID não existe localmente.
+             *
+             * Criar usando o ID que veio no ficheiro.
              */
-
-            else {
-
-              this.overrides[idImportado] =
-                payload;
+            this.overrides[idImportado] =
+              payload;
 
 
-              this.people.unshift({
-                id: idImportado,
-                ...payload
-              });
+            /*
+             * Se o ficheiro tiver timestamp,
+             * preservá-lo.
+             *
+             * Caso contrário, usar agora.
+             */
+            this.updatedAt[idImportado] =
+              importedUpdatedAt > 0
+                ? importedUpdatedAt
+                : Date.now();
 
 
-              adicionados++;
+            this.people.unshift({
 
-            }
+              id: idImportado,
 
+              ...payload
+
+            });
+
+
+            adicionados++;
 
             continue;
 
@@ -1272,7 +1574,6 @@ private persistOverrides(): void {
           /*
            * Sem ID → novo perfil.
            */
-
           const newId =
             this.obterProximoId();
 
@@ -1281,9 +1582,22 @@ private persistOverrides(): void {
             payload;
 
 
+          /*
+           * Um perfil novo sem ID recebe
+           * a data/hora atual.
+           */
+          this.updatedAt[newId] =
+            importedUpdatedAt > 0
+              ? importedUpdatedAt
+              : Date.now();
+
+
           this.people.unshift({
+
             id: newId,
+
             ...payload
+
           });
 
 
@@ -1298,18 +1612,18 @@ private persistOverrides(): void {
 
         this.persistOverrides();
 
+        this.persistUpdatedAt();
+
 
         /*
          * Recalcular grupos e localidades.
          */
-
         this.atualizarFiltros();
 
 
         /*
          * Recalcular lista.
          */
-
         this.atualizarLista();
 
 
@@ -1321,10 +1635,17 @@ private persistOverrides(): void {
            ============================================= */
 
         alert(
+
           `Importação concluída.\n\n` +
+
           `Perfis adicionados: ${adicionados}\n` +
+
           `Perfis atualizados: ${atualizados}\n` +
-          `Perfis ignorados: ${ignorados}`
+
+          `Perfis antigos ignorados: ${antigosIgnorados}\n` +
+
+          `Perfis inválidos/apagados ignorados: ${ignorados}`
+
         );
 
       } catch (error) {
@@ -1347,7 +1668,6 @@ private persistOverrides(): void {
        * Permitir voltar a selecionar
        * o mesmo ficheiro.
        */
-
       input.value = '';
 
     };

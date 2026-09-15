@@ -407,51 +407,68 @@ class="conteudo">
 
 <!-- SIGNO CHINÊS -->
 
-
 <ion-accordion value="chines">
 
+  <ion-item slot="header">
 
-<ion-item slot="header">
+    <ion-label>
+      🐉 Signo chinês
+    </ion-label>
 
-<ion-label>
+  </ion-item>
 
-🐉 Signo chinês
+  <div
+    slot="content"
+    class="conteudo">
 
-</ion-label>
+    <div *ngIf="signoChines">
 
-</ion-item>
+      
 
+      <!-- ANÁLISE SISTÉMICA -->
 
+      <div class="analise">
 
-<div
-slot="content"
-class="conteudo">
+        <p>
+          <strong>Ferida possível:</strong>
+          {{ signoChines.ferida }}
+        </p>
 
+        <p>
+          <strong>Questão sistémica central:</strong>
+          {{ signoChines.questao_sistemica }}
+        </p>
 
-<div *ngIf="signoChines">
+        <p>
+          <strong>Afirmação:</strong>
+          {{ signoChines.afirmacao }}
+        </p>
 
+        <p>
+          <strong>Frase matriz:</strong>
+          {{ signoChines.frase_matriz }}
+        </p>
 
-<h2>
+      </div>
+<br><br><br>
+      <h2>
+        {{ signoChines.signo }}
+        ({{ signoChines.elemento }})
+      </h2>
 
-{{ signoChines.signo }}
+      <!-- DESCRIÇÃO ORIGINAL -->
 
-({{ signoChines.elemento }})
+      <div class="descricao">
 
-</h2>
+        <p>
+          {{ signoChines.descricao }}
+        </p>
 
+      </div>
 
-<p class="descricao">
+    </div>
 
-{{ signoChines.descricao }}
-
-</p>
-
-
-</div>
-
-
-</div>
-
+  </div>
 
 </ion-accordion>
 
@@ -463,84 +480,84 @@ class="conteudo">
 
 <!-- SIGNO SOLAR -->
 
-
 <ion-accordion value="solar">
 
+  <ion-item slot="header">
 
-<ion-item slot="header">
+    <ion-label>
+      ☀️ Signo solar
+    </ion-label>
 
-<ion-label>
+  </ion-item>
 
-☀️ Signo solar
+  <div
+    slot="content"
+    class="conteudo">
 
-</ion-label>
+    <div *ngIf="signoSolarAtual">
 
-</ion-item>
+     
 
+      <!-- ANÁLISE SISTÉMICA -->
 
+      <div class="analise">
 
+        <p>
+          <strong>Ferida possível:</strong>
+          {{ signoSolarAtual.ferida }}
+        </p>
 
-<div
-slot="content"
-class="conteudo">
+        <p>
+          <strong>Questão sistémica central:</strong>
+          {{ signoSolarAtual.questao_sistemica }}
+        </p>
 
+        <p>
+          <strong>Afirmação:</strong>
+          {{ signoSolarAtual.afirmacao }}
+        </p>
 
-<div *ngIf="signoSolarAtual">
+        <p>
+          <strong>Frase matriz:</strong>
+          {{ signoSolarAtual.frase_matriz }}
+        </p>
 
+      </div>
+<br><br><br>
+       <h2>
+        {{ signoSolarAtual.signo }}
+      </h2>
+      <!-- OBJETIVO -->
 
-<h2>
+      <div class="texto-box">
 
-{{ signoSolarAtual.signo }}
+        <strong>
+          Objetivo
+        </strong>
 
-</h2>
+        <p>
+          {{ signoSolarAtual.objetivo }}
+        </p>
 
+      </div>
 
+      <!-- PERSONALIDADE -->
 
+      <div class="texto-box">
 
-<div class="texto-box">
+        <strong>
+          Personalidade
+        </strong>
 
-<strong>
-Objetivo
-</strong>
+        <p>
+          {{ signoSolarAtual.personalidade }}
+        </p>
 
+      </div>
 
-<p>
+    </div>
 
-{{ signoSolarAtual.objetivo }}
-
-</p>
-
-
-</div>
-
-
-
-
-
-<div class="texto-box">
-
-<strong>
-Personalidade
-</strong>
-
-
-<p>
-
-{{ signoSolarAtual.personalidade }}
-
-</p>
-
-
-</div>
-
-
-
-
-</div>
-
-
-</div>
-
+  </div>
 
 </ion-accordion>
 

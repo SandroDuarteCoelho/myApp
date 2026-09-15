@@ -2,12 +2,14 @@ import {
   Component,
   OnInit,
   ViewChild,
+  ElementRef,
   ChangeDetectionStrategy,
   ChangeDetectorRef
 } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+
 import {
   HttpClient,
   HttpClientModule
@@ -36,124 +38,84 @@ import {
   IonSelectOption,
   IonGrid,
   IonRow,
-  IonCol
+  IonCol,
+  IonInfiniteScroll,
+  IonInfiniteScrollContent
 } from '@ionic/angular/standalone';
 
 
 export type Pessoa = {
-
   nome: string;
-
   apelido: string;
-
   localidade: string;
-
   grupo: string;
-
   eneagrama_tipo: number | string;
-
   data: string;
-
 };
 
 
 export type PessoaPersistida = Pessoa & {
-
   id: number;
-
 };
 
 
 @Component({
-
   selector: 'app-perfil',
-
   templateUrl: './perfil.page.html',
-
   styleUrls: ['./perfil.page.scss'],
-
   standalone: true,
-
   changeDetection: ChangeDetectionStrategy.OnPush,
 
   imports: [
-
     CommonModule,
-
     FormsModule,
-
     HttpClientModule,
-
     IonHeader,
-
     IonToolbar,
-
     IonTitle,
-
     IonContent,
-
     IonButton,
-
     IonButtons,
-
     IonPopover,
-
     IonList,
-
     IonItem,
-
     IonLabel,
-
     IonInput,
-
     IonIcon,
-
     IonCard,
-
     IonCardHeader,
-
     IonCardTitle,
-
     IonCardSubtitle,
-
     IonCardContent,
-
     IonSearchbar,
-
     IonSelect,
-
     IonSelectOption,
-
     IonGrid,
-
     IonRow,
-
-    IonCol
-
+    IonCol,
+    IonInfiniteScroll,
+    IonInfiniteScrollContent
   ]
-
 })
 
 
 export class PerfilPage implements OnInit {
 
+  /* =====================================================
+     FORMULÁRIO
+     ===================================================== */
 
   primeiroNome = '';
-
   ultimoNome = '';
-
   dataNascimento = '';
-
   localidade = '';
-
   grupo = '';
-
   eneagrama = '';
 
 
-  // =========================================================
-  // PERSISTÊNCIA
-  // =========================================================
+  /* =====================================================
+     STORAGE
+     ===================================================== */
 
   private readonly STORAGE_KEY_OVERRIDES =
     'pessoas_overrides_v1';
@@ -162,20 +124,31 @@ export class PerfilPage implements OnInit {
     'pessoas_deleted_v1';
 
 
+  /* =====================================================
+     PERFIS
+     ===================================================== */
+
   people: PessoaPersistida[] = [];
-
-
-  /*
-   * NOVO:
-   *
-   * Esta é a lista efetivamente apresentada no HTML.
-   *
-   * Antes o HTML executava filteredPeople() constantemente.
-   * Agora a lista só é recalculada quando necessário.
-   */
 
   filteredPeopleList: PessoaPersistida[] = [];
 
+  visiblePeople: PessoaPersistida[] = [];
+
+
+  /* =====================================================
+     PAGINAÇÃO
+     ===================================================== */
+
+  private readonly PAGE_SIZE = 30;
+
+  private visibleCount = this.PAGE_SIZE;
+
+  hasMorePeople = false;
+
+
+  /* =====================================================
+     FILTROS
+     ===================================================== */
 
   searchText = '';
 
@@ -188,98 +161,87 @@ export class PerfilPage implements OnInit {
   localidades: string[] = [];
 
 
+  /* =====================================================
+     OVERRIDES / APAGADOS
+     ===================================================== */
+
   private overrides: Record<number, Pessoa> = {};
 
   private deletedIds = new Set<number>();
 
 
-  // =========================================================
-  // POPOVER
-  // =========================================================
+  /* =====================================================
+     POPOVER
+     ===================================================== */
 
   popoverMode: 'create' | 'edit' = 'create';
 
   editingId: number | null = null;
 
 
+  /* =====================================================
+     ELEMENTOS HTML
+     ===================================================== */
+
   @ViewChild(IonPopover)
   popover?: IonPopover;
 
+  @ViewChild('fileInput')
+  fileInput?: ElementRef<HTMLInputElement>;
 
-  // =========================================================
-  // CONSTRUTOR
-  // =========================================================
 
   constructor(
-
     private readonly http: HttpClient,
-
     private readonly cdr: ChangeDetectorRef
-
   ) {}
 
 
-  // =========================================================
-  // INIT
-  // =========================================================
+  /* =====================================================
+     INICIALIZAÇÃO
+     ===================================================== */
 
   ngOnInit(): void {
 
     this.loadOverrides();
-
     this.loadDeleted();
-
 
     this.http
       .get<Pessoa[]>('assets/data/pessoas.json')
       .subscribe({
-
         next: (data) => {
 
-
-          // -------------------------------------------------
-          // PERFIS BASE DO JSON
-          // -------------------------------------------------
-
-          const base: PessoaPersistida[] = data.map(
-            (p, i) => ({
-
+          const base: PessoaPersistida[] =
+            data.map((p, i) => ({
               id: i + 1,
-
               ...p
+            }));
 
-            })
-          );
-
-
-          // -------------------------------------------------
-          // APLICAR ALTERAÇÕES GUARDADAS
-          // -------------------------------------------------
 
           this.people = base.map((p) => {
 
             const ov = this.overrides[p.id];
 
             return ov
-
               ? ({
                   ...p,
                   ...ov
                 } as PessoaPersistida)
-
               : p;
 
           });
 
 
-          // -------------------------------------------------
-          // ADICIONAR PERFIS CRIADOS LOCALMENTE
-          // -------------------------------------------------
+          const idsBase =
+            new Set(base.map(p => p.id));
 
-          const idsBase = new Set(
-            base.map((p) => p.id)
-          );
 
+          /*
+           * Adicionar perfis criados localmente
+           * que não existem no pessoas.json.
+           *
+           * Perfis marcados como apagados NÃO
+           * voltam a aparecer.
+           */
 
           for (
             const [idStr, pessoa]
@@ -288,15 +250,14 @@ export class PerfilPage implements OnInit {
 
             const id = Number(idStr);
 
-
-            if (!idsBase.has(id)) {
+            if (
+              !idsBase.has(id) &&
+              !this.deletedIds.has(id)
+            ) {
 
               this.people.unshift({
-
                 id,
-
                 ...pessoa
-
               });
 
             }
@@ -304,29 +265,12 @@ export class PerfilPage implements OnInit {
           }
 
 
-          // -------------------------------------------------
-          // FILTROS
-          // -------------------------------------------------
-
           this.atualizarFiltros();
-
-
-          // -------------------------------------------------
-          // CONSTRUIR LISTA VISÍVEL
-          // -------------------------------------------------
-
           this.atualizarLista();
-
-
-          /*
-           * Como estamos a utilizar OnPush,
-           * garantimos que o Angular verifica a alteração.
-           */
 
           this.cdr.markForCheck();
 
         },
-
 
         error: (err) => {
 
@@ -336,19 +280,17 @@ export class PerfilPage implements OnInit {
           );
 
         }
-
       });
 
   }
 
-// =========================================================
-// LOCAL STORAGE - OVERRIDES
-// =========================================================
+
+ /* =====================================================
+   STORAGE — OVERRIDES
+   ===================================================== */
 
 private loadOverrides(): void {
-
   try {
-
     const raw = window.localStorage.getItem(
       this.STORAGE_KEY_OVERRIDES
     );
@@ -356,96 +298,126 @@ private loadOverrides(): void {
     this.overrides = raw
       ? (JSON.parse(raw) as Record<number, Pessoa>)
       : {};
-
   } catch {
-
     this.overrides = {};
-
   }
-
 }
 
-
 private persistOverrides(): void {
-
   window.localStorage.setItem(
     this.STORAGE_KEY_OVERRIDES,
     JSON.stringify(this.overrides)
   );
-
 }
 
+  /* =====================================================
+     STORAGE — APAGADOS
+     ===================================================== */
 
-// =========================================================
-// LOCAL STORAGE - APAGADOS
-// =========================================================
+  private loadDeleted(): void {
 
-private loadDeleted(): void {
+    try {
 
-  try {
+      const raw =
+        window.localStorage.getItem(
+          this.STORAGE_KEY_DELETED
+        );
 
-    const raw = window.localStorage.getItem(
-      this.STORAGE_KEY_DELETED
-    );
+      const arr =
+        raw
+          ? (JSON.parse(raw) as number[])
+          : [];
 
-    const arr = raw
-      ? (JSON.parse(raw) as number[])
-      : [];
+      this.deletedIds =
+        new Set<number>(arr);
 
-    this.deletedIds = new Set<number>(arr);
+    } catch {
 
-  } catch {
+      this.deletedIds =
+        new Set<number>();
 
-    this.deletedIds = new Set<number>();
+    }
 
   }
 
-}
+
+  private persistDeleted(): void {
+
+    window.localStorage.setItem(
+      this.STORAGE_KEY_DELETED,
+      JSON.stringify(
+        Array.from(this.deletedIds)
+      )
+    );
+
+  }
 
 
-private persistDeleted(): void {
-
-  window.localStorage.setItem(
-    this.STORAGE_KEY_DELETED,
-    JSON.stringify(Array.from(this.deletedIds))
-  );
-
-}
-
-
-  // =========================================================
-  // FILTROS
-  // =========================================================
+  /* =====================================================
+     FILTROS
+     ===================================================== */
 
   private atualizarFiltros(): void {
 
     this.grupos = [
-
       ...new Set(
-        this.people.map(
-          (p) => p.grupo
-        )
+        this.people
+          .map(p => (p.grupo ?? '').trim())
+          .filter(Boolean)
       )
-
-    ];
+    ].sort(
+      (a, b) => a.localeCompare(b)
+    );
 
 
     this.localidades = [
-
       ...new Set(
-        this.people.map(
-          (p) => p.localidade
-        )
+        this.people
+          .map(p => (p.localidade ?? '').trim())
+          .filter(Boolean)
       )
+    ].sort(
+      (a, b) => a.localeCompare(b)
+    );
 
-    ];
+
+    /*
+     * Se o grupo selecionado deixou de existir,
+     * voltar automaticamente para "Todos".
+     */
+
+    if (
+      this.selectedGroup &&
+      !this.grupos.includes(this.selectedGroup)
+    ) {
+
+      this.selectedGroup = '';
+
+    }
+
+
+    /*
+     * Se a localidade selecionada deixou de existir,
+     * voltar automaticamente para "Todas".
+     */
+
+    if (
+      this.selectedLocalidade &&
+      !this.localidades.includes(
+        this.selectedLocalidade
+      )
+    ) {
+
+      this.selectedLocalidade = '';
+
+    }
 
   }
 
 
-  // =========================================================
-  // ATUALIZAR LISTA
-  // =========================================================
+  /* =====================================================
+     PESQUISA / FILTRAGEM
+     ===================================================== */
 
   atualizarLista(): void {
 
@@ -455,91 +427,127 @@ private persistDeleted(): void {
         .toLowerCase();
 
 
-    this.filteredPeopleList = this.people
+    this.filteredPeopleList =
+      this.people
 
-      // -----------------------------------------------------
-      // REMOVER PERFIS APAGADOS
-      // -----------------------------------------------------
+        .filter(
+          p =>
+            !this.deletedIds.has(p.id)
+        )
 
-      .filter(
-        (p) =>
-          !this.deletedIds.has(p.id)
-      )
+        .filter(p => {
 
-
-      // -----------------------------------------------------
-      // FILTROS + PESQUISA
-      // -----------------------------------------------------
-
-      .filter((p) => {
+          const matchesGroup =
+            !this.selectedGroup ||
+            p.grupo === this.selectedGroup;
 
 
-        const matchesGroup =
-
-          !this.selectedGroup ||
-
-          p.grupo ===
-            this.selectedGroup;
+          const matchesLocalidade =
+            !this.selectedLocalidade ||
+            p.localidade ===
+              this.selectedLocalidade;
 
 
-        const matchesLocalidade =
-
-          !this.selectedLocalidade ||
-
-          p.localidade ===
-            this.selectedLocalidade;
+          const nome =
+            (p.nome ?? '').toLowerCase();
 
 
-        const matchesSearch =
-
-          !search ||
-
-          (p.nome ?? '')
-            .toLowerCase()
-            .includes(search)
-
-          ||
-
-          (p.apelido ?? '')
-            .toLowerCase()
-            .includes(search);
+          const apelido =
+            (p.apelido ?? '').toLowerCase();
 
 
-        return (
+          const matchesSearch =
+            !search ||
+            nome.includes(search) ||
+            apelido.includes(search);
 
-          matchesGroup &&
 
-          matchesLocalidade &&
+          return (
+            matchesGroup &&
+            matchesLocalidade &&
+            matchesSearch
+          );
 
-          matchesSearch
-
-        );
-
-      });
+        });
 
 
     /*
-     * Necessário devido ao OnPush quando
-     * atualizarLista() é chamada por código.
+     * Sempre que há uma nova pesquisa/filtro,
+     * voltar aos primeiros 30 perfis.
      */
+
+    this.visibleCount =
+      this.PAGE_SIZE;
+
+
+    this.atualizarVisiblePeople();
 
     this.cdr.markForCheck();
 
   }
 
 
-  // =========================================================
-  // TRACKBY
-  // =========================================================
+  /* =====================================================
+     PERFIS VISÍVEIS
+     ===================================================== */
 
-  trackByPessoaId(_: number, pessoa: PessoaPersistida): number {
-  return pessoa.id;
-}
+  private atualizarVisiblePeople(): void {
+
+    this.visiblePeople =
+      this.filteredPeopleList.slice(
+        0,
+        this.visibleCount
+      );
 
 
-  // =========================================================
-  // NAVEGAÇÃO
-  // =========================================================
+    this.hasMorePeople =
+      this.visibleCount <
+      this.filteredPeopleList.length;
+
+  }
+
+
+  /* =====================================================
+     CARREGAR MAIS
+     ===================================================== */
+
+  async carregarMais(event: any): Promise<void> {
+
+    this.visibleCount +=
+      this.PAGE_SIZE;
+
+
+    this.atualizarVisiblePeople();
+
+    this.cdr.markForCheck();
+
+
+    if (event) {
+
+      await event.target.complete();
+
+    }
+
+  }
+
+
+  /* =====================================================
+     TRACK BY
+     ===================================================== */
+
+  trackByPessoaId(
+    _: number,
+    pessoa: PessoaPersistida
+  ): number {
+
+    return pessoa.id;
+
+  }
+
+
+  /* =====================================================
+     NAVEGAÇÃO
+     ===================================================== */
 
   voltar(): void {
 
@@ -565,70 +573,32 @@ private persistDeleted(): void {
   }
 
 
-  // =========================================================
-  // CRIAR
-  // =========================================================
+  /* =====================================================
+     CRIAR
+     ===================================================== */
 
-  private abrirCriarPopoverUI(): void {
+  abrirCriar(): void {
 
     this.popoverMode = 'create';
 
     this.editingId = null;
 
-
-    this.primeiroNome = '';
-
-    this.ultimoNome = '';
-
-    this.dataNascimento = '';
-
-    this.localidade = '';
-
-    this.grupo = '';
-
-    this.eneagrama = '';
-
-  }
-
-
-  abrirCriar(): void {
-
-    this.abrirCriarPopover();
-
-  }
-
-
-  private abrirCriarPopover(): void {
-
-    this.abrirCriarPopoverUI();
+    this.limparFormulario();
 
     this.popover?.present();
 
   }
 
 
-  private fecharPopover(): void {
-
-    this.popover?.dismiss();
-
-  }
-
-
-  // =========================================================
-  // GUARDAR
-  // =========================================================
+  /* =====================================================
+     GUARDAR
+     ===================================================== */
 
   guardar(): void {
-
-
-    // =======================================================
-    // VALIDAR CRIAÇÃO
-    // =======================================================
 
     if (
       this.popoverMode === 'create'
     ) {
-
 
       const requiredValues:
         Array<[string, string]> = [
@@ -684,11 +654,8 @@ private persistDeleted(): void {
       if (missing.length) {
 
         alert(
-
           `Preencha todos os campos antes de guardar. ` +
-
           `Faltando: ${missing.join(', ')}`
-
         );
 
         return;
@@ -697,10 +664,6 @@ private persistDeleted(): void {
 
     }
 
-
-    // =======================================================
-    // PAYLOAD
-    // =======================================================
 
     const payload: Pessoa = {
 
@@ -725,80 +688,52 @@ private persistDeleted(): void {
     };
 
 
-    // =======================================================
-    // EDITAR
-    // =======================================================
+    /* ===================================================
+       EDITAR
+       =================================================== */
 
     if (
-
       this.popoverMode === 'edit' &&
-
-      this.editingId
-
+      this.editingId !== null
     ) {
 
-
-      this.overrides[
-        this.editingId
-      ] = payload;
+      this.overrides[this.editingId] =
+        payload;
 
 
       this.persistOverrides();
 
 
       this.people =
-        this.people.map((p) =>
-
+        this.people.map(p =>
           p.id === this.editingId
-
             ? ({
                 ...p,
                 ...payload
               } as PessoaPersistida)
-
             : p
-
         );
 
 
-      // Atualizar filtros
-
       this.atualizarFiltros();
-
-
-      // Atualizar lista
-
       this.atualizarLista();
 
 
       this.editingId = null;
-
       this.popoverMode = 'create';
 
     }
 
 
-    // =======================================================
-    // CRIAR
-    // =======================================================
+    /* ===================================================
+       CRIAR NOVO
+       =================================================== */
 
     else {
 
-
       const newId =
+        this.obterProximoId();
 
-        Math.max(
-
-          ...this.people.map(
-            (p) => p.id
-          ),
-
-          0
-
-        ) + 1;
-
-
-      // Guardar no localStorage
 
       this.overrides[newId] =
         payload;
@@ -807,81 +742,91 @@ private persistDeleted(): void {
       this.persistOverrides();
 
 
-      // Criar pessoa
-
-      const newPerson:
-        PessoaPersistida = {
-
-          id: newId,
-
-          ...payload
-
-        };
+      const newPerson: PessoaPersistida = {
+        id: newId,
+        ...payload
+      };
 
 
       this.people = [
-
         newPerson,
-
         ...this.people
-
       ];
 
 
-      // Atualizar filtros
-
       this.atualizarFiltros();
-
-
-      // Atualizar lista
-
       this.atualizarLista();
 
     }
 
 
-    // =======================================================
-    // LIMPAR FORMULÁRIO
-    // =======================================================
-
-    this.primeiroNome = '';
-
-    this.ultimoNome = '';
-
-    this.dataNascimento = '';
-
-    this.localidade = '';
-
-    this.grupo = '';
-
-    this.eneagrama = '';
-
-
-    // =======================================================
-    // FECHAR POPOVER
-    // =======================================================
-
+    this.limparFormulario();
     this.fecharPopover();
-
-
-    this.cdr.markForCheck();
 
   }
 
 
-  // =========================================================
-  // EDITAR
-  // =========================================================
+  /* =====================================================
+     OBTER PRÓXIMO ID LIVRE
+     ===================================================== */
+
+  private obterProximoId(): number {
+
+    const idsUsados =
+      new Set<number>();
+
+
+    for (
+      const pessoa of this.people
+    ) {
+
+      idsUsados.add(pessoa.id);
+
+    }
+
+
+    /*
+     * IDs apagados também ficam reservados.
+     * Assim nunca são reutilizados.
+     */
+
+    for (
+      const id of this.deletedIds
+    ) {
+
+      idsUsados.add(id);
+
+    }
+
+
+    let id = 1;
+
+
+    while (
+      idsUsados.has(id)
+    ) {
+
+      id++;
+
+    }
+
+
+    return id;
+
+  }
+
+
+  /* =====================================================
+     EDITAR
+     ===================================================== */
 
   abrirEditar(
     p: PessoaPersistida
   ): void {
 
-
     this.popoverMode = 'edit';
 
     this.editingId = p.id;
-
 
     this.primeiroNome =
       p.nome ?? '';
@@ -909,9 +854,32 @@ private persistDeleted(): void {
   }
 
 
-  // =========================================================
-  // ESCOLHER
-  // =========================================================
+  /* =====================================================
+     LIMPAR FORMULÁRIO
+     ===================================================== */
+
+  private limparFormulario(): void {
+
+    this.primeiroNome = '';
+    this.ultimoNome = '';
+    this.dataNascimento = '';
+    this.localidade = '';
+    this.grupo = '';
+    this.eneagrama = '';
+
+  }
+
+
+  fecharPopover(): void {
+
+    this.popover?.dismiss();
+
+  }
+
+
+  /* =====================================================
+     ESCOLHER PERFIL
+     ===================================================== */
 
   escolher(
     p: PessoaPersistida
@@ -923,54 +891,9 @@ private persistDeleted(): void {
   }
 
 
-  // =========================================================
-  // APAGAR
-  // =========================================================
-
-  apagar(
-    p: PessoaPersistida
-  ): void {
-
-
-    if (
-
-      !confirm(
-
-        `Apagar ${p.nome} ${p.apelido}?`
-
-      )
-
-    ) {
-
-      return;
-
-    }
-
-
-    this.deletedIds.add(
-      p.id
-    );
-
-
-    this.persistDeleted();
-
-
-    this.people =
-      this.people.filter(
-        (x) => x.id !== p.id
-      );
-
-
-    this.atualizarFiltros();
-
-    this.atualizarLista();
-
-  }
-
-
-  // =========================================================
-  // COMPARAR
-  // =========================================================
+  /* =====================================================
+     COMPARAR
+     ===================================================== */
 
   comparar(
     p: PessoaPersistida
@@ -982,22 +905,71 @@ private persistDeleted(): void {
   }
 
 
+  /* =====================================================
+     APAGAR
+     ===================================================== */
 
-  // =========================================================
-  // EXPORTAR TODOS
-  // =========================================================
+  apagar(
+    p: PessoaPersistida
+  ): void {
+
+    if (
+      !confirm(
+        `Apagar ${p.nome} ${p.apelido}?`
+      )
+    ) {
+
+      return;
+
+    }
+
+
+    /*
+     * Marcar o ID como apagado.
+     */
+
+    this.deletedIds.add(p.id);
+
+    this.persistDeleted();
+
+
+    /*
+     * Retirar da lista atual.
+     */
+
+    this.people =
+      this.people.filter(
+        x => x.id !== p.id
+      );
+
+
+    /*
+     * Atualizar filtros.
+     *
+     * Se era a última pessoa de Porto,
+     * Porto desaparece.
+     */
+
+    this.atualizarFiltros();
+    this.atualizarLista();
+
+  }
+
+
+  /* =====================================================
+     EXPORTAR
+     ===================================================== */
 
   exportarTudo(): void {
 
+    /*
+     * Exportar apenas perfis ativos.
+     */
 
     const dados =
       this.people.filter(
-
-        (p) =>
-          !this.deletedIds.has(
-            p.id
-          )
-
+        p =>
+          !this.deletedIds.has(p.id)
       );
 
 
@@ -1011,14 +983,10 @@ private persistDeleted(): void {
 
     const blob =
       new Blob(
-
         [json],
-
         {
-          type:
-            'application/json'
+          type: 'application/json'
         }
-
       );
 
 
@@ -1032,10 +1000,7 @@ private persistDeleted(): void {
 
     a.href = url;
 
-
-    a.download =
-      'perfis.json';
-
+    a.download = 'perfis.json';
 
     a.click();
 
@@ -1044,5 +1009,352 @@ private persistDeleted(): void {
 
   }
 
+
+  /* =====================================================
+     ABRIR IMPORTAÇÃO
+     ===================================================== */
+
+  abrirImportacao(): void {
+
+    this.fileInput
+      ?.nativeElement
+      .click();
+
+  }
+
+
+  /* =====================================================
+     IMPORTAR FICHEIRO
+     ===================================================== */
+
+  importarFicheiro(
+    event: Event
+  ): void {
+
+    const input =
+      event.target as HTMLInputElement;
+
+
+    const file =
+      input.files?.[0];
+
+
+    if (!file) {
+
+      return;
+
+    }
+
+
+    const reader =
+      new FileReader();
+
+
+    reader.onload = () => {
+
+      try {
+
+        const parsed: unknown =
+          JSON.parse(
+            String(reader.result)
+          );
+
+
+        /*
+         * O JSON tem de ser um array.
+         */
+
+        if (
+          !Array.isArray(parsed)
+        ) {
+
+          throw new Error(
+            'Formato inválido.'
+          );
+
+        }
+
+
+        const dados =
+          parsed as unknown[];
+
+
+        let adicionados = 0;
+
+        let atualizados = 0;
+
+        let ignorados = 0;
+
+
+        /* =============================================
+           PROCESSAR PERFIS
+           ============================================= */
+
+        for (
+          const item of dados
+        ) {
+
+          /*
+           * Verificar se é um objeto.
+           */
+
+          if (
+            item === null ||
+            typeof item !== 'object'
+          ) {
+
+            ignorados++;
+
+            continue;
+
+          }
+
+
+          const pessoa =
+            item as Partial<PessoaPersistida>;
+
+
+          /*
+           * Nome é obrigatório.
+           */
+
+          if (
+            typeof pessoa.nome !== 'string' ||
+            pessoa.nome.trim() === ''
+          ) {
+
+            ignorados++;
+
+            continue;
+
+          }
+
+
+          /*
+           * Verificar se o ID importado
+           * é válido.
+           */
+
+          const idImportado =
+            typeof pessoa.id === 'number' &&
+            Number.isInteger(pessoa.id) &&
+            pessoa.id > 0
+              ? pessoa.id
+              : null;
+
+
+          /*
+           * Se o ID foi apagado nesta instalação,
+           * NÃO voltar a criar esse perfil.
+           */
+
+          if (
+            idImportado !== null &&
+            this.deletedIds.has(idImportado)
+          ) {
+
+            ignorados++;
+
+            continue;
+
+          }
+
+
+          /*
+           * Preparar os dados do perfil.
+           */
+
+          const payload: Pessoa = {
+
+            nome:
+              pessoa.nome.trim(),
+
+            apelido:
+              typeof pessoa.apelido === 'string'
+                ? pessoa.apelido.trim()
+                : '',
+
+            localidade:
+              typeof pessoa.localidade === 'string'
+                ? pessoa.localidade.trim()
+                : '',
+
+            grupo:
+              typeof pessoa.grupo === 'string'
+                ? pessoa.grupo.trim()
+                : '',
+
+            eneagrama_tipo:
+              pessoa.eneagrama_tipo ?? '',
+
+            data:
+              typeof pessoa.data === 'string'
+                ? pessoa.data
+                : ''
+
+          };
+
+
+          /* =========================================
+             IMPORTAÇÃO COM ID
+             ========================================= */
+
+          if (
+            idImportado !== null
+          ) {
+
+            const existente =
+              this.people.find(
+                p =>
+                  p.id === idImportado
+              );
+
+
+            /*
+             * O ID já existe:
+             * atualizar esse perfil.
+             */
+
+            if (existente) {
+
+              this.overrides[idImportado] =
+                payload;
+
+
+              this.people =
+                this.people.map(p =>
+                  p.id === idImportado
+                    ? ({
+                        ...p,
+                        ...payload
+                      } as PessoaPersistida)
+                    : p
+                );
+
+
+              atualizados++;
+
+            }
+
+
+            /*
+             * O ID não existe:
+             * criar o perfil usando o ID
+             * que veio no ficheiro.
+             */
+
+            else {
+
+              this.overrides[idImportado] =
+                payload;
+
+
+              this.people.unshift({
+                id: idImportado,
+                ...payload
+              });
+
+
+              adicionados++;
+
+            }
+
+
+            continue;
+
+          }
+
+
+          /* =========================================
+             IMPORTAÇÃO SEM ID
+             ========================================= */
+
+          /*
+           * Sem ID → novo perfil.
+           */
+
+          const newId =
+            this.obterProximoId();
+
+
+          this.overrides[newId] =
+            payload;
+
+
+          this.people.unshift({
+            id: newId,
+            ...payload
+          });
+
+
+          adicionados++;
+
+        }
+
+
+        /* =============================================
+           GUARDAR
+           ============================================= */
+
+        this.persistOverrides();
+
+
+        /*
+         * Recalcular grupos e localidades.
+         */
+
+        this.atualizarFiltros();
+
+
+        /*
+         * Recalcular lista.
+         */
+
+        this.atualizarLista();
+
+
+        this.cdr.markForCheck();
+
+
+        /* =============================================
+           RESULTADO
+           ============================================= */
+
+        alert(
+          `Importação concluída.\n\n` +
+          `Perfis adicionados: ${adicionados}\n` +
+          `Perfis atualizados: ${atualizados}\n` +
+          `Perfis ignorados: ${ignorados}`
+        );
+
+      } catch (error) {
+
+        console.error(
+          'Erro ao importar perfis:',
+          error
+        );
+
+
+        alert(
+          'Não foi possível importar o ficheiro. ' +
+          'Verifique se é um ficheiro JSON válido.'
+        );
+
+      }
+
+
+      /*
+       * Permitir voltar a selecionar
+       * o mesmo ficheiro.
+       */
+
+      input.value = '';
+
+    };
+
+
+    reader.readAsText(file);
+
+  }
 
 }

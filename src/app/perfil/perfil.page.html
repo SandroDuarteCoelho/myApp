@@ -1,106 +1,91 @@
 <ion-header [translucent]="true">
-
   <ion-toolbar>
 
     <ion-buttons slot="start">
-
-      <ion-button
-        class="thin-outline"
-        fill="outline"
-        size="small"
-        (click)="voltar()">
-
+      <ion-button fill="clear" size="small" (click)="voltar()">
         Voltar
-
       </ion-button>
-
     </ion-buttons>
 
+    <ion-title>Perfil</ion-title>
 
-    <ion-title class="ion-text-center">
+    <ion-buttons slot="end" class="header-actions">
 
-      Perfil
-
-    </ion-title>
-
-
-    <ion-buttons slot="end">
-
-      <ion-button
-        fill="clear"
-        size="small"
-        (click)="abrirSignos()">
-
+      <ion-button fill="clear" size="small" (click)="abrirSignos()">
         Signos
-
       </ion-button>
 
-
-      <ion-button
-        fill="clear"
-        size="small"
-        (click)="abrirEneagrama()">
-
+      <ion-button fill="clear" size="small" (click)="abrirEneagrama()">
         Eneagrama
-
       </ion-button>
 
+      <div class="export-import-buttons">
 
-      <ion-button
-        fill="clear"
-        size="small"
-        (click)="exportarTudo()">
+        <ion-button
+          fill="clear"
+          size="small"
+          (click)="exportarTudo()">
+          Exportar
+        </ion-button>
 
-        Exportar
+        <ion-button
+          fill="clear"
+          size="small"
+          (click)="abrirImportacao()">
+          Importar
+        </ion-button>
 
-      </ion-button>
+      </div>
 
     </ion-buttons>
-
   </ion-toolbar>
-
 </ion-header>
 
 
-<ion-content
-  [fullscreen]="true"
-  class="perfil-page">
+<ion-content [fullscreen]="true" class="perfil-page">
+
+  <!-- =====================================================
+       INPUT OCULTO PARA IMPORTAÇÃO
+       ===================================================== -->
+
+  <input
+    #fileInput
+    type="file"
+    accept=".json,application/json"
+    hidden
+    (change)="importarFicheiro($event)"
+  >
 
 
-  <!-- ÁREA SUPERIOR -->
+  <!-- =====================================================
+       ÁREA SUPERIOR
+       ===================================================== -->
 
   <div class="top-container">
-
 
     <ion-button
       expand="block"
       class="criar-btn"
       (click)="abrirCriar()">
 
-      <ion-icon
-        name="add-outline">
-      </ion-icon>
-
       Criar novo
 
     </ion-button>
 
-
-    <!-- PESQUISA -->
 
     <ion-searchbar
       [(ngModel)]="searchText"
       placeholder="Pesquisar nome ou apelido"
       debounce="300"
       (ionInput)="atualizarLista()">
-
     </ion-searchbar>
 
 
-    <!-- FILTROS -->
+    <!-- ===================================================
+         FILTROS
+         =================================================== -->
 
     <div class="filtros">
-
 
       <ion-item>
 
@@ -108,23 +93,21 @@
           Grupo
         </ion-label>
 
-
         <ion-select
           [(ngModel)]="selectedGroup"
+          interface="popover"
+          placeholder="Todos"
           (ionChange)="atualizarLista()">
 
           <ion-select-option value="">
-
             Todos
-
           </ion-select-option>
 
-
           <ion-select-option
-            *ngFor="let g of grupos"
-            [value]="g">
+            *ngFor="let grupo of grupos"
+            [value]="grupo">
 
-            {{ g }}
+            {{ grupo }}
 
           </ion-select-option>
 
@@ -139,23 +122,21 @@
           Localidade
         </ion-label>
 
-
         <ion-select
           [(ngModel)]="selectedLocalidade"
+          interface="popover"
+          placeholder="Todas"
           (ionChange)="atualizarLista()">
 
           <ion-select-option value="">
-
             Todas
-
           </ion-select-option>
 
-
           <ion-select-option
-            *ngFor="let l of localidades"
-            [value]="l">
+            *ngFor="let localidade of localidades"
+            [value]="localidade">
 
-            {{ l }}
+            {{ localidade }}
 
           </ion-select-option>
 
@@ -163,13 +144,14 @@
 
       </ion-item>
 
-
     </div>
 
   </div>
 
 
-  <!-- LISTA -->
+  <!-- =====================================================
+       LISTA DE PERFIS
+       ===================================================== -->
 
   <ion-grid>
 
@@ -178,136 +160,123 @@
       <ion-col
         size="12"
         *ngFor="
-          let p of filteredPeopleList;
+          let p of visiblePeople;
           trackBy: trackByPessoaId
         ">
 
-
         <ion-card
-  class="person-card"
-  button="true"
-  (click)="escolher(p)">
+          class="person-card"
+          button="true"
+          (click)="escolher(p)">
 
+
+          <!-- =================================================
+               CABEÇALHO
+               ================================================= -->
 
           <ion-card-header>
 
-
             <div class="avatar">
-
               {{ p.nome.charAt(0) }}
-
             </div>
-
 
             <div class="person-info">
 
-
               <ion-card-title>
-
                 {{ p.nome }} {{ p.apelido }}
-
               </ion-card-title>
 
-
               <ion-card-subtitle>
-
                 {{ p.grupo }}
-
               </ion-card-subtitle>
 
-
             </div>
-
 
           </ion-card-header>
 
 
-          <ion-card-content>
+          <!-- =================================================
+               DADOS
+               ================================================= -->
 
+          <ion-card-content>
 
             <div class="dados">
 
-
               <p>
-
                 <strong>Localidade:</strong>
-
                 {{ p.localidade }}
-
               </p>
 
-
               <p>
-
                 <strong>Eneagrama:</strong>
-
                 {{ p.eneagrama_tipo }}
-
               </p>
-
 
               <p>
-
                 <strong>Data:</strong>
-
                 {{ p.data }}
-
               </p>
-
 
             </div>
 
 
-            <!-- BOTÕES DO PERFIL -->
+            <!-- =================================================
+                 BOTÕES
+                 ================================================= -->
 
             <div class="card-actions">
 
-  <ion-button
-    class="mini-btn"
-    size="small"
-    fill="outline"
-    (click)="abrirEditar(p); $event.stopPropagation()">
+              <ion-button
+                class="mini-btn"
+                size="small"
+                fill="outline"
+                (click)="
+                  abrirEditar(p);
+                  $event.stopPropagation()
+                ">
 
-    <ion-icon name="create-outline"></ion-icon>
+                <ion-icon name="create-outline"></ion-icon>
+                Editar
 
-    Editar
-
-  </ion-button>
-
-
-  <ion-button
-    class="mini-btn"
-    size="small"
-    fill="outline"
-    (click)="comparar(p); $event.stopPropagation()">
-
-    <ion-icon name="git-compare-outline"></ion-icon>
-
-    Comparar
-
-  </ion-button>
+              </ion-button>
 
 
-  <ion-button
-    class="mini-btn apagar"
-    size="small"
-    color="danger"
-    fill="outline"
-    (click)="apagar(p); $event.stopPropagation()">
+              <ion-button
+                class="mini-btn comparar"
+                size="small"
+                fill="outline"
+                (click)="
+                  comparar(p);
+                  $event.stopPropagation()
+                ">
 
-    <ion-icon name="trash-outline"></ion-icon>
+                <ion-icon name="git-compare-outline"></ion-icon>
+                Comparar
 
-    Apagar
+              </ion-button>
 
-  </ion-button>
 
-</div>
+              <ion-button
+                class="mini-btn apagar"
+                size="small"
+                color="danger"
+                fill="outline"
+                (click)="
+                  apagar(p);
+                  $event.stopPropagation()
+                ">
 
+                <ion-icon name="trash-outline"></ion-icon>
+                Apagar
+
+              </ion-button>
+
+            </div>
 
           </ion-card-content>
 
         </ion-card>
-
 
       </ion-col>
 
@@ -316,172 +285,139 @@
   </ion-grid>
 
 
-  <!-- ==========================
-       POPOVER CRIAR / EDITAR
-  =========================== -->
+  <!-- =====================================================
+       CARREGAMENTO PROGRESSIVO
+       ===================================================== -->
 
-  <ion-popover>
+  <ion-infinite-scroll
+    threshold="250px"
+    [disabled]="!hasMorePeople"
+    (ionInfinite)="carregarMais($event)">
+
+    <ion-infinite-scroll-content
+      loadingSpinner="crescent"
+      loadingText="A carregar mais perfis...">
+    </ion-infinite-scroll-content>
+
+  </ion-infinite-scroll>
+
+
+  <!-- =====================================================
+       POPOVER — CRIAR / EDITAR
+       ===================================================== -->
+
+  <ion-popover
+    #popover
+    [dismissOnSelect]="false">
 
     <ng-template>
 
       <ion-content class="ion-padding">
 
-        <ion-list lines="none">
-
-
-          <!-- PRIMEIRO NOME -->
+        <ion-list>
 
           <ion-item>
 
             <ion-label position="stacked">
-
               Primeiro nome
-
             </ion-label>
-
 
             <ion-input
               [(ngModel)]="primeiroNome"
-              placeholder="Digite o primeiro nome">
-
+              type="text">
             </ion-input>
 
           </ion-item>
 
 
-          <!-- ÚLTIMO NOME -->
-
           <ion-item>
 
             <ion-label position="stacked">
-
               Último nome
-
             </ion-label>
-
 
             <ion-input
               [(ngModel)]="ultimoNome"
-              placeholder="Digite o último nome">
-
+              type="text">
             </ion-input>
 
           </ion-item>
 
 
-          <!-- DATA -->
-
           <ion-item>
 
             <ion-label position="stacked">
-
               Data nascimento
-
             </ion-label>
-
 
             <ion-input
-              type="date"
-              [(ngModel)]="dataNascimento">
-
+              [(ngModel)]="dataNascimento"
+              type="date">
             </ion-input>
 
           </ion-item>
 
 
-          <!-- LOCALIDADE -->
-
           <ion-item>
 
             <ion-label position="stacked">
-
               Localidade
-
             </ion-label>
-
 
             <ion-input
               [(ngModel)]="localidade"
-              placeholder="Digite a localidade">
-
+              type="text">
             </ion-input>
 
           </ion-item>
 
 
-          <!-- GRUPO -->
-
           <ion-item>
 
             <ion-label position="stacked">
-
               Grupo
-
             </ion-label>
-
 
             <ion-input
               [(ngModel)]="grupo"
-              placeholder="Digite o grupo">
-
+              type="text">
             </ion-input>
 
           </ion-item>
 
-
-          <!-- ENEAGRAMA -->
 
           <ion-item>
 
             <ion-label position="stacked">
-
               Eneagrama
-
             </ion-label>
-
 
             <ion-input
               [(ngModel)]="eneagrama"
-              placeholder="Ex: Tipo 4">
-
+              type="text">
             </ion-input>
 
           </ion-item>
 
 
+          <div class="guardar-container">
+
+            <ion-button
+              expand="block"
+              (click)="guardar()">
+
+              Guardar
+
+            </ion-button>
+
+          </div>
+
         </ion-list>
-
-
-        <div class="guardar-container">
-
-          <ion-button
-            expand="block"
-            (click)="guardar()">
-
-            Guardar
-
-          </ion-button>
-
-        </div>
-
 
       </ion-content>
 
     </ng-template>
 
   </ion-popover>
-
-
-  <!--
-    MODAIS EXISTENTES
-
-    Mantém aqui os teus ion-modal atuais:
-
-    - Signos
-    - Eneagrama
-    - Editar perfil
-    - Exportações
-  -->
-
 
 </ion-content>

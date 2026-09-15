@@ -1,3 +1,4 @@
+
 /* =========================================================
    PÁGINA PRINCIPAL
    ========================================================= */
@@ -19,9 +20,6 @@
   padding: 12px;
 }
 
-
-/* Botão Criar */
-
 .criar-btn {
   --border-radius: 14px;
   margin-bottom: 12px;
@@ -29,16 +27,12 @@
   font-weight: 600;
 }
 
-
-/* Pesquisa */
-
 ion-searchbar {
   --border-radius: 14px;
   --background: #ffffff;
   --color: #222;
   --placeholder-color: #777;
   --icon-color: #555;
-
   margin-bottom: 10px;
 }
 
@@ -60,13 +54,12 @@ ion-searchbar::part(input) {
 
 .filtros ion-item {
   flex: 1;
-
   --background: #ffffff;
-
   border-radius: 14px;
   margin: 0;
 
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  box-shadow:
+    0 3px 10px rgba(0, 0, 0, 0.08);
 
   transition:
     transform 0.2s ease,
@@ -118,6 +111,31 @@ ion-button {
 
 
 /* =========================================================
+   BOTÕES EXPORTAR / IMPORTAR
+   ========================================================= */
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.export-import-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0;
+}
+
+.export-import-buttons ion-button {
+  margin: 0;
+  min-height: 22px;
+  height: 22px;
+}
+
+
+/* =========================================================
    LISTA / GRID
    ========================================================= */
 
@@ -132,11 +150,8 @@ ion-grid {
 
 ion-card.person-card {
   margin: 12px 4px;
-
   border-radius: 20px;
-
   background: #ffffff;
-
   color: #222;
 
   box-shadow:
@@ -168,13 +183,9 @@ ion-card.person-card:active {
   padding: 16px;
 }
 
-
-/* Avatar */
-
 .avatar {
   width: 50px;
   height: 50px;
-
   border-radius: 50%;
 
   display: flex;
@@ -188,15 +199,11 @@ ion-card.person-card:active {
   );
 
   color: #ffffff;
-
   font-size: 22px;
   font-weight: 700;
 
   flex-shrink: 0;
 }
-
-
-/* Informação da pessoa */
 
 .person-info {
   display: flex;
@@ -224,22 +231,16 @@ ion-card.person-card:active {
 
 .dados {
   background: #f7f7fb;
-
   border-radius: 14px;
-
   padding: 12px;
-
   margin-bottom: 14px;
-
   color: #ffffff !important;
 }
 
 .person-card .dados p {
   margin: 8px 0;
-
   font-size: 15px;
   line-height: 1.5;
-
   color: #ffffff !important;
 }
 
@@ -257,15 +258,12 @@ ion-card.person-card:active {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-
   margin-top: 14px;
 }
 
 .mini-btn {
   --border-radius: 20px;
-
   height: 30px;
-
   font-size: 11px;
 
   --padding-start: 10px;
@@ -276,6 +274,21 @@ ion-card.person-card:active {
   font-size: 14px;
   margin-right: 4px;
 }
+
+
+/* =========================================================
+   COMPARAR — LARANJA
+   ========================================================= */
+
+.mini-btn.comparar {
+  --color: #f3f70d;
+  --border-color: #f3f70d;
+}
+
+
+/* =========================================================
+   APAGAR
+   ========================================================= */
 
 .mini-btn.apagar {
   --border-color: #eb445a;
@@ -313,16 +326,13 @@ ion-list ion-item {
 ion-label[position="stacked"] {
   font-size: 13px;
   font-weight: 600;
-
   color: #333 !important;
-
   margin-bottom: 5px;
 }
 
 ion-input {
   --background: #ffffff;
   --border-radius: 10px;
-
   --color: #222;
   --placeholder-color: #777;
 
@@ -334,18 +344,13 @@ ion-select {
   --placeholder-color: #777;
 }
 
-
-/* Botão Guardar */
-
 .guardar-container {
   padding-top: 15px;
 }
 
 .guardar-container ion-button {
   height: 44px;
-
   --border-radius: 14px;
-
   font-weight: 600;
 }
 
@@ -400,32 +405,23 @@ ion-content {
 
 @media (max-width: 480px) {
 
-  /* Filtros */
-
   .filtros {
     flex-direction: column;
     gap: 8px;
   }
 
 
-  /* Cabeçalho do cartão */
-
   .person-card ion-card-header {
     padding: 14px;
   }
 
 
-  /* Avatar */
-
   .avatar {
     width: 44px;
     height: 44px;
-
     font-size: 18px;
   }
 
-
-  /* Nome */
 
   .person-info ion-card-title,
   .person-card ion-card-title {
@@ -433,31 +429,55 @@ ion-content {
   }
 
 
-  /* Subtítulo */
-
   .person-info ion-card-subtitle,
   .person-card ion-card-subtitle {
     font-size: 13px;
   }
 
 
-  /* Dados */
-
   .person-card .dados p {
     font-size: 14px;
   }
 
 
-  /* Botões */
-
   .card-actions {
     gap: 6px;
   }
+
 
   .mini-btn {
     font-size: 10px;
     height: 28px;
   }
+
+
+  .export-import-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  gap: 3px;
+  margin-left: 6px;
+}
+
+.export-import-buttons ion-button {
+  margin: 0;
+  min-width: 72px;
+  height: 24px;
+  min-height: 24px;
+
+  --border-width: 1px;
+  --border-style: solid;
+  --border-radius: 6px;
+
+  --padding-start: 8px;
+  --padding-end: 8px;
+
+  font-size: 11px;
+  font-weight: 600;
+}
+
+
 }
 
 
@@ -472,52 +492,50 @@ ion-content {
   }
 
 
-  /* Cartão */
-
   ion-card.person-card {
     background: #1e1e1e;
     color: #ffffff;
   }
 
 
-  /* Cabeçalho */
-
   .person-card ion-card-title {
     color: #ffffff !important;
   }
+
 
   .person-card ion-card-subtitle {
     color: #cccccc !important;
   }
 
 
-  /* Dados */
-
   .dados {
     background: #252525;
   }
 
+
   .person-card .dados p {
     color: #dddddd !important;
   }
+
 
   .person-card .dados strong {
     color: #ffffff !important;
   }
 
 
-  /* Campos */
-
   ion-list ion-item {
     --background: #252525;
   }
+
 
   ion-popover ion-content {
     --background: #1e1e1e;
   }
 
+
   ion-popover ion-input {
     --background: #ffffff;
     --color: #222222;
   }
+
 }

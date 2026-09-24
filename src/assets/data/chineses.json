@@ -8,6 +8,8 @@
     "questao_sistemica":"Posso estar seguro sem compreender e controlar completamente o sistema à minha volta? Preciso ser suficientemente inteligente e estratégico para evitar uma insegurança que alguém antes de mim viveu? Posso ser reconhecido sem precisar conquistar a admiração dos outros? Posso seguir os meus princípios mesmo quando a estratégia mais vantajosa seria abandoná-los?",
     "afirmacao":"Eu tenho valor e tenho um lugar mesmo quando não sou bem-sucedido, admirado ou influente. Posso utilizar a minha inteligência, conhecimento e capacidade estratégica sem precisar controlar, manipular ou agradar. Posso construir segurança sem viver em função do futuro e posso aceitar o desconhecido sem sentir que perdi o meu poder.",
     "frase_matriz":"Não preciso compreender ou controlar todo o sistema para estar seguro. Posso utilizar a minha inteligência, adaptar-me quando necessário e continuar fiel aos meus princípios, mesmo quando não sei qual será o resultado.",
+    "espelho":"Uma pequena raposa encontra uma ponte que precisa de atravessar para chegar ao outro lado da floresta. Antes de avançar, observa o rio, conta as pedras, testa a ponte e procura vários caminhos alternativos. Quando os amigos atravessam por um caminho simples, a raposa continua a estudar as possibilidades, tentando descobrir qual será a melhor. Quando finalmente decide avançar, começa a surgir outra dúvida e volta atrás para procurar uma solução diferente.",
+    "valores":"Simplicidade, Paz, Humildade, Cooperação, Felicidade",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"A incompatibilidade será natural, pois o Rato é inconstante, infiel e inquieto, enquanto que Carneiro é passivo, caseiro, emotivo e romântico. Os conflitos serão inevitáveis quando Carneiro tentar prender o Rato.",
@@ -68,6 +70,8 @@
     "questao_sistemica":"Estou a viver a minha própria força ou estou a utilizar a competência e o controlo para garantir um lugar que, na realidade, já me pertence?",
     "afirmacao":"Posso ser competente sem precisar de provar que mereço pertencer.",
     "frase_matriz":"O meu lugar não depende de eu fazer tudo corretamente. Posso pertencer, diferenciar-me, falhar, aprender e continuar a ter o meu lugar.",
+    "espelho":"Um pequeno castor é escolhido para construir uma ponte sobre um riacho. Trabalha sozinho, mede os troncos, verifica cada encaixe e tenta fazer a ponte perfeita. Quando os amigos chegam para ajudar, diz que ainda consegue sozinho. Sempre que uma tábua fica torta, desmonta-a e começa de novo. Enquanto tenta corrigir tudo, os outros animais esperam do outro lado do riacho.",
+    "valores":"Cooperação, Humildade, Simplicidade, Paz, Responsabilidade",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"O relacionamento é possível muito mais porque Carneiro necessita da segurança que o Boi lhe proporciona. Sendo compreensivo, poderá determinar as bases do relacionamento, inclusive quanto ao aspecto sexual, com possibilidades enormes de êxito e\r\nrealização.",
@@ -128,6 +132,8 @@
     "questao_sistemica":"Posso continuar a ter valor, força e lugar mesmo quando paro, não consigo fazer acontecer, os outros discordam de mim ou escolhem não seguir a minha direção?",
     "afirmacao":"Não preciso estar sempre em ação, convencer ou comandar para ter valor. Posso confiar na minha força, escolher conscientemente onde colocá-la e permitir que os outros sejam livres.",
     "frase_matriz":"A minha força não depende da velocidade com que ajo, da quantidade de pessoas que influencio ou da capacidade de fazer prevalecer a minha vontade.",
+    "espelho":"Um pequeno leão chega a uma clareira onde os animais estão a decidir onde construir um novo abrigo. Ele começa logo a organizar os outros, escolhe o lugar, distribui tarefas e fala mais alto para que todos sigam as suas ideias. Quando outro animal sugere uma solução diferente, o leão insiste que a sua é melhor e tenta convencer todos a fazer como ele quer. Mesmo quando os outros começam a trabalhar juntos de outra maneira, ele continua a tentar assumir o comando.",
+    "valores":"Humildade, Respeito, Cooperação, Tolerância, Unidade",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"As mudanças e as reformas que são a tônica da personalidade do Tigre não encontram eco na natureza tímida e frágil do Carneiro. Carneiro, por seu turno, não vê em Tigre o modelo ideal de companhia, embora sexualmente sejam compatíveis.",
@@ -188,6 +194,8 @@
     "questao_sistemica":"Se eu deixar de procurar aprovação e reconhecimento, continuarei a ter valor e lugar?",
     "afirmacao":"O meu valor não depende da aprovação, atenção ou reconhecimento dos outros; posso expressar-me e liderar livremente, respeitando a liberdade do outro.",
     "frase_matriz":"Posso não ser visto, aprovado ou seguido e continuar a ter valor, lugar e dignidade.",
+    "espelho":"Um pequeno pavão chega a uma festa na floresta e vê os animais reunidos à volta de uma mesa. Para chamar a atenção, começa a mostrar as penas, conta histórias engraçadas e oferece-se para organizar as brincadeiras. Sempre que os outros começam a conversar sem reparar nele, inventa outra coisa para fazer e tenta novamente juntar todos à sua volta.",
+    "valores":"Amor, Simplicidade, Felicidade, Humildade, Unidade",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"Uma das melhores parcerias para o Coelho, pois a identidade é quase perfeita. O Carneiro aceita o recolhimento natural do Coelho e este lhe proporciona a segurança e a família que ele necessita para se sentir bem. No sexo encontram formas de se realizar satisfatoriamente.",
@@ -248,6 +256,8 @@
     "questao_sistemica":"Estou a exercer a minha força a partir do meu próprio centro ou continuo a lutar contra uma antiga experiência de impotência, desrespeito ou perda de posição?",
     "afirmacao":"Posso ter poder sem precisar de controlar.",
     "frase_matriz":"Estou seguro no meu próprio lugar. Posso permitir que os outros sejam diferentes de mim, posso abdicar do controlo e continuo inteiro.",
+    "espelho":"Um pequeno leão encontra uma árvore onde os animais costumam guardar os seus brinquedos. Decide que aquele lugar deve ser dele e começa a vigiar quem entra e quem sai. Quando outro animal tenta escolher um lugar perto dele, o leão coloca-se à frente e diz que aquele espaço já está ocupado. Ao longo do dia, continua a controlar o que os outros fazem, tentando garantir que ninguém consegue ocupar o lugar que considera seu.",
+    "valores":"Respeito, Humildade, Cooperação, Tolerância, Paz",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"Há uma possibilidade enorme de sucesso nesta relação, já que o Dragão dá a Carneiro a liberdade que este necessita, retribuindo com segurança e compreensão. Com Carneiro, o Dragão saciará toda a sua inquietação na cama. ",
@@ -308,6 +318,8 @@
     "questao_sistemica":"Quem teve de permanecer forte quando os outros não conseguiram? Estou a viver a minha estabilidade ou continuo a tentar impedir que uma antiga instabilidade familiar volte a acontecer?",
     "afirmacao":"Posso permanecer firme sem controlar tudo. Posso confiar nos outros sem abandonar o meu discernimento. Posso arriscar, receber e mudar sem perder o meu lugar. Não preciso carregar sozinho a estabilidade do meu sistema.",
     "frase_matriz":"O meu lugar não depende de eu sustentar tudo. Posso permanecer firme, confiar, receber e avançar. A segurança que procuro fora também pode existir dentro de mim.",
+    "espelho":"Um pequeno castor constrói uma ponte sobre um riacho para chegar ao outro lado. Todos os dias verifica os troncos, reforça as cordas e substitui qualquer pedaço que pareça menos seguro. Quando os amigos querem atravessar, pede-lhes que esperem porque ainda precisa de verificar tudo outra vez. Um dia, enquanto tenta reforçar sozinho várias partes da ponte ao mesmo tempo, um dos troncos solta-se e cai na água.",
+    "valores":"Cooperação, Humildade, Simplicidade, Paz, Responsabilidade",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"Quando a Serpente deixa um pouco de lado sua teimosia e sua exigência, certamente encontra no Carneiro a parceria ideal e duradoura para sua vida. Mesmo diante do caráter sensual da Serpente, o Carneiro vai procurar satisfazê-la, se obter em troca o ambiente familiar tranquilo e seguro que ele aprecia.",
@@ -368,6 +380,8 @@
     "questao_sistemica":"Estou verdadeiramente a escolher a minha liberdade ou continuo a fugir de uma antiga experiência de controlo e perda de autonomia?",
     "afirmacao":"Posso estar ligado sem estar preso.",
     "frase_matriz":"Posso criar vínculos profundos e continuar a ser livre. O vínculo não me tira o meu lugar; posso permanecer eu mesmo dentro da relação.",
+    "espelho":"Uma pequena raposa encontra um grupo de animais que todos os dias percorre o mesmo caminho pela floresta. No início, gosta de caminhar com eles, mas depressa começam a dizer-lhe por onde deve ir, onde deve parar e que brincadeiras deve fazer. Quando a raposa tenta explorar outro trilho, os animais chamam-na de volta. Ela começa então a afastar-se do grupo sempre que percebe que terá de seguir as escolhas dos outros.",
+    "valores":"Liberdade, Respeito, Honestidade, Tolerância, Amor",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"Não é uma relação fácil, embora possível, se superados alguns obstáculos. O Cavalo resiste diante dos hábitos domésticos do Carneiro, que não consegue se fazer entender, embora acrescente um pouco de romantismo à relação. Carneiro é muito mais sentimental que o Cavalo, facilitando uma afinidade no aspecto sexual. ",
@@ -428,6 +442,8 @@
     "questao_sistemica":"Quem, na minha família, viveu uma perda, separação, mudança ou instabilidade que tornou a segurança algo precioso? Quem precisou de proteger a casa, a família, os recursos ou os vínculos para impedir que algo se perdesse? Estou realmente a proteger o presente ou continuo a tentar impedir uma perda que pertence ao passado?",
     "afirmacao":"Não preciso controlar aquilo que amo para me sentir seguro. Posso proteger sem possuir, amar sem prender, cuidar sem decidir pelo outro e procurar estabilidade sem resistir à mudança. Posso mostrar a minha sensibilidade sem perder a minha força e expressar as minhas necessidades sem exigir que os outros provem constantemente a sua lealdade. Posso confiar que uma relação verdadeira não precisa de ser vigiada para existir.",
     "frase_matriz":"Não preciso controlar para estar seguro. Posso amar profundamente sem prender, proteger sem dominar e adaptar-me sem perder o meu lugar. Aquilo que é verdadeiramente meu não precisa de ser mantido através do medo.",
+    "espelho":"Um pequeno esquilo encontra uma árvore onde guarda as suas bolotas preferidas. Ao ouvir que uma tempestade se aproxima, começa a levar tudo para dentro da toca. Mesmo depois de guardar o suficiente, continua a recolher mais e verifica várias vezes se nenhuma bolota ficou para trás. Quando os amigos o chamam para brincar, ele prefere ficar junto da toca a vigiar o que guardou.",
+    "valores":"Simplicidade, Liberdade, Paz, Cooperação, Humildade",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"O excesso de sentimentalismo, de apego ao passado e de teimosia pode tornar essa relação extremamente desgastante para ambos, apesar de serem os dois afetuosos, românticos e carinhosos. No sexo se entendem maravilhosamente bem.",
@@ -488,6 +504,8 @@
     "questao_sistemica":"Quem, na minha família, precisou de adaptar-se, agradar, negociar ou ler constantemente o ambiente para manter a paz ou garantir pertença? Quem aprendeu que era mais seguro contornar o conflito do que dizer directamente aquilo que sentia? Estou realmente a escolher adaptar-me ou continuo a fazê-lo porque temo que, se for totalmente eu próprio, alguém se afaste?",
     "afirmacao":"Não preciso compreender, agradar ou gerir os outros para garantir o meu lugar. Posso ser sensível sem ser frágil, estratégico sem manipular e diplomático sem esconder a verdade. Posso dizer o que quero, aceitar que os outros podem discordar e confiar que uma relação verdadeira não depende de eu controlar a sua resposta.",
     "frase_matriz":"Não preciso gerir as relações para pertencer. Posso ser eu próprio, dizer o que preciso e permitir que os outros sejam livres para responder. A minha pertença não depende da minha capacidade de agradar ou controlar.",
+    "espelho":"Uma pequena coelha chega a uma clareira onde os seus amigos estão a brincar. Cada um quer fazer uma coisa diferente e a coelha vai mudando de brincadeira para acompanhar cada amigo. Quando alguém escolhe um jogo de que ela não gosta, aceita na mesma. Quando outro quer mudar as regras, ela adapta-se novamente. No fim, está cansada e já nem sabe qual era a brincadeira que queria fazer.",
+    "valores":"Honestidade, Liberdade, Respeito, Tolerância, Felicidade",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"A preocupação excessiva do Carneiro com o lar o torna incapaz de acompanhar o ritmo alucinante e vibrante do Macaco, que dificilmente se deixará prender ao ambiente doméstico. No sexo não haverá maiores encantos nem atração.",
@@ -548,6 +566,8 @@
     "questao_sistemica":"Quem, na minha história familiar, teve de ser o solucionador, o protetor ou aquele que precisava de vencer as adversidades?",
     "afirmacao":"Não preciso eliminar todos os perigos, corrigir todos os erros ou compreender tudo para estar seguro. Posso usar a minha inteligência, capacidade de liderança e organização sem transformar essas capacidades numa obrigação de controlar a vida. Posso fazer a minha parte e permitir que o restante pertença à vida e aos outros.",
     "frase_matriz":"Não sou responsável por impedir todo o perigo. Posso ser lúcido sem estar em vigilância, competente sem ser perfeito e líder sem controlar. Posso confiar na vida mesmo quando não tenho a solução.",
+    "espelho":"Um pequeno castor prepara uma ponte para os animais atravessarem o rio. Antes de os deixar passar, verifica cada tronco, aperta cada corda e testa várias vezes o chão. Quando os amigos chegam para ajudar, pede-lhes que esperem porque ainda precisa de confirmar tudo. Enquanto verifica novamente a ponte, começa a chover e os animais continuam à espera na outra margem.",
+    "valores":"Responsabilidade, Cooperação, Humildade, Simplicidade, Paz",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"Carneiro busca numa relação, antes de mais nada, segurança, coisa que jamais encontrará no Galo, que não terá nele, em contrapartida, a pessoa forte de que necessita para se manter. Sexualmente será uma relação fria e sem inspiração. ",
@@ -608,6 +628,8 @@
     "questao_sistemica":"Posso escolher o meu próprio caminho e continuar a pertencer?",
     "afirmacao":"Posso escolher por mim, permanecer ligado aos meus e respeitar o caminho de cada um.",
     "frase_matriz":"Posso continuar a pertencer mesmo quando escolho diferente, estabeleço limites, discordo ou sigo o meu próprio caminho.",
+    "espelho":"Um pequeno coelho chega a uma clareira onde os seus amigos estão a preparar uma brincadeira. Cada um escolhe uma tarefa e o coelho aceita sempre fazer aquilo que os outros sugerem. Quando alguém muda as regras, ele concorda; quando alguém precisa de ajuda, ele deixa o que está a fazer para ajudar. A certa altura, os amigos começam a discutir sobre qual brincadeira escolher, e o coelho fica entre os dois grupos, tentando concordar com todos ao mesmo tempo.",
+    "valores":"Honestidade, Liberdade, Respeito, Tolerância, Unidade",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"O Cão pode ser a companhia desejada pelo Carneiro, mas este não aceita o desejo de liberdade daquele. Carneiro gosta do sexo mais sensível e romântico, enquanto que o Cão aprecia a excitação mais elaborada e os prazeres menos convencionais.",
@@ -668,6 +690,8 @@
     "questao_sistemica":"Posso pertencer mesmo quando não estou a ajudar, aproximar, organizar ou resolver alguma coisa para os outros? Preciso ser aquele que mantém as pessoas unidas para garantir o meu próprio lugar? Posso deixar cada pessoa seguir o seu destino sem sentir que estou a abandonar ou trair alguém?",
     "afirmacao":"Eu pertenço mesmo quando não sou necessário. Posso ajudar sem carregar, dar sem comprar vínculo, influenciar sem controlar e amar sem decidir o caminho dos outros.",
     "frase_matriz":"Eu tenho um lugar antes de ser útil. Os outros podem afastar-se, discordar ou escolher outro caminho e eu continuo a pertencer.",
+    "espelho":"Um pequeno esquilo chega a uma clareira onde os animais estão a preparar uma festa. Em vez de se juntar à brincadeira, começa logo a carregar frutos, arrumar folhas e ajudar cada animal que encontra. Sempre que alguém termina uma tarefa, procura outra coisa para fazer. Quando os amigos lhe dizem para descansar e brincar com eles, o esquilo olha à volta e começa imediatamente a procurar alguém que ainda precise da sua ajuda.",
+    "valores":"Amor, Simplicidade, Felicidade, Liberdade, Unidade",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"A única coisa em que os dois podem encontrar dificuldade para se relacionar será quanto ao sexo, que exigirá do Carneiro uma participação mais ativa e uma entrega mais física do que romântica ou sonhadora. ",
@@ -735,6 +759,8 @@
     "questao_sistemica":"Estou verdadeiramente a escolher a minha liberdade ou continuo a lutar contra uma antiga experiência de dependência, obrigação ou perda de autonomia?",
     "afirmacao":"Eu sou livre e continuo a pertencer. Posso amar sem me prender, permanecer sem perder a autonomia, receber apoio sem perder força e defender aquilo em que acredito sem precisar lutar contra tudo. A minha liberdade não depende de fugir; depende de poder escolher.",
     "frase_matriz":"A minha liberdade não depende de estar sozinho, de poder fugir ou de vencer. Posso permanecer ligado, receber, amar e comprometer-me sem perder quem sou.",
+    "espelho":"Um pequeno pássaro faz amizade com um grupo de pássaros que todos os dias voa junto pela floresta. No início, gosta de os acompanhar, mas o grupo começa a escolher sempre o caminho, o lugar onde pousar e quando voltar para casa. Quando o pequeno pássaro tenta voar noutra direção, os outros chamam-no para voltar. Ele começa então a voar um pouco afastado do grupo, procurando manter sempre um caminho por onde possa seguir sozinho.",
+    "valores":"Liberdade, Respeito, Honestidade, Tolerância, Amor",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"A incompatibilidade será natural, pois o Rato é inconstante, infiel e inquieto, enquanto que Carneiro é passivo, caseiro, emotivo e romântico. Os conflitos serão inevitáveis quando Carneiro tentar prender o Rato.",
@@ -795,6 +821,8 @@
     "questao_sistemica":"Estou verdadeiramente a exercer a minha força ou continuo a tentar garantir segurança através do controlo e da necessidade de ser indispensável?",
     "afirmacao":"Posso ter força sem precisar de controlar.",
     "frase_matriz":"Estou seguro no meu próprio lugar. Posso ser forte, cuidar e contribuir sem controlar tudo nem carregar aquilo que pertence aos outros. O meu valor existe para além daquilo que consigo fazer.",
+    "espelho":"Um pequeno castor vive junto ao rio com a sua família. Quando começa a chover e a água sobe, corre para reforçar a barragem, carrega pedras e tapa cada pequeno buraco que encontra. Os outros castores oferecem-se para ajudar, mas ele continua a trabalhar sozinho, verificando constantemente se a água não está a passar. Mesmo quando a chuva abranda, continua junto à barragem, atento a qualquer nova fuga.",
+    "valores":"Cooperação, Humildade, Paz, Responsabilidade, Simplicidade",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"O relacionamento é possível muito mais porque Carneiro necessita da segurança que o Boi lhe proporciona. Sendo compreensivo, poderá determinar as bases do relacionamento, inclusive quanto ao aspecto sexual, com possibilidades enormes de êxito e\r\nrealização.",
@@ -855,6 +883,8 @@
     "questao_sistemica":"Posso ter um lugar mesmo quando não estou a produzir, quando preciso de alguém, quando erro ou quando escolho uma vida diferente daquela que esperavam de mim?",
     "afirmacao":"Não preciso provar o meu valor através do trabalho, da competência ou da estabilidade. Posso ser responsável, capaz e determinado sem transformar essas qualidades na condição para merecer o meu lugar.",
     "frase_matriz":"Posso falhar, precisar de ajuda, descansar, mudar e não atingir todos os meus objetivos — e continuar a ter valor, dignidade e lugar.",
+    "espelho":"Um pequeno esquilo chega a uma clareira onde os animais estão a preparar uma festa. Quando lhe pedem ajuda para levar alguns frutos, ele carrega o maior cesto que encontra. Depois tenta ser o primeiro a terminar cada tarefa e, sempre que outro animal faz alguma coisa bem, procura uma tarefa mais difícil para mostrar que também consegue. Quando os amigos o convidam para se sentar e descansar, ele continua a procurar algo para fazer.",
+    "valores":"Amor, Humildade, Simplicidade, Felicidade, Liberdade",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"As mudanças e as reformas que são a tônica da personalidade do Tigre não encontram eco na natureza tímida e frágil do Carneiro. Carneiro, por seu turno, não vê em Tigre o modelo ideal de companhia, embora sexualmente sejam compatíveis.",
@@ -915,6 +945,8 @@
     "questao_sistemica":"Posso sentir-me seguro mesmo quando não controlo o ambiente, não tenho todas as respostas e preciso considerar necessidades diferentes das minhas?",
     "afirmacao":"Posso estar seguro sem controlar tudo, cuidar de mim sem fechar-me aos outros e tomar decisões mesmo quando não tenho todas as certezas.",
     "frase_matriz":"Não preciso controlar tudo para estar seguro; posso confiar na minha capacidade de sentir, discernir, escolher e adaptar-me.",
+    "espelho":"Um pequeno esquilo prepara-se para um dia de chuva e começa a organizar a sua toca. Junta comida, folhas e pequenos ramos, separa tudo em montes e verifica várias vezes se está no lugar certo. Quando termina, começa novamente a contar as bolotas e a procurar mais coisas que possa guardar. Os amigos chamam-no para brincar, mas ele responde que ainda precisa de deixar tudo preparado.",
+    "valores":"Simplicidade, Liberdade, Cooperação, Paz, Felicidade",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"Uma das melhores parcerias para o Coelho, pois a identidade é quase perfeita. O Carneiro aceita o recolhimento natural do Coelho e este lhe proporciona a segurança e a família que ele necessita para se sentir bem. No sexo encontram formas de se realizar satisfatoriamente.",
@@ -975,6 +1007,8 @@
     "questao_sistemica":"Estou verdadeiramente a defender os meus valores ou continuo a lutar para reparar uma antiga experiência de impotência, injustiça ou desrespeito?",
     "afirmacao":"Posso manter a minha força sem precisar lutar contra quem é diferente de mim.",
     "frase_matriz":"O meu lugar não depende de vencer os outros. Posso manter os meus valores, ouvir a diferença, reconsiderar e escolher as minhas batalhas sem perder a minha integridade.",
+    "espelho":"Um pequeno ouriço encontra um grupo de animais a escolher o lugar para uma brincadeira. Um dos animais tenta ocupar sozinho o melhor lugar e manda os outros afastarem-se. O ouriço vê que alguns ficam sem espaço e aproxima-se para defender o lugar deles. Quando o outro animal tenta empurrá-lo para o lado, o ouriço mantém-se firme e não deixa que ele decida por todos.",
+    "valores":"Respeito, Liberdade, Honestidade, Tolerância, Cooperação",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"Há uma possibilidade enorme de sucesso nesta relação, já que o Dragão dá a Carneiro a liberdade que este necessita, retribuindo com segurança e compreensão. Com Carneiro, o Dragão saciará toda a sua inquietação na cama. ",
@@ -1035,6 +1069,8 @@
     "questao_sistemica":"Posso estar seguro mesmo quando não tenho poder sobre aquilo que está fora de mim? Posso confiar que continuo inteiro mesmo quando alguém me dececiona, me ultrapassa, me contraria ou quando algo que conquistei se perde?",
     "afirmacao":"Não preciso controlar, dominar ou estar acima dos outros para estar seguro; posso confiar na minha capacidade de permanecer inteiro perante aquilo que não controlo.",
     "frase_matriz":"Posso usar a minha inteligência, força e discernimento para construir a minha vida sem precisar transformar o controlo, o poder ou a vantagem em condições para me sentir seguro.",
+    "espelho":"Um pequeno ouriço encontra uma cesta cheia de frutos que juntou durante vários dias. Quando os amigos se aproximam para ajudar a levá-la, ele aperta a cesta contra o peito e recua. Não deixa ninguém tocar nos frutos e tenta carregar a cesta sozinho. Mesmo quando percebe que é demasiado pesada, prefere arrastá-la pelo chão a entregá-la a outra pessoa.",
+    "valores":"Cooperação, Humildade, Paz, Unidade, Amor",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"Quando a Serpente deixa um pouco de lado sua teimosia e sua exigência, certamente encontra no Carneiro a parceria ideal e duradoura para sua vida. Mesmo diante do caráter sensual da Serpente, o Carneiro vai procurar satisfazê-la, se obter em troca o ambiente familiar tranquilo e seguro que ele aprecia.",
@@ -1095,6 +1131,8 @@
     "questao_sistemica":"Estou realmente a escolher mudar ou estou a fugir da sensação de estar preso?",
     "afirmacao":"Posso escolher ficar sem deixar de ser livre.",
     "frase_matriz":"Posso escolher um caminho, comprometer-me e criar continuidade sem perder a minha liberdade. Se um dia precisar de mudar, poderei fazê-lo conscientemente.",
+    "espelho":"Um pequeno pássaro encontra uma árvore onde gosta de descansar e decide ficar ali durante alguns dias. Os outros pássaros começam a preparar-lhe um ninho e convidam-no a ficar com eles. Ao princípio, gosta da companhia, mas quando o convidam a seguir o grupo para outra parte da floresta, começa a hesitar. Olha para o ninho, depois para o céu, e afasta-se, com receio de já não conseguir partir quando quiser.",
+    "valores":"Liberdade, Amor, Respeito, Honestidade, Felicidade",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"Não é uma relação fácil, embora possível, se superados alguns obstáculos. O Cavalo resiste diante dos hábitos domésticos do Carneiro, que não consegue se fazer entender, embora acrescente um pouco de romantismo à relação. Carneiro é muito mais sentimental que o Cavalo, facilitando uma afinidade no aspecto sexual. ",
@@ -1155,6 +1193,8 @@
     "questao_sistemica":"Estou verdadeiramente a escolher adaptar-me ou continuo a adaptar-me para garantir que continuo a pertencer?",
     "afirmacao":"Eu pertenço sem precisar de me adaptar ou sacrificar-me.",
     "frase_matriz":"Eu pertenço mesmo quando sou diferente. Posso receber apoio, dizer não, tomar as minhas decisões e continuar ligado aos outros. Não preciso sacrificar-me para merecer amor.",
+    "espelho":"Uma pequena coelha chega a uma clareira onde os amigos estão a preparar uma brincadeira. Ela aceita todas as tarefas que lhe dão, muda de brincadeira sempre que os outros mudam e nunca diz que prefere fazer outra coisa. Quando um amigo lhe pede ajuda, deixa imediatamente aquilo que estava a fazer. No fim, os amigos convidam-na para brincar, mas ela continua a tentar descobrir o que pode fazer para que todos fiquem contentes.",
+    "valores":"Honestidade, Liberdade, Amor, Respeito, Felicidade",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"O excesso de sentimentalismo, de apego ao passado e de teimosia pode tornar essa relação extremamente desgastante para ambos, apesar de serem os dois afetuosos, românticos e carinhosos. No sexo se entendem maravilhosamente bem.",
@@ -1215,6 +1255,8 @@
     "questao_sistemica":"Quem, na minha família, precisou de lutar para subir, prosperar, escapar à escassez ou construir uma condição melhor? Estou a construir o meu futuro ou continuo inconscientemente a tentar levar a família para um lugar onde ela finalmente tenha o suficiente? O que aconteceria se eu descobrisse que já tenho suficiente para poder simplesmente estar?",
     "afirmacao":"Não preciso estar sempre a avançar, melhorar ou subir para ter valor, segurança e pertença. Posso crescer sem rejeitar aquilo que já tenho, procurar novos desafios sem fugir do presente e manter padrões elevados sem transformar a imperfeição em insuficiência. Posso ter limites sem me desligar e posso parar sem perder o meu caminho.",
     "frase_matriz":"Eu não preciso de estar sempre a avançar para merecer o meu lugar. Posso crescer porque escolho crescer, não porque fugir da insuficiência me obriga. Posso apreciar o que tenho e continuar a evoluir.",
+    "espelho":"Um pequeno esquilo vive numa árvore onde já tem comida e um lugar confortável para dormir. Um dia, vê outra árvore com mais bolotas e começa a querer mudar-se para lá. Depois encontra uma árvore ainda maior e decide que talvez seja melhor procurar outra. Mesmo quando os amigos lhe dizem que já tem tudo o que precisa, o esquilo continua a procurar um lugar com mais bolotas, mais espaço e mais coisas para guardar.",
+    "valores":"Simplicidade, Felicidade, Paz, Humildade, Liberdade",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"A preocupação excessiva do Carneiro com o lar o torna incapaz de acompanhar o ritmo alucinante e vibrante do Macaco, que dificilmente se deixará prender ao ambiente doméstico. No sexo não haverá maiores encantos nem atração.",
@@ -1275,6 +1317,8 @@
     "questao_sistemica":"Quem teve de cuidar, corrigir, sustentar ou melhorar as condições da família antes de mim? Estou a ajudar por escolha ou continuo inconscientemente a tentar reparar uma história que não é minha?",
     "afirmacao":"Não preciso melhorar tudo nem carregar todos para ter valor e pertencer. Posso contribuir sem me sacrificar, orientar sem controlar, estabelecer padrões sem exigir perfeição e confiar nos outros mesmo quando fazem as coisas de maneira diferente da minha. Posso cuidar de mim e continuar a cuidar dos outros.",
     "frase_matriz":"Eu pertenço mesmo quando não estou a corrigir, ajudar ou melhorar nada. Posso fazer a minha parte e deixar que os outros façam a deles. Não preciso reparar o mundo para ter um lugar nele.",
+    "espelho":"Um pequeno castor vê que a sua toca precisa de alguns arranjos antes da chegada da chuva. Começa a carregar ramos, tapar buracos e reforçar a entrada. Quando os outros castores chegam para ajudar, diz que ainda consegue tratar de tudo. Assim que termina uma tarefa, encontra outra para corrigir e continua a trabalhar, mesmo quando a toca já está pronta.",
+    "valores":"Cooperação, Humildade, Simplicidade, Paz, Felicidade",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"Carneiro busca numa relação, antes de mais nada, segurança, coisa que jamais encontrará no Galo, que não terá nele, em contrapartida, a pessoa forte de que necessita para se manter. Sexualmente será uma relação fria e sem inspiração. ",
@@ -1335,6 +1379,8 @@
     "questao_sistemica":"Posso receber orientação, proteção e amor sem entregar a minha autonomia? Posso ser forte sem precisar estar em oposição a alguém mais forte?",
     "afirmacao":"Posso caminhar ao lado de pessoas fortes, aprender com elas e continuar a escolher o meu próprio caminho.",
     "frase_matriz":"Posso aceitar orientação sem submissão, exercer força sem oposição e seguir o meu caminho sem precisar provar que sou mais forte do que ninguém.",
+    "espelho":"Um pequeno cavalo vive numa quinta onde todos os dias segue as instruções de um cavalo mais velho. Quando chega a hora de atravessar o campo, espera que o outro escolha o caminho, o ritmo e o lugar onde deve parar. Um dia, o cavalo mais velho segue por outro caminho e o pequeno cavalo fica parado, sem saber para onde ir. Quando encontra dois caminhos diferentes, procura alguém que lhe diga qual deve escolher.",
+    "valores":"Liberdade, Responsabilidade, Honestidade, Humildade, Respeito",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"O Cão pode ser a companhia desejada pelo Carneiro, mas este não aceita o desejo de liberdade daquele. Carneiro gosta do sexo mais sensível e romântico, enquanto que o Cão aprecia a excitação mais elaborada e os prazeres menos convencionais.",
@@ -1395,6 +1441,8 @@
     "questao_sistemica":"Posso amar e proteger sem carregar o destino da minha família? Preciso ser forte, rico e realizador para reparar aquilo que faltou à minha família? Posso descansar e simplesmente viver sem sentir que estou a abandonar uma missão?",
     "afirmacao":"Eu tenho valor mesmo quando não estou a vencer ou a proteger. Posso ser forte sem carregar tudo, amar sem salvar, prosperar sem provar e contribuir para a minha família sem assumir o destino de cada um.",
     "frase_matriz":"Posso cuidar daqueles que amo sem ser responsável por garantir toda a sua vida. A minha força é um dom, não uma dívida.",
+    "espelho":"Um pequeno leão vive com a sua família numa clareira. Um dia, uma árvore cai perto da entrada da toca e bloqueia o caminho. O leão tenta sozinho afastar o tronco, empurra-o várias vezes e não deixa os outros animais ajudarem. Quando percebe que não consegue movê-lo, procura outro lugar para apoiar o tronco e continua a tentar, preocupado que a família fique sem passagem.",
+    "valores":"Cooperação, Humildade, Responsabilidade, Amor, Paz",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"A única coisa em que os dois podem encontrar dificuldade para se relacionar será quanto ao sexo, que exigirá do Carneiro uma participação mais ativa e uma entrega mais física do que romântica ou sonhadora. ",
@@ -1455,6 +1503,8 @@
     "questao_sistemica":"Estou verdadeiramente a construir segurança ou continuo a tentar garantir o meu lugar através da perfeição, do controlo e do reconhecimento?",
     "afirmacao":"Posso estar seguro sem precisar de controlar, provar ou garantir tudo.",
     "frase_matriz":"O meu lugar não depende de tudo estar perfeito. Posso ser responsável sem controlar, competente sem provar, prudente sem me fechar e posso continuar a pertencer mesmo quando erro, mudo ou escolho um caminho diferente.",
+    "espelho":"Um pequeno castor fica encarregado de preparar uma ponte para os animais atravessarem o rio. Mede os troncos, verifica cada corda e conta várias vezes as peças que precisa. Quando os amigos chegam para ajudar, diz que ainda falta confirmar tudo. Ao reparar numa pequena falha, desmonta uma parte da ponte e começa novamente, enquanto os outros animais esperam para poder atravessar.",
+    "valores":"Cooperação, Humildade, Simplicidade, Paz, Responsabilidade",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"A incompatibilidade será natural, pois o Rato é inconstante, infiel e inquieto, enquanto que Carneiro é passivo, caseiro, emotivo e romântico. Os conflitos serão inevitáveis quando Carneiro tentar prender o Rato.",
@@ -1515,6 +1565,8 @@
     "questao_sistemica":"Estou a perseverar porque escolho este caminho ou continuo a suportar porque, inconscientemente, acredito que desistir seria falhar perante alguém?",
     "afirmacao":"Posso ser forte sem precisar suportar tudo.",
     "frase_matriz":"O meu lugar não depende daquilo que consigo suportar. Posso ser responsável, determinado e perseverante sem carregar tudo sozinho, sem transformar o sofrimento em prova de valor e sem perder a liberdade de parar ou mudar.",
+    "espelho":"Um pequeno castor decide preparar a sua toca antes da chegada do inverno. Carrega ramos, pedras e folhas durante todo o dia, mesmo quando os outros castores lhe dizem que já há material suficiente. Quando um amigo se oferece para ajudar, responde que consegue sozinho e continua a trabalhar. Ao anoitecer, ainda está a transportar mais um ramo, apesar de já estar cansado.",
+    "valores":"Cooperação, Humildade, Simplicidade, Paz, Responsabilidade",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"O relacionamento é possível muito mais porque Carneiro necessita da segurança que o Boi lhe proporciona. Sendo compreensivo, poderá determinar as bases do relacionamento, inclusive quanto ao aspecto sexual, com possibilidades enormes de êxito e\r\nrealização.",
@@ -1575,6 +1627,8 @@
     "questao_sistemica":"Estou verdadeiramente a exercer a minha liberdade ou continuo a lutar contra a possibilidade de ser controlado?",
     "afirmacao":"Posso ser livre sem precisar lutar contra quem é diferente de mim.",
     "frase_matriz":"A minha liberdade não depende de controlar ou afastar os outros. Posso ouvir, receber, amar, cooperar e aceitar limites sem perder o meu poder de escolha.",
+    "espelho":"Um pequeno cavalo vive numa quinta onde o dono decide todos os dias por onde ele deve andar e quando pode sair. Um dia, o dono coloca uma vedação à volta do campo e indica-lhe um único caminho. O cavalo tenta encontrar outra passagem e percorre o campo à procura de uma abertura. Quando os outros animais lhe mostram o caminho indicado pelo dono, ele continua a procurar uma forma de escolher por onde quer ir.",
+    "valores":"Liberdade, Responsabilidade, Respeito, Honestidade, Humildade",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"As mudanças e as reformas que são a tônica da personalidade do Tigre não encontram eco na natureza tímida e frágil do Carneiro. Carneiro, por seu turno, não vê em Tigre o modelo ideal de companhia, embora sexualmente sejam compatíveis.",
@@ -1635,6 +1689,8 @@
     "questao_sistemica":"Estou verdadeiramente a escolher a minha autonomia ou continuo a proteger-me da intimidade para não correr o risco de depender, ser rejeitado ou ser ferido?",
     "afirmacao":"Posso deixar os outros aproximarem-se sem perder a minha autonomia.",
     "frase_matriz":"Posso confiar em mim e também nos outros. Posso ouvir, receber, amar e deixar-me conhecer sem perder o meu discernimento, os meus limites ou o meu lugar.",
+    "espelho":"Uma pequena raposa encontra uma toca onde os animais da floresta costumam reunir-se. Ao princípio, gosta de estar com eles, mas começa a afastar-se sempre que lhe fazem perguntas sobre os seus planos ou tentam escolher o caminho por ela. Quando um amigo se oferece para a acompanhar até casa, a raposa agradece, mas prefere seguir sozinha por outro caminho. Sempre que alguém tenta ajudá-la demasiado, procura rapidamente uma forma de continuar por si própria.",
+    "valores":"Liberdade, Respeito, Honestidade, Tolerância, Amor",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"Uma das melhores parcerias para o Coelho, pois a identidade é quase perfeita. O Carneiro aceita o recolhimento natural do Coelho e este lhe proporciona a segurança e a família que ele necessita para se sentir bem. No sexo encontram formas de se realizar satisfatoriamente.",
@@ -1695,6 +1751,8 @@
     "questao_sistemica":"Estou a manter possibilidades porque ainda fazem sentido ou porque tenho medo da perda que qualquer escolha implica?",
     "afirmacao":"Posso escolher e deixar ir sem perder o meu potencial.",
     "frase_matriz":"O meu potencial não depende de realizar tudo. Posso escolher aquilo que verdadeiramente me pertence, deixar ir o que é desnecessário e concentrar a minha força no que quero construir.",
+    "espelho":"Uma pequena raposa chega a uma clareira onde encontra três caminhos diferentes. Um leva ao rio, outro sobe até uma colina e o terceiro entra numa floresta cheia de árvores. Ela começa a seguir um caminho, mas volta atrás para experimentar outro, com medo de deixar uma possibilidade para trás. Quando os amigos a chamam para continuar, a raposa permanece junto aos três caminhos, tentando decidir como poderia seguir todos ao mesmo tempo.",
+    "valores":"Liberdade, Simplicidade, Paz, Felicidade, Responsabilidade",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"Há uma possibilidade enorme de sucesso nesta relação, já que o Dragão dá a Carneiro a liberdade que este necessita, retribuindo com segurança e compreensão. Com Carneiro, o Dragão saciará toda a sua inquietação na cama. ",
@@ -1755,6 +1813,8 @@
     "questao_sistemica":"De quem aprendi que estar seguro significava controlar, prever, ser forte e não depender? Estou a viver a minha própria vida ou continuo a proteger alguém através da minha força?",
     "afirmacao":"Posso confiar na vida e nas pessoas sem abandonar a minha autonomia. Não preciso controlar tudo para estar seguro. A minha força permanece comigo mesmo quando relaxo, recebo e permito que os outros sejam diferentes de mim.",
     "frase_matriz":"Posso permanecer seguro, valioso e pertencente sem controlar, dominar ou proteger-me permanentemente; posso ser forte e, ao mesmo tempo, confiar.",
+    "espelho":"Um pequeno esquilo encontra uma árvore onde guarda as suas bolotas. Ao ouvir um barulho, corre logo para verificar se alguém mexeu nelas. Depois começa a vigiar a entrada da árvore e não deixa os outros animais aproximarem-se. Quando um amigo lhe pede uma bolota para comer, o esquilo aperta as suas contra o peito e tenta escondê-las, com medo de que, se deixar de estar atento, alguém possa levar aquilo que é seu.",
+    "valores":"Cooperação, Liberdade, Paz, Humildade, Simplicidade",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"Quando a Serpente deixa um pouco de lado sua teimosia e sua exigência, certamente encontra no Carneiro a parceria ideal e duradoura para sua vida. Mesmo diante do caráter sensual da Serpente, o Carneiro vai procurar satisfazê-la, se obter em troca o ambiente familiar tranquilo e seguro que ele aprecia.",
@@ -1815,6 +1875,8 @@
     "questao_sistemica":"Estou verdadeiramente a escolher o meu caminho ou continuo a resistir à possibilidade de ser condicionado, preso ou obrigado a viver segundo aquilo que outros escolheram?",
     "afirmacao":"Posso ser livre sem precisar de resistir, fugir ou mudar constantemente.",
     "frase_matriz":"Posso pertencer, cooperar, receber, permanecer e avançar sem perder a minha autonomia. A minha liberdade não depende de estar sempre contra alguma coisa; depende de poder escolher conscientemente o meu caminho.",
+    "espelho":"Uma pequena raposa encontra um grupo de animais que todos os dias segue o mesmo caminho pela floresta. No início, gosta de caminhar com eles, mas depressa os outros começam a decidir onde parar, por onde passar e quando voltar. Sempre que a raposa tenta explorar outro trilho, chamam-na para voltar ao grupo. Um dia, encontra uma passagem que leva a um lugar novo e fica parada, dividida entre seguir os outros ou experimentar o seu próprio caminho.",
+    "valores":"Liberdade, Respeito, Honestidade, Responsabilidade, Tolerância",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"Não é uma relação fácil, embora possível, se superados alguns obstáculos. O Cavalo resiste diante dos hábitos domésticos do Carneiro, que não consegue se fazer entender, embora acrescente um pouco de romantismo à relação. Carneiro é muito mais sentimental que o Cavalo, facilitando uma afinidade no aspecto sexual. ",
@@ -1875,6 +1937,8 @@
     "questao_sistemica":"Estou verdadeiramente a cuidar por amor e escolha, ou continuo a cuidar para garantir que sou necessário, que os outros ficam bem e que não perco o meu lugar?",
     "afirmacao":"Posso cuidar sem me abandonar.",
     "frase_matriz":"Posso amar, ajudar e cuidar sem abandonar as minhas necessidades. Posso respeitar o caminho dos outros sem o carregar e posso pertencer mesmo quando digo não, recebo ou escolho cuidar de mim.",
+    "espelho":"Uma pequena coelha está a brincar numa clareira com os seus amigos. Sempre que alguém precisa de alguma coisa, ela interrompe a brincadeira para ajudar, mesmo quando queria continuar a brincar. Quando um amigo pede para ela mudar o jogo, ela aceita; quando outro precisa de companhia, fica com ele. Ao chegar a hora de ir para casa, a coelha percebe que passou o dia inteiro a fazer o que os outros precisavam e quase não teve tempo para escolher o que queria fazer.",
+    "valores":"Honestidade, Liberdade, Amor, Paz, Felicidade",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"O excesso de sentimentalismo, de apego ao passado e de teimosia pode tornar essa relação extremamente desgastante para ambos, apesar de serem os dois afetuosos, românticos e carinhosos. No sexo se entendem maravilhosamente bem.",
@@ -1935,6 +1999,8 @@
     "questao_sistemica":"Quem, na minha família, teve de ser forte porque não podia confiar nos outros? Quem precisou de competir, lutar por posição, proteger recursos ou estar sempre atento para não ser ultrapassado? Estou realmente a responder ao presente ou continuo a proteger-me de uma antiga experiência de impotência, traição ou perda de lugar?",
     "afirmacao":"Não preciso estar sempre à frente, dominar, competir ou desconfiar para estar seguro e ter valor. Posso ser forte sem estar em guerra, liderar sem controlar, competir sem precisar diminuir os outros e confiar sem perder o discernimento. Posso recuar, mudar de posição e mostrar vulnerabilidade sem perder a minha dignidade. O lugar dos outros não ameaça o meu lugar.",
     "frase_matriz":"Não preciso estar à frente de ninguém para ter lugar. Posso ser forte sem lutar permanentemente, confiar sem ficar indefeso e liderar sem dominar. O meu valor não depende de vencer o jogo.",
+    "espelho":"Um pequeno leão chega a uma clareira onde os animais estão a escolher os lugares para uma corrida. Ele escolhe um lugar na primeira fila e fica atento para que ninguém o ocupe. Quando outro animal se aproxima, o leão coloca-se à frente e diz que aquele lugar já é dele. Depois começa a vigiar os outros corredores, tentando perceber se alguém está a preparar-se para passar à sua frente. Quando um pequeno coelho encontra um caminho mais rápido, o leão corre logo atrás dele para não perder a posição.",
+    "valores":"Respeito, Honestidade, Humildade, Tolerância, Paz",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"A preocupação excessiva do Carneiro com o lar o torna incapaz de acompanhar o ritmo alucinante e vibrante do Macaco, que dificilmente se deixará prender ao ambiente doméstico. No sexo não haverá maiores encantos nem atração.",
@@ -1995,6 +2061,8 @@
     "questao_sistemica":"Quem, na minha família, teve de ser forte, competente ou vigilante porque não podia confiar suficientemente nos outros? Estou realmente a proteger o presente ou continuo a tentar garantir que uma velha insegurança nunca mais aconteça?",
     "afirmacao":"Não preciso ser perfeito, controlar tudo ou corrigir todos os erros para estar seguro, ter valor e pertencer. Posso ser forte sem endurecer, liderar sem dominar, observar sem vigiar e realizar sem precisar provar o meu valor. Posso confiar nos outros e permitir que a vida tenha alguma imperfeição.",
     "frase_matriz":"Eu pertenço mesmo quando não controlo tudo. Posso ser forte sem estar em guerra com o erro, posso liderar sem dominar e posso confiar sem perder a minha força.",
+    "espelho":"Um pequeno castor fica encarregado de preparar uma ponte para os animais atravessarem o rio. Verifica cada tronco, aperta todas as cordas e testa a ponte várias vezes antes de deixar alguém passar. Quando os amigos chegam para ajudar, diz que ainda precisa de confirmar se está tudo seguro. Enquanto volta a verificar uma das cordas, uma tábua solta-se e cai no rio, e o castor corre imediatamente para a tentar reparar.",
+    "valores":"Cooperação, Humildade, Simplicidade, Paz, Responsabilidade",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"Carneiro busca numa relação, antes de mais nada, segurança, coisa que jamais encontrará no Galo, que não terá nele, em contrapartida, a pessoa forte de que necessita para se manter. Sexualmente será uma relação fria e sem inspiração. ",
@@ -2055,6 +2123,8 @@
     "questao_sistemica":"Posso permanecer fiel aos meus valores e continuar ligado aos outros mesmo quando eles escolhem de forma diferente? Posso confiar na minha integridade sem precisar controlar a integridade dos outros?",
     "afirmacao":"Posso ser fiel aos meus valores sem precisar controlar as escolhas dos outros. A minha integridade permanece intacta mesmo quando os outros escolhem diferente de mim.",
     "frase_matriz":"Posso viver com integridade, responsabilidade e auto-respeito sem transformar os meus valores numa exigência para os outros.",
+    "espelho":"Um pequeno castor vive com a sua família numa toca junto ao rio, construída ao longo de muitos anos. Um dia, uma parte da barragem começa a desfazer-se. O castor decide que tem de proteger aquilo que a família construiu e passa a verificar os troncos todos os dias. Quando os outros castores querem mexer nalguns troncos para melhorar a barragem, ele impede-os, dizendo que não se deve alterar aquilo que a família deixou. Mesmo quando encontra uma forma mais simples de reparar a barragem, continua a usar o mesmo método, com medo de estragar o que já foi construído.",
+    "valores":"Cooperação, Humildade, Simplicidade, Responsabilidade, Unidade",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"O Cão pode ser a companhia desejada pelo Carneiro, mas este não aceita o desejo de liberdade daquele. Carneiro gosta do sexo mais sensível e romântico, enquanto que o Cão aprecia a excitação mais elaborada e os prazeres menos convencionais.",
@@ -2115,6 +2185,8 @@
     "questao_sistemica":"Posso estar seguro sem precisar ser o pilar de todos? Preciso continuar a suportar aquilo que alguém antes de mim teve de suportar? Posso descansar sem sentir que estou a abandonar a minha responsabilidade?",
     "afirmacao":"Eu tenho valor mesmo quando descanso, paro ou não resolvo. Posso cuidar, trabalhar e construir segurança sem carregar o destino dos outros. A minha capacidade de suportar é um recurso, não uma obrigação.",
     "frase_matriz":"A segurança não depende de eu suportar tudo. Posso fazer a minha parte, permitir que os outros façam a deles e continuar seguro.",
+    "espelho":"Um pequeno castor constrói uma pequena ponte sobre um riacho para os animais poderem passar. Mesmo depois de terminar, continua a carregar troncos, apertar ramos e verificar a ponte. Quando os amigos dizem que já pode descansar, responde que ainda há trabalho para fazer. Ao sentir-se cansado, continua a trabalhar sozinho, com medo de parar antes de ter a certeza de que tudo ficará de pé.",
+    "valores":"Cooperação, Humildade, Paz, Simplicidade, Felicidade",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"A única coisa em que os dois podem encontrar dificuldade para se relacionar será quanto ao sexo, que exigirá do Carneiro uma participação mais ativa e uma entrega mais física do que romântica ou sonhadora. ",
@@ -2175,6 +2247,8 @@
     "questao_sistemica":"Estou verdadeiramente a construir valor e segurança ou continuo a tentar garantir o meu lugar através daquilo que possuo, aparento, conquisto ou das pessoas que consigo influenciar?",
     "afirmacao":"O meu valor não depende daquilo que possuo, aparento ou da influência que tenho.",
     "frase_matriz":"O meu valor existe antes do reconhecimento. Posso ter recursos, beleza, sucesso e influência sem precisar deles para saber quem sou. Posso ocupar o meu lugar sem estar acima de ninguém.",
+    "espelho":"Um pequeno pavão chega a uma festa na floresta e vê os animais a escolher quem vai ficar no centro do desfile. Para garantir um lugar, começa a mostrar as suas penas, oferece-se para organizar os jogos e procura sempre ficar onde todos possam vê-lo. Quando outro animal recebe os aplausos, o pavão inventa logo uma nova dança e tenta chamar novamente a atenção. Mesmo quando os amigos o convidam para brincar com eles, continua a procurar uma maneira de ser o mais notado.",
+    "valores":"Amor, Humildade, Simplicidade, Felicidade, Unidade",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"A incompatibilidade será natural, pois o Rato é inconstante, infiel e inquieto, enquanto que Carneiro é passivo, caseiro, emotivo e romântico. Os conflitos serão inevitáveis quando Carneiro tentar prender o Rato.",
@@ -2235,6 +2309,8 @@
     "questao_sistemica":"Se eu deixar de lutar para provar a minha força e aceitar que posso falhar, continuo a ter valor, respeito e lugar?",
     "afirmacao":"Posso ser forte e responsável sem precisar controlar, vencer ou provar constantemente o meu valor.",
     "frase_matriz":"O meu valor não depende de vencer nem de controlar; posso permanecer firme, digno e inteiro mesmo quando falho, cedo ou preciso mudar de caminho.",
+    "espelho":"Um pequeno castor participa numa corrida para construir a melhor ponte sobre um riacho. Trabalha sozinho, escolhe os troncos maiores e verifica cada encaixe várias vezes. Quando uma das tábuas fica torta, desmonta-a imediatamente e começa de novo. Os outros castores oferecem ajuda, mas ele recusa, continua a trabalhar mesmo cansado e não quer terminar enquanto a ponte não estiver perfeita.",
+    "valores":"Cooperação, Humildade, Simplicidade, Paz, Felicidade",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"O relacionamento é possível muito mais porque Carneiro necessita da segurança que o Boi lhe proporciona. Sendo compreensivo, poderá determinar as bases do relacionamento, inclusive quanto ao aspecto sexual, com possibilidades enormes de êxito e\r\nrealização.",
@@ -2295,6 +2371,8 @@
     "questao_sistemica":"Posso continuar seguro e ter o meu lugar mesmo quando não compreendo tudo, não controlo as minhas emoções e permito que os outros tenham influência sobre mim?",
     "afirmacao":"Posso confiar em mim sem precisar controlar, compreender ou resolver tudo. Posso sentir, receber, escolher e relacionar-me sem perder a minha autonomia.",
     "frase_matriz":"Não preciso compreender tudo para pertencer. Não preciso controlar tudo para estar seguro. Posso deixar que os outros sejam quem são, continuar a ser quem sou e confiar que o meu lugar não desaparece.",
+    "espelho":"Uma pequena raposa encontra uma ponte de madeira para atravessar o rio. Antes de avançar, observa cada tábua, testa as cordas e olha várias vezes para a água. Quando um amigo lhe diz que pode atravessar com ela, a raposa responde que consegue sozinha. Mesmo depois de chegar ao outro lado, volta atrás para verificar a ponte mais uma vez, porque ainda não está convencida de que tudo está seguro.",
+    "valores":"Cooperação, Humildade, Paz, Simplicidade, Liberdade",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"As mudanças e as reformas que são a tônica da personalidade do Tigre não encontram eco na natureza tímida e frágil do Carneiro. Carneiro, por seu turno, não vê em Tigre o modelo ideal de companhia, embora sexualmente sejam compatíveis.",
@@ -2355,6 +2433,8 @@
     "questao_sistemica":"Posso continuar pertencente se deixar de me adaptar emocionalmente aos outros e começar a escolher por mim?",
     "afirmacao":"Posso ser sensível sem ser dominado pelo que sinto, posso amar sem carregar os outros e posso pertencer sem deixar de escolher por mim.",
     "frase_matriz":"Posso sentir sem me perder, confiar sem me abandonar, escolher sem romper e seguir em frente sem deixar ninguém para trás.",
+    "espelho":"Um pequeno coelho chega a uma clareira onde os seus amigos estão a brincar. Antes de escolher uma brincadeira, observa cada um para perceber o que querem fazer. Quando dois amigos começam a discutir, muda logo de jogo para tentar acalmá-los. Depois adapta as suas ideias ao que cada amigo prefere e evita dizer aquilo de que realmente gosta, sempre atento aos sinais de que alguém pode ficar zangado.",
+    "valores":"Honestidade, Liberdade, Paz, Tolerância, Respeito",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"Uma das melhores parcerias para o Coelho, pois a identidade é quase perfeita. O Carneiro aceita o recolhimento natural do Coelho e este lhe proporciona a segurança e a família que ele necessita para se sentir bem. No sexo encontram formas de se realizar satisfatoriamente.",
@@ -2415,6 +2495,8 @@
     "questao_sistemica":"Estou verdadeiramente a partilhar a minha visão ou continuo a tentar garantir o meu lugar através da necessidade de ter razão, controlar o resultado e convencer quem se opõe a mim?",
     "afirmacao":"Posso ter força e visão sem precisar convencer ou controlar.",
     "frase_matriz":"Posso confiar na minha inteligência e na minha visão sem precisar que os outros concordem comigo. Posso liderar, cooperar, mudar de opinião e aceitar caminhos diferentes sem perder o meu lugar ou a minha força.",
+    "espelho":"Um pequeno leão encontra os animais da floresta a escolher o local para construir um novo abrigo. Ele tem uma ideia, mas outro animal fala primeiro e começa a decidir por todos. O leão tenta explicar a sua ideia, mas, quando os outros não concordam, começa a falar mais alto e a mostrar que sabe como fazer. Quando alguém sugere uma solução diferente, o leão insiste que a sua é melhor e tenta convencer todos a segui-la.",
+    "valores":"Humildade, Respeito, Cooperação, Tolerância, Unidade",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"Há uma possibilidade enorme de sucesso nesta relação, já que o Dragão dá a Carneiro a liberdade que este necessita, retribuindo com segurança e compreensão. Com Carneiro, o Dragão saciará toda a sua inquietação na cama. ",
@@ -2475,6 +2557,8 @@
     "questao_sistemica":"Estou a construir a minha vida porque realmente a desejo, ou estou inconscientemente a tentar provar, compensar ou reparar algo que ficou por realizar no meu sistema familiar?",
     "afirmacao":"Eu tenho valor antes do sucesso, do reconhecimento, da aparência ou da segurança. Posso realizar grandes coisas sem precisar provar nada a ninguém. Posso ser livre, próspero e admirado sem transformar essas conquistas na condição para pertencer.",
     "frase_matriz":"O meu lugar não precisa ser conquistado através do brilho. Eu já pertenço. A partir desse lugar, posso escolher livremente aquilo que quero construir.",
+    "espelho":"Um pequeno pavão chega a uma festa na floresta e vê os animais reunidos à volta de uma mesa. Para que reparem nele, abre as penas, faz uma dança e inventa uma brincadeira. Quando outro animal começa a contar uma história e todos prestam atenção, o pavão procura rapidamente outra coisa para fazer que volte a chamar os olhares. Mesmo quando os amigos o convidam simplesmente para se sentar com eles, continua a tentar encontrar uma maneira de ser o mais especial da festa.",
+    "valores":"Amor, Humildade, Simplicidade, Felicidade, Unidade",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"Quando a Serpente deixa um pouco de lado sua teimosia e sua exigência, certamente encontra no Carneiro a parceria ideal e duradoura para sua vida. Mesmo diante do caráter sensual da Serpente, o Carneiro vai procurar satisfazê-la, se obter em troca o ambiente familiar tranquilo e seguro que ele aprecia.",
@@ -2535,6 +2619,8 @@
     "questao_sistemica":"Estou verdadeiramente a escolher a mudança ou estou a fugir da sensação de estar preso, limitado ou dependente?",
     "afirmacao":"Posso escolher ficar sem deixar de ser livre.",
     "frase_matriz":"Posso aceitar limites, compromissos e continuidade sem perder a minha autonomia. Posso escolher permanecer, perseverar ou partir conscientemente. A minha liberdade não depende de estar sempre em movimento.",
+    "espelho":"Um pequeno cavalo vive numa quinta onde, todos os dias, alguém decide por onde ele deve andar, quando deve parar e qual a tarefa que deve fazer. No início, segue as indicações, mas um dia encontra uma porteira aberta para um campo diferente. Quando lhe dizem para voltar ao caminho habitual, o cavalo olha para a porteira e tenta encontrar uma maneira de escolher por onde quer ir.",
+    "valores":"Liberdade, Responsabilidade, Respeito, Honestidade, Felicidade",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"Não é uma relação fácil, embora possível, se superados alguns obstáculos. O Cavalo resiste diante dos hábitos domésticos do Carneiro, que não consegue se fazer entender, embora acrescente um pouco de romantismo à relação. Carneiro é muito mais sentimental que o Cavalo, facilitando uma afinidade no aspecto sexual. ",
@@ -2595,6 +2681,8 @@
     "questao_sistemica":"Estou verdadeiramente a seguir aquilo que me pertence ou estou constantemente a procurar uma realidade diferente porque tenho dificuldade em aceitar e transformar aquela que existe?",
     "afirmacao":"Posso sonhar com algo maior sem fugir da realidade que estou a viver.",
     "frase_matriz":"Posso aceitar a realidade sem abandonar os meus sonhos. Posso trazer a minha criatividade, coragem, generosidade e visão para aquilo que existe e construir, passo a passo, a vida que verdadeiramente escolho.",
+    "espelho":"Uma pequena corça encontra uma clareira onde os animais estão a preparar uma festa. Todos estão contentes, mas a música, os jogos e a decoração não são como ela imaginava. A corça tenta participar, mas continua a olhar à sua volta à procura de alguma coisa diferente. Quando os amigos a convidam para dançar, ela experimenta por momentos, mas afasta-se novamente, à procura de uma festa que seja exatamente como gostaria.",
+    "valores":"Felicidade, Honestidade, Liberdade, Simplicidade, Amor",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"O excesso de sentimentalismo, de apego ao passado e de teimosia pode tornar essa relação extremamente desgastante para ambos, apesar de serem os dois afetuosos, românticos e carinhosos. No sexo se entendem maravilhosamente bem.",
@@ -2655,6 +2743,8 @@
     "questao_sistemica":"Quem, na minha família, teve de ser responsável, correcto, trabalhador ou útil para sustentar os outros ou manter a sua dignidade? Quem deu muito e recebeu pouco reconhecimento? A quem estou a tentar provar, através da minha integridade e do meu dever, que sou uma pessoa digna?",
     "afirmacao":"Não preciso ser útil, perfeito, correcto ou constantemente dedicado para ter valor e pertencer. Posso contribuir sem me sacrificar, servir sem precisar de reconhecimento, manter os meus princípios sem julgar os outros e assumir responsabilidades sem carregar aquilo que não me pertence. Posso receber tanto quanto dou, descansar sem culpa e permitir-me viver com prazer. O meu valor existe antes daquilo que faço pelos outros.",
     "frase_matriz":"Eu pertenço antes de servir. O meu valor não depende daquilo que faço pelos outros. Posso ser íntegro sem ser perfeito, contribuir sem me sacrificar e receber sem precisar de merecer.",
+    "espelho":"Um pequeno castor chega a uma clareira onde os animais estão a preparar uma festa. Em vez de brincar, começa logo a arrumar folhas, carregar frutos e preparar os jogos. Quando termina uma tarefa, procura outra para fazer e tenta sempre fazê-la da melhor maneira. Quando os amigos o convidam para se sentar e descansar, ele olha à volta e pergunta se ainda há alguma coisa que possa fazer.",
+    "valores":"Amor, Humildade, Simplicidade, Felicidade, Liberdade",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"A preocupação excessiva do Carneiro com o lar o torna incapaz de acompanhar o ritmo alucinante e vibrante do Macaco, que dificilmente se deixará prender ao ambiente doméstico. No sexo não haverá maiores encantos nem atração.",
@@ -2715,6 +2805,8 @@
     "questao_sistemica":"Quem teve de amadurecer cedo, trabalhar arduamente ou assumir responsabilidades que não correspondiam ao seu lugar? Estou a viver a minha responsabilidade actual ou continuo a carregar uma responsabilidade antiga que pertence à minha família? A quem estou a tentar demonstrar que o esforço valeu a pena?",
     "afirmacao":"Não preciso saber tudo, corrigir todos, trabalhar incessantemente ou assumir todas as responsabilidades para ter valor e pertencer. Posso ser rigoroso sem ser rígido, responsável sem carregar os outros, ensinar sem impor e trabalhar sem me sacrificar. Posso confiar naquilo que construí e permitir que cada pessoa assuma a sua própria responsabilidade.",
     "frase_matriz":"Eu pertenço mesmo quando não estou a trabalhar, corrigir ou provar nada. Posso fazer bem a minha parte e deixar que os outros façam a deles. O meu valor não depende da quantidade de responsabilidade que consigo carregar.",
+    "espelho":"Um pequeno castor fica encarregado de preparar uma ponte para os animais atravessarem o rio. Mede os troncos, conta as cordas e verifica cada encaixe várias vezes. Quando os amigos chegam para ajudar, diz que ainda precisa de confirmar tudo sozinho. Ao encontrar uma pequena falha numa das tábuas, desmonta-a e começa novamente, enquanto os outros animais esperam do outro lado.",
+    "valores":"Cooperação, Humildade, Simplicidade, Paz, Responsabilidade",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"Carneiro busca numa relação, antes de mais nada, segurança, coisa que jamais encontrará no Galo, que não terá nele, em contrapartida, a pessoa forte de que necessita para se manter. Sexualmente será uma relação fria e sem inspiração. ",
@@ -2775,6 +2867,8 @@
     "questao_sistemica":"Estou a defender aquilo que verdadeiramente me pertence ou continuo a lutar por uma lealdade, uma injustiça ou uma batalha que pertence ao passado?",
     "afirmacao":"Posso ser leal sem precisar lutar por tudo aquilo em que acredito.",
     "frase_matriz":"Posso proteger aquilo que amo sem transformar tudo numa batalha. Posso ser firme, ouvir, reconsiderar, colocar limites, afastar-me e deixar ir sem perder a minha lealdade, a minha força ou o meu lugar.",
+    "espelho":"Um pequeno castor encontra uma árvore junto ao rio onde a sua família guarda os alimentos para o inverno. Quando vê alguns animais a aproximarem-se, coloca-se à frente da árvore e começa a vigiar quem entra e quem sai. Ao notar que um animal pega numa das bolotas sem pedir, corre atrás dele e tenta recuperar tudo. Mesmo quando os outros castores lhe dizem que podem ajudar a guardar os alimentos, prefere continuar sozinho, atento a qualquer pessoa que se aproxime.",
+    "valores":"Cooperação, Respeito, Tolerância, Humildade, Paz",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"O Cão pode ser a companhia desejada pelo Carneiro, mas este não aceita o desejo de liberdade daquele. Carneiro gosta do sexo mais sensível e romântico, enquanto que o Cão aprecia a excitação mais elaborada e os prazeres menos convencionais.",
@@ -2835,6 +2929,8 @@
     "questao_sistemica":"Estou a perseverar porque isto ainda me pertence ou porque preciso provar que não fui derrotado?",
     "afirmacao":"Posso perder, ser desiludido ou mudar de caminho sem perder o meu valor nem o meu lugar.",
     "frase_matriz":"O meu valor não depende de vencer, controlar ou ser reconhecido pelos outros. Posso confiar com discernimento, amar sem me abandonar, colocar limites, aceitar perdas e escolher continuar ou partir sem precisar provar a minha força.",
+    "espelho":"Um pequeno pavão participa num desfile da floresta e prepara-se para mostrar as suas penas. Quando outro animal recebe os aplausos e fica à frente dele, o pavão tenta ultrapassá-lo e começa a fazer movimentos cada vez mais elaborados. Quando alguém brinca com a sua dança, ele fica zangado e procura imediatamente outra forma de mostrar que é capaz de ser o melhor. Mesmo quando os amigos o convidam para brincar, continua a tentar recuperar o lugar de destaque.",
+    "valores":"Humildade, Respeito, Tolerância, Felicidade, Unidade",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"A única coisa em que os dois podem encontrar dificuldade para se relacionar será quanto ao sexo, que exigirá do Carneiro uma participação mais ativa e uma entrega mais física do que romântica ou sonhadora. ",
@@ -2895,6 +2991,8 @@
     "questao_sistemica":"Posso ser diferente sem deixar de pertencer? Preciso adaptar-me à corrente para manter o meu lugar? Posso não saber, não agradar ou não conseguir prever a reação dos outros e continuar seguro? Preciso compreender e adaptar-me por todos para manter a harmonia do sistema?",
     "afirmacao":"Eu pertenço mesmo quando sou diferente. Posso compreender os outros sem abandonar a mim próprio, adaptar-me sem me anular, influenciar sem controlar e continuar a aprender sem precisar compreender tudo para estar seguro.",
     "frase_matriz":"Não preciso adaptar-me a tudo para pertencer. Posso compreender os outros e continuar fiel a mim próprio.",
+    "espelho":"Uma pequena coelha está a brincar com os amigos numa clareira. Um dos animais pega no brinquedo que ela estava a usar e decide mudar as regras da brincadeira. A coelha não gosta, mas continua a jogar como os outros querem. Quando outro amigo escolhe uma brincadeira de que ela não gosta, ela aceita novamente e fica calada. No fim, os amigos perguntam se ela se divertiu, e a coelha sorri e diz que sim.",
+    "valores":"Honestidade, Liberdade, Respeito, Tolerância, Felicidade",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"A incompatibilidade será natural, pois o Rato é inconstante, infiel e inquieto, enquanto que Carneiro é passivo, caseiro, emotivo e romântico. Os conflitos serão inevitáveis quando Carneiro tentar prender o Rato.",
@@ -2955,6 +3053,8 @@
     "questao_sistemica":"Estou a construir o meu caminho porque é aquilo que verdadeiramente escolho ou estou constantemente a tentar garantir que nada ponha em risco o lugar que conquistei?",
     "afirmacao":"Posso estar seguro sem precisar controlar, provar ou garantir tudo.",
     "frase_matriz":"O meu lugar não depende de ter tudo em ordem, de provar a minha competência ou de controlar o meu percurso. Posso receber orientação, cooperar, mudar, esperar ou avançar e continuo capaz de escolher o meu caminho.",
+    "espelho":"Um pequeno castor constrói uma ponte sobre o rio e fica responsável por verificar se todos os animais conseguem atravessá-la. Um dia, outro castor começa a fazer alterações na ponte e os animais passam a pedir-lhe ajuda. O primeiro castor fica preocupado e começa a verificar cada tábua, a corrigir o trabalho do outro e a mostrar que conhece melhor a ponte. Quando os animais agradecem ao outro castor, ele tenta voltar a assumir todas as tarefas, com medo de deixar de ser necessário.",
+    "valores":"Cooperação, Humildade, Simplicidade, Felicidade, Unidade",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"O relacionamento é possível muito mais porque Carneiro necessita da segurança que o Boi lhe proporciona. Sendo compreensivo, poderá determinar as bases do relacionamento, inclusive quanto ao aspecto sexual, com possibilidades enormes de êxito e\r\nrealização.",
@@ -3015,6 +3115,8 @@
     "questao_sistemica":"Posso reconhecer que preciso dos outros, assumir plenamente a minha responsabilidade e aceitar os meus limites sem deixar de ter valor, liberdade e lugar?",
     "afirmacao":"Posso ser livre e ligado, forte e vulnerável, líder e responsável. Não preciso provar que consigo tudo para ter valor.",
     "frase_matriz":"Posso precisar sem depender, reconhecer limites sem me diminuir, assumir responsabilidade sem carregar tudo e receber críticas sem perder o meu lugar.",
+    "espelho":"Um pequeno ouriço encontra uma maçã demasiado grande para levar para casa. Os amigos oferecem-se para ajudar, mas ele diz que consegue sozinho. Empurra, puxa e tenta levantar a maçã várias vezes. Quando finalmente consegue levá-la até perto de casa, um amigo tenta ajudá-lo a subir uma pequena encosta, mas o ouriço recusa e continua sozinho, mesmo tendo de fazer várias tentativas.",
+    "valores":"Cooperação, Humildade, Liberdade, Respeito, Unidade",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"As mudanças e as reformas que são a tônica da personalidade do Tigre não encontram eco na natureza tímida e frágil do Carneiro. Carneiro, por seu turno, não vê em Tigre o modelo ideal de companhia, embora sexualmente sejam compatíveis.",
@@ -3075,6 +3177,8 @@
     "questao_sistemica":"Posso continuar a pertencer mesmo quando deixo de agradar, tomo uma posição, digo não ou me afasto de alguém que ultrapassa os meus limites?",
     "afirmacao":"Posso pertencer sem me abandonar.",
     "frase_matriz":"O meu lugar não depende de agradar a todos. Posso ser generoso, compreensivo e cooperante sem abandonar as minhas necessidades. Posso discordar, estabelecer limites, tomar decisões e afastar-me daquilo que me prejudica sem perder a minha pertença.",
+    "espelho":"Um pequeno coelho está numa clareira com os seus amigos a preparar uma brincadeira. Quando todos escolhem um jogo, o coelho prefere outro, mas guarda a sua ideia para não contrariar ninguém. Um dos amigos pede-lhe ajuda para preparar o jogo e ele deixa imediatamente o que estava a fazer. Quando finalmente tem oportunidade de escolher uma brincadeira, olha para os outros e acaba por fazer aquilo que todos querem.",
+    "valores":"Honestidade, Liberdade, Respeito, Amor, Unidade",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"Uma das melhores parcerias para o Coelho, pois a identidade é quase perfeita. O Carneiro aceita o recolhimento natural do Coelho e este lhe proporciona a segurança e a família que ele necessita para se sentir bem. No sexo encontram formas de se realizar satisfatoriamente.",
@@ -3135,6 +3239,8 @@
     "questao_sistemica":"Estou verdadeiramente a liderar porque isso me pertence ou estou a tentar controlar os outros para garantir o meu lugar, a minha verdade e a minha sensação de segurança?",
     "afirmacao":"Posso ter força sem precisar controlar.",
     "frase_matriz":"O meu lugar não depende de controlar, convencer ou superar os outros. Posso liderar, defender os meus valores, inspirar e construir sem ocupar o lugar de ninguém. Posso confiar na minha força e permitir que os outros sejam diferentes, assumam as suas escolhas e percorram o seu próprio caminho.",
+    "espelho":"Um pequeno leão chega à clareira onde os animais estão a decidir onde guardar os alimentos para o inverno. Ele tem uma ideia, mas os outros começam a falar e ninguém o ouve. O leão tenta falar mais alto, organiza os animais e começa a dar instruções para que sigam o seu plano. Quando outro animal apresenta uma ideia diferente, o leão insiste que a sua é melhor e tenta convencer todos a fazer como ele diz.",
+    "valores":"Humildade, Respeito, Cooperação, Tolerância, Unidade",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"Há uma possibilidade enorme de sucesso nesta relação, já que o Dragão dá a Carneiro a liberdade que este necessita, retribuindo com segurança e compreensão. Com Carneiro, o Dragão saciará toda a sua inquietação na cama. ",
@@ -3195,6 +3301,8 @@
     "questao_sistemica":"Posso confiar sem ficar vulnerável? Posso ser forte sem precisar controlar? Posso perder poder, posição ou reconhecimento sem perder o meu valor? Posso amar alguém sem precisar garantir que essa pessoa permanece comigo? Preciso continuar a ser o forte porque alguém antes de mim não pôde proteger-se? Posso estar seguro mesmo quando não estou acima, não controlo tudo e não tenho garantia de permanência?",
     "afirmacao":"Estou seguro sem precisar controlar tudo. Posso ser forte sem dominar, confiar sem ser ingénuo, liderar sem controlar, receber ajuda sem inferioridade e amar sem possuir. Honro a força dos meus antepassados, mas escolho viver a minha própria vida com liberdade, discernimento e integridade.",
     "frase_matriz":"Honro aqueles que precisaram de lutar, desconfiar e controlar para sobreviver. Recebo a sua força, mas deixo com eles aquilo que pertence à sua história. Eu pertenço sem repetir a sua luta. Posso viver com poder, liberdade, confiança e amor.",
+    "espelho":"Um pequeno pássaro vive numa árvore onde guarda o seu ninho e os seus objetos favoritos. Um dia, um animal maior começa a decidir quando ele pode sair, por onde deve voar e onde deve pousar. O pássaro tenta encontrar outro lugar para o ninho, mas leva consigo apenas aquilo que consegue proteger. Quando encontra uma árvore nova, escolhe um ramo alto e começa a organizar o seu espaço de forma a poder entrar e sair livremente.",
+    "valores":"Liberdade, Responsabilidade, Respeito, Simplicidade, Paz",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"Quando a Serpente deixa um pouco de lado sua teimosia e sua exigência, certamente encontra no Carneiro a parceria ideal e duradoura para sua vida. Mesmo diante do caráter sensual da Serpente, o Carneiro vai procurar satisfazê-la, se obter em troca o ambiente familiar tranquilo e seguro que ele aprecia.",
@@ -3255,6 +3363,8 @@
     "questao_sistemica":"Estou a esperar porque ainda preciso realmente de tempo ou estou a esperar porque tenho medo de escolher sem garantias?",
     "afirmacao":"Posso estar seguro sem precisar de ter todas as garantias.",
     "frase_matriz":"Posso ser prudente sem ficar paralisado pela necessidade de segurança. Posso ouvir, analisar, respeitar a autoridade e considerar os riscos sem entregar a ninguém a responsabilidade pelas minhas escolhas. Posso escolher mesmo com alguma incerteza e confiar que, se for necessário, poderei corrigir o meu caminho.",
+    "espelho":"Um pequeno esquilo encontra dois caminhos para chegar à sua árvore. Um é mais comprido, mas conhecido e seguro; o outro é mais curto e passa por cima de algumas pedras junto ao rio. O esquilo quer chegar depressa e começa a seguir o caminho das pedras, mas, ao ver uma delas a balançar, volta imediatamente para trás. Depois fica junto à bifurcação, olhando para os dois caminhos, sem conseguir decidir qual deve escolher.",
+    "valores":"Liberdade, Simplicidade, Paz, Humildade, Responsabilidade",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"Não é uma relação fácil, embora possível, se superados alguns obstáculos. O Cavalo resiste diante dos hábitos domésticos do Carneiro, que não consegue se fazer entender, embora acrescente um pouco de romantismo à relação. Carneiro é muito mais sentimental que o Cavalo, facilitando uma afinidade no aspecto sexual. ",
@@ -3315,6 +3425,8 @@
     "questao_sistemica":"Posso continuar a ser amado, respeitado e a pertencer mesmo quando não estou disponível, quando preciso de ajuda, quando erro ou quando alguém me critica?",
     "afirmacao":"Posso ser forte sem precisar carregar tudo.",
     "frase_matriz":"O meu valor não depende daquilo que consigo suportar ou resolver pelos outros. Posso ser leal sem me sacrificar, responsável sem carregar aquilo que não me pertence, independente sem me isolar e vulnerável sem perder a minha força. Posso receber, dizer não, aceitar críticas e continuar a ter o meu lugar.",
+    "espelho":"Um pequeno castor vive junto ao rio com a sua família. Um dia, começa a chover e a água aproxima-se da toca. O castor corre de um lado para o outro a carregar ramos, tapar buracos e verificar a entrada. Quando os outros castores se oferecem para ajudar, diz que ainda consegue sozinho. Mesmo depois de a água baixar, continua a procurar alguma coisa para reparar, com medo de deixar algo por fazer.",
+    "valores":"Cooperação, Humildade, Responsabilidade, Paz, Amor",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"O excesso de sentimentalismo, de apego ao passado e de teimosia pode tornar essa relação extremamente desgastante para ambos, apesar de serem os dois afetuosos, românticos e carinhosos. No sexo se entendem maravilhosamente bem.",
@@ -3375,6 +3487,8 @@
     "questao_sistemica":"Quem, na minha família, teve de sobreviver sozinho, lutar pelos próprios recursos ou não pôde confiar numa relação de apoio? Estou realmente a proteger a minha liberdade actual ou continuo a proteger-me de uma dependência que pertence ao passado? O que aconteceria se eu permitisse que alguém me ajudasse sem sentir que fiquei em dívida ou perdi poder?",
     "afirmacao":"Não preciso ser completamente auto-suficiente para estar seguro. Posso cuidar de mim, proteger os meus interesses e construir recursos sem me fechar à ajuda, ao amor e à reciprocidade. Posso confiar sem entregar a minha autonomia, receber sem ficar em dívida e precisar dos outros sem perder o meu valor ou a minha liberdade.",
     "frase_matriz":"Posso ser livre e, ao mesmo tempo, estar ligado. Posso contar comigo sem precisar de contar apenas comigo. A minha segurança não depende de nunca precisar de ninguém.",
+    "espelho":"Um pequeno ouriço encontra uma ponte estreita que precisa de atravessar para levar uma maçã para casa. Os amigos oferecem-se para segurar a maçã enquanto ele atravessa, mas o ouriço recusa e tenta levá-la sozinho. Quando chega a uma parte mais difícil da ponte, prefere voltar atrás e procurar outro caminho, mesmo sabendo que os amigos poderiam ajudá-lo.",
+    "valores":"Cooperação, Humildade, Liberdade, Paz, Unidade",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"A preocupação excessiva do Carneiro com o lar o torna incapaz de acompanhar o ritmo alucinante e vibrante do Macaco, que dificilmente se deixará prender ao ambiente doméstico. No sexo não haverá maiores encantos nem atração.",
@@ -3435,6 +3549,8 @@
     "questao_sistemica":"Posso ter valor sem ser importante? Posso estar errado sem perder respeito? Posso ser competente sem precisar ser superior? Posso contribuir sem precisar ser indispensável? Preciso continuar a provar competência e importância por alguém da minha família que não foi reconhecido? Posso ocupar o meu lugar mesmo quando não sou o mais inteligente, o mais competente, o mais respeitado ou o mais importante?",
     "afirmacao":"Tenho valor sem precisar ser o mais importante, competente ou reconhecido. Posso ser excelente sem perfeição, ouvir sem me submeter e discordar sem atacar. Honro a força dos meus antepassados, mas não preciso provar nada. A minha inteligência, força e competência servem para compreender, sustentar, contribuir e ocupar o meu lugar.",
     "frase_matriz":"Honro aqueles que precisaram ser fortes, competentes e responsáveis para conquistar o seu lugar. Recebo a sua força, mas deixo-lhes o seu destino. Eu pertenço sem precisar repetir a sua luta. Posso usar os meus dons livremente, servir sem me sacrificar e simplesmente ocupar o meu lugar.",
+    "espelho":"Um pequeno castor chega a uma clareira onde os animais estão a construir uma ponte. Como quer ficar encarregado da construção, começa logo a medir os troncos, a escolher os melhores ramos e a mostrar aos outros como devem fazer. Quando outro animal constrói uma parte da ponte sozinho, o castor procura uma tarefa mais difícil para fazer, tentando mostrar que também é capaz. Mesmo quando todos dizem que a ponte está pronta, continua a procurar alguma coisa que possa fazer melhor.",
+    "valores":"Humildade, Cooperação, Simplicidade, Felicidade, Unidade",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"Carneiro busca numa relação, antes de mais nada, segurança, coisa que jamais encontrará no Galo, que não terá nele, em contrapartida, a pessoa forte de que necessita para se manter. Sexualmente será uma relação fria e sem inspiração. ",
@@ -3495,6 +3611,8 @@
     "questao_sistemica":"Estou verdadeiramente a escolher manter a paz ou continuo a evitar o conflito porque, no meu sistema, discordar, dizer não ou tomar partido significava arriscar a pertença?",
     "afirmacao":"Posso compreender os outros sem me abandonar.",
     "frase_matriz":"Posso compreender os outros sem deixar de escolher por mim. Posso estabelecer limites, mostrar aquilo que sinto, tomar posições e criar vínculos profundos sem perder a minha autonomia ou o meu lugar.",
+    "espelho":"Uma pequena raposa brinca com os seus amigos junto a um lago. Quando dois deles começam a discutir sobre quem deve ficar com o melhor lugar, a raposa percebe que também tem uma opinião, mas prefere não a dizer. Quando um amigo lhe pede para ficar mais perto dele durante a brincadeira, ela aproxima-se por um momento, mas depois afasta-se e procura outro lugar. Sempre que a brincadeira fica mais intensa ou alguém quer saber o que ela realmente pensa, a raposa muda de assunto ou vai brincar para outro lado.",
+    "valores":"Honestidade, Liberdade, Paz, Tolerância, Amor",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"O Cão pode ser a companhia desejada pelo Carneiro, mas este não aceita o desejo de liberdade daquele. Carneiro gosta do sexo mais sensível e romântico, enquanto que o Cão aprecia a excitação mais elaborada e os prazeres menos convencionais.",
@@ -3555,6 +3673,8 @@
     "questao_sistemica":"Estou a confiar porque reconheço verdadeiramente quem está diante de mim ou continuo a acreditar no melhor da pessoa para não ter de aceitar aquilo que a realidade me está a mostrar?",
     "afirmacao":"Posso confiar sem me abandonar.",
     "frase_matriz":"Posso amar e confiar sem ignorar a realidade. Posso compreender sem justificar, dar sem me sacrificar, negociar sem me apagar e afastar-me quando necessário. Posso manter o coração aberto sem abandonar o meu discernimento.",
+    "espelho":"Uma pequena coelha está a brincar com os seus amigos numa clareira. Um deles pega no seu brinquedo sem pedir e outro muda as regras do jogo. A coelha não gosta, mas deixa que continuem para não criar uma discussão. Quando os amigos lhe pedem para fazer mais uma coisa que não quer, ela aceita novamente e sorri. No fim, quando todos estão felizes, a coelha fica com o seu brinquedo nas mãos, sem ter dito aquilo que realmente queria.",
+    "valores":"Honestidade, Respeito, Liberdade, Tolerância, Amor",
     "interacao_com_outros_signos": {
       "Carneiro": {
         "relacao":"A única coisa em que os dois podem encontrar dificuldade para se relacionar será quanto ao sexo, que exigirá do Carneiro uma participação mais ativa e uma entrega mais física do que romântica ou sonhadora. ",

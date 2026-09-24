@@ -196,7 +196,11 @@ export class PerfilPage implements OnInit {
 
   localidades: string[] = [];
 
+novaLocalidade = '';
+novoGrupo = '';
 
+mostrarNovaLocalidade = false;
+mostrarNovoGrupo = false;
   /* =====================================================
      OVERRIDES / APAGADOS / ALTERAÇÕES
      ===================================================== */
@@ -450,59 +454,60 @@ private loadUpdatedAt(): void {
      ===================================================== */
 
   private atualizarFiltros(): void {
+  // Só consideramos perfis que existem atualmente
+  // e que não estão marcados como apagados.
+  const pessoasAtuais = this.people.filter(
+    p => !this.deletedIds.has(p.id)
+  );
 
-    this.grupos = [
-      ...new Set(
-        this.people
-          .map(p => (p.grupo ?? '').trim())
-          .filter(Boolean)
-      )
-    ].sort(
-      (a, b) => a.localeCompare(b)
-    );
+  // =====================================================
+  // GRUPOS ATUAIS
+  // =====================================================
 
+  this.grupos = [
+    ...new Set(
+      pessoasAtuais
+        .map(p => (p.grupo ?? '').trim())
+        .filter(Boolean)
+    )
+  ].sort((a, b) =>
+    a.localeCompare(b, 'pt-PT')
+  );
 
-    this.localidades = [
-      ...new Set(
-        this.people
-          .map(p => (p.localidade ?? '').trim())
-          .filter(Boolean)
-      )
-    ].sort(
-      (a, b) => a.localeCompare(b)
-    );
+  // =====================================================
+  // LOCALIDADES ATUAIS
+  // =====================================================
 
+  this.localidades = [
+    ...new Set(
+      pessoasAtuais
+        .map(p => (p.localidade ?? '').trim())
+        .filter(Boolean)
+    )
+  ].sort((a, b) =>
+    a.localeCompare(b, 'pt-PT')
+  );
 
-    /*
-     * Se o grupo selecionado deixou de existir,
-     * voltar automaticamente para "Todos".
-     */
-    if (
-      this.selectedGroup &&
-      !this.grupos.includes(this.selectedGroup)
-    ) {
+  // =====================================================
+  // LIMPAR FILTROS QUE JÁ NÃO EXISTEM
+  // =====================================================
 
-      this.selectedGroup = '';
-
-    }
-
-
-    /*
-     * Se a localidade selecionada deixou de existir,
-     * voltar automaticamente para "Todas".
-     */
-    if (
-      this.selectedLocalidade &&
-      !this.localidades.includes(
-        this.selectedLocalidade
-      )
-    ) {
-
-      this.selectedLocalidade = '';
-
-    }
-
+  if (
+    this.selectedGroup &&
+    !this.grupos.includes(this.selectedGroup)
+  ) {
+    this.selectedGroup = '';
   }
+
+  if (
+    this.selectedLocalidade &&
+    !this.localidades.includes(this.selectedLocalidade)
+  ) {
+    this.selectedLocalidade = '';
+  }
+
+  this.cdr.markForCheck();
+}
 
 
   /* =====================================================
@@ -665,6 +670,70 @@ private loadUpdatedAt(): void {
   /* =====================================================
      CRIAR
      ===================================================== */
+
+     /* =====================================================
+   NOVA LOCALIDADE / NOVO GRUPO
+   ===================================================== */
+
+escolherNovaLocalidade(): void {
+  this.mostrarNovaLocalidade = true;
+  this.localidade = '';
+  this.novaLocalidade = '';
+
+  this.cdr.markForCheck();
+}
+
+escolherLocalidadeExistente(): void {
+  this.mostrarNovaLocalidade = false;
+  this.novaLocalidade = '';
+
+  this.cdr.markForCheck();
+}
+
+confirmarNovaLocalidade(): void {
+  const valor = this.novaLocalidade.trim();
+
+  if (!valor) {
+    alert('Escreva uma localidade.');
+    return;
+  }
+
+  this.localidade = valor;
+  this.mostrarNovaLocalidade = false;
+
+  this.cdr.markForCheck();
+}
+
+
+escolherNovoGrupo(): void {
+  this.mostrarNovoGrupo = true;
+  this.grupo = '';
+  this.novoGrupo = '';
+
+  this.cdr.markForCheck();
+}
+
+escolherGrupoExistente(): void {
+  this.mostrarNovoGrupo = false;
+  this.novoGrupo = '';
+
+  this.cdr.markForCheck();
+}
+
+confirmarNovoGrupo(): void {
+  const valor = this.novoGrupo.trim();
+
+  if (!valor) {
+    alert('Escreva um grupo.');
+    return;
+  }
+
+  this.grupo = valor;
+  this.mostrarNovoGrupo = false;
+
+  this.cdr.markForCheck();
+}
+
 
   abrirCriar(): void {
 
@@ -880,6 +949,17 @@ private loadUpdatedAt(): void {
 
   }
 
+  alterarLocalidade(event: any): void {
+  if (event.detail.value === '__NOVA_LOCALIDADE__') {
+    this.escolherNovaLocalidade();
+  }
+}
+
+alterarGrupo(event: any): void {
+  if (event.detail.value === '__NOVO_GRUPO__') {
+    this.escolherNovoGrupo();
+  }
+}
 
   /* =====================================================
      OBTER PRÓXIMO ID LIVRE
@@ -980,21 +1060,20 @@ private loadUpdatedAt(): void {
      LIMPAR FORMULÁRIO
      ===================================================== */
 
-  private limparFormulario(): void {
+ private limparFormulario(): void {
+  this.primeiroNome = '';
+  this.ultimoNome = '';
+  this.dataNascimento = '';
+  this.localidade = '';
+  this.grupo = '';
+  this.eneagrama = '';
 
-    this.primeiroNome = '';
+  this.novaLocalidade = '';
+  this.novoGrupo = '';
 
-    this.ultimoNome = '';
-
-    this.dataNascimento = '';
-
-    this.localidade = '';
-
-    this.grupo = '';
-
-    this.eneagrama = '';
-
-  }
+  this.mostrarNovaLocalidade = false;
+  this.mostrarNovoGrupo = false;
+}
 
 
   fecharPopover(): void {

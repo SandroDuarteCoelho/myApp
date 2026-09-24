@@ -35,3 +35,139 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
+
+/* =========================================================
+   FORMULÁRIO DO POPOVER — PERFIL
+   ========================================================= */
+
+ion-popover.perfil-popover {
+  --width: 90%;
+  --max-width: 420px;
+  --border-radius: 20px;
+}
+
+/* Fundo do popover */
+ion-popover.perfil-popover ion-content {
+  --background: #ffffff;
+  background: #ffffff;
+}
+
+/* Lista */
+ion-popover.perfil-popover ion-list {
+  background: #ffffff;
+}
+
+/* Campos */
+ion-popover.perfil-popover ion-item {
+  --background: #ffffff;
+  --color: #222222;
+
+  color: #222222 !important;
+
+  border-radius: 14px;
+  margin-bottom: 12px;
+}
+
+/* Labels */
+ion-popover.perfil-popover ion-label {
+  color: #333333 !important;
+}
+
+/* Labels stacked */
+ion-popover.perfil-popover ion-label[position="stacked"] {
+  color: #333333 !important;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  margin-bottom: 5px;
+}
+
+/* Inputs */
+ion-popover.perfil-popover ion-input {
+  --background: #ffffff;
+  --color: #222222;
+  --placeholder-color: #777777;
+
+  color: #222222 !important;
+}
+
+/* Texto REAL dentro do input */
+ion-popover.perfil-popover ion-input::part(native) {
+  color: #222222 !important;
+  background: #ffffff !important;
+
+  -webkit-text-fill-color: #222222 !important;
+
+  caret-color: #222222;
+}
+
+/* Select */
+ion-popover.perfil-popover ion-select {
+  --color: #222222;
+  --placeholder-color: #777777;
+
+  color: #222222 !important;
+}
+
+/* Botão */
+ion-popover.perfil-popover .guardar-container {
+  padding-top: 15px;
+}
+
+ion-popover.perfil-popover .guardar-container ion-button {
+  height: 44px;
+  --border-radius: 14px;
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   MODO ESCURO
+   O FORMULÁRIO CONTINUA COM FUNDO CLARO
+   ========================================================= */
+
+@media (prefers-color-scheme: dark) {
+
+  ion-popover.perfil-popover ion-content {
+    --background: #ffffff;
+    background: #ffffff;
+  }
+
+  ion-popover.perfil-popover ion-list {
+    background: #ffffff;
+  }
+
+  ion-popover.perfil-popover ion-item {
+    --background: #ffffff;
+    --color: #222222;
+
+    color: #222222 !important;
+  }
+
+  ion-popover.perfil-popover ion-label {
+    color: #333333 !important;
+  }
+
+  ion-popover.perfil-popover ion-input {
+    --background: #ffffff;
+    --color: #222222;
+    --placeholder-color: #777777;
+
+    color: #222222 !important;
+  }
+
+  ion-popover.perfil-popover ion-input::part(native) {
+    color: #222222 !important;
+    background: #ffffff !important;
+    -webkit-text-fill-color: #222222 !important;
+    caret-color: #222222;
+  }
+
+  ion-popover.perfil-popover ion-select {
+    --color: #222222;
+    --placeholder-color: #777777;
+
+    color: #222222 !important;
+  }
+}

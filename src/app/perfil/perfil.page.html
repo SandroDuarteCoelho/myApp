@@ -307,117 +307,379 @@
        ===================================================== -->
 
   <ion-popover
-    #popover
-    [dismissOnSelect]="false">
+  #popover
+  class="perfil-popover"
+  [dismissOnSelect]="false">
 
-    <ng-template>
+  <ng-template>
 
-      <ion-content class="ion-padding">
+    <ion-content
+      style="--background: #ffffff; color: #222222;">
 
-        <ion-list>
+      <ion-list
+        style="background: #ffffff; padding: 16px;">
 
-          <ion-item>
+        <!-- PRIMEIRO NOME -->
+        <ion-item
+          style="
+            --background: #ffffff;
+            --color: #222222;
+            color: #222222;
+            margin-bottom: 12px;
+          ">
 
-            <ion-label position="stacked">
-              Primeiro nome
-            </ion-label>
+          <ion-label
+            position="stacked"
+            style="
+              color: #222222 !important;
+              --color: #222222;
+              font-weight: 600;
+            ">
 
-            <ion-input
-              [(ngModel)]="primeiroNome"
-              type="text">
-            </ion-input>
+            Primeiro nome
 
-          </ion-item>
+          </ion-label>
 
+          <ion-input
+            [(ngModel)]="primeiroNome"
+            type="text"
+            style="
+              --background: #ffffff;
+              --color: #222222;
+              --placeholder-color: #777777;
+              color: #222222 !important;
+            ">
+          </ion-input>
 
-          <ion-item>
-
-            <ion-label position="stacked">
-              Último nome
-            </ion-label>
-
-            <ion-input
-              [(ngModel)]="ultimoNome"
-              type="text">
-            </ion-input>
-
-          </ion-item>
-
-
-          <ion-item>
-
-            <ion-label position="stacked">
-              Data nascimento
-            </ion-label>
-
-            <ion-input
-              [(ngModel)]="dataNascimento"
-              type="date">
-            </ion-input>
-
-          </ion-item>
+        </ion-item>
 
 
-          <ion-item>
+        <!-- ÚLTIMO NOME -->
+        <ion-item
+          style="
+            --background: #ffffff;
+            --color: #222222;
+            color: #222222;
+            margin-bottom: 12px;
+          ">
 
-            <ion-label position="stacked">
-              Localidade
-            </ion-label>
+          <ion-label
+            position="stacked"
+            style="
+              color: #222222 !important;
+              --color: #222222;
+              font-weight: 600;
+            ">
 
-            <ion-input
-              [(ngModel)]="localidade"
-              type="text">
-            </ion-input>
+            Último nome
 
-          </ion-item>
+          </ion-label>
 
+          <ion-input
+            [(ngModel)]="ultimoNome"
+            type="text"
+            style="
+              --background: #ffffff;
+              --color: #222222;
+              --placeholder-color: #777777;
+              color: #222222 !important;
+            ">
+          </ion-input>
 
-          <ion-item>
-
-            <ion-label position="stacked">
-              Grupo
-            </ion-label>
-
-            <ion-input
-              [(ngModel)]="grupo"
-              type="text">
-            </ion-input>
-
-          </ion-item>
-
-
-          <ion-item>
-
-            <ion-label position="stacked">
-              Eneagrama
-            </ion-label>
-
-            <ion-input
-              [(ngModel)]="eneagrama"
-              type="text">
-            </ion-input>
-
-          </ion-item>
+        </ion-item>
 
 
-          <div class="guardar-container">
+        <!-- DATA NASCIMENTO -->
+        <ion-item
+          style="
+            --background: #ffffff;
+            --color: #222222;
+            color: #222222;
+            margin-bottom: 12px;
+          ">
 
-            <ion-button
-              expand="block"
-              (click)="guardar()">
+          <ion-label
+            position="stacked"
+            style="
+              color: #222222 !important;
+              --color: #222222;
+              font-weight: 600;
+            ">
 
-              Guardar
+            Data nascimento
 
-            </ion-button>
+          </ion-label>
 
-          </div>
+          <ion-input
+            [(ngModel)]="dataNascimento"
+            type="date"
+            style="
+              --background: #ffffff;
+              --color: #222222;
+              --placeholder-color: #777777;
+              color: #222222 !important;
+            ">
+          </ion-input>
 
-        </ion-list>
+        </ion-item>
 
-      </ion-content>
 
-    </ng-template>
+       <!-- =================================================
+     LOCALIDADE
+     ================================================= -->
 
-  </ion-popover>
+<ion-item
+  style="
+    --background: #ffffff;
+    --color: #222222;
+    color: #222222;
+    margin-bottom: 12px;
+  ">
+
+  <ion-label
+    position="stacked"
+    style="
+      color: #222222 !important;
+      --color: #222222;
+      font-weight: 600;
+      margin-bottom: 8px;
+    ">
+
+    Localidade
+
+  </ion-label>
+
+  <!-- ESCOLHER EXISTENTE -->
+
+ <ion-select
+  *ngIf="!mostrarNovaLocalidade"
+  [(ngModel)]="localidade"
+  interface="popover"
+  placeholder="Escolher localidade"
+  (ionChange)="alterarLocalidade($event)"
+  style="
+    --color: #222222;
+    --placeholder-color: #777777;
+    color: #222222 !important;
+    width: 100%;
+  ">
+
+    <ion-select-option
+      *ngFor="let item of localidades"
+      [value]="item">
+
+      {{ item }}
+
+    </ion-select-option>
+
+    <ion-select-option
+      value="__NOVA_LOCALIDADE__">
+
+      + Nova localidade
+
+    </ion-select-option>
+
+  </ion-select>
+
+
+  <!-- NOVA LOCALIDADE -->
+
+  <div
+    *ngIf="mostrarNovaLocalidade"
+    style="width: 100%;">
+
+    <ion-input
+      [(ngModel)]="novaLocalidade"
+      type="text"
+      placeholder="Escrever nova localidade"
+      style="
+        --background: #ffffff;
+        --color: #222222;
+        --placeholder-color: #777777;
+        color: #222222 !important;
+      ">
+    </ion-input>
+
+    <ion-button
+      size="small"
+      fill="outline"
+      (click)="confirmarNovaLocalidade()">
+
+      Usar esta localidade
+
+    </ion-button>
+
+    <ion-button
+      size="small"
+      fill="clear"
+      (click)="escolherLocalidadeExistente()">
+
+      Escolher existente
+
+    </ion-button>
+
+  </div>
+
+</ion-item>
+
+
+   <!-- =================================================
+     GRUPO
+     ================================================= -->
+
+<ion-item
+  style="
+    --background: #ffffff;
+    --color: #222222;
+    color: #222222;
+    margin-bottom: 12px;
+  ">
+
+  <ion-label
+    position="stacked"
+    style="
+      color: #222222 !important;
+      --color: #222222;
+      font-weight: 600;
+      margin-bottom: 8px;
+    ">
+
+    Grupo
+
+  </ion-label>
+
+  <!-- ESCOLHER EXISTENTE -->
+
+  <ion-select
+    *ngIf="!mostrarNovoGrupo"
+    [(ngModel)]="grupo"
+    interface="popover"
+    placeholder="Escolher grupo"
+    (ionChange)="alterarGrupo($event)"
+    style="
+      --color: #222222;
+      --placeholder-color: #777777;
+      color: #222222 !important;
+      width: 100%;
+    ">
+
+    <ion-select-option
+      *ngFor="let item of grupos"
+      [value]="item">
+
+      {{ item }}
+
+    </ion-select-option>
+
+    <ion-select-option
+      value="__NOVO_GRUPO__">
+
+      + Novo grupo
+
+    </ion-select-option>
+
+  </ion-select>
+
+
+  <!-- NOVO GRUPO -->
+
+  <div
+    *ngIf="mostrarNovoGrupo"
+    style="width: 100%;">
+
+    <ion-input
+      [(ngModel)]="novoGrupo"
+      type="text"
+      placeholder="Escrever novo grupo"
+      style="
+        --background: #ffffff;
+        --color: #222222;
+        --placeholder-color: #777777;
+        color: #222222 !important;
+      ">
+    </ion-input>
+
+    <ion-button
+      size="small"
+      fill="outline"
+      (click)="confirmarNovoGrupo()">
+
+      Usar este grupo
+
+    </ion-button>
+
+    <ion-button
+      size="small"
+      fill="clear"
+      (click)="escolherGrupoExistente()">
+
+      Escolher existente
+
+    </ion-button>
+
+  </div>
+
+</ion-item>
+
+
+        <!-- ENEAGRAMA -->
+        <ion-item
+          style="
+            --background: #ffffff;
+            --color: #222222;
+            color: #222222;
+            margin-bottom: 12px;
+          ">
+
+          <ion-label
+            position="stacked"
+            style="
+              color: #222222 !important;
+              --color: #222222;
+              font-weight: 600;
+            ">
+
+            Eneagrama
+
+          </ion-label>
+
+          <ion-input
+            [(ngModel)]="eneagrama"
+            type="text"
+            style="
+              --background: #ffffff;
+              --color: #222222;
+              --placeholder-color: #777777;
+              color: #222222 !important;
+            ">
+          </ion-input>
+
+        </ion-item>
+
+
+        <!-- GUARDAR -->
+        <div
+          style="
+            padding-top: 10px;
+            padding-bottom: 10px;
+          ">
+
+          <ion-button
+            expand="block"
+            (click)="guardar()">
+
+            Guardar
+
+          </ion-button>
+
+        </div>
+
+      </ion-list>
+
+    </ion-content>
+
+  </ng-template>
+
+</ion-popover>
 
 </ion-content>

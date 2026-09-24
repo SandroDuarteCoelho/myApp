@@ -309,12 +309,14 @@ ion-popover ion-content {
   --background: #ffffff;
 }
 
-ion-list {
+ion-popover ion-list {
   background: transparent;
+  padding: 8px 0;
 }
 
-ion-list ion-item {
+ion-popover ion-item {
   --background: #ffffff;
+  --color: #222222;
   --border-radius: 14px;
 
   margin-bottom: 12px;
@@ -323,34 +325,62 @@ ion-list ion-item {
   --padding-end: 12px;
 }
 
-ion-label[position="stacked"] {
+/* LABEL DOS CAMPOS */
+
+ion-popover ion-label[position="stacked"] {
+  display: block;
+
   font-size: 13px;
   font-weight: 600;
-  color: #333 !important;
+
+  color: #333333 !important;
+
   margin-bottom: 5px;
 }
 
-ion-input {
+/* INPUT */
+
+ion-popover ion-input {
   --background: #ffffff;
-  --border-radius: 10px;
-  --color: #222;
-  --placeholder-color: #777;
+  --color: #222222;
+  --placeholder-color: #777777;
+
+  color: #222222 !important;
 
   font-size: 14px;
 }
 
-ion-select {
-  color: #222 !important;
-  --placeholder-color: #777;
+/*
+   Garante que o texto escrito dentro
+   do input fica escuro.
+*/
+
+ion-popover ion-input::part(native) {
+  color: #222222 !important;
+  background: #ffffff !important;
+  caret-color: #222222;
 }
 
-.guardar-container {
+/* SELECT */
+
+ion-popover ion-select {
+  --color: #222222;
+  --placeholder-color: #777777;
+
+  color: #222222 !important;
+}
+
+/* BOTÃO GUARDAR */
+
+ion-popover .guardar-container {
   padding-top: 15px;
 }
 
-.guardar-container ion-button {
+ion-popover .guardar-container ion-button {
   height: 44px;
+
   --border-radius: 14px;
+
   font-weight: 600;
 }
 
@@ -359,16 +389,61 @@ ion-select {
    CORES DOS CAMPOS — FUNDO CLARO
    ========================================================= */
 
-ion-item,
-ion-input,
-ion-select,
-ion-label,
-ion-select-option {
-  color: #222 !important;
+ion-popover ion-item,
+ion-popover ion-input,
+ion-popover ion-select,
+ion-popover ion-label {
+  color: #222222 !important;
 }
 
-ion-item ion-label {
-  color: #333 !important;
+
+/* =========================================================
+   MODO ESCURO — FORMULÁRIO CONTINUA CLARO
+   ========================================================= */
+
+@media (prefers-color-scheme: dark) {
+
+  ion-popover {
+    --background: #ffffff;
+  }
+
+  ion-popover ion-content {
+    --background: #ffffff;
+  }
+
+  ion-popover ion-list {
+    background: transparent;
+  }
+
+  ion-popover ion-item {
+    --background: #ffffff;
+    --color: #222222;
+  }
+
+  ion-popover ion-label[position="stacked"] {
+    color: #333333 !important;
+  }
+
+  ion-popover ion-input {
+    --background: #ffffff;
+    --color: #222222;
+    --placeholder-color: #777777;
+
+    color: #222222 !important;
+  }
+
+  ion-popover ion-input::part(native) {
+    color: #222222 !important;
+    background: #ffffff !important;
+    caret-color: #222222;
+  }
+
+  ion-popover ion-select {
+    --color: #222222;
+    --placeholder-color: #777777;
+
+    color: #222222 !important;
+  }
 }
 
 

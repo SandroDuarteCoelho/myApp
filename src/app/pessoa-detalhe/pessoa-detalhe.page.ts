@@ -43,22 +43,24 @@ type SignoChines = {
   elemento: string;
   anos: number[];
   descricao: string;
-
   ferida: string;
   questao_sistemica: string;
   afirmacao: string;
   frase_matriz: string;
+  espelho: string;
+  valores: string;
 };
 
 type SignoSolar = {
   signo: string;
   objetivo: string;
   personalidade: string;
-
   ferida: string;
   questao_sistemica: string;
   afirmacao: string;
   frase_matriz: string;
+  espelho: string;
+  valores: string;
 };
 
 type EneagramaData = {
@@ -76,6 +78,8 @@ type DiaNascimento = {
   questao_sistemica: string;
   afirmacao: string;
   frase_matriz: string;
+  espelho: string;
+  valores: string;
 };
 
 @Component({
@@ -120,7 +124,9 @@ export class PessoaDetalhePage implements OnInit {
   ferida: '',
   questao_sistemica: '',
   afirmacao: '',
-  frase_matriz: ''
+  frase_matriz: '',
+  espelho: '',
+  valores: ''
 };
   analiseDia = '';
 
@@ -508,33 +514,34 @@ private async carregarSignoChines(): Promise<void> {
   try {
 
     const json = await this.http
-      .get<Array<{
-        signo?: string;
-        objetivo?: string;
-        personalidade?: string;
-
-        ferida?: string;
-        questao_sistemica?: string;
-        afirmacao?: string;
-        frase_matriz?: string;
-
-      }>>(`assets/data/solares/${key}.json`)
-      .toPromise();
+  .get<Array<{
+    signo?: string;
+    objetivo?: string;
+    personalidade?: string;
+    ferida?: string;
+    questao_sistemica?: string;
+    afirmacao?: string;
+    frase_matriz?: string;
+    espelho?: string;
+    valores?: string;
+  }>>(`assets/data/solares/${key}.json`)
+  .toPromise();
 
     const primeiro = json?.[0];
 
     this.signoSolarAtual = primeiro
-      ? {
-          signo: primeiro.signo ?? '',
-          objetivo: primeiro.objetivo ?? '',
-          personalidade: primeiro.personalidade ?? '',
-
-          ferida: primeiro.ferida ?? '',
-          questao_sistemica: primeiro.questao_sistemica ?? '',
-          afirmacao: primeiro.afirmacao ?? '',
-          frase_matriz: primeiro.frase_matriz ?? '',
-        }
-      : null;
+  ? {
+      signo: primeiro.signo ?? '',
+      objetivo: primeiro.objetivo ?? '',
+      personalidade: primeiro.personalidade ?? '',
+      ferida: primeiro.ferida ?? '',
+      questao_sistemica: primeiro.questao_sistemica ?? '',
+      afirmacao: primeiro.afirmacao ?? '',
+      frase_matriz: primeiro.frase_matriz ?? '',
+      espelho: primeiro.espelho ?? '',
+      valores: primeiro.valores ?? '',
+    }
+  : null;
 
   } catch {
 

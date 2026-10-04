@@ -170,7 +170,11 @@ export const routes: Routes = [
 
   {
     path: '',
-    redirectTo: 'oracao-perdao',
+    redirectTo: 'home',
     pathMatch: 'full',
+  },
+  {
+    path: 'limpezas',
+    loadComponent: () => import('./limpezas/limpezas.page').then( m => m.LimpezasPage)
   },
 ];

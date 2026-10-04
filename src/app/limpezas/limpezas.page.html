@@ -1,0 +1,400 @@
+<ion-header [translucent]="true">
+
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+
+      <ion-button
+        fill="clear"
+        (click)="voltar()"
+        aria-label="Voltar">
+
+        ← Voltar
+
+      </ion-button>
+
+    </ion-buttons>
+
+    <ion-title>
+      Limpezas
+    </ion-title>
+
+  </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+
+  <ion-header collapse="condense">
+
+    <ion-toolbar>
+
+      <ion-title size="large">
+        Limpezas
+      </ion-title>
+
+    </ion-toolbar>
+
+  </ion-header>
+
+
+  <ion-accordion-group>
+
+
+    <!-- =====================================================
+         GERIR DIVISÕES
+         ===================================================== -->
+
+    <ion-accordion value="divisoes">
+
+      <ion-item slot="header">
+
+        <ion-label>
+          🏠 Gerir divisões
+        </ion-label>
+
+      </ion-item>
+
+
+      <div
+        slot="content"
+        class="accordion-content">
+
+        <ion-list>
+
+          <ion-item
+            *ngFor="let divisao of divisoesOrdenadas"
+            [class]="obterClassePrioridade(divisao.prioridade)">
+
+            <ion-checkbox
+              slot="start"
+              [checked]="divisao.ativa"
+              (ionChange)="alterarEstadoDivisao(divisao)">
+            </ion-checkbox>
+
+
+            <ion-label>
+
+              <h2>
+                {{ divisao.nome }}
+              </h2>
+
+              <p>
+                Prioridade {{ divisao.prioridade }}
+              </p>
+
+            </ion-label>
+
+
+            <ion-button
+              fill="clear"
+              color="danger"
+              slot="end"
+              (click)="apagarDivisao(divisao)">
+
+              🗑️
+
+            </ion-button>
+
+          </ion-item>
+
+        </ion-list>
+
+
+        <!-- =================================================
+             ADICIONAR DIVISÃO
+             ================================================= -->
+
+        <div class="adicionar">
+
+          <ion-item>
+
+            <ion-input
+              [(ngModel)]="novaDivisao"
+              placeholder="Nova divisão"
+              (keyup.enter)="adicionarDivisao()">
+            </ion-input>
+
+          </ion-item>
+
+
+          <ion-item>
+
+            <ion-select
+              [(ngModel)]="novaDivisaoPrioridade"
+              label="Prioridade"
+              label-placement="stacked"
+              interface="popover">
+
+              <ion-select-option [value]="1">
+                1 — Baixa
+              </ion-select-option>
+
+              <ion-select-option [value]="2">
+                2 — Média
+              </ion-select-option>
+
+              <ion-select-option [value]="3">
+                3 — Alta
+              </ion-select-option>
+
+              <ion-select-option [value]="4">
+                4 — Muito alta
+              </ion-select-option>
+
+            </ion-select>
+
+
+            <ion-button
+              slot="end"
+              (click)="adicionarDivisao()"
+              [disabled]="!novaDivisao.trim()">
+
+              Adicionar
+
+            </ion-button>
+
+          </ion-item>
+
+        </div>
+
+      </div>
+
+    </ion-accordion>
+
+
+
+    <!-- =====================================================
+         GERIR TAREFAS
+         ===================================================== -->
+
+    <ion-accordion value="tarefas">
+
+      <ion-item slot="header">
+
+        <ion-label>
+          🧹 Gerir tarefas
+        </ion-label>
+
+      </ion-item>
+
+
+      <div
+        slot="content"
+        class="accordion-content">
+
+
+        <ion-list>
+
+          <ion-item
+            *ngFor="let tarefa of tarefasOrdenadas"
+            [class]="obterClassePrioridade(tarefa.prioridade)"
+            [class.tarefa-indisponivel]="!obterDivisaoAtiva(tarefa.divisao)">
+
+
+            <!-- =================================================
+                 ESTADO DA TAREFA
+                 ================================================= -->
+
+            <ion-checkbox
+              slot="start"
+              [checked]="tarefa.ativa"
+              [disabled]="!obterDivisaoAtiva(tarefa.divisao)"
+              (ionChange)="alterarEstadoTarefa(tarefa)">
+            </ion-checkbox>
+
+
+            <ion-label>
+
+              <h2>
+                {{ tarefa.nome }}
+              </h2>
+
+              <p>
+
+                {{ obterNomeDivisao(tarefa.divisao) }}
+
+                ·
+
+                {{ obterNomeFrequencia(tarefa.frequencia) }}
+
+                ·
+
+                {{ tarefa.duracao }} min
+
+                ·
+
+                Prioridade {{ tarefa.prioridade }}
+
+              </p>
+
+            </ion-label>
+
+
+            <!-- =================================================
+                 APAGAR TAREFA
+                 ================================================= -->
+
+            <ion-button
+              fill="clear"
+              color="danger"
+              slot="end"
+              (click)="apagarTarefa(tarefa)">
+
+              🗑️
+
+            </ion-button>
+
+          </ion-item>
+
+        </ion-list>
+
+
+
+        <!-- =================================================
+             ADICIONAR TAREFA
+             ================================================= -->
+
+        <div class="adicionar">
+
+
+          <!-- NOME -->
+
+          <ion-item>
+
+            <ion-input
+              [(ngModel)]="novaTarefa"
+              placeholder="Nova tarefa">
+            </ion-input>
+
+          </ion-item>
+
+
+          <!-- DIVISÃO -->
+
+          <ion-item>
+
+            <ion-select
+              [(ngModel)]="novaTarefaDivisao"
+              label="Divisão"
+              label-placement="stacked"
+              interface="popover">
+
+              <ion-select-option
+                *ngFor="let divisao of divisoesAtivas"
+                [value]="divisao.id">
+
+                {{ divisao.nome }}
+
+              </ion-select-option>
+
+            </ion-select>
+
+          </ion-item>
+
+
+          <!-- FREQUÊNCIA -->
+
+          <ion-item>
+
+            <ion-select
+              [(ngModel)]="novaTarefaFrequencia"
+              label="Frequência"
+              label-placement="stacked"
+              interface="popover">
+
+              <ion-select-option value="diaria">
+                Diária
+              </ion-select-option>
+
+              <ion-select-option value="semanal">
+                Semanal
+              </ion-select-option>
+
+              <ion-select-option value="mensal">
+                Mensal
+              </ion-select-option>
+
+            </ion-select>
+
+          </ion-item>
+
+
+          <!-- PRIORIDADE -->
+
+          <ion-item>
+
+            <ion-select
+              [(ngModel)]="novaTarefaPrioridade"
+              label="Prioridade"
+              label-placement="stacked"
+              interface="popover">
+
+              <ion-select-option [value]="1">
+                1 — Baixa
+              </ion-select-option>
+
+              <ion-select-option [value]="2">
+                2 — Média
+              </ion-select-option>
+
+              <ion-select-option [value]="3">
+                3 — Alta
+              </ion-select-option>
+
+              <ion-select-option [value]="4">
+                4 — Muito alta
+              </ion-select-option>
+
+            </ion-select>
+
+          </ion-item>
+
+
+          <!-- DURAÇÃO -->
+
+          <ion-item>
+
+            <ion-input
+              type="number"
+              [(ngModel)]="novaTarefaDuracao"
+              label="Duração minutos"
+              label-placement="stacked"
+              min="1"
+              placeholder="Minutos">
+            </ion-input>
+
+          </ion-item>
+
+
+          <!-- BOTÃO ADICIONAR -->
+
+          <ion-item>
+
+            <ion-button
+              expand="block"
+              (click)="adicionarTarefa()"
+              [disabled]="
+                !novaTarefa.trim() ||
+                !novaTarefaDivisao ||
+                novaTarefaDuracao <= 0
+              ">
+
+              Adicionar tarefa
+
+            </ion-button>
+
+          </ion-item>
+
+
+        </div>
+
+      </div>
+
+    </ion-accordion>
+
+
+  </ion-accordion-group>
+
+</ion-content>

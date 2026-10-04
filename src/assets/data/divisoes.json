@@ -1,0 +1,34 @@
+{
+  "divisoes": [
+    {
+      "id": "cozinha",
+      "nome": "Cozinha",
+      "prioridade": 4,
+      "ativa": true
+    },
+    {
+      "id": "sala",
+      "nome": "Sala",
+      "prioridade": 2,
+      "ativa": true
+    },
+    {
+      "id": "quarto",
+      "nome": "Quarto",
+      "prioridade": 3,
+      "ativa": true
+    },
+    {
+      "id": "casa_banho",
+      "nome": "Casa de banho",
+      "prioridade": 4,
+      "ativa": true
+    },
+    {
+      "id": "garagem",
+      "nome": "Garagem",
+      "prioridade": 1,
+      "ativa": false
+    }
+  ]
+}

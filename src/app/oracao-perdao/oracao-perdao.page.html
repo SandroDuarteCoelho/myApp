@@ -1,26 +1,51 @@
 <ion-header [translucent]="true">
+
   <ion-toolbar>
 
     <ion-buttons slot="start">
+
       <ion-button
         class="info-btn"
         fill="clear"
         (click)="openCasasInfo()"
         aria-label="Informações das casas">
-        ℹ
+
+        ℹ️
+
       </ion-button>
+
     </ion-buttons>
+
 
     <ion-title>
       {{ casaAtual }}
     </ion-title>
 
+
+    <ion-buttons slot="end">
+
+      <ion-button
+        fill="clear"
+        (click)="navigateLimpezas()"
+        aria-label="Limpezas">
+
+        🧹
+
+      </ion-button>
+
+    </ion-buttons>
+
   </ion-toolbar>
+
 </ion-header>
+
 
 <ion-content [fullscreen]="true">
 
-  <!-- IMAGEM PRINCIPAL -->
+
+  <!-- =====================================================
+       IMAGEM PRINCIPAL
+       ===================================================== -->
 
   <div class="hero">
 
@@ -31,54 +56,70 @@
 
     <div class="hero-overlay">
 
-      <!-- <div class="hero-card">
-
-        <div class="hero-title">
-          {{ casaAtual }}
-        </div>
-
-        <div class="hero-description">
-          {{ descricaoCasaAtual }}
-        </div>
-
-      </div> -->
-
       <div class="regra-wrapper">
 
-    <div class="regra-container">
+        <div class="regra-container">
 
-      <div class="quote-icon">
-        
+          <div class="quote-icon">
+          </div>
+
+          <div class="regra-text">
+            {{ regraTexto }}
+          </div>
+
+          <ion-button
+            fill="clear"
+            size="small"
+            class="regra-edit-btn"
+            (click)="openRegraEdit()">
+
+            ✏ Editar
+
+          </ion-button>
+
+        </div>
+
       </div>
-
-      <div class="regra-text">
-        {{ regraTexto }}
-      </div>
-
-      <ion-button
-        fill="clear"
-        size="small"
-        class="regra-edit-btn"
-        (click)="openRegraEdit()">
-
-        ✏ Editar
-
-      </ion-button>
 
     </div>
 
   </div>
 
 
-    </div>
 
-  </div>
 
-  <!-- FRASE -->
 
-  
+  <!-- =====================================================
+     TEMPO DISPONÍVEL PARA HOJE
+     ===================================================== -->
 
-  <!-- GRELHA -->
+<div class="tempo-wrapper">
+
+  <ion-item>
+    <ion-input
+      type="number"
+      [(ngModel)]="tempoDisponivel"
+      label="Quanto tempo tenho hoje?"
+      label-placement="stacked"
+      placeholder="Ex.: 30"
+      min="1"
+      inputmode="numeric">
+    </ion-input>
+
+    <ion-button
+      slot="end"
+      (click)="calcularTarefas()"
+      [disabled]="!tempoDisponivel || tempoDisponivel <= 0">
+      Ver tarefas
+    </ion-button>
+  </ion-item>
+
+</div>
+
+
+  <!-- =====================================================
+       GRELHA
+       ===================================================== -->
 
   <ion-grid>
 
@@ -86,7 +127,9 @@
 
       <ion-col size="6">
 
-        <ion-card button (click)="navigatePrayer()">
+        <ion-card
+          button
+          (click)="navigatePrayer()">
 
           <ion-card-header>
 
@@ -104,9 +147,12 @@
 
       </ion-col>
 
+
       <ion-col size="6">
 
-        <ion-card button (click)="navigatePerfil()">
+        <ion-card
+          button
+          (click)="navigatePerfil()">
 
           <ion-card-header>
 
@@ -126,11 +172,15 @@
 
     </ion-row>
 
+
+
     <ion-row>
 
       <ion-col size="6">
 
-        <ion-card button (click)="navigateAnimais()">
+        <ion-card
+          button
+          (click)="navigateAnimais()">
 
           <ion-card-header>
 
@@ -148,9 +198,12 @@
 
       </ion-col>
 
+
       <ion-col size="6">
 
-        <ion-card button (click)="navigateValores()">
+        <ion-card
+          button
+          (click)="navigateValores()">
 
           <ion-card-header>
 
@@ -171,11 +224,14 @@
     </ion-row>
 
 
+
     <ion-row>
 
       <ion-col size="6">
 
-        <ion-card button (click)="navigateMeditacoes()">
+        <ion-card
+          button
+          (click)="navigateMeditacoes()">
 
           <ion-card-header>
 
@@ -196,7 +252,9 @@
 
       <ion-col size="6">
 
-        <ion-card button (click)="navigateMetadeSombra()">
+        <ion-card
+          button
+          (click)="navigateMetadeSombra()">
 
           <ion-card-header>
 
@@ -214,15 +272,15 @@
 
       </ion-col>
 
-
     </ion-row>
-
 
   </ion-grid>
 
 
 
-  <!-- MODAL EDITAR FRASE -->
+  <!-- =====================================================
+       MODAL EDITAR FRASE
+       ===================================================== -->
 
   <ion-modal
     [isOpen]="isRegraEditModalOpen"
@@ -230,19 +288,15 @@
 
     <ng-template>
 
-
       <ion-header>
 
         <ion-toolbar>
-
 
           <ion-title>
             Editar frase
           </ion-title>
 
-
           <ion-buttons slot="end">
-
 
             <ion-button
               (click)="closeRegraEdit()">
@@ -251,7 +305,6 @@
 
             </ion-button>
 
-
             <ion-button
               (click)="saveRegraEdit()">
 
@@ -259,156 +312,264 @@
 
             </ion-button>
 
-
           </ion-buttons>
-
 
         </ion-toolbar>
 
       </ion-header>
 
 
-
       <ion-content class="ion-padding">
-
 
         <ion-item>
 
-
           <ion-label position="stacked">
-
             Frase
-
           </ion-label>
 
-
-
           <ion-input
-
             [(ngModel)]="regraTextoEdit"
-
             placeholder="Digite a nova frase">
-
           </ion-input>
-
 
         </ion-item>
 
-
       </ion-content>
 
-
     </ng-template>
-
 
   </ion-modal>
 
 
-  <!-- MODAL CASAS -->
 
+  <!-- =====================================================
+       MODAL CASAS
+       ===================================================== -->
 
   <ion-modal
-
     [isOpen]="isCasasModalOpen"
-
     (didDismiss)="isCasasModalOpen = false">
-
 
     <ng-template>
 
-
       <ion-header>
 
-
         <ion-toolbar>
-
 
           <ion-title>
             Casas
           </ion-title>
 
-
-
           <ion-buttons slot="end">
 
-
             <ion-button
-
               (click)="isCasasModalOpen = false">
 
               Fechar
 
             </ion-button>
 
-
           </ion-buttons>
 
-
         </ion-toolbar>
-
 
       </ion-header>
 
 
-
-
       <ion-content class="ion-padding">
-
-
 
         <ion-list>
 
-
-
           <ion-item
-
             *ngFor="let casa of casasList">
-
-
 
             <ion-label>
 
-
-
               <h2 class="casa-item-title">
-
                 {{ casa.nome }}
-
               </h2>
 
-
-
               <p class="casa-item-desc">
-
                 {{ casa.descricao }}
-
               </p>
-
-
 
             </ion-label>
 
-
-
           </ion-item>
-
-
 
         </ion-list>
 
-
-
       </ion-content>
 
-
-
     </ng-template>
-
-
 
   </ion-modal>
 
 
-<br><br><br><br>
-</ion-content>
 
+ <!-- =====================================================
+     MODAL TAREFAS DISPONÍVEIS
+     ===================================================== -->
+
+<ion-modal
+  [isOpen]="isTarefasModalOpen"
+  (didDismiss)="fecharTarefasModal()">
+
+  <ng-template>
+
+    <ion-header>
+
+      <ion-toolbar>
+
+        <ion-title>
+          Tarefas para hoje
+        </ion-title>
+
+        <ion-buttons slot="end">
+
+          <ion-button
+            (click)="fecharTarefasModal()">
+            Fechar
+          </ion-button>
+
+        </ion-buttons>
+
+      </ion-toolbar>
+
+    </ion-header>
+
+
+    <ion-content class="ion-padding">
+
+      <!-- RESUMO -->
+
+      <div class="tarefas-resumo">
+
+        <h2>
+          Tens {{ tempoDisponivel }} minutos
+        </h2>
+
+        <p>
+          Foram encontradas
+          <strong>
+            {{ tarefasSugeridas.length }}
+          </strong>
+          tarefas que cabem nesse tempo.
+        </p>
+
+        <p>
+          Tempo utilizado:
+          <strong>
+            {{ tempoTarefasSugeridas }} min
+          </strong>
+        </p>
+
+      </div>
+
+
+      <!-- LISTA DE TAREFAS -->
+
+      <ion-list>
+
+        <ion-item
+          *ngFor="
+            let tarefa of tarefasSugeridas;
+            let i = index
+          "
+          [class]="obterClassePrioridade(tarefa.prioridade)"
+          [class.tarefa-concluida]="tarefa.concluida">
+
+          <!-- CHECKBOX -->
+
+          <ion-checkbox
+            slot="start"
+            [(ngModel)]="tarefa.concluida">
+          </ion-checkbox>
+
+
+          <!-- NÚMERO -->
+
+          <div class="numero-tarefa">
+
+            {{ i + 1 }}
+
+          </div>
+
+
+          <!-- INFORMAÇÃO -->
+
+          <ion-label>
+
+            <h2>
+              {{ tarefa.nome }}
+            </h2>
+
+            <p>
+              {{ obterNomeDivisao(tarefa.divisao) }}
+              ·
+              {{ obterNomeFrequencia(tarefa.frequencia) }}
+              ·
+              {{ tarefa.duracao }} min
+            </p>
+
+          </ion-label>
+
+
+          <!-- PRIORIDADE -->
+
+          <div
+            class="prioridade-tarefa"
+            slot="end">
+
+            P{{ tarefa.prioridade }}
+
+          </div>
+
+        </ion-item>
+
+      </ion-list>
+
+
+      <!-- NENHUMA TAREFA -->
+
+      <div
+        *ngIf="tarefasSugeridas.length === 0"
+        class="sem-tarefas">
+
+        <p>
+          Não existe nenhuma tarefa ativa que caiba no
+          tempo indicado.
+        </p>
+
+      </div>
+
+
+      <!-- GUARDAR -->
+
+      <div
+  class="guardar-tarefas-wrapper"
+  *ngIf="tarefasSugeridas.length > 0">
+
+  <ion-button
+    expand="block"
+    (click)="guardarTarefasConcluidas()"
+    [disabled]="!temTarefasSelecionadas()">
+    ✓ Guardar
+  </ion-button>
+
+</div>
+
+    </ion-content>
+
+  </ng-template>
+
+</ion-modal>
+
+
+
+  <br>
+  <br>
+  <br>
+  <br>
+
+</ion-content>

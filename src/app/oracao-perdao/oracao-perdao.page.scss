@@ -1,752 +1,568 @@
-
 :host {
-
   display: block;
-
 }
-
 
 /* ===============================
    HEADER / TITULO CASA
 ================================ */
 
 ion-toolbar {
-
   --background: #000;
-
 }
-
 
 ion-title {
-
   color: #fff;
-
   font-weight: 700;
-
   text-align: center;
-
 }
-
-
 
 /* botão informação */
-
 .info-btn {
-
   width: 40px;
-
   height: 40px;
-
   border-radius: 50%;
-
   color: #fff;
-
-  --background: rgba(255,255,255,.15);
-
+  --background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(10px);
-
 }
-
 
 .info-btn::part(native) {
-
   border-radius: 50%;
-
 }
-
-
 
 /* ===============================
    IMAGEM PRINCIPAL
 ================================ */
 
-
 .hero {
-
   position: relative;
-
   width: 100%;
-
   height: 70vh;
-
   overflow: hidden;
-
   border-radius: 0 0 30px 30px;
-
 }
-
-
 
 .hero-image {
-
   width: 100%;
-
   height: 100%;
-
   object-fit: cover;
-
 }
-
-
 
 .hero::after {
-
   content: "";
-
   position: absolute;
-
   inset: 0;
-
   background:
-
     linear-gradient(
-
-      rgba(0,0,0,0.15),
-
-      rgba(0,0,0,0.45)
-
+      rgba(0, 0, 0, 0.15),
+      rgba(0, 0, 0, 0.45)
     );
-
 }
-
-
 
 /* texto sobre imagem */
-
 .hero-overlay {
-
   position: absolute;
-
   bottom: 20px;
-
   left: 0;
-
   right: 0;
-
   display: flex;
-
   justify-content: center;
-
   z-index: 2;
-
 }
-
-
 
 .hero-card {
-
   width: 85%;
-
   padding: 18px;
-
   border-radius: 20px;
-
-  background: rgba(0,0,0,.45);
-
+  background: rgba(0, 0, 0, 0.45);
   backdrop-filter: blur(12px);
-
   text-align: center;
-
-  color:white;
-
+  color: white;
 }
-
-
 
 .hero-title {
-
   font-size: 24px;
-
   font-weight: 800;
-
   margin-bottom: 8px;
-
 }
-
-
 
 .hero-description {
-
   font-size: 14px;
-
   line-height: 1.5;
-
-  opacity: .95;
-
+  opacity: 0.95;
 }
-
 
 /* ===============================
    FRASE / REGRA
 ================================ */
 
-
 .regra-wrapper {
-
   padding: 20px 16px 10px;
-
 }
-
-
 
 .regra-container {
-
   position: relative;
-
   padding: 10px;
-
   border-radius: 22px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(15px);
 
-  background:
-
-    rgba(255,255,255,.12);
-
-  backdrop-filter:
-
-    blur(15px);
-
-
-  border:
-
-    1px solid rgba(255,255,255,.15);
-
+  border: 1px solid rgba(255, 255, 255, 0.15);
 
   box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.25);
 
-    0 8px 30px rgba(0,0,0,.25);
-
-
-  text-align:center;
-
+  text-align: center;
 }
-
-
 
 .quote-icon {
-
   font-size: 36px;
-
   line-height: 1;
-
-  color:white;
-
-  opacity:.8;
-
+  color: white;
+  opacity: 0.8;
 }
-
-
 
 .regra-text {
-
-  margin-top:8px;
-
-  color:white;
-
-  font-size:17px;
-
-  font-weight:600;
-
-  line-height:1.5;
-
+  margin-top: 8px;
+  color: white;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.5;
 }
-
-
 
 .regra-edit-btn {
-
-  margin-top:12px;
-
-  color:white;
-
+  margin-top: 12px;
+  color: white;
 }
 
-
+.regra-edit-btn::part(native) {
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.15);
+  padding-left: 18px;
+  padding-right: 18px;
+}
 
 /* ===============================
    GRELHA DOS CARTÕES
 ================================ */
 
-
 ion-grid {
-
   padding: 10px 16px 30px;
-
 }
-
-
 
 ion-row {
-
   margin-bottom: 8px;
-
 }
-
-
 
 ion-col {
-
-  padding:8px;
-
+  padding: 8px;
 }
-
-
 
 /* ===============================
    CARTÕES
 ================================ */
 
-
 ion-card {
+  height: 130px;
+  margin: 0;
 
-  height:130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  margin:0;
+  border-radius: 22px;
 
+  background: rgba(255, 255, 255, 0.14);
 
-  display:flex;
+  backdrop-filter: blur(12px);
 
-  align-items:center;
-
-  justify-content:center;
-
-
-  border-radius:22px;
-
-
-  background:
-
-    rgba(255,255,255,.14);
-
-
-
-  backdrop-filter:
-
-    blur(12px);
-
-
-
-  border:
-
-    1px solid rgba(255,255,255,.18);
-
-
+  border: 1px solid rgba(255, 255, 255, 0.18);
 
   box-shadow:
-
-    0 10px 25px rgba(0,0,0,.25);
-
-
+    0 10px 25px rgba(0, 0, 0, 0.25);
 
   transition:
+    transform 0.25s ease,
+    background 0.25s ease;
 
-    transform .25s ease,
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 
-    background .25s ease;
-
+  animation: aparecer 0.35s ease;
 }
-
-
 
 ion-card:hover {
-
-  background:
-
-    rgba(255,255,255,.25);
-
+  background: rgba(255, 255, 255, 0.25);
 }
-
-
 
 ion-card:active {
-
-  transform:
-
-    scale(.95);
-
+  transform: scale(0.95);
 }
-
-
 
 /* conteúdo do cartão */
 
-
 ion-card-header {
-
-  display:flex;
-
-  flex-direction:column;
-
-  align-items:center;
-
-  justify-content:center;
-
-  text-align:center;
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
-
-
 
 .card-icon {
-
-  font-size:38px;
-
-  margin-bottom:10px;
-
+  font-size: 38px;
+  margin-bottom: 10px;
 }
-
-
 
 ion-card-title {
-
-  color:white;
-
-  font-size:15px;
-
-  font-weight:700;
-
-  text-align:center;
-
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
+  text-align: center;
 }
-
 
 /* ===============================
    FUNDO DA PÁGINA
 ================================ */
 
-
 .cards-grid {
-
   --background: transparent;
-
-  position:relative;
-
-  overflow:hidden;
-
+  position: relative;
+  overflow: hidden;
+  background: #000;
 }
-
-
 
 /* caso ainda exista background-layer */
 
 .background-layer {
-
-  display:none;
-
+  display: none;
 }
-
-
 
 /* ===============================
    MODAIS
 ================================ */
 
-
 ion-modal {
-
-  --border-radius:24px;
-
+  --border-radius: 24px;
 }
-
-
 
 ion-modal ion-toolbar {
-
-  --background:#000;
-
+  --background: #000;
 }
-
-
 
 ion-modal ion-title {
-
-  color:white;
-
+  color: white;
 }
-
-
 
 ion-modal ion-content {
-
-  --background:#111;
-
+  --background: #111;
 }
 
-
+/* ===============================
+   ITENS GERAIS DOS MODAIS
+================================ */
 
 ion-item {
+  --background: rgba(255, 255, 255, 0.08);
+  --color: white;
 
-  --background:rgba(255,255,255,.08);
-
-  --color:white;
-
-  border-radius:12px;
-
-  margin-bottom:10px;
-
+  border-radius: 12px;
+  margin-bottom: 10px;
 }
-
-
 
 ion-label {
-
-  color:white;
-
+  color: white;
 }
 
+ion-item::part(native) {
+  border-radius: 16px;
+}
 
+/* ===============================
+   LISTA DAS CASAS
+================================ */
 
 .casa-item-title {
-
-  color:white;
-
-  font-size:18px;
-
-  font-weight:700;
-
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
 }
-
-
 
 .casa-item-desc {
-
-  color:#ddd;
-
-  line-height:1.5;
-
+  color: #ddd;
+  line-height: 1.5;
 }
 
-
+ion-list {
+  background: transparent;
+}
 
 /* ===============================
-   AJUSTES PARA TELEMÓVEIS PEQUENOS
+   TEMPO DISPONÍVEL
 ================================ */
 
+.tempo-wrapper {
+  margin: 12px;
+  padding: 8px;
+  background: #f5f5f5;
+  border-radius: 10px;
+}
 
-@media (max-height:700px){
+.tempo-wrapper ion-item {
+  --background: #ffffff;
+  --color: #222222;
+}
 
+.tempo-wrapper ion-input {
+  --color: #222222;
+  --placeholder-color: #666666;
+  --background: #ffffff;
+
+  color: #222222;
+}
+
+/* ===============================
+   RESUMO DAS TAREFAS
+================================ */
+
+.tarefas-resumo {
+  padding: 8px 4px 16px;
+}
+
+.tarefas-resumo h2 {
+  margin: 0 0 6px;
+  font-size: 20px;
+  color: #222;
+}
+
+.tarefas-resumo p {
+  margin: 5px 0;
+  color: #555;
+}
+
+/* =====================================================
+   TAREFAS — CORES POR PRIORIDADE
+   ===================================================== */
+
+/*
+   4 = Muito alta
+   3 = Alta
+   2 = Média
+   1 = Baixa
+*/
+
+ion-list ion-item.prioridade-muito-alta {
+  --background: #ffc7c7 !important;
+  --color: #700000 !important;
+  color: #700000 !important;
+}
+
+ion-list ion-item.prioridade-alta {
+  --background: #ffd9b3 !important;
+  --color: #6b2d00 !important;
+  color: #6b2d00 !important;
+}
+
+ion-list ion-item.prioridade-media {
+  --background: #fff3b3 !important;
+  --color: #554600 !important;
+  color: #554600 !important;
+}
+
+ion-list ion-item.prioridade-baixa {
+  --background: #d4edda !important;
+  --color: #155724 !important;
+  color: #155724 !important;
+}
+
+/* =====================================================
+   TEXTO DAS TAREFAS
+   ===================================================== */
+
+ion-list ion-item.prioridade-muito-alta ion-label,
+ion-list ion-item.prioridade-alta ion-label,
+ion-list ion-item.prioridade-media ion-label,
+ion-list ion-item.prioridade-baixa ion-label {
+  color: #222 !important;
+}
+
+ion-list ion-item.prioridade-muito-alta ion-label h2,
+ion-list ion-item.prioridade-alta ion-label h2,
+ion-list ion-item.prioridade-media ion-label h2,
+ion-list ion-item.prioridade-baixa ion-label h2 {
+  color: #111 !important;
+  font-weight: 700;
+}
+
+ion-list ion-item.prioridade-muito-alta ion-label p,
+ion-list ion-item.prioridade-alta ion-label p,
+ion-list ion-item.prioridade-media ion-label p,
+ion-list ion-item.prioridade-baixa ion-label p {
+  color: #333 !important;
+}
+
+/* =====================================================
+   NÚMERO DA TAREFA
+   ===================================================== */
+
+.numero-tarefa {
+  width: 30px;
+  height: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.7);
+  color: #222 !important;
+
+  font-weight: 700;
+
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+
+/* =====================================================
+   PRIORIDADE — P1 / P2 / P3 / P4
+   ===================================================== */
+
+.prioridade-tarefa {
+  font-size: 13px;
+  font-weight: 800;
+
+  color: #222 !important;
+
+  margin-left: 8px;
+}
+
+/* =====================================================
+   TAREFA CONCLUÍDA
+   ===================================================== */
+
+.tarefa-concluida {
+  opacity: 0.55;
+}
+
+.tarefa-concluida ion-label h2 {
+  text-decoration: line-through;
+}
+
+/* =====================================================
+   SEM TAREFAS
+   ===================================================== */
+
+.sem-tarefas {
+  text-align: center;
+  padding: 30px 15px;
+  color: #666;
+}
+
+/* =====================================================
+   BOTÃO GUARDAR
+   ===================================================== */
+
+.guardar-tarefas-wrapper {
+  margin-top: 24px;
+  padding: 8px 0 20px;
+}
+
+/* =====================================================
+   DESCRIÇÕES LONGAS DAS CASAS
+   ===================================================== */
+
+.hero-description {
+  max-height: 80px;
+  overflow: auto;
+}
+
+/* =====================================================
+   AJUSTES PARA TELEMÓVEIS PEQUENOS
+   ===================================================== */
+
+@media (max-height: 700px) {
 
   .hero {
-
-    height:38vh;
-
+    height: 38vh;
   }
-
-
 
   .hero-title {
-
-    font-size:20px;
-
+    font-size: 20px;
   }
-
-
 
   .hero-description {
-
-    font-size:13px;
-
+    font-size: 13px;
   }
-
-
 
   ion-card {
-
-    height:110px;
-
+    height: 110px;
   }
-
-
 
   .card-icon {
-
-    font-size:30px;
-
+    font-size: 30px;
   }
-
-
 }
 
-
-
-/* ===============================
+/* =====================================================
    EFEITO DE ENTRADA
-================================ */
-
-
-ion-card {
-
-  animation:
-
-    aparecer .35s ease;
-
-}
-
-
+   ===================================================== */
 
 @keyframes aparecer {
 
-
   from {
-
-    opacity:0;
-
-    transform:translateY(15px);
-
+    opacity: 0;
+    transform: translateY(15px);
   }
-
 
   to {
-
-    opacity:1;
-
-    transform:translateY(0);
-
+    opacity: 1;
+    transform: translateY(0);
   }
-
 
 }
 
-
-/* ===============================
-   GARANTIR QUE O CONTEÚDO FICA
-   ACIMA DA IMAGEM
-================================ */
-
+/* =====================================================
+   GARANTIR QUE O CONTEÚDO FICA ACIMA DA IMAGEM
+   ===================================================== */
 
 ion-grid,
 .regra-wrapper,
 .hero {
-
-  position:relative;
-
-  z-index:2;
-
+  position: relative;
+  z-index: 2;
 }
 
-
-
-/* ===============================
-   MELHOR LEITURA SOBRE IMAGENS
-================================ */
-
-
-.cards-grid {
-
-  background:#000;
-
-}
-
-
-
-/* ===============================
-   DESCRIÇÕES LONGAS DAS CASAS
-================================ */
-
-
-.hero-description {
-
-  max-height:80px;
-
-  overflow:auto;
-
-}
-
-
-
-/* ===============================
-   BOTÃO EDITAR FRASE
-================================ */
-
-
-.regra-edit-btn::part(native) {
-
-  border-radius:20px;
-
-  background:
-
-    rgba(255,255,255,.15);
-
-  padding-left:18px;
-
-  padding-right:18px;
-
-}
-
-
-
-/* ===============================
-   LISTA DAS CASAS NO MODAL
-================================ */
-
-
-ion-list {
-
-  background:transparent;
-
-}
-
-
-
-ion-item::part(native) {
-
-  border-radius:16px;
-
-}
-
-
-
-/* ===============================
-   MELHOR EXPERIÊNCIA TOUCH
-================================ */
-
-
-ion-card {
-
-  cursor:pointer;
-
-  -webkit-tap-highlight-color:transparent;
-
-}
-
-
-
-/* ===============================
-   ESPAÇAMENTO FINAL PARA SCROLL
-================================ */
-
-
-ion-content {
-
-  --padding-bottom:30px;
-
-}
-
-
-
-/* ===============================
+/* =====================================================
    MODO CLARO / ESCURO
-================================ */
-
+   ===================================================== */
 
 @media (prefers-color-scheme: dark) {
 
-
   ion-content {
-
-    --background:#000;
-
+    --background: #000;
   }
-
 
 }
 
+/* =====================================================
+   HERO — GARANTIR TAMANHO DA IMAGEM
+   ===================================================== */
 
 .hero {
-  height:70vh !important;
+  height: 70vh !important;
 }
 
 .hero-image {
-  height:100% !important;
-  width:100% !important;
-  object-fit:cover !important;
+  height: 100% !important;
+  width: 100% !important;
+  object-fit: cover !important;
+}
+
+/* =====================================================
+   ESPAÇAMENTO FINAL PARA SCROLL
+   ===================================================== */
+
+ion-content {
+  --padding-bottom: 30px;
 }

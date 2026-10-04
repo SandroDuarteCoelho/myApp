@@ -1,0 +1,156 @@
+
+ion-accordion-group {
+  margin: 12px;
+}
+
+ion-accordion {
+  margin-bottom: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #ddd;
+}
+
+.accordion-content {
+  padding: 0 8px 12px;
+}
+
+ion-list {
+  padding: 0;
+}
+
+ion-item {
+  --min-height: 52px;
+}
+
+ion-label h2 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+ion-label p {
+  font-size: 13px;
+  color: #666;
+}
+
+.adicionar {
+  margin-top: 12px;
+  padding: 8px;
+  background: #f5f5f5;
+  border-radius: 8px;
+}
+
+.adicionar ion-item {
+  --background: transparent;
+}
+
+
+ion-input,
+ion-select {
+  --color: #222;
+  --placeholder-color: #666;
+  --background: #fff;
+  color: #222;
+}
+
+ion-input input {
+  color: #222 !important;
+  background: #fff !important;
+  caret-color: #222;
+}
+
+ion-select {
+  color: #222 !important;
+}
+
+ion-select-option {
+  color: #222;
+}
+
+ion-item {
+  --background: #fff;
+  --color: #222;
+}
+
+ion-label {
+  color: #222 !important;
+}
+
+/* =====================================================
+   ACORDEÕES
+   ===================================================== */
+
+ion-accordion {
+  margin-bottom: 12px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+ion-accordion > ion-item[slot="header"] {
+  --background: #e8edf3;
+  --color: #1f2937;
+  font-weight: 600;
+}
+
+/* Conteúdo do acordeão */
+ion-accordion > div[slot="content"] {
+  background: #f7f7f7;
+  padding: 8px;
+}
+
+
+/* =====================================================
+   FORMULÁRIOS
+   ===================================================== */
+
+ion-input,
+ion-select {
+  --background: #ffffff;
+  --color: #222222;
+  --placeholder-color: #666666;
+  color: #222222 !important;
+}
+
+ion-item {
+  --background: #ffffff;
+  --color: #222222;
+}
+
+ion-label {
+  color: #222222 !important;
+}
+
+ion-input input {
+  color: #222222 !important;
+  background: #ffffff !important;
+  caret-color: #222222;
+}
+
+ion-select-option {
+  color: #222222;
+}
+
+
+/* =====================================================
+   CORES DAS PRIORIDADES
+   ===================================================== */
+
+.prioridade-muito-alta {
+  --background: #ffc7c7;
+}
+
+.prioridade-alta {
+  --background: #ffd9b3;
+}
+
+.prioridade-media {
+  --background: #fff3b3;
+}
+
+.prioridade-baixa {
+  --background: #d4edda;
+}
+
+.tarefa-indisponivel {
+  opacity: 0.45;
+}

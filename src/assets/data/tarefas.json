@@ -1,0 +1,22 @@
+{
+  "tarefas": [
+    {
+      "id": "cozinha_limpar_bancada",
+      "nome": "Limpar a bancada",
+      "divisao": "cozinha",
+      "frequencia": "diaria",
+      "prioridade": 3,
+      "duracao":2,
+      "ativa": true
+    },
+    {
+      "id": "cozinha_limpar_frigorifico",
+      "nome": "Limpar o frigorífico",
+      "divisao": "cozinha",
+      "frequencia": "mensal",
+      "prioridade": 2,
+      "duracao":10,
+      "ativa": true
+    }
+  ]
+}

@@ -1,15 +1,9 @@
-import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
-
-
 import {
-
-
-
   IonHeader,
   IonToolbar,
   IonTitle,
@@ -21,20 +15,25 @@ import {
   IonCard,
   IonCardHeader,
   IonCardTitle,
-  IonCardSubtitle,
-  IonCardContent,
   IonButtons,
   IonModal,
   IonList,
   IonItem,
   IonLabel,
   IonInput,
+  IonCheckbox
 } from '@ionic/angular/standalone';
 
-
-
-
-
+interface Tarefa {
+  id: string;
+  nome: string;
+  divisao: string;
+  frequencia: string;
+  prioridade: number;
+  duracao: number;
+  ativa: boolean;
+  concluida?: boolean;
+}
 
 @Component({
   selector: 'app-oracao-perdao',
@@ -45,270 +44,923 @@ import {
     CommonModule,
     FormsModule,
     HttpClientModule,
-
-
     IonHeader,
-
     IonToolbar,
     IonTitle,
     IonContent,
     IonButton,
-    IonButtons,
-    IonModal,
-    IonList,
-    IonItem,
-    IonLabel,
     IonGrid,
-
     IonRow,
     IonCol,
     IonCard,
     IonCardHeader,
     IonCardTitle,
-    IonCardSubtitle,
-    IonCardContent,
+    IonButtons,
+    IonModal,
+    IonList,
+    IonItem,
+    IonLabel,
     IonInput,
-  ],
+    IonCheckbox
+  ]
 })
-
-
-
-
 export class OracaoPerdaoPage implements OnInit {
 
-  regraTexto: string = '';
+  /* =====================================================
+     CASA ATUAL
+     ===================================================== */
 
-  constructor(private readonly http: HttpClient) {}
+  regraTexto = '';
+  casaAtual = '';
+  descricaoCasaAtual = '';
+  casaClass = '';
+  backgroundImage = '';
 
-
-
-  casaAtual: string = '';
-
-  descricaoCasaAtual: string = '';
-  casaClass: string = '';
-  backgroundImage: string = '';
-
-
-
-
-  // fontes de imagem por casa
-  private backgroundByCasa: Record<string, string> = {
-    'Casa da VIDA': 'assets/backgrounds/vida.webp',
-    'Casa dos BENS': 'assets/backgrounds/bens.webp',
-    'Casa do SANGUE': 'assets/backgrounds/sangue.webp',
-    'Casa da SOLIDEZ': 'assets/backgrounds/solidez.webp',
-    'Casa dos FILHOS': 'assets/backgrounds/filhos.webp',
-    'Casa da SAÚDE': 'assets/backgrounds/saude.webp',
-    'Casa do CASAMENTO': 'assets/backgrounds/casamento.webp',
-    'Casa da MORTE/MUDANÇA': 'assets/backgrounds/morte.webp',
-    'Casa DIVINA': 'assets/backgrounds/divina.webp',
-    'Casa da POSIÇÃO SOCIAL': 'assets/backgrounds/social.webp',
-    'Casa dos AMIGOS': 'assets/backgrounds/amigos.webp',
-    'Casa dos INIMIGOS': 'assets/backgrounds/inimigos.webp',
+  backgroundByCasa: Record<string, string> = {
+    'CASA DA VIDA': 'assets/backgrounds/vida.webp',
+    'CASA DOS BENS': 'assets/backgrounds/bens.webp',
+    'CASA DO SANGUE': 'assets/backgrounds/sangue.webp',
+    'CASA DA SOLIDEZ': 'assets/backgrounds/solidez.webp',
+    'CASA DOS FILHOS': 'assets/backgrounds/filhos.webp',
+    'CASA DA SAÚDE': 'assets/backgrounds/saude.webp',
+    'CASA DO CASAMENTO': 'assets/backgrounds/casamento.webp',
+    'CASA DA MORTE/MUDANÇA': 'assets/backgrounds/morte.webp',
+    'CASA DIVINA': 'assets/backgrounds/divina.webp',
+    'CASA DA POSIÇÃO SOCIAL': 'assets/backgrounds/social.webp',
+    'CASA DOS AMIGOS': 'assets/backgrounds/amigos.webp',
+    'CASA DOS INIMIGOS': 'assets/backgrounds/inimigos.webp'
   };
 
+  /* =====================================================
+     MODAIS
+     ===================================================== */
 
   isCasasModalOpen = false;
   isRegraEditModalOpen = false;
+
+  /* =====================================================
+     EDIÇÃO DA REGRA
+     ===================================================== */
+
   regraTextoEdit = '';
   regraTextoEditBackup = '';
+  isEditAreaVisible = false;
 
+  /* =====================================================
+     FRASE DO UTILIZADOR
+     ===================================================== */
 
+  userPhrase = '';
 
-  // Área de edição (antes dos cards)
-  isEditAreaVisible = true;
-  userPhrase: string = '';
+  private readonly phraseStorageKey =
+    'oracao_perdao_user_phrase';
 
-  phraseStorageKey = 'oracao_perdao_user_phrase';
+  /* =====================================================
+     CASAS
+     ===================================================== */
 
-  ngOnInit() {
-    this.loadRegra();
-    this.casaAtual = this.getCasaAtual();
+  casasMap: Record<string, string> = {
+    'CASA DA VIDA':
+      'Representa a própria vida, a identidade e a forma como a pessoa se posiciona perante a existência.',
 
+    'CASA DOS BENS':
+      'Relaciona-se com bens materiais, recursos, dinheiro, segurança e relação com aquilo que se possui.',
 
+    'CASA DO SANGUE':
+      'Está ligada à família de origem, às raízes, à ancestralidade e aos vínculos familiares.',
 
-    this.descricaoCasaAtual = this.getDescricaoCasaAtual(this.casaAtual);
-    this.casaClass = this.getCasaClass(this.casaAtual);
-    this.backgroundImage = this.backgroundByCasa[this.casaAtual] ?? this.backgroundByCasa['Casa da VIDA'];
+    'CASA DA SOLIDEZ':
+      'Relaciona-se com estabilidade, estrutura, segurança, corpo e capacidade de sustentar a própria vida.',
 
+    'CASA DOS FILHOS':
+      'Representa criação, expressão, criatividade, filhos, projetos e aquilo que nasce da própria pessoa.',
 
-    this.casasList = Object.keys(this.casasMap).map((nome) => ({
+    'CASA DA SAÚDE':
+      'Relaciona-se com saúde, rotina, trabalho diário, cuidado e equilíbrio entre corpo e vida.',
+
+    'CASA DO CASAMENTO':
+      'Representa relações próximas, parceria, casamento, intimidade e encontro com o outro.',
+
+    'CASA DA MORTE/MUDANÇA':
+      'Relaciona-se com transformações profundas, perdas, desapego, mudanças e renascimento.',
+
+    'CASA DIVINA':
+      'Representa espiritualidade, sentido, fé, conhecimento, expansão e procura de significado.',
+
+    'CASA DA POSIÇÃO SOCIAL':
+      'Relaciona-se com profissão, reconhecimento, responsabilidade, estatuto e contribuição no mundo.',
+
+    'CASA DOS AMIGOS':
+      'Representa amizades, grupos, comunidade, projetos colectivos e sentimento de pertença.',
+
+    'CASA DOS INIMIGOS':
+      'Relaciona-se com conflitos, oposição, limites, aquilo que desafia a pessoa e os aspectos que precisam de ser integrados.'
+  };
+
+  casasList = Object.entries(this.casasMap).map(
+    ([nome, descricao]) => ({
       nome,
-      descricao: this.casasMap[nome],
-    }));
+      descricao
+    })
+  );
 
-    // Carrega frase salva (se houver)
-    const saved = window.localStorage.getItem(this.phraseStorageKey);
-    if (saved) {
-      this.userPhrase = saved;
-      this.isEditAreaVisible = false;
+  /* =====================================================
+     TEMPO DISPONÍVEL / TAREFAS
+     ===================================================== */
+
+  tempoDisponivel = 0;
+
+  tarefas: Tarefa[] = [];
+
+  tarefasSugeridas: Tarefa[] = [];
+
+  tempoTarefasSugeridas = 0;
+
+  isTarefasModalOpen = false;
+
+  private readonly STORAGE_TAREFAS =
+    'limpezas_tarefas_v1';
+
+  private readonly STORAGE_DIVISOES =
+    'limpezas_divisoes_v1';
+
+  /* =====================================================
+     INICIALIZAÇÃO
+     ===================================================== */
+
+  constructor(
+    private http: HttpClient
+  ) {}
+
+  ngOnInit(): void {
+    this.getCasaAtual();
+    this.loadRegra();
+    this.loadPhrase();
+  }
+
+  /* =====================================================
+     FRASE
+     ===================================================== */
+
+  private loadPhrase(): void {
+    const guardada =
+      window.localStorage.getItem(
+        this.phraseStorageKey
+      );
+
+    if (guardada !== null) {
+      this.userPhrase = guardada;
     }
   }
 
-  savePhrase() {
-    window.localStorage.setItem(this.phraseStorageKey, this.userPhrase ?? '');
-    this.isEditAreaVisible = false;
+  savePhrase(): void {
+    window.localStorage.setItem(
+      this.phraseStorageKey,
+      this.userPhrase.trim()
+    );
   }
 
+  /* =====================================================
+     CASA ATUAL
+     ===================================================== */
 
+  getCasaAtual(): string {
+    const hoje = new Date();
 
-  private casasMap: Record<string, string> = {
-    'Casa da VIDA':
-      'empreendimentos pessoais, temperamento, qualidades, defeitos e projetos para o futuro',
-    'Casa dos BENS':
-      'bens materiais, fortuna, lucros, promoções, emprego, compras e vendas importantes.',
-    'Casa do SANGUE':
-      'família e parentes, tanto nas alegrias quanto nas tristezas. Se o relacionamento é bom, o período é muito positivo',
-    'Casa da SOLIDEZ':
-      'realização de sonhos, consolidação de negócios, sociedades, contratos, terra, propriedades e viagens importantes',
-    'Casa dos FILHOS':
-      'fertilidade, fecundidade, gestação, nascimento, educação, alegrias e tristezas, tudo envolvendo filhos.',
-    'Casa da SAÚDE':
-      'esta é a casa do sucesso em todos os sentidos, bem como da saúde física e mental. Curas e distúrbios podem acontecer nesse período. Período do Paraíso Astral.',
-    'Casa do CASAMENTO':
-      'tudo que se relacionar a sua relação amorosa, quer seja ou não formalizada, tanto no sentido de realização quanto no de finalização',
-    'Casa da MORTE/MUDANÇA':
-      'lutas, obstáculos, problemas, acidentes, operações cirúrgicas, bem como término abrupto de relacionamentos, sociedades, com prejuízos ou não.',
-    'Casa DIVINA':
-      'período da religiosidade, da dedicação às coisas do espírito, da busca e do encontro por respostas. Delicado para pessoas místicas ou fanáticas em excesso.',
-    'Casa da POSIÇÃO SOCIAL':
-      'sucesso, ascensão, glórias, reconhecimento, prêmios, evidência e elevação. Casamento por interesse.',
-    'Casa dos AMIGOS':
-      'início ou fim de relacionamentos com amigos. Indicado para pedir auxílio e proteção nos assuntos complicados.',
-    'Casa dos INIMIGOS':
-      'perseguições, desavenças, brigas, escândalos e tudo de ruim que possa ocorrer no período do seu Inferno Astral.',
-  };
+    const dia = hoje.getDate();
+    const mes = hoje.getMonth() + 1;
 
-  casasList: Array<{ nome: string; descricao: string }> = [];
+    let casa = '';
 
+    if (
+      (mes === 1 && dia >= 16) ||
+      (mes === 2 && dia <= 15)
+    ) {
+      casa = 'CASA DA VIDA';
 
+    } else if (
+      (mes === 2 && dia >= 16) ||
+      (mes === 3 && dia <= 15)
+    ) {
+      casa = 'CASA DOS BENS';
 
+    } else if (
+      (mes === 3 && dia >= 16) ||
+      (mes === 4 && dia <= 15)
+    ) {
+      casa = 'CASA DO SANGUE';
 
-  private getCasaClass(casa: string): string {
-    const map: Record<string, string> = {
-      'Casa da VIDA': 'casa-VIDA',
-      'Casa dos BENS': 'casa-BENS',
-      'Casa do SANGUE': 'casa-SANGUE',
-      'Casa da SOLIDEZ': 'casa-SOLIDEZ',
-      'Casa dos FILHOS': 'casa-FILHOS',
-      'Casa da SAÚDE': 'casa-SAÚDE',
-      'Casa do CASAMENTO': 'casa-CASAMENTO',
-      'Casa da MORTE/MUDANÇA': 'casa-MORTE-MUDANÇA',
-      'Casa DIVINA': 'casa-DIVINA',
-      'Casa da POSIÇÃO SOCIAL': 'casa-POSICAO-SOCIAL',
-      'Casa dos AMIGOS': 'casa-AMIGOS',
-      'Casa dos INIMIGOS': 'casa-INIMIGOS',
-    };
+    } else if (
+      (mes === 4 && dia >= 16) ||
+      (mes === 5 && dia <= 15)
+    ) {
+      casa = 'CASA DA SOLIDEZ';
 
-    return map[casa] ?? '';
+    } else if (
+      (mes === 5 && dia >= 16) ||
+      (mes === 6 && dia <= 15)
+    ) {
+      casa = 'CASA DOS FILHOS';
+
+    } else if (
+      (mes === 6 && dia >= 16) ||
+      (mes === 7 && dia <= 15)
+    ) {
+      casa = 'CASA DA SAÚDE';
+
+    } else if (
+      (mes === 7 && dia >= 16) ||
+      (mes === 8 && dia <= 15)
+    ) {
+      casa = 'CASA DO CASAMENTO';
+
+    } else if (
+      (mes === 8 && dia >= 16) ||
+      (mes === 9 && dia <= 15)
+    ) {
+      casa = 'CASA DA MORTE/MUDANÇA';
+
+    } else if (
+      (mes === 9 && dia >= 16) ||
+      (mes === 10 && dia <= 15)
+    ) {
+      casa = 'CASA DIVINA';
+
+    } else if (
+      (mes === 10 && dia >= 16) ||
+      (mes === 11 && dia <= 15)
+    ) {
+      casa = 'CASA DA POSIÇÃO SOCIAL';
+
+    } else if (
+      (mes === 11 && dia >= 16) ||
+      (mes === 12 && dia <= 15)
+    ) {
+      casa = 'CASA DOS AMIGOS';
+
+    } else {
+      casa = 'CASA DOS INIMIGOS';
+    }
+
+    this.casaAtual = casa;
+
+    this.descricaoCasaAtual =
+      this.casasMap[casa] ?? '';
+
+    this.backgroundImage =
+      this.backgroundByCasa[casa] ?? '';
+
+    this.casaClass =
+      this.getCasaClass(casa);
+
+    return casa;
   }
 
-
-
-  private getCasaAtual(): string {
-    const now = new Date();
-    const month = now.getMonth() + 1; // 1..12
-    const day = now.getDate();
-
-    // Faixas: 16/01–15/02, 16/02–15/03, ... 16/12–15/01
-    // Implementação baseada em (month/day) para evitar cálculos com anos.
-    if (month === 1) return day >= 16 ? 'Casa da VIDA' : 'Casa dos INIMIGOS';
-    if (month === 2) return day <= 15 ? 'Casa da VIDA' : 'Casa dos BENS';
-    if (month === 3) return day <= 15 ? 'Casa dos BENS' : 'Casa do SANGUE';
-    if (month === 4) return day <= 15 ? 'Casa do SANGUE' : 'Casa da SOLIDEZ';
-    if (month === 5) return day <= 15 ? 'Casa da SOLIDEZ' : 'Casa dos FILHOS';
-    if (month === 6) return day <= 15 ? 'Casa dos FILHOS' : 'Casa da SAÚDE';
-    if (month === 7) return day <= 15 ? 'Casa da SAÚDE' : 'Casa do CASAMENTO';
-
-    if (month === 8) return day <= 15 ? 'Casa do CASAMENTO' : 'Casa da MORTE/MUDANÇA';
-    if (month === 9) return day <= 15 ? 'Casa da MORTE/MUDANÇA' : 'Casa DIVINA';
-    if (month === 10) return day <= 15 ? 'Casa DIVINA' : 'Casa da POSIÇÃO SOCIAL';
-    if (month === 11) return day <= 15 ? 'Casa da POSIÇÃO SOCIAL' : 'Casa dos AMIGOS';
-    // month === 12
-    return day <= 15 ? 'Casa dos AMIGOS' : 'Casa dos INIMIGOS';
+  getDescricaoCasaAtual(): string {
+    return this.casasMap[this.casaAtual] ?? '';
   }
 
-  private getDescricaoCasaAtual(casa: string): string {
-    return this.casasMap[casa] ?? '';
+  getCasaClass(casa: string): string {
+    return casa
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-|-$/g, '');
   }
 
-  private loadRegra(): void {
-    // Se o utilizador já alterou, preferir a versão guardada.
-    const savedTexto = window.localStorage.getItem('oracao_perdao_regra_texto');
-    if (savedTexto) {
-      this.regraTexto = savedTexto;
+  /* =====================================================
+     REGRA
+     ===================================================== */
+
+  loadRegra(): void {
+    const guardada =
+      window.localStorage.getItem(
+        'oracao_perdao_regra_texto'
+      );
+
+    if (guardada !== null) {
+      this.regraTexto = guardada;
       return;
     }
 
-    this.http.get<{ id?: string; texto?: string }>('assets/data/regra.json').subscribe({
-      next: (data) => {
-        this.regraTexto = data?.texto ?? '';
-      },
-      error: () => {
-        this.regraTexto = '';
-      },
-    });
+    this.http
+      .get<{ texto: string }>(
+        'assets/data/regra.json'
+      )
+      .subscribe({
+        next: dados => {
+          this.regraTexto =
+            dados.texto ?? '';
+        },
+
+        error: erro => {
+          console.error(
+            'Erro ao carregar regra.json',
+            erro
+          );
+        }
+      });
   }
 
+  /* =====================================================
+     MODAL DA REGRA
+     ===================================================== */
 
-  openCasasInfo() {
-    this.isCasasModalOpen = true;
-  }
+  abrirEdicaoRegra(): void {
+    this.regraTextoEdit =
+      this.regraTexto;
 
-  openRegraEdit(): void {
-    this.regraTextoEditBackup = this.regraTexto ?? '';
-    this.regraTextoEdit = this.regraTextoEditBackup;
+    this.regraTextoEditBackup =
+      this.regraTexto;
+
     this.isRegraEditModalOpen = true;
   }
 
+  cancelarEdicaoRegra(): void {
+    this.regraTextoEdit =
+      this.regraTextoEditBackup;
 
-  saveRegraEdit(): void {
-    const texto = (this.regraTextoEdit ?? '').trim();
-    if (!texto) return;
-
-    // Guarda no localStorage para substituir a frase anterior.
-    window.localStorage.setItem('oracao_perdao_regra_texto', texto);
-    this.regraTexto = texto;
-    this.regraTextoEditBackup = texto;
     this.isRegraEditModalOpen = false;
   }
 
+  guardarRegra(): void {
+    this.regraTexto =
+      this.regraTextoEdit.trim();
 
-  closeRegraEdit(): void {
-    // Repor o texto caso o utilizador cancele.
-    this.regraTextoEdit = this.regraTextoEditBackup ?? this.regraTexto ?? '';
+    window.localStorage.setItem(
+      'oracao_perdao_regra_texto',
+      this.regraTexto
+    );
+
     this.isRegraEditModalOpen = false;
   }
 
+  /* =====================================================
+     MODAL DAS CASAS
+     ===================================================== */
 
+  abrirCasasModal(): void {
+    this.isCasasModalOpen = true;
+  }
 
+  fecharCasasModal(): void {
+    this.isCasasModalOpen = false;
+  }
 
-  navigatePrayer() {
+  openCasasInfo(): void {
+    this.isCasasModalOpen = true;
+  }
+
+  closeCasasInfo(): void {
+    this.isCasasModalOpen = false;
+  }
+
+  /* =====================================================
+     TAREFAS DE LIMPEZA
+     ===================================================== */
+
+  private carregarTarefasLimpezas(): void {
+    const guardadas =
+      window.localStorage.getItem(
+        this.STORAGE_TAREFAS
+      );
+
+    if (!guardadas) {
+      this.tarefas = [];
+      return;
+    }
+
+    try {
+      this.tarefas =
+        JSON.parse(guardadas) as Tarefa[];
+
+    } catch {
+      this.tarefas = [];
+
+      console.warn(
+        'Não foi possível ler as tarefas de limpeza.'
+      );
+    }
+  }
+
+  private obterDivisoesAtivas(): Set<string> {
+    const guardadas =
+      window.localStorage.getItem(
+        this.STORAGE_DIVISOES
+      );
+
+    if (!guardadas) {
+      return new Set<string>();
+    }
+
+    try {
+      const divisoes =
+        JSON.parse(guardadas) as Array<{
+          id: string;
+          ativa: boolean;
+        }>;
+
+      return new Set(
+        divisoes
+          .filter(divisao => divisao.ativa)
+          .map(divisao => divisao.id)
+      );
+
+    } catch {
+      return new Set<string>();
+    }
+  }
+
+  /* =====================================================
+     DATA LOCAL DE HOJE
+     ===================================================== */
+
+  private obterChaveDataHoje(): string {
+    const hoje = new Date();
+
+    const ano =
+      hoje.getFullYear();
+
+    const mes =
+      String(
+        hoje.getMonth() + 1
+      ).padStart(2, '0');
+
+    const dia =
+      String(
+        hoje.getDate()
+      ).padStart(2, '0');
+
+    return `${ano}-${mes}-${dia}`;
+  }
+
+  /* =====================================================
+     CALCULAR TAREFAS PARA O TEMPO DISPONÍVEL
+     ===================================================== */
+
+  calcularTarefas(): void {
+
+    const tempo =
+      Number(this.tempoDisponivel);
+
+    if (!tempo || tempo <= 0) {
+
+      this.tarefasSugeridas = [];
+
+      this.tempoTarefasSugeridas = 0;
+
+      this.isTarefasModalOpen = true;
+
+      return;
+    }
+
+    /* ---------------------------------------------
+       CARREGAR DADOS ATUAIS
+       --------------------------------------------- */
+
+    this.carregarTarefasLimpezas();
+
+    const divisoesAtivas =
+      this.obterDivisoesAtivas();
+
+    /* ---------------------------------------------
+       TAREFAS JÁ CONCLUÍDAS HOJE
+       --------------------------------------------- */
+
+    const chaveHoje =
+      `limpezas_concluidas_${this.obterChaveDataHoje()}`;
+
+    let tarefasConcluidasHoje: string[] = [];
+
+    const guardadasHoje =
+      window.localStorage.getItem(chaveHoje);
+
+    if (guardadasHoje) {
+      try {
+        tarefasConcluidasHoje =
+          JSON.parse(guardadasHoje) as string[];
+      } catch {
+        tarefasConcluidasHoje = [];
+      }
+    }
+
+    /* ---------------------------------------------
+       FILTRAR TAREFAS DISPONÍVEIS
+       --------------------------------------------- */
+
+    const tarefasDisponiveis =
+      this.tarefas
+
+        .filter(tarefa =>
+          tarefa.ativa &&
+          divisoesAtivas.has(tarefa.divisao) &&
+          Number(tarefa.duracao) > 0 &&
+          !tarefasConcluidasHoje.includes(tarefa.id)
+        )
+
+        .sort((a, b) => {
+
+          /* Primeiro: prioridade */
+
+          const prioridadeA =
+            Number(a.prioridade) || 0;
+
+          const prioridadeB =
+            Number(b.prioridade) || 0;
+
+          if (
+            prioridadeA !==
+            prioridadeB
+          ) {
+            return prioridadeB -
+                   prioridadeA;
+          }
+
+          /* Segundo: frequência */
+
+          const ordemFrequencia:
+            Record<string, number> = {
+              diaria: 1,
+              semanal: 2,
+              mensal: 3
+            };
+
+          const frequenciaA =
+            ordemFrequencia[
+              a.frequencia
+            ] ?? 99;
+
+          const frequenciaB =
+            ordemFrequencia[
+              b.frequencia
+            ] ?? 99;
+
+          if (
+            frequenciaA !==
+            frequenciaB
+          ) {
+            return frequenciaA -
+                   frequenciaB;
+          }
+
+          /* Terceiro: duração */
+
+          return (
+            Number(a.duracao) -
+            Number(b.duracao)
+          );
+        });
+
+    /* ---------------------------------------------
+       ESCOLHER TAREFAS QUE CABEM NO TEMPO
+       --------------------------------------------- */
+
+    const selecionadas: Tarefa[] = [];
+
+    let tempoUsado = 0;
+
+    for (
+      const tarefa of tarefasDisponiveis
+    ) {
+
+      const duracao =
+        Number(tarefa.duracao);
+
+      if (
+        tempoUsado + duracao <=
+        tempo
+      ) {
+
+        selecionadas.push(tarefa);
+
+        tempoUsado += duracao;
+      }
+    }
+
+    /* ---------------------------------------------
+       GUARDAR RESULTADO
+       --------------------------------------------- */
+
+    this.tarefasSugeridas =
+      selecionadas.map(tarefa => ({
+        ...tarefa,
+        concluida:
+          tarefasConcluidasHoje.includes(
+            tarefa.id
+          )
+      }));
+
+    this.tempoTarefasSugeridas =
+      tempoUsado;
+
+    /* ---------------------------------------------
+       ABRIR MODAL
+       --------------------------------------------- */
+
+    this.isTarefasModalOpen = true;
+  }
+
+  /* =====================================================
+     FECHAR MODAL DAS TAREFAS
+     ===================================================== */
+
+  fecharTarefasModal(): void {
+    this.isTarefasModalOpen = false;
+  }
+
+  /* =====================================================
+     NOMES PARA APRESENTAÇÃO
+     ===================================================== */
+
+  obterNomeDivisao(id: string): string {
+
+    const guardadas =
+      window.localStorage.getItem(
+        this.STORAGE_DIVISOES
+      );
+
+    if (!guardadas) {
+      return id;
+    }
+
+    try {
+
+      const divisoes =
+        JSON.parse(guardadas) as Array<{
+          id: string;
+          nome: string;
+        }>;
+
+      const divisao =
+        divisoes.find(
+          d => d.id === id
+        );
+
+      return divisao?.nome ?? id;
+
+    } catch {
+      return id;
+    }
+  }
+
+  obterNomeFrequencia(
+    frequencia: string
+  ): string {
+
+    const nomes:
+      Record<string, string> = {
+
+      diaria: 'Diária',
+      semanal: 'Semanal',
+      mensal: 'Mensal'
+    };
+
+    return (
+      nomes[frequencia] ??
+      frequencia
+    );
+  }
+
+  /* =====================================================
+     NAVEGAÇÃO
+     ===================================================== */
+
+  voltar(): void {
+    window.history.back();
+  }
+
+  /*
+   * A HOME é agora a página inicial.
+   */
+
+  irParaHome(): void {
     window.location.href = '/home';
   }
 
-  navigatePerfil() {
+  irParaPerfil(): void {
     window.location.href = '/perfil';
   }
 
-  navigateAnimais() {
+  irParaAnimais(): void {
     window.location.href = '/animais';
   }
 
-  navigateValores() {
+  irParaValores(): void {
     window.location.href = '/valores';
   }
 
-  navigateMeditacoes() {
+  irParaMeditacoes(): void {
     window.location.href = '/meditacoes';
   }
 
-  navigateMetadeSombra() {
+  irParaMetadeSombra(): void {
     window.location.href = '/metade-sombra';
   }
 
+  irParaLimpezas(): void {
+    window.location.href = '/limpezas';
+  }
 
+  /* =====================================================
+     EDIÇÃO DA REGRA
+     ===================================================== */
+
+  openRegraEdit(): void {
+
+    this.regraTextoEdit =
+      this.regraTexto;
+
+    this.regraTextoEditBackup =
+      this.regraTexto;
+
+    this.isRegraEditModalOpen = true;
+  }
+
+  closeRegraEdit(): void {
+    this.isRegraEditModalOpen = false;
+  }
+
+  saveRegraEdit(): void {
+
+    this.regraTexto =
+      this.regraTextoEdit.trim();
+
+    window.localStorage.setItem(
+      'oracao_perdao_regra_texto',
+      this.regraTexto
+    );
+
+    this.isRegraEditModalOpen = false;
+  }
+
+  /* =====================================================
+     NAVEGAÇÃO DOS CARTÕES
+     ===================================================== */
+
+  /*
+   * O cartão "Oração do Perdão" existente na HOME
+   * deve abrir esta página.
+   */
+
+  navigatePrayer(): void {
+    window.location.href = '/home';
+  }
+
+  navigateLimpezas(): void {
+    window.location.href = '/limpezas';
+  }
+
+  navigatePerfil(): void {
+    window.location.href = '/perfil';
+  }
+
+  navigateAnimais(): void {
+    window.location.href = '/animais';
+  }
+
+  navigateValores(): void {
+    window.location.href = '/valores';
+  }
+
+  navigateMeditacoes(): void {
+    window.location.href = '/meditacoes';
+  }
+
+  navigateMetadeSombra(): void {
+    window.location.href = '/metade-sombra';
+  }
+
+  /* =====================================================
+     PRIORIDADE
+     ===================================================== */
+
+  obterClassePrioridade(
+    prioridade: number
+  ): string {
+
+    switch (Number(prioridade)) {
+
+      case 4:
+        return 'prioridade-muito-alta';
+
+      case 3:
+        return 'prioridade-alta';
+
+      case 2:
+        return 'prioridade-media';
+
+      case 1:
+        return 'prioridade-baixa';
+
+      default:
+        /*
+         * Qualquer valor inválido recebe
+         * a cor da prioridade média.
+         *
+         * Nunca será preto.
+         */
+        return 'prioridade-media';
+    }
+  }
+
+    /* =====================================================
+     GUARDAR TAREFAS CONCLUÍDAS
+     ===================================================== */
+
+  guardarTarefasConcluidas(): void {
+
+    const tarefasSelecionadas =
+      this.tarefasSugeridas.filter(
+        tarefa => tarefa.concluida === true
+      );
+
+    // Não permite guardar sem selecionar nenhuma tarefa
+    if (tarefasSelecionadas.length === 0) {
+      return;
+    }
+
+    // Confirmação antes de guardar
+    const confirmar = window.confirm(
+      'Tem a certeza que pretende guardar as tarefas selecionadas?'
+    );
+
+    if (!confirmar) {
+      return;
+    }
+
+    const chave =
+      `limpezas_concluidas_${this.obterChaveDataHoje()}`;
+
+    try {
+
+      const raw =
+        window.localStorage.getItem(chave);
+
+      const idsGuardados: string[] =
+        raw ? JSON.parse(raw) : [];
+
+      const novosIds =
+        tarefasSelecionadas
+          .map(tarefa => tarefa.id)
+          .filter(
+            id => !idsGuardados.includes(id)
+          );
+
+      const idsAtualizados = [
+        ...idsGuardados,
+        ...novosIds
+      ];
+
+      window.localStorage.setItem(
+        chave,
+        JSON.stringify(idsAtualizados)
+      );
+
+      // Retirar da lista as tarefas que acabaram
+      // de ser guardadas
+      this.tarefasSugeridas =
+        this.tarefasSugeridas.filter(
+          tarefa =>
+            !tarefasSelecionadas.some(
+              selecionada =>
+                selecionada.id === tarefa.id
+            )
+        );
+
+      // Recalcular o tempo restante da lista
+      this.tempoTarefasSugeridas =
+        this.tarefasSugeridas.reduce(
+          (total, tarefa) =>
+            total + Number(tarefa.duracao),
+          0
+        );
+
+      // Se já não houver tarefas, fechar o modal
+      if (this.tarefasSugeridas.length === 0) {
+        this.fecharTarefasModal();
+      }
+
+    } catch (erro) {
+
+      console.error(
+        'Erro ao guardar tarefas concluídas:',
+        erro
+      );
+
+    }
+  }
+
+  /* =====================================================
+     VERIFICAR SE EXISTE ALGUMA TAREFA SELECIONADA
+     ===================================================== */
+
+  temTarefasSelecionadas(): boolean {
+
+    return this.tarefasSugeridas.some(
+      tarefa => tarefa.concluida === true
+    );
+
+  }
 
 }
-
-

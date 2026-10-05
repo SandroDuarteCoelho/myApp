@@ -1222,7 +1222,7 @@ export class OracaoPerdaoPage implements OnInit {
   }
 
 
-  /* =====================================================
+    /* =====================================================
      DESCRIÇÕES
      ===================================================== */
 
@@ -1235,32 +1235,25 @@ export class OracaoPerdaoPage implements OnInit {
         this.STORAGE_DIVISOES
       );
 
-
     if (!guardadas) {
-
       return '';
-
     }
-
 
     try {
 
       const divisoes =
         JSON.parse(guardadas) as Divisao[];
 
-
       const divisao =
         divisoes.find(
           d => d.id === id
         );
-
 
       return (
         divisao?.descricao?.trim() ?? ''
       );
 
     }
-
     catch {
 
       return '';
@@ -1274,38 +1267,21 @@ export class OracaoPerdaoPage implements OnInit {
     item: TarefaApresentacao
   ): string {
 
-    const descricaoDivisao =
-      this.obterDescricaoDivisao(
-        item.divisaoId
-      ).trim();
+    return (
+      item.tarefa.descricao?.trim() ?? ''
+    );
+
+  }
 
 
-    const descricaoTarefa =
-      item.tarefa.descricao?.trim() ?? '';
-
-
-    if (
-      descricaoDivisao &&
-      descricaoTarefa
-    ) {
-
-      return (
-
-        `${descricaoDivisao}\n\n` +
-
-        `${descricaoTarefa}`
-
-      );
-
-    }
-
+  temDescricaoDivisao(
+    item: TarefaApresentacao
+  ): boolean {
 
     return (
-
-      descricaoDivisao ||
-
-      descricaoTarefa
-
+      this.obterDescricaoDivisao(
+        item.divisaoId
+      ).length > 0
     );
 
   }
@@ -1316,16 +1292,42 @@ export class OracaoPerdaoPage implements OnInit {
   ): boolean {
 
     return (
-
       this.obterDescricaoTarefa(
         item
-      )
-
-        .trim()
-
-        .length > 0
-
+      ).length > 0
     );
+
+  }
+
+
+  mostrarDescricaoDivisao(
+    item: TarefaApresentacao
+  ): void {
+
+    if (
+      !this.temDescricaoDivisao(item)
+    ) {
+      return;
+    }
+
+    const id =
+      'divisao__' +
+      this.obterIdOcorrencia(
+        item.tarefa.id,
+        item.divisaoId
+      );
+
+    if (
+      this.tarefaDescricaoAbertaId === id
+    ) {
+
+      this.tarefaDescricaoAbertaId = '';
+
+      return;
+
+    }
+
+    this.tarefaDescricaoAbertaId = id;
 
   }
 
@@ -1335,38 +1337,29 @@ export class OracaoPerdaoPage implements OnInit {
   ): void {
 
     if (
-      !this.temDescricaoTarefa(
-        item
-      )
+      !this.temDescricaoTarefa(item)
     ) {
-
       return;
-
     }
 
-
     const id =
+      'tarefa__' +
       this.obterIdOcorrencia(
         item.tarefa.id,
         item.divisaoId
       );
 
-
     if (
-      this.tarefaDescricaoAbertaId ===
-      id
+      this.tarefaDescricaoAbertaId === id
     ) {
 
-      this.tarefaDescricaoAbertaId =
-        '';
+      this.tarefaDescricaoAbertaId = '';
 
       return;
 
     }
 
-
-    this.tarefaDescricaoAbertaId =
-      id;
+    this.tarefaDescricaoAbertaId = id;
 
   }
 

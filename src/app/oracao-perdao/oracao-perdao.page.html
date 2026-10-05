@@ -624,40 +624,74 @@
 
 
             <!-- =============================================
-                 BOTÃO DO LOCAL / DESCRIÇÃO
+                 BOTÃO DA DIVISÃO / DESCRIÇÃO
                  ============================================= -->
 
             <div
               class="local-tarefa"
-              *ngIf="
-                temDescricaoTarefa(item)
-              ">
+              *ngIf="temDescricaoDivisao(item)">
 
               <ion-button
                 fill="clear"
                 size="small"
                 class="descricao-local-btn"
-                (click)="
-                  mostrarDescricaoTarefa(item)
-                ">
+                (click)="mostrarDescricaoDivisao(item)">
 
                 📍
-                {{ obterNomeDivisao(
-                  item.divisaoId
-                ) }}
+                {{ obterNomeDivisao(item.divisaoId) }}
 
               </ion-button>
 
-
-              <!-- ===========================================
-                   DESCRIÇÃO ABERTA
-                   =========================================== -->
 
               <div
                 class="descricao-local"
                 *ngIf="
                   tarefaDescricaoAbertaId ===
                   (
+                    'divisao__' +
+                    item.tarefa.id +
+                    '__' +
+                    item.divisaoId
+                  )
+                ">
+
+                <p>
+
+                  {{ obterDescricaoDivisao(item.divisaoId) }}
+
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <!-- =============================================
+                 BOTÃO DA DESCRIÇÃO DA TAREFA
+                 ============================================= -->
+
+            <div
+              class="local-tarefa"
+              *ngIf="temDescricaoTarefa(item)">
+
+              <ion-button
+                fill="clear"
+                size="small"
+                class="descricao-local-btn"
+                (click)="mostrarDescricaoTarefa(item)">
+
+                🧹
+                Descrição da tarefa
+
+              </ion-button>
+
+
+              <div
+                class="descricao-local"
+                *ngIf="
+                  tarefaDescricaoAbertaId ===
+                  (
+                    'tarefa__' +
                     item.tarefa.id +
                     '__' +
                     item.divisaoId
@@ -673,6 +707,7 @@
               </div>
 
             </div>
+
 
           </div>
 
@@ -733,8 +768,12 @@
 
 
   <br>
+
   <br>
+
   <br>
+
   <br>
+
 
 </ion-content>

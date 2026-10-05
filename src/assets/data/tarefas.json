@@ -6,9 +6,9 @@
       "divisoes": ["cozinha"],
       "frequencia": "diaria",
       "prioridade": 3,
-      "duracao":2,
+      "duracao":5,
       "ativa": true,
-      "descricao":""
+      "descricao":"O asseio é um fator importante na tua casa? Se movimentássemos os móveis, encontraríamos poeira acumulada? Os teus, armários e gavetas estão limpos? Se deixaste acumular pó, isso significa que provavelmente o mesmo aconteceu ao nível do teu espírito. Essa poeira tem origem na dimensão mental, num intelecto que procura entender, racionalizar e analisar tudo. Na verdade, esse é o melhor caminho para o orgulho! Uma pessoa orgulhosa quer sempre ter razão e tenta impor as suas ideias; essa atitude gera poeira e grandes indisposições interiores, assim como ao nível das interações com os outros."
     },
     {
       "id": "limpar_frigorifico",
@@ -18,7 +18,7 @@
       "prioridade": 2,
       "duracao":10,
       "ativa": true,
-      "descricao":""
+      "descricao":"O asseio é um fator importante na tua casa? Se movimentássemos os móveis, encontraríamos poeira acumulada? Os teus, armários e gavetas estão limpos? Se deixaste acumular pó, isso significa que provavelmente o mesmo aconteceu ao nível do teu espírito. Essa poeira tem origem na dimensão mental, num intelecto que procura entender, racionalizar e analisar tudo. Na verdade, esse é o melhor caminho para o orgulho! Uma pessoa orgulhosa quer sempre ter razão e tenta impor as suas ideias; essa atitude gera poeira e grandes indisposições interiores, assim como ao nível das interações com os outros."
     },
     {
       "id": "varrer_chao",
@@ -32,7 +32,7 @@
       "prioridade": 3,
       "duracao":2,
       "ativa": true,
-      "descricao":""
+      "descricao":"O asseio é um fator importante na tua casa? Se movimentássemos os móveis, encontraríamos poeira acumulada? Os teus, armários e gavetas estão limpos? Se deixaste acumular pó, isso significa que provavelmente o mesmo aconteceu ao nível do teu espírito. Essa poeira tem origem na dimensão mental, num intelecto que procura entender, racionalizar e analisar tudo. Na verdade, esse é o melhor caminho para o orgulho! Uma pessoa orgulhosa quer sempre ter razão e tenta impor as suas ideias; essa atitude gera poeira e grandes indisposições interiores, assim como ao nível das interações com os outros."
     },
     {
       "id": "lavar_chao",
@@ -351,6 +351,16 @@
       "duracao":10,
       "ativa": true,
       "descricao":""
+    },
+    {
+      "id": "arrumar_armarios",
+      "nome": "Arrumar armários",
+      "divisoes": ["casa_de_banho", "cozinha"],
+      "frequencia": "mensal",
+      "prioridade": 2,
+      "duracao":10,
+      "ativa": true,
+      "descricao":"Roupa, sapatos e carteiras amontoados de qualquer maneira no interior dos armários são prova de falta de controlo emocional."
     }
   ]
 }

@@ -1,15 +1,10 @@
-
 import { Component, OnInit } from '@angular/core';
-
 import { CommonModule } from '@angular/common';
-
 import { FormsModule } from '@angular/forms';
-
 import {
   HttpClient,
   HttpClientModule
 } from '@angular/common/http';
-
 import {
   IonHeader,
   IonToolbar,
@@ -27,7 +22,6 @@ import {
   IonSelect,
   IonSelectOption
 } from '@ionic/angular/standalone';
-
 
 /* =====================================================
    INTERFACES
@@ -77,7 +71,6 @@ interface TarefaHistorico {
     | 'intervencao';
 }
 
-
 /* =====================================================
    COMPONENTE
    ===================================================== */
@@ -87,7 +80,6 @@ interface TarefaHistorico {
   templateUrl: './limpezas.page.html',
   styleUrls: ['./limpezas.page.scss'],
   standalone: true,
-
   imports: [
     CommonModule,
     FormsModule,
@@ -109,9 +101,7 @@ interface TarefaHistorico {
     IonSelectOption
   ]
 })
-
 export class LimpezasPage implements OnInit {
-
 
   /* =====================================================
      DADOS
@@ -120,6 +110,11 @@ export class LimpezasPage implements OnInit {
   divisoes: Divisao[] = [];
   tarefas: Tarefa[] = [];
 
+  /* =====================================================
+     TAREFAS PARA APRESENTAÇÃO
+     ===================================================== */
+
+  tarefasApresentacao: TarefaApresentacao[] = [];
 
   /* =====================================================
      HISTÓRICO
@@ -127,7 +122,6 @@ export class LimpezasPage implements OnInit {
 
   historico: RegistoHistorico[] = [];
   tarefasHistorico: TarefaHistorico[] = [];
-
 
   /* =====================================================
      NOVOS ELEMENTOS
@@ -142,7 +136,6 @@ export class LimpezasPage implements OnInit {
   novaTarefaPrioridade = 2;
   novaTarefaDuracao = 15;
 
-
   /* =====================================================
      STORAGE
      ===================================================== */
@@ -156,7 +149,6 @@ export class LimpezasPage implements OnInit {
   private readonly STORAGE_HISTORICO =
     'limpezas_historico_v1';
 
-
   /* =====================================================
      CONSTRUCTOR
      ===================================================== */
@@ -165,19 +157,17 @@ export class LimpezasPage implements OnInit {
     private http: HttpClient
   ) {}
 
-
   /* =====================================================
      INIT
      ===================================================== */
 
   ngOnInit(): void {
+    console.log('LIMPEZAS: iniciou');
 
     this.carregarDivisoes();
     this.carregarTarefas();
     this.carregarHistorico();
-
   }
-
 
   /* =====================================================
      DIVISÕES
@@ -216,7 +206,6 @@ export class LimpezasPage implements OnInit {
           );
 
         this.guardarDivisoes();
-
         this.atualizarHistorico();
 
         return;
@@ -229,7 +218,6 @@ export class LimpezasPage implements OnInit {
 
       }
     }
-
 
     this.http
       .get<{ divisoes: Divisao[] }>(
@@ -256,7 +244,6 @@ export class LimpezasPage implements OnInit {
             );
 
           this.guardarDivisoes();
-
           this.atualizarHistorico();
 
         },
@@ -271,9 +258,7 @@ export class LimpezasPage implements OnInit {
         }
 
       });
-
   }
-
 
   private guardarDivisoes(): void {
 
@@ -281,9 +266,7 @@ export class LimpezasPage implements OnInit {
       this.STORAGE_DIVISOES,
       JSON.stringify(this.divisoes)
     );
-
   }
-
 
   alterarEstadoDivisao(
     divisao: Divisao
@@ -293,11 +276,8 @@ export class LimpezasPage implements OnInit {
       !divisao.ativa;
 
     this.guardarDivisoes();
-
     this.atualizarHistorico();
-
   }
-
 
   adicionarDivisao(): void {
 
@@ -321,26 +301,18 @@ export class LimpezasPage implements OnInit {
     }
 
     this.divisoes.push({
-
       id,
-
       nome,
-
       prioridade:
         this.novaDivisaoPrioridade,
-
       ativa: true
-
     });
 
     this.guardarDivisoes();
 
     this.novaDivisao = '';
-
     this.novaDivisaoPrioridade = 2;
-
   }
-
 
   apagarDivisao(
     divisao: Divisao
@@ -385,14 +357,13 @@ export class LimpezasPage implements OnInit {
           divisao.id
       );
 
+    this.atualizarTarefasApresentacao();
+
     this.guardarDivisoes();
     this.guardarTarefas();
     this.guardarHistorico();
-
     this.atualizarHistorico();
-
   }
-
 
   /* =====================================================
      TAREFAS
@@ -432,21 +403,20 @@ export class LimpezasPage implements OnInit {
               }
 
               return {
-
                 ...tarefa,
 
                 divisoes:
                   tarefa.divisao
                     ? [tarefa.divisao]
                     : []
-
               };
 
             }
           );
 
-        this.guardarTarefas();
+        this.atualizarTarefasApresentacao();
 
+        this.guardarTarefas();
         this.atualizarHistorico();
 
         return;
@@ -458,9 +428,7 @@ export class LimpezasPage implements OnInit {
         );
 
       }
-
     }
-
 
     this.http
       .get<{ tarefas: Tarefa[] }>(
@@ -484,8 +452,9 @@ export class LimpezasPage implements OnInit {
               })
             );
 
-          this.guardarTarefas();
+          this.atualizarTarefasApresentacao();
 
+          this.guardarTarefas();
           this.atualizarHistorico();
 
         },
@@ -500,9 +469,7 @@ export class LimpezasPage implements OnInit {
         }
 
       });
-
   }
-
 
   private guardarTarefas(): void {
 
@@ -510,168 +477,46 @@ export class LimpezasPage implements OnInit {
       this.STORAGE_TAREFAS,
       JSON.stringify(this.tarefas)
     );
-
   }
-
-
-  alterarEstadoTarefa(
-    item: TarefaApresentacao
-  ): void {
-
-    item.tarefa.ativa =
-      !item.tarefa.ativa;
-
-    this.guardarTarefas();
-
-    this.atualizarHistorico();
-
-  }
-
-
-  adicionarTarefa(): void {
-
-    const nome =
-      this.novaTarefa.trim();
-
-    if (
-      !nome ||
-      !this.novaTarefaDivisao ||
-      this.novaTarefaDuracao <= 0
-    ) {
-      return;
-    }
-
-    const id =
-      this.criarId(
-        `${this.novaTarefaDivisao}_${nome}`
-      );
-
-    const existe =
-      this.tarefas.some(
-        t => t.id === id
-      );
-
-    if (existe) {
-      return;
-    }
-
-    this.tarefas.push({
-
-      id,
-
-      nome,
-
-      divisoes: [
-        this.novaTarefaDivisao
-      ],
-
-      frequencia:
-        this.novaTarefaFrequencia,
-
-      prioridade:
-        this.novaTarefaPrioridade,
-
-      duracao:
-        this.novaTarefaDuracao,
-
-      ativa: true
-
-    });
-
-    this.guardarTarefas();
-
-    this.novaTarefa = '';
-
-    this.novaTarefaDivisao = '';
-
-    this.novaTarefaFrequencia =
-      'semanal';
-
-    this.novaTarefaPrioridade = 2;
-
-    this.novaTarefaDuracao = 15;
-
-  }
-
-
-  apagarTarefa(
-    tarefa: Tarefa
-  ): void {
-
-    const confirmar =
-      window.confirm(
-        `Tem a certeza que quer eliminar a tarefa "${tarefa.nome}"?`
-      );
-
-    if (!confirmar) {
-      return;
-    }
-
-    this.tarefas =
-      this.tarefas.filter(
-        t => t.id !== tarefa.id
-      );
-
-    this.historico =
-      this.historico.filter(
-        registo =>
-          registo.tarefaId !==
-          tarefa.id
-      );
-
-    this.guardarTarefas();
-    this.guardarHistorico();
-
-    this.atualizarHistorico();
-
-  }
-
-
-  /* =====================================================
-     DIVISÕES ATIVAS
-     ===================================================== */
-
-  get divisoesAtivas(): Divisao[] {
-
-    return this.divisoes.filter(
-      d => d.ativa
-    );
-
-  }
-
 
   /* =====================================================
      TAREFAS PARA APRESENTAÇÃO
      ===================================================== */
 
-  get tarefasApresentacao():
-    TarefaApresentacao[] {
+  private atualizarTarefasApresentacao(): void {
 
     const resultado:
       TarefaApresentacao[] = [];
 
-    for (
-      const tarefa of this.tarefas
-    ) {
+    for (const tarefa of this.tarefas) {
+
+      const divisoes =
+        Array.isArray(tarefa.divisoes)
+          ? tarefa.divisoes
+          : [];
 
       for (
-        const divisaoId of
-        tarefa.divisoes
+        const divisaoId of divisoes
       ) {
 
         resultado.push({
-
           tarefa,
-
           divisaoId
-
         });
 
       }
-
     }
 
-    return resultado.sort(
+    const ordemFrequencia:
+      Record<string, number> = {
+
+        diaria: 1,
+        semanal: 2,
+        mensal: 3
+
+      };
+
+    resultado.sort(
       (a, b) => {
 
         if (
@@ -685,15 +530,6 @@ export class LimpezasPage implements OnInit {
           );
 
         }
-
-        const ordemFrequencia:
-          Record<string, number> = {
-
-            diaria: 1,
-            semanal: 2,
-            mensal: 3
-
-          };
 
         const frequenciaA =
           ordemFrequencia[
@@ -725,8 +561,124 @@ export class LimpezasPage implements OnInit {
       }
     );
 
+    this.tarefasApresentacao =
+      resultado;
   }
 
+  alterarEstadoTarefa(
+    item: TarefaApresentacao
+  ): void {
+
+    item.tarefa.ativa =
+      !item.tarefa.ativa;
+
+    this.guardarTarefas();
+    this.atualizarHistorico();
+  }
+
+  adicionarTarefa(): void {
+
+    const nome =
+      this.novaTarefa.trim();
+
+    if (
+      !nome ||
+      !this.novaTarefaDivisao ||
+      this.novaTarefaDuracao <= 0
+    ) {
+      return;
+    }
+
+    const id =
+      this.criarId(
+        `${this.novaTarefaDivisao}_${nome}`
+      );
+
+    const existe =
+      this.tarefas.some(
+        t => t.id === id
+      );
+
+    if (existe) {
+      return;
+    }
+
+    this.tarefas.push({
+
+      id,
+      nome,
+
+      divisoes: [
+        this.novaTarefaDivisao
+      ],
+
+      frequencia:
+        this.novaTarefaFrequencia,
+
+      prioridade:
+        this.novaTarefaPrioridade,
+
+      duracao:
+        this.novaTarefaDuracao,
+
+      ativa: true
+
+    });
+
+    this.atualizarTarefasApresentacao();
+
+    this.guardarTarefas();
+
+    this.novaTarefa = '';
+    this.novaTarefaDivisao = '';
+    this.novaTarefaFrequencia =
+      'semanal';
+    this.novaTarefaPrioridade = 2;
+    this.novaTarefaDuracao = 15;
+  }
+
+  apagarTarefa(
+    tarefa: Tarefa
+  ): void {
+
+    const confirmar =
+      window.confirm(
+        `Tem a certeza que quer eliminar a tarefa "${tarefa.nome}"?`
+      );
+
+    if (!confirmar) {
+      return;
+    }
+
+    this.tarefas =
+      this.tarefas.filter(
+        t => t.id !== tarefa.id
+      );
+
+    this.historico =
+      this.historico.filter(
+        registo =>
+          registo.tarefaId !==
+          tarefa.id
+      );
+
+    this.atualizarTarefasApresentacao();
+
+    this.guardarTarefas();
+    this.guardarHistorico();
+    this.atualizarHistorico();
+  }
+
+  /* =====================================================
+     DIVISÕES ATIVAS
+     ===================================================== */
+
+  get divisoesAtivas(): Divisao[] {
+
+    return this.divisoes.filter(
+      d => d.ativa
+    );
+  }
 
   /* =====================================================
      HISTÓRICO DE LIMPEZAS
@@ -742,11 +694,9 @@ export class LimpezasPage implements OnInit {
     if (!guardado) {
 
       this.historico = [];
-
       this.tarefasHistorico = [];
 
       return;
-
     }
 
     try {
@@ -774,13 +724,9 @@ export class LimpezasPage implements OnInit {
       );
 
       this.historico = [];
-
       this.tarefasHistorico = [];
-
     }
-
   }
-
 
   private guardarHistorico(): void {
 
@@ -788,9 +734,7 @@ export class LimpezasPage implements OnInit {
       this.STORAGE_HISTORICO,
       JSON.stringify(this.historico)
     );
-
   }
-
 
   private atualizarHistorico(): void {
 
@@ -800,13 +744,11 @@ export class LimpezasPage implements OnInit {
     const registosValidos =
       this.historico.filter(
         registo =>
-
           this.tarefas.some(
             tarefa =>
               tarefa.id ===
               registo.tarefaId
           ) &&
-
           this.divisoes.some(
             divisao =>
               divisao.id ===
@@ -815,12 +757,6 @@ export class LimpezasPage implements OnInit {
       );
 
     this.tarefasHistorico = [];
-
-
-    /*
-     * Apenas aparecem no Histórico
-     * tarefas que já foram realizadas.
-     */
 
     for (
       const registo of
@@ -853,20 +789,10 @@ export class LimpezasPage implements OnInit {
         continue;
       }
 
-
-      /*
-       * Frequência prevista.
-       */
-
       const intervaloDias =
         this.obterIntervaloDias(
           tarefa.frequencia
         );
-
-
-      /*
-       * Última limpeza.
-       */
 
       const ultimaData =
         this.converterData(
@@ -879,11 +805,6 @@ export class LimpezasPage implements OnInit {
           hoje
         );
 
-
-      /*
-       * Dias de atraso.
-       */
-
       const diasAtraso =
         Math.max(
           0,
@@ -891,13 +812,11 @@ export class LimpezasPage implements OnInit {
           intervaloDias
         );
 
-
       const estado =
         this.obterEstadoHistorico(
           tarefa,
           diasAtraso
         );
-
 
       this.tarefasHistorico.push({
 
@@ -918,13 +837,7 @@ export class LimpezasPage implements OnInit {
         estado
 
       });
-
     }
-
-
-    /*
-     * Mais atrasadas primeiro.
-     */
 
     this.tarefasHistorico.sort(
       (a, b) => {
@@ -948,9 +861,7 @@ export class LimpezasPage implements OnInit {
 
       }
     );
-
   }
-
 
   private obterIntervaloDias(
     frequencia: string
@@ -969,11 +880,8 @@ export class LimpezasPage implements OnInit {
 
       default:
         return 7;
-
     }
-
   }
-
 
   private calcularDias(
     dataInicial: Date,
@@ -1008,9 +916,7 @@ export class LimpezasPage implements OnInit {
       diferenca /
       (1000 * 60 * 60 * 24)
     );
-
   }
-
 
   private obterEstadoHistorico(
     tarefa: Tarefa,
@@ -1055,12 +961,7 @@ export class LimpezasPage implements OnInit {
     }
 
     return 'em-dia';
-
   }
-
-
- 
-
 
   obterTextoEstado(
     estado:
@@ -1084,11 +985,8 @@ export class LimpezasPage implements OnInit {
       case 'em-dia':
       default:
         return '🟢 Em dia';
-
     }
-
   }
-
 
   obterClasseEstado(
     estado:
@@ -1112,11 +1010,8 @@ export class LimpezasPage implements OnInit {
       case 'em-dia':
       default:
         return 'historico-em-dia';
-
     }
-
   }
-
 
   /* =====================================================
      ESTADO GERAL DA CASA
@@ -1128,31 +1023,16 @@ export class LimpezasPage implements OnInit {
     'acumulado' |
     'intervencao' {
 
-
-    /*
-     * ===================================================
-     * 1. TAREFAS JÁ REALIZADAS MAS ATRASADAS
-     * ===================================================
-     */
-
     const tarefasAtrasadas =
       this.tarefasHistorico.filter(
         item =>
           item.diasAtraso > 0
       );
 
-
-    /*
-     * ===================================================
-     * 2. TAREFAS ATIVAS QUE AINDA NÃO FORAM REALIZADAS
-     * ===================================================
-     */
-
     const tarefasPorFazer: {
       tarefa: Tarefa;
       divisaoId: string;
     }[] = [];
-
 
     for (
       const tarefa of this.tarefas
@@ -1177,44 +1057,25 @@ export class LimpezasPage implements OnInit {
           continue;
         }
 
-
         const existeHistorico =
           this.historico.some(
             registo =>
-
               registo.tarefaId ===
-              tarefa.id &&
-
+                tarefa.id &&
               registo.divisaoId ===
-              divisaoId
+                divisaoId
           );
-
 
         if (!existeHistorico) {
 
           tarefasPorFazer.push({
-
             tarefa,
-
             divisaoId
-
           });
 
         }
-
       }
-
     }
-
-
-    /*
-     * ===================================================
-     * 3. INTERVENÇÃO
-     * ===================================================
-     *
-     * Prioridade 4 por fazer
-     * ou prioridade 4 atrasada.
-     */
 
     const existePrioridade4PorFazer =
       tarefasPorFazer.some(
@@ -1224,7 +1085,6 @@ export class LimpezasPage implements OnInit {
           ) >= 4
       );
 
-
     const existePrioridade4Atrasada =
       tarefasAtrasadas.some(
         item =>
@@ -1232,7 +1092,6 @@ export class LimpezasPage implements OnInit {
             item.tarefa.prioridade
           ) >= 4
       );
-
 
     if (
       existePrioridade4PorFazer ||
@@ -1243,13 +1102,6 @@ export class LimpezasPage implements OnInit {
 
     }
 
-
-    /*
-     * ===================================================
-     * 4. ACUMULADO
-     * ===================================================
-     */
-
     const prioridades3PorFazer =
       tarefasPorFazer.filter(
         item =>
@@ -1258,7 +1110,6 @@ export class LimpezasPage implements OnInit {
           ) >= 3
       );
 
-
     const prioridades3Atrasadas =
       tarefasAtrasadas.filter(
         item =>
@@ -1266,7 +1117,6 @@ export class LimpezasPage implements OnInit {
             item.tarefa.prioridade
           ) >= 3
       );
-
 
     if (
       prioridades3PorFazer.length > 0 ||
@@ -1279,13 +1129,6 @@ export class LimpezasPage implements OnInit {
 
     }
 
-
-    /*
-     * ===================================================
-     * 5. ATENÇÃO
-     * ===================================================
-     */
-
     if (
       tarefasPorFazer.length > 0 ||
       tarefasAtrasadas.length > 0
@@ -1295,34 +1138,22 @@ export class LimpezasPage implements OnInit {
 
     }
 
-
-    /*
-     * ===================================================
-     * 6. EM DIA
-     * =================================================== */
-
     return 'em-dia';
-
   }
-
 
   get textoEstadoCasa(): string {
 
     return this.obterTextoEstado(
       this.estadoCasa
     );
-
   }
-
 
   get classeEstadoCasa(): string {
 
     return this.obterClasseEstado(
       this.estadoCasa
     );
-
   }
-
 
   get tarefasAtrasadas(): number {
 
@@ -1330,9 +1161,7 @@ export class LimpezasPage implements OnInit {
       tarefa =>
         tarefa.diasAtraso > 0
     ).length;
-
   }
-
 
   get tarefasIntervencao(): number {
 
@@ -1341,17 +1170,11 @@ export class LimpezasPage implements OnInit {
         tarefa.estado ===
         'intervencao'
     ).length;
-
   }
-
 
   /* =====================================================
      DATAS
      ===================================================== */
-
-  
-
-  
 
   private converterData(
     data: string
@@ -1361,17 +1184,11 @@ export class LimpezasPage implements OnInit {
       data.split('-');
 
     return new Date(
-
       Number(partes[0]),
-
       Number(partes[1]) - 1,
-
       Number(partes[2])
-
     );
-
   }
-
 
   formatarData(
     data: string
@@ -1393,9 +1210,7 @@ export class LimpezasPage implements OnInit {
       `${partes[1]}/` +
       `${partes[0]}`
     );
-
   }
-
 
   obterTextoUltimaVez(
     dias: number
@@ -1410,9 +1225,7 @@ export class LimpezasPage implements OnInit {
     }
 
     return `há ${dias} dias`;
-
   }
-
 
   obterTextoHabitual(
     intervaloDias: number
@@ -1433,9 +1246,7 @@ export class LimpezasPage implements OnInit {
     return (
       `a cada ${intervaloDias} dias`
     );
-
   }
-
 
   obterTextoAtraso(
     dias: number
@@ -1452,9 +1263,7 @@ export class LimpezasPage implements OnInit {
     return (
       `Está atrasado ${dias} dias`
     );
-
   }
-
 
   /* =====================================================
      DIVISÃO ATIVA
@@ -1474,12 +1283,9 @@ export class LimpezasPage implements OnInit {
           );
 
         return !!divisao?.ativa;
-
       }
     );
-
   }
-
 
   obterDivisaoAtiva(
     id: string
@@ -1492,9 +1298,7 @@ export class LimpezasPage implements OnInit {
       );
 
     return !!divisao?.ativa;
-
   }
-
 
   /* =====================================================
      NOMES
@@ -1514,9 +1318,7 @@ export class LimpezasPage implements OnInit {
       divisao?.nome ??
       id
     );
-
   }
-
 
   obterNomeFrequencia(
     frequencia: string
@@ -1525,19 +1327,17 @@ export class LimpezasPage implements OnInit {
     const nomes:
       Record<string, string> = {
 
-        diaria: 'Diária',
-        semanal: 'Semanal',
-        mensal: 'Mensal'
+      diaria: 'Diária',
+      semanal: 'Semanal',
+      mensal: 'Mensal'
 
-      };
+    };
 
     return (
       nomes[frequencia] ??
       frequencia
     );
-
   }
-
 
   /* =====================================================
      PRIORIDADE
@@ -1565,11 +1365,8 @@ export class LimpezasPage implements OnInit {
 
       default:
         return 'prioridade-media';
-
     }
-
   }
-
 
   /* =====================================================
      ORDENAÇÃO DAS DIVISÕES
@@ -1585,9 +1382,7 @@ export class LimpezasPage implements OnInit {
         b.prioridade -
         a.prioridade
     );
-
   }
-
 
   /* =====================================================
      ID
@@ -1598,27 +1393,20 @@ export class LimpezasPage implements OnInit {
   ): string {
 
     return texto
-
       .toLowerCase()
-
       .normalize('NFD')
-
       .replace(
         /[\u0300-\u036f]/g,
         ''
       )
-
       .replace(
         /[^a-z0-9]+/g,
         '_'
       )
-
       .replace(
         /^_+|_+$/g,
         '');
-
   }
-
 
   /* =====================================================
      REPOR DADOS ORIGINAIS
@@ -1628,22 +1416,17 @@ export class LimpezasPage implements OnInit {
 
     const confirmar =
       window.confirm(
-
         'Tem a certeza que pretende ' +
         'repor as tarefas e divisões originais?\n\n' +
-
         'Todas as alterações feitas, incluindo ' +
         'tarefas ou divisões eliminadas, serão ' +
         'substituídas pelos dados originais.\n\n' +
-
         'O histórico de limpezas também será apagado.'
-
       );
 
     if (!confirmar) {
       return;
     }
-
 
     localStorage.removeItem(
       this.STORAGE_DIVISOES
@@ -1657,11 +1440,8 @@ export class LimpezasPage implements OnInit {
       this.STORAGE_HISTORICO
     );
 
-
     window.location.reload();
-
   }
-
 
   /* =====================================================
      VOLTAR

@@ -3,7 +3,9 @@
   <ion-toolbar>
 
 
+
     <!-- ESQUERDA -->
+
     <ion-buttons slot="start">
 
       <ion-button
@@ -20,7 +22,9 @@
 
 
 
+
     <!-- TITULO -->
+
     <!-- <ion-title>
 
       {{ pessoa ? pessoa.nome : 'Pessoa' }}
@@ -32,8 +36,8 @@
 
 
     <!-- DIREITA -->
-    <ion-buttons slot="end" class="perfil-menu">
 
+    <ion-buttons slot="end" class="perfil-menu">
 
       <ion-button
         fill="clear"
@@ -43,7 +47,6 @@
         Signos
 
       </ion-button>
-
 
 
       <ion-button
@@ -56,7 +59,6 @@
       </ion-button>
 
 
-
       <ion-button
         fill="clear"
         size="small"
@@ -66,9 +68,7 @@
 
       </ion-button>
 
-
     </ion-buttons>
-
 
 
   </ion-toolbar>
@@ -80,13 +80,14 @@
 <ion-content fullscreen>
 
 
+
 <ng-container *ngIf="pessoa; else notFound">
+
 
 
 <!-- =========================
      PERFIL HEADER
 ========================= -->
-
 
 <section class="perfil-header">
 
@@ -98,24 +99,24 @@
   </div>
 
 
-
   <h1>
 
     {{ pessoa.nome }}
+
     {{ pessoa.apelido }}
 
   </h1>
 
 
-
   <p>
 
     {{ idadeAtual }} anos
+
     ·
+
     {{ pessoa.localidade }}
 
   </p>
-
 
 </section>
 
@@ -126,7 +127,6 @@
 <!-- =========================
      INFORMAÇÃO PESSOAL
 ========================= -->
-
 
 <ion-card class="card-moderno">
 
@@ -142,7 +142,6 @@
 </ion-card-header>
 
 
-
 <ion-card-content>
 
 
@@ -152,43 +151,52 @@
 <div>
 
 <span>
+
 Grupo
+
 </span>
 
 <strong>
+
 {{ pessoa.grupo }}
+
 </strong>
 
 </div>
 
 
-
 <div>
 
 <span>
+
 Nascimento
+
 </span>
 
 <strong>
+
 {{ pessoa.data }}
+
 </strong>
 
 </div>
-
 
 
 <div>
 
 <span>
+
 Eneagrama
+
 </span>
 
 <strong>
+
 {{ pessoa.eneagrama_tipo }}
+
 </strong>
 
 </div>
-
 
 
 </div>
@@ -206,7 +214,6 @@ Eneagrama
  PERFIL INTERIOR
 ========================= -->
 
-
 <ion-card class="card-moderno">
 
 
@@ -221,50 +228,51 @@ Eneagrama
 </ion-card-header>
 
 
-
 <ion-card-content>
-
 
 
 <div class="energia-grid">
 
 
-
 <div>
 
 <span>
+
 Força espiritual
+
 </span>
 
 
 <strong>
+
 {{ forcaVogais }}
+
 </strong>
 
 
 </div>
-
-
 
 
 <div>
 
 <span>
+
 Atividade
+
 </span>
 
 
 <strong>
+
 {{ atividadeConsoantes }}
+
 </strong>
 
 
 </div>
 
 
-
 </div>
-
 
 
 </ion-card-content>
@@ -275,12 +283,9 @@ Atividade
 
 
 
-
-
 <!-- =========================
       CAPÍTULOS
 ========================= -->
-
 
 <ion-card class="card-moderno">
 
@@ -289,10 +294,7 @@ Atividade
 
 
 
-
-
 <!-- SETÉNIO -->
-
 
 <ion-accordion value="setenio">
 
@@ -308,10 +310,9 @@ Atividade
 </ion-item>
 
 
-
-<div 
-slot="content"
-class="conteudo">
+<div
+  slot="content"
+  class="conteudo">
 
 
 <div *ngIf="setenioAtual">
@@ -322,7 +323,6 @@ class="conteudo">
 {{ setenioAtual.nome }}
 
 </h2>
-
 
 
 <p class="descricao">
@@ -344,73 +344,118 @@ class="conteudo">
 
 
 
-
-
-
 <!-- DIA NASCIMENTO -->
 
 <ion-accordion value="dia">
 
   <ion-item slot="header">
+
     <ion-label>
+
       🌞 Dia de nascimento
+
     </ion-label>
+
   </ion-item>
 
   <div
     slot="content"
     class="conteudo">
 
+
+    <!-- BOTÃO DA ANÁLISE -->
+
+    <ion-button
+      fill="clear"
+      size="small"
+      (click)="analiseDiaAberta = !analiseDiaAberta">
+
+      {{ analiseDiaAberta
+        ? '🔼 Ocultar análise'
+        : '🔎 Ver análise' }}
+
+    </ion-button>
+
+
     <!-- ANÁLISE -->
-    <div class="analise">
 
-      <!-- <h3>🔎 Análise</h3> -->
+    <div
+      class="analise"
+      *ngIf="analiseDiaAberta">
 
       <p>
+
         <strong>Ferida possível:</strong>
+
         {{ diaNascimento.ferida }}
+
       </p>
 
       <p>
+
         <strong>Questão sistémica central:</strong>
+
         {{ diaNascimento.questao_sistemica }}
+
       </p>
 
       <p>
+
         <strong>Afirmação:</strong>
+
         {{ diaNascimento.afirmacao }}
+
       </p>
 
       <p>
+
         <strong>Frase matriz:</strong>
+
         {{ diaNascimento.frase_matriz }}
+
       </p>
 
       <p>
-  <strong>Espelho:</strong>
-  {{ diaNascimento.espelho }}
-</p>
 
-<p>
-  <strong>Valores a integrar:</strong>
-  {{ diaNascimento.valores }}
-</p>
+        <strong>Espelho:</strong>
+
+        {{ diaNascimento.espelho }}
+
+      </p>
+
+      <p>
+
+        <strong>Valores a integrar:</strong>
+
+        {{ diaNascimento.valores }}
+
+      </p>
+
     </div>
 
+
     <!-- DESCRIÇÃO ORIGINAL -->
+
     <div class="descricao">
 
       <!-- <h3>📖 Descrição</h3> -->
-<br><br>
+
+      <br><br>
+
       <p>
+
         {{ diaNascimento.descricao }}
+
       </p>
 
     </div>
+
 
   </div>
 
 </ion-accordion>
+
+
 
 
 
@@ -421,7 +466,9 @@ class="conteudo">
   <ion-item slot="header">
 
     <ion-label>
+
       🐉 Signo chinês
+
     </ion-label>
 
   </ion-item>
@@ -432,65 +479,108 @@ class="conteudo">
 
     <div *ngIf="signoChines">
 
-      
+
+      <!-- BOTÃO DA ANÁLISE -->
+
+      <ion-button
+        fill="clear"
+        size="small"
+        (click)="analiseChinesAberta = !analiseChinesAberta">
+
+        {{ analiseChinesAberta
+          ? '🔼 Ocultar análise'
+          : '🔎 Ver análise' }}
+
+      </ion-button>
+
 
       <!-- ANÁLISE SISTÉMICA -->
 
-      <div class="analise">
+      <div
+        class="analise"
+        *ngIf="analiseChinesAberta">
 
         <p>
+
           <strong>Ferida possível:</strong>
+
           {{ signoChines.ferida }}
+
         </p>
 
         <p>
+
           <strong>Questão sistémica central:</strong>
+
           {{ signoChines.questao_sistemica }}
+
         </p>
 
         <p>
+
           <strong>Afirmação:</strong>
+
           {{ signoChines.afirmacao }}
+
         </p>
 
         <p>
+
           <strong>Frase matriz:</strong>
+
           {{ signoChines.frase_matriz }}
+
         </p>
 
         <p>
-  <strong>Espelho:</strong>
-  {{ signoChines.espelho }}
-</p>
 
-<p>
-  <strong>Valores a integrar:</strong>
-  {{ signoChines.valores }}
-</p>
+          <strong>Espelho:</strong>
+
+          {{ signoChines.espelho }}
+
+        </p>
+
+        <p>
+
+          <strong>Valores a integrar:</strong>
+
+          {{ signoChines.valores }}
+
+        </p>
+
       </div>
-<br><br><br>
+
+
+      <br><br><br>
+
+
       <h2>
+
         {{ signoChines.signo }}
+
         ({{ signoChines.elemento }})
+
       </h2>
+
 
       <!-- DESCRIÇÃO ORIGINAL -->
 
       <div class="descricao">
 
         <p>
+
           {{ signoChines.descricao }}
+
         </p>
 
       </div>
+
 
     </div>
 
   </div>
 
 </ion-accordion>
-
-
 
 
 
@@ -503,7 +593,9 @@ class="conteudo">
   <ion-item slot="header">
 
     <ion-label>
+
       ☀️ Signo solar
+
     </ion-label>
 
   </ion-item>
@@ -514,74 +606,125 @@ class="conteudo">
 
     <div *ngIf="signoSolarAtual">
 
-     
+
+      <!-- BOTÃO DA ANÁLISE -->
+
+      <ion-button
+        fill="clear"
+        size="small"
+        (click)="analiseSolarAberta = !analiseSolarAberta">
+
+        {{ analiseSolarAberta
+          ? '🔼 Ocultar análise'
+          : '🔎 Ver análise' }}
+
+      </ion-button>
+
 
       <!-- ANÁLISE SISTÉMICA -->
 
-      <div class="analise">
+      <div
+        class="analise"
+        *ngIf="analiseSolarAberta">
 
         <p>
+
           <strong>Ferida possível:</strong>
+
           {{ signoSolarAtual.ferida }}
+
         </p>
 
         <p>
+
           <strong>Questão sistémica central:</strong>
+
           {{ signoSolarAtual.questao_sistemica }}
+
         </p>
 
         <p>
+
           <strong>Afirmação:</strong>
+
           {{ signoSolarAtual.afirmacao }}
+
         </p>
 
         <p>
+
           <strong>Frase matriz:</strong>
+
           {{ signoSolarAtual.frase_matriz }}
+
         </p>
 
         <p>
-  <strong>Espelho:</strong>
-  {{ signoSolarAtual.espelho }}
-</p>
 
-<p>
-  <strong>Valores a integrar:</strong>
-  {{ signoSolarAtual.valores }}
-</p>
+          <strong>Espelho:</strong>
+
+          {{ signoSolarAtual.espelho }}
+
+        </p>
+
+        <p>
+
+          <strong>Valores a integrar:</strong>
+
+          {{ signoSolarAtual.valores }}
+
+        </p>
 
       </div>
-<br><br><br>
-       <h2>
+
+
+      <br><br><br>
+
+
+      <h2>
+
         {{ signoSolarAtual.signo }}
+
       </h2>
+
+
       <!-- OBJETIVO -->
 
       <div class="texto-box">
 
         <strong>
+
           Objetivo
+
         </strong>
 
         <p>
+
           {{ signoSolarAtual.objetivo }}
+
         </p>
 
       </div>
+
 
       <!-- PERSONALIDADE -->
 
       <div class="texto-box">
 
         <strong>
+
           Personalidade
+
         </strong>
 
         <p>
+
           {{ signoSolarAtual.personalidade }}
+
         </p>
 
       </div>
+
 
     </div>
 
@@ -592,10 +735,10 @@ class="conteudo">
 
 
 
+
 <!-- =========================
      ENEAGRAMA
 ========================= -->
-
 
 <ion-accordion value="eneagrama">
 
@@ -611,11 +754,9 @@ class="conteudo">
 </ion-item>
 
 
-
-
-<div 
-slot="content"
-class="conteudo">
+<div
+  slot="content"
+  class="conteudo">
 
 
 <div *ngIf="eneagramaAtual; else eneagramaFallback">
@@ -625,7 +766,9 @@ class="conteudo">
 
 
 <strong>
+
 Infância
+
 </strong>
 
 
@@ -639,21 +782,20 @@ Infância
 </div>
 
 
-
-
-
 <div class="texto-box">
 
 
 <strong>
+
 Dificuldades
+
 </strong>
 
 
 <ul>
 
-<li 
-*ngFor="let d of eneagramaAtual.dificuldades">
+<li
+  *ngFor="let d of eneagramaAtual.dificuldades">
 
 {{ d }}
 
@@ -665,22 +807,20 @@ Dificuldades
 </div>
 
 
-
-
-
-
 <div class="texto-box">
 
 
 <strong>
+
 Gostos
+
 </strong>
 
 
 <ul>
 
-<li 
-*ngFor="let g of eneagramaAtual.gostos">
+<li
+  *ngFor="let g of eneagramaAtual.gostos">
 
 {{ g }}
 
@@ -692,15 +832,13 @@ Gostos
 </div>
 
 
-
-
-
-
 <div class="texto-box">
 
 
 <strong>
+
 Autoajuda
+
 </strong>
 
 
@@ -714,15 +852,13 @@ Autoajuda
 </div>
 
 
-
-
-
-
 <div class="texto-box">
 
 
 <strong>
+
 Exercícios práticos
+
 </strong>
 
 
@@ -736,11 +872,7 @@ Exercícios práticos
 </div>
 
 
-
 </div>
-
-
-
 
 
 <ng-template #eneagramaFallback>
@@ -756,7 +888,6 @@ Não foi possível carregar o conteúdo do Eneagrama.
 </ng-template>
 
 
-
 </div>
 
 
@@ -766,14 +897,9 @@ Não foi possível carregar o conteúdo do Eneagrama.
 
 
 
-
-
-
-
 <!-- =========================
         PESTAL
 ========================= -->
-
 
 <ion-accordion value="pestal">
 
@@ -791,25 +917,18 @@ Não foi possível carregar o conteúdo do Eneagrama.
 </ion-item>
 
 
+<div
+  slot="content"
+  class="conteudo">
 
 
-
-<div 
-slot="content"
-class="conteudo">
-
-
-
-<ng-container 
-*ngIf="
-anoPessoalAtual !== null 
-&& 
-anoPessoalProximo !== null;
-else pestalFallback
-">
-
-
-
+<ng-container
+  *ngIf="
+    anoPessoalAtual !== null
+    &&
+    anoPessoalProximo !== null;
+    else pestalFallback
+  ">
 
 
 <div class="texto-box">
@@ -820,7 +939,6 @@ else pestalFallback
 Casa atual
 
 </strong>
-
 
 
 <p class="descricao">
@@ -840,11 +958,6 @@ Casa atual
 </div>
 
 
-
-
-
-
-
 <div class="texto-box">
 
 
@@ -855,25 +968,25 @@ Próxima casa
 </strong>
 
 
-
 <p class="descricao">
 
 {{ casaSeguinte }}
 
-<span 
-*ngIf="diasParaCasaSeguinte !== null">
+<span
+  *ngIf="diasParaCasaSeguinte !== null">
 
 <br>
 
-Faltam 
+Faltam
+
 {{ diasParaCasaSeguinte }}
+
 dias
 
 </span>
 
 
 </p>
-
 
 
 <p class="descricao">
@@ -886,13 +999,6 @@ dias
 </div>
 
 
-
-
-
-
-
-
-
 <h3 class="titulo-secao">
 
 📅 Ciclos anuais
@@ -900,31 +1006,16 @@ dias
 </h3>
 
 
-
-
-
-
-
-
 <ion-accordion-group expand="inset">
 
 
-
-
-
 <ion-accordion
-
-*ngFor="
-let ano of anosPestal;
-let i=index
-"
-
-[value]="ano.ano"
-
+  *ngFor="
+    let ano of anosPestal;
+    let i=index
+  "
+  [value]="ano.ano"
 >
-
-
-
 
 
 <ion-item slot="header">
@@ -940,13 +1031,11 @@ let i=index
 </strong>
 
 
-
 <span *ngIf="i===0">
 
 (Atual)
 
 </span>
-
 
 
 <span *ngIf="i===1">
@@ -956,24 +1045,15 @@ let i=index
 </span>
 
 
-
 </ion-label>
 
 
 </ion-item>
 
 
-
-
-
-
-
-<div 
-slot="content"
-class="ano-card">
-
-
-
+<div
+  slot="content"
+  class="ano-card">
 
 
 <div class="ano-numero">
@@ -983,21 +1063,15 @@ class="ano-card">
 </div>
 
 
-
-
-
-
 <div class="texto-box">
 
 
 <strong>
 
 Ano pessoal
-
 ({{ ano.anoPessoal }})
 
 </strong>
-
 
 
 <p class="descricao">
@@ -1010,23 +1084,15 @@ Ano pessoal
 </div>
 
 
-
-
-
-
-
 <div class="texto-box">
 
 
 <strong>
 
 Ano chinês
-
 ({{ ano.anoChines }})
 
 </strong>
-
-
 
 
 <p class="descricao">
@@ -1036,34 +1102,19 @@ Ano chinês
 </p>
 
 
-
 </div>
 
 
-
-
-
 </div>
-
-
-
 
 
 </ion-accordion>
 
 
-
 </ion-accordion-group>
 
 
-
-
-
-
 </ng-container>
-
-
-
 
 
 <ng-template #pestalFallback>
@@ -1079,16 +1130,10 @@ Em desenvolvimento.
 </ng-template>
 
 
-
 </div>
 
 
-
 </ion-accordion>
-
-
-
-
 
 
 </ion-accordion-group>
@@ -1097,14 +1142,7 @@ Em desenvolvimento.
 </ion-card>
 
 
-
-
-
 </ng-container>
-
-
-
-
 
 
 
@@ -1113,7 +1151,6 @@ Em desenvolvimento.
 <!-- =========================
        NÃO ENCONTRADO
 ========================= -->
-
 
 <ng-template #notFound>
 
@@ -1144,8 +1181,8 @@ ID inválido ou dados indisponíveis.
 </ion-card>
 
 
-
 </ng-template>
+
 
 <br><br><br><br>
 

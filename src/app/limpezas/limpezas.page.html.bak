@@ -493,7 +493,9 @@
 
           <div
             class="estado-casa-info"
-            *ngIf="tarefasIntervencao > 0">
+            *ngIf="
+              tarefasIntervencao > 0
+            ">
 
             {{ tarefasIntervencao }}
 
@@ -508,87 +510,79 @@
         </div>
 
 
-        <!-- =================================================
-             LEGENDA DOS ESTADOS
-             ================================================= -->
 
-        <div class="legenda-estados">
+        <!-- ESTADO DA CASA -->
+<!-- <div
+  class="estado-casa"
+  [class]="classeEstadoCasa">
 
-          <div class="legenda-titulo">
+  <div class="estado-casa-titulo">
+    {{ textoEstadoCasa }}
+  </div>
 
-            Estado da casa
+  <div class="estado-casa-descricao">
+    <ng-container [ngSwitch]="estadoCasa">
 
-          </div>
+      <span *ngSwitchCase="'em-dia'">
+        A casa está em dia.
+      </span>
 
+      <span *ngSwitchCase="'atencao'">
+        Existem algumas tarefas por fazer ou atrasadas.
+      </span>
 
-          <div class="legenda-item estado-em-dia">
+      <span *ngSwitchCase="'acumulado'">
+        Existem várias tarefas por fazer ou atrasadas.
+      </span>
 
-            <span class="legenda-indicador"></span>
+      <span *ngSwitchCase="'intervencao'">
+        Existem tarefas importantes que precisam de atenção.
+      </span>
 
-            <div>
+    </ng-container>
+  </div>
+</div> -->
 
-              <strong>🟢 Em dia</strong>
+<!-- LEGENDA DOS ESTADOS -->
+<div class="legenda-estados">
 
-              <span>
-                Não existem tarefas pendentes ou atrasadas.
-              </span>
+  <div class="legenda-titulo">
+    Estado da casa
+  </div>
 
-            </div>
+  <div class="legenda-item estado-em-dia">
+    <span class="legenda-indicador"></span>
+    <div>
+      <strong>🟢 Em dia</strong>
+      <span>Não existem tarefas pendentes ou atrasadas.</span>
+    </div>
+  </div>
 
-          </div>
+  <div class="legenda-item estado-atencao">
+    <span class="legenda-indicador"></span>
+    <div>
+      <strong>🟡 Atenção</strong>
+      <span>Existem algumas tarefas por fazer ou atrasadas.</span>
+    </div>
+  </div>
 
+  <div class="legenda-item estado-acumulado">
+    <span class="legenda-indicador"></span>
+    <div>
+      <strong>🟠 Acumulado</strong>
+      <span>Existem várias tarefas pendentes ou atrasadas.</span>
+    </div>
+  </div>
 
-          <div class="legenda-item estado-atencao">
+  <div class="legenda-item estado-intervencao">
+    <span class="legenda-indicador"></span>
+    <div>
+      <strong>🔴 Intervenção</strong>
+      <span>Existem tarefas essenciais que precisam de atenção.</span>
+    </div>
+  </div>
 
-            <span class="legenda-indicador"></span>
-
-            <div>
-
-              <strong>🟡 Atenção</strong>
-
-              <span>
-                Existem algumas tarefas por fazer ou atrasadas.
-              </span>
-
-            </div>
-
-          </div>
-
-
-          <div class="legenda-item estado-acumulado">
-
-            <span class="legenda-indicador"></span>
-
-            <div>
-
-              <strong>🟠 Acumulado</strong>
-
-              <span>
-                Existem várias tarefas pendentes ou atrasadas.
-              </span>
-
-            </div>
-
-          </div>
-
-
-          <div class="legenda-item estado-intervencao">
-
-            <span class="legenda-indicador"></span>
-
-            <div>
-
-              <strong>🔴 Intervenção</strong>
-
-              <span>
-                Existem tarefas essenciais que precisam de atenção.
-              </span>
-
-            </div>
-
-          </div>
-
-        </div>
+</div>
 
 
         <!-- =================================================
@@ -625,7 +619,6 @@
               <p>
 
                 Última vez:
-
                 <strong>
                   {{ obterTextoUltimaVez(item.diasDesdeUltima) }}
                 </strong>
@@ -636,7 +629,6 @@
               <p>
 
                 Habitualmente:
-
                 <strong>
                   {{ obterTextoHabitual(item.intervaloDias) }}
                 </strong>
@@ -682,6 +674,7 @@
           </ion-item>
 
         </ion-list>
+
 
 
         <!-- =================================================

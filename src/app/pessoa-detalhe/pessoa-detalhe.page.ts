@@ -6,7 +6,7 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import {
   IonHeader,
   IonToolbar,
-  
+  IonTitle,
   IonContent,
   IonButton,
   IonButtons,
@@ -94,7 +94,7 @@ type DiaNascimento = {
 
     IonHeader,
     IonToolbar,
-    
+    IonTitle,
     IonContent,
     IonButton,
     IonButtons,
@@ -129,6 +129,9 @@ export class PessoaDetalhePage implements OnInit {
   valores: ''
 };
   analiseDia = '';
+  analiseDiaAberta = false;
+analiseChinesAberta = false;
+analiseSolarAberta = false;
 
   signoChines: SignoChines | null = null;
   signoSolarAtual: SignoSolar | null = null;

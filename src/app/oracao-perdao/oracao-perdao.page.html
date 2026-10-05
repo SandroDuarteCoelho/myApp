@@ -18,7 +18,9 @@
 
 
     <ion-title>
+
       {{ casaAtual }}
+
     </ion-title>
 
 
@@ -64,7 +66,9 @@
           </div>
 
           <div class="regra-text">
+
             {{ regraTexto }}
+
           </div>
 
           <ion-button
@@ -86,35 +90,38 @@
   </div>
 
 
-
-
-
   <!-- =====================================================
-     TEMPO DISPONÍVEL PARA HOJE
-     ===================================================== -->
+       TEMPO DISPONÍVEL PARA HOJE
+       ===================================================== -->
 
-<div class="tempo-wrapper">
+  <div class="tempo-wrapper">
 
-  <ion-item>
-    <ion-input
-      type="number"
-      [(ngModel)]="tempoDisponivel"
-      label="Quanto tempo tenho hoje?"
-      label-placement="stacked"
-      placeholder="Ex.: 30"
-      min="1"
-      inputmode="numeric">
-    </ion-input>
+    <ion-item>
 
-    <ion-button
-      slot="end"
-      (click)="calcularTarefas()"
-      [disabled]="!tempoDisponivel || tempoDisponivel <= 0">
-      Ver tarefas
-    </ion-button>
-  </ion-item>
+      <ion-input
+        type="number"
+        [(ngModel)]="tempoDisponivel"
+        label="Quanto tempo tenho hoje?"
+        label-placement="stacked"
+        placeholder="Ex.: 30"
+        min="1"
+        inputmode="numeric">
 
-</div>
+      </ion-input>
+
+
+      <ion-button
+        slot="end"
+        (click)="calcularTarefas()"
+        [disabled]="!tempoDisponivel || tempoDisponivel <= 0">
+
+        Ver tarefas
+
+      </ion-button>
+
+    </ion-item>
+
+  </div>
 
 
   <!-- =====================================================
@@ -134,11 +141,15 @@
           <ion-card-header>
 
             <div class="card-icon">
+
               🙏
+
             </div>
 
             <ion-card-title>
+
               Oração do Perdão
+
             </ion-card-title>
 
           </ion-card-header>
@@ -157,11 +168,15 @@
           <ion-card-header>
 
             <div class="card-icon">
+
               👤
+
             </div>
 
             <ion-card-title>
+
               Perfil
+
             </ion-card-title>
 
           </ion-card-header>
@@ -171,7 +186,6 @@
       </ion-col>
 
     </ion-row>
-
 
 
     <ion-row>
@@ -185,11 +199,15 @@
           <ion-card-header>
 
             <div class="card-icon">
+
               🦅
+
             </div>
 
             <ion-card-title>
+
               Animais
+
             </ion-card-title>
 
           </ion-card-header>
@@ -208,11 +226,15 @@
           <ion-card-header>
 
             <div class="card-icon">
+
               💎
+
             </div>
 
             <ion-card-title>
+
               Valores
+
             </ion-card-title>
 
           </ion-card-header>
@@ -222,7 +244,6 @@
       </ion-col>
 
     </ion-row>
-
 
 
     <ion-row>
@@ -236,11 +257,15 @@
           <ion-card-header>
 
             <div class="card-icon">
+
               🧘
+
             </div>
 
             <ion-card-title>
+
               Meditações
+
             </ion-card-title>
 
           </ion-card-header>
@@ -259,11 +284,15 @@
           <ion-card-header>
 
             <div class="card-icon">
+
               🌗
+
             </div>
 
             <ion-card-title>
+
               Metade sombra
+
             </ion-card-title>
 
           </ion-card-header>
@@ -275,7 +304,6 @@
     </ion-row>
 
   </ion-grid>
-
 
 
   <!-- =====================================================
@@ -293,8 +321,11 @@
         <ion-toolbar>
 
           <ion-title>
+
             Editar frase
+
           </ion-title>
+
 
           <ion-buttons slot="end">
 
@@ -304,6 +335,7 @@
               Cancelar
 
             </ion-button>
+
 
             <ion-button
               (click)="saveRegraEdit()">
@@ -324,12 +356,16 @@
         <ion-item>
 
           <ion-label position="stacked">
+
             Frase
+
           </ion-label>
+
 
           <ion-input
             [(ngModel)]="regraTextoEdit"
             placeholder="Digite a nova frase">
+
           </ion-input>
 
         </ion-item>
@@ -339,7 +375,6 @@
     </ng-template>
 
   </ion-modal>
-
 
 
   <!-- =====================================================
@@ -357,8 +392,11 @@
         <ion-toolbar>
 
           <ion-title>
+
             Casas
+
           </ion-title>
+
 
           <ion-buttons slot="end">
 
@@ -386,11 +424,15 @@
             <ion-label>
 
               <h2 class="casa-item-title">
+
                 {{ casa.nome }}
+
               </h2>
 
               <p class="casa-item-desc">
+
                 {{ casa.descricao }}
+
               </p>
 
             </ion-label>
@@ -406,165 +448,288 @@
   </ion-modal>
 
 
+  <!-- =====================================================
+       MODAL TAREFAS DISPONÍVEIS
+       ===================================================== -->
 
- <!-- =====================================================
-     MODAL TAREFAS DISPONÍVEIS
-     ===================================================== -->
+  <ion-modal
+    [isOpen]="isTarefasModalOpen"
+    (didDismiss)="fecharTarefasModal()">
 
-<ion-modal
-  [isOpen]="isTarefasModalOpen"
-  (didDismiss)="fecharTarefasModal()">
+    <ng-template>
 
-  <ng-template>
+      <ion-header>
 
-    <ion-header>
+        <ion-toolbar>
 
-      <ion-toolbar>
+          <ion-title>
 
-        <ion-title>
-          Tarefas para hoje
-        </ion-title>
+            Tarefas para hoje
 
-        <ion-buttons slot="end">
-
-          <ion-button
-            (click)="fecharTarefasModal()">
-            Fechar
-          </ion-button>
-
-        </ion-buttons>
-
-      </ion-toolbar>
-
-    </ion-header>
+          </ion-title>
 
 
-    <ion-content class="ion-padding">
+          <ion-buttons slot="end">
 
-      <!-- RESUMO -->
+            <ion-button
+              (click)="fecharTarefasModal()">
 
-      <div class="tarefas-resumo">
+              Fechar
 
-        <h2>
-          Tens {{ tempoDisponivel }} minutos
-        </h2>
+            </ion-button>
 
-        <p>
-          Foram encontradas
-          <strong>
-            {{ tarefasSugeridas.length }}
-          </strong>
-          tarefas que cabem nesse tempo.
-        </p>
+          </ion-buttons>
 
-        <p>
-          Tempo utilizado:
-          <strong>
-            {{ tempoTarefasSugeridas }} min
-          </strong>
-        </p>
+        </ion-toolbar>
 
-      </div>
+      </ion-header>
 
 
-      <!-- LISTA DE TAREFAS -->
-
-      <ion-list>
-
-        <ion-item
-          *ngFor="
-            let tarefa of tarefasSugeridas;
-            let i = index
-          "
-          [class]="obterClassePrioridade(tarefa.prioridade)"
-          [class.tarefa-concluida]="tarefa.concluida">
-
-          <!-- CHECKBOX -->
-
-          <ion-checkbox
-            slot="start"
-            [(ngModel)]="tarefa.concluida">
-          </ion-checkbox>
+      <ion-content class="ion-padding">
 
 
-          <!-- NÚMERO -->
+        <!-- =================================================
+             RESUMO
+             ================================================= -->
 
-          <div class="numero-tarefa">
+        <div class="tarefas-resumo">
 
-            {{ i + 1 }}
+          <h2>
 
-          </div>
+            Tens {{ tempoDisponivel }} minutos
 
-
-          <!-- INFORMAÇÃO -->
-
-          <ion-label>
-
-            <h2>
-              {{ tarefa.nome }}
-            </h2>
-
-            <p>
-              {{ obterNomeDivisao(tarefa.divisao) }}
-              ·
-              {{ obterNomeFrequencia(tarefa.frequencia) }}
-              ·
-              {{ tarefa.duracao }} min
-            </p>
-
-          </ion-label>
+          </h2>
 
 
-          <!-- PRIORIDADE -->
+          <p>
+
+            Foram encontradas
+
+            <strong>
+
+              {{ tarefasSugeridas.length }}
+
+            </strong>
+
+            tarefas que cabem nesse tempo.
+
+          </p>
+
+
+          <p>
+
+            Tempo utilizado:
+
+            <strong>
+
+              {{ tempoTarefasSugeridas }} min
+
+            </strong>
+
+          </p>
+
+        </div>
+
+
+        <!-- =================================================
+             LISTA DE TAREFAS
+             ================================================= -->
+
+        <ion-list>
 
           <div
-            class="prioridade-tarefa"
-            slot="end">
+            *ngFor="
+              let item of tarefasSugeridas;
+              let i = index
+            "
+            class="tarefa-wrapper">
 
-            P{{ tarefa.prioridade }}
+
+            <!-- =============================================
+                 TAREFA
+                 ============================================= -->
+
+            <ion-item
+              [class]="
+                obterClassePrioridade(
+                  item.tarefa.prioridade
+                )
+              "
+              [class.tarefa-concluida]="
+                item.tarefa.concluida
+              ">
+
+
+              <!-- CHECKBOX -->
+
+              <ion-checkbox
+                slot="start"
+                [(ngModel)]="
+                  item.tarefa.concluida
+                ">
+
+              </ion-checkbox>
+
+
+              <!-- NÚMERO -->
+
+              <div class="numero-tarefa">
+
+                {{ i + 1 }}
+
+              </div>
+
+
+              <!-- INFORMAÇÃO -->
+
+              <ion-label>
+
+                <h2>
+
+                  {{ item.tarefa.nome }}
+
+                </h2>
+
+
+                <p>
+
+                  {{ obterNomeDivisao(item.divisaoId) }}
+
+                  ·
+
+                  {{ obterNomeFrequencia(
+                    item.tarefa.frequencia
+                  ) }}
+
+                  ·
+
+                  {{ item.tarefa.duracao }} min
+
+                </p>
+
+              </ion-label>
+
+
+              <!-- PRIORIDADE -->
+
+              <div
+                class="prioridade-tarefa"
+                slot="end">
+
+                P{{ item.tarefa.prioridade }}
+
+              </div>
+
+            </ion-item>
+
+
+            <!-- =============================================
+                 BOTÃO DO LOCAL / DESCRIÇÃO
+                 ============================================= -->
+
+            <div
+              class="local-tarefa"
+              *ngIf="
+                temDescricaoTarefa(item)
+              ">
+
+              <ion-button
+                fill="clear"
+                size="small"
+                class="descricao-local-btn"
+                (click)="
+                  mostrarDescricaoTarefa(item)
+                ">
+
+                📍
+                {{ obterNomeDivisao(
+                  item.divisaoId
+                ) }}
+
+              </ion-button>
+
+
+              <!-- ===========================================
+                   DESCRIÇÃO ABERTA
+                   =========================================== -->
+
+              <div
+                class="descricao-local"
+                *ngIf="
+                  tarefaDescricaoAbertaId ===
+                  (
+                    item.tarefa.id +
+                    '__' +
+                    item.divisaoId
+                  )
+                ">
+
+                <p>
+
+                  {{ obterDescricaoTarefa(item) }}
+
+                </p>
+
+              </div>
+
+            </div>
 
           </div>
 
-        </ion-item>
-
-      </ion-list>
+        </ion-list>
 
 
-      <!-- NENHUMA TAREFA -->
+        <!-- =================================================
+             NENHUMA TAREFA
+             ================================================= -->
 
-      <div
-        *ngIf="tarefasSugeridas.length === 0"
-        class="sem-tarefas">
+        <div
+          *ngIf="
+            tarefasSugeridas.length === 0
+          "
+          class="sem-tarefas">
 
-        <p>
-          Não existe nenhuma tarefa ativa que caiba no
-          tempo indicado.
-        </p>
+          <p>
 
-      </div>
+            Não existe nenhuma tarefa ativa que caiba no
+            tempo indicado.
+
+          </p>
+
+        </div>
 
 
-      <!-- GUARDAR -->
+        <!-- =================================================
+             GUARDAR
+             ================================================= -->
 
-      <div
-  class="guardar-tarefas-wrapper"
-  *ngIf="tarefasSugeridas.length > 0">
+        <div
+          class="guardar-tarefas-wrapper"
+          *ngIf="
+            tarefasSugeridas.length > 0
+          ">
 
-  <ion-button
-    expand="block"
-    (click)="guardarTarefasConcluidas()"
-    [disabled]="!temTarefasSelecionadas()">
-    ✓ Guardar
-  </ion-button>
+          <ion-button
+            expand="block"
+            (click)="
+              guardarTarefasConcluidas()
+            "
+            [disabled]="
+              !temTarefasSelecionadas()
+            ">
 
-</div>
+            ✓ Guardar
 
-    </ion-content>
+          </ion-button>
 
-  </ng-template>
+        </div>
 
-</ion-modal>
 
+      </ion-content>
+
+    </ng-template>
+
+  </ion-modal>
 
 
   <br>

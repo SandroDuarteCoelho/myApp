@@ -1,22 +1,356 @@
 {
   "tarefas": [
     {
-      "id": "cozinha_limpar_bancada",
+      "id": "limpar_bancada",
       "nome": "Limpar a bancada",
-      "divisao": "cozinha",
+      "divisoes": ["cozinha"],
       "frequencia": "diaria",
       "prioridade": 3,
       "duracao":2,
-      "ativa": true
+      "ativa": true,
+      "descricao":""
     },
     {
-      "id": "cozinha_limpar_frigorifico",
+      "id": "limpar_frigorifico",
       "nome": "Limpar o frigorífico",
-      "divisao": "cozinha",
+      "divisoes": ["cozinha"],
       "frequencia": "mensal",
       "prioridade": 2,
       "duracao":10,
-      "ativa": true
+      "ativa": true,
+      "descricao":""
+    },
+    {
+      "id": "varrer_chao",
+      "nome": "Varrer/aspirar o chão",
+      "divisoes": [
+    "cozinha",
+    "quarto",
+    "sala_de_estar","casa_de_banho", "escritorio"
+  ],
+      "frequencia": "diaria",
+      "prioridade": 3,
+      "duracao":2,
+      "ativa": true,
+      "descricao":""
+    },
+    {
+      "id": "lavar_chao",
+      "nome": "Lavar o chão",
+      "divisoes": ["cozinha",
+    "quarto",
+    "sala_de_estar","casa_de_banho", "escritorio"],
+      "frequencia": "mensal",
+      "prioridade": 2,
+      "duracao":10,
+      "ativa": true,
+      "descricao":""
+    },
+    {
+      "id": "lavar_loica",
+      "nome": "Lavar a loiça",
+      "divisoes": ["cozinha"],
+      "frequencia": "diaria",
+      "prioridade": 3,
+      "duracao":2,
+      "ativa": true,
+      "descricao":""
+    },
+    {
+      "id": "regar_plantas",
+      "nome": "Regar as plantas",
+      "divisoes": ["cozinha",
+    "quarto",
+    "sala_de_estar","casa_de_banho", "escritorio"],
+      "frequencia": "mensal",
+      "prioridade": 2,
+      "duracao":10,
+      "ativa": true,
+      "descricao":""
+    },
+    {
+      "id": "limpar_espelhos",
+      "nome": "Limpar aos espelhos",
+      "divisoes": ["casa_de_banho", "quarto"],
+      "frequencia": "diaria",
+      "prioridade": 3,
+      "duracao":2,
+      "ativa": true,
+      "descricao":""
+    },
+    {
+      "id": "limpar_janelas",
+      "nome": "Limpar as janelas",
+      "divisoes": ["cozinha",
+    "quarto",
+    "sala_de_estar","casa_de_banho", "escritorio"],
+      "frequencia": "mensal",
+      "prioridade": 2,
+      "duracao":10,
+      "ativa": true,
+      "descricao":""
+    },
+    {
+      "id": "limpar_areia_gato",
+      "nome": "Limpar areia do gato",
+      "divisoes": ["casa_de_banho"],
+      "frequencia": "diaria",
+      "prioridade": 3,
+      "duracao":2,
+      "ativa": true,
+      "descricao":""
+    },
+    {
+      "id": "tirar_lixo",
+      "nome": "Tirar o lixo",
+      "divisoes": ["cozinha", "casa_de_banho"],
+      "frequencia": "mensal",
+      "prioridade": 2,
+      "duracao":10,
+      "ativa": true,
+      "descricao":""
+    },
+    {
+      "id": "limpar_gaiola_hamster",
+      "nome": "Limpar gaiola do hamster",
+      "divisoes": ["sala_de_estar"],
+      "frequencia": "diaria",
+      "prioridade": 3,
+      "duracao":2,
+      "ativa": true,
+      "descricao":""
+    },
+    {
+      "id": "mudar_lencois",
+      "nome": "Mudar lençois da cama",
+      "divisoes": ["quarto"],
+      "frequencia": "mensal",
+      "prioridade": 2,
+      "duracao":10,
+      "ativa": true,
+      "descricao":""
+    },
+    {
+      "id": "lavar_roupa",
+      "nome": "Lavar a roupa",
+      "divisoes": ["casa_de_banho"],
+      "frequencia": "diaria",
+      "prioridade": 3,
+      "duracao":2,
+      "ativa": true,
+      "descricao":""
+    },
+    {
+      "id": "arrumar_livros",
+      "nome": "Arrumar os livros",
+      "divisoes": ["escritorio"],
+      "frequencia": "mensal",
+      "prioridade": 2,
+      "duracao":10,
+      "ativa": true,
+      "descricao":""
+    },
+    {
+      "id": "limpar_maquina_cafe",
+      "nome": "Limpar a máquina do café",
+      "divisoes": ["escritorio"],
+      "frequencia": "diaria",
+      "prioridade": 3,
+      "duracao":2,
+      "ativa": true,
+      "descricao":""
+    },
+    {
+      "id": "limpar_mesa_refeicoes",
+      "nome": "Limpar a mesa de refeições",
+      "divisoes": ["escritorio"],
+      "frequencia": "mensal",
+      "prioridade": 2,
+      "duracao":10,
+      "ativa": true,
+      "descricao":""
+    },
+    {
+      "id": "limpar_mesa_escritorio",
+      "nome": "Limpar a mesa do escritório",
+      "divisoes": ["escritorio"],
+      "frequencia": "diaria",
+      "prioridade": 3,
+      "duracao":2,
+      "ativa": true,
+      "descricao":""
+    },
+    {
+      "id": "limpar_lavatorio",
+      "nome": "Limpar o lavatório",
+      "divisoes": ["casa_de_banho"],
+      "frequencia": "mensal",
+      "prioridade": 2,
+      "duracao":10,
+      "ativa": true,
+      "descricao":""
+    },
+    {
+      "id": "limpar_poliban",
+      "nome": "Limpar o poliban/banheira",
+      "divisoes": ["casa_de_banho"],
+      "frequencia": "diaria",
+      "prioridade": 3,
+      "duracao":2,
+      "ativa": true,
+      "descricao":""
+    },
+    {
+      "id": "limpar_sanita",
+      "nome": "Limpar a sanita",
+      "divisoes": ["casa_de_banho"],
+      "frequencia": "mensal",
+      "prioridade": 2,
+      "duracao":10,
+      "ativa": true,
+      "descricao":""
+    },
+    {
+      "id": "lavar_bide",
+      "nome": "Lavar o bidé",
+      "divisoes": ["casa_de_banho"],
+      "frequencia": "diaria",
+      "prioridade": 3,
+      "duracao":2,
+      "ativa": true,
+      "descricao":""
+    },
+    {
+      "id": "limpar_paredes",
+      "nome": "Limpar as paredes",
+      "divisoes": ["cozinha",
+    "quarto",
+    "sala_de_estar","casa_de_banho", "escritorio"],
+      "frequencia": "mensal",
+      "prioridade": 2,
+      "duracao":10,
+      "ativa": true,
+      "descricao":""
+    },
+    {
+      "id": "limpar_exaustor",
+      "nome": "Limpar o exaustor",
+      "divisoes": ["cozinha"],
+      "frequencia": "diaria",
+      "prioridade": 3,
+      "duracao":2,
+      "ativa": true,
+      "descricao":""
+    },
+    {
+      "id": "limpar_placa",
+      "nome": "Limpar a placa do fogão",
+      "divisoes": ["cozinha"],
+      "frequencia": "mensal",
+      "prioridade": 2,
+      "duracao":10,
+      "ativa": true,
+      "descricao":""
+    },
+    {
+      "id": "limpar_forno",
+      "nome": "Limpar o forno",
+      "divisoes": ["cozinha"],
+      "frequencia": "diaria",
+      "prioridade": 3,
+      "duracao":2,
+      "ativa": true,
+      "descricao":""
+    },
+    {
+      "id": "limpar_jarro_eletrico",
+      "nome": "Limpar o jarro eléctrico",
+      "divisoes": ["cozinha"],
+      "frequencia": "mensal",
+      "prioridade": 2,
+      "duracao":10,
+      "ativa": true,
+      "descricao":""
+    },
+    {
+      "id": "limpar_centrifugadora",
+      "nome": "Limpar a centrifugadora",
+      "divisoes": ["cozinha"],
+      "frequencia": "diaria",
+      "prioridade": 3,
+      "duracao":2,
+      "ativa": true,
+      "descricao":""
+    },
+    {
+      "id": "limpar_varinha",
+      "nome": "Limpar varinha mágica",
+      "divisoes": ["cozinha"],
+      "frequencia": "mensal",
+      "prioridade": 2,
+      "duracao":10,
+      "ativa": true,
+      "descricao":""
+    },
+    {
+      "id": "limpar_lavaloica",
+      "nome": "Limpar lava-loiça",
+      "divisoes": ["cozinha"],
+      "frequencia": "diaria",
+      "prioridade": 3,
+      "duracao":2,
+      "ativa": true,
+      "descricao":""
+    },
+    {
+      "id": "limpar_pelos",
+      "nome": "Limpar pelos das cadeiras",
+      "divisoes": ["sala_de_estar", "cozinha"],
+      "frequencia": "mensal",
+      "prioridade": 2,
+      "duracao":10,
+      "ativa": true,
+      "descricao":""
+    },
+    {
+      "id": "trocar_agua_gato",
+      "nome": "Trocar a água do gato",
+      "divisoes": ["sala_de_estar", "casa_de_banho"],
+      "frequencia": "diaria",
+      "prioridade": 3,
+      "duracao":2,
+      "ativa": true,
+      "descricao":""
+    },
+    {
+      "id": "arrumar_guardafatos",
+      "nome": "Arrumar guardafatos",
+      "divisoes": ["quarto", "escritorio"],
+      "frequencia": "mensal",
+      "prioridade": 2,
+      "duracao":10,
+      "ativa": true,
+      "descricao":""
+    },
+    {
+      "id": "limpar_portas",
+      "nome": "Limpar portas",
+      "divisoes": ["quarto", "escritorio", "casa_de_banho", "sala_de_estar"],
+      "frequencia": "mensal",
+      "prioridade": 2,
+      "duracao":10,
+      "ativa": true,
+      "descricao":""
+    },
+    {
+      "id": "trocar_toalhas",
+      "nome": "Trocar toalhas",
+      "divisoes": ["casa_de_banho"],
+      "frequencia": "mensal",
+      "prioridade": 2,
+      "duracao":10,
+      "ativa": true,
+      "descricao":""
     }
   ]
 }

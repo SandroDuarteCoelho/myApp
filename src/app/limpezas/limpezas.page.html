@@ -16,7 +16,9 @@
     </ion-buttons>
 
     <ion-title>
+
       Limpezas
+
     </ion-title>
 
   </ion-toolbar>
@@ -31,7 +33,9 @@
     <ion-toolbar>
 
       <ion-title size="large">
+
         Limpezas
+
       </ion-title>
 
     </ion-toolbar>
@@ -51,7 +55,9 @@
       <ion-item slot="header">
 
         <ion-label>
+
           🏠 Gerir divisões
+
         </ion-label>
 
       </ion-item>
@@ -77,11 +83,15 @@
             <ion-label>
 
               <h2>
+
                 {{ divisao.nome }}
+
               </h2>
 
               <p>
+
                 Prioridade {{ divisao.prioridade }}
+
               </p>
 
             </ion-label>
@@ -128,19 +138,27 @@
               interface="popover">
 
               <ion-select-option [value]="1">
+
                 1 — Baixa
+
               </ion-select-option>
 
               <ion-select-option [value]="2">
+
                 2 — Média
+
               </ion-select-option>
 
               <ion-select-option [value]="3">
+
                 3 — Alta
+
               </ion-select-option>
 
               <ion-select-option [value]="4">
+
                 4 — Muito alta
+
               </ion-select-option>
 
             </ion-select>
@@ -174,7 +192,9 @@
       <ion-item slot="header">
 
         <ion-label>
+
           🧹 Gerir tarefas
+
         </ion-label>
 
       </ion-item>
@@ -187,74 +207,73 @@
 
         <ion-list>
 
+          <!-- =================================================
+               CADA TAREFA + CADA DIVISÃO
+               ================================================= -->
+
           <ion-item
-            *ngFor="let tarefa of tarefasOrdenadas"
-            [class]="obterClassePrioridade(tarefa.prioridade)"
-            [class.tarefa-indisponivel]="!obterDivisaoAtiva(tarefa.divisao)">
+            *ngFor="let item of tarefasApresentacao"
+            [class]="obterClassePrioridade(item.tarefa.prioridade)"
+            [class.tarefa-indisponivel]="!obterDivisaoAtiva(item.divisaoId)">
 
-
-            <!-- =================================================
-                 ESTADO DA TAREFA
-                 ================================================= -->
 
             <ion-checkbox
               slot="start"
-              [checked]="tarefa.ativa"
-              [disabled]="!obterDivisaoAtiva(tarefa.divisao)"
-              (ionChange)="alterarEstadoTarefa(tarefa)">
+              [checked]="item.tarefa.ativa"
+              [disabled]="!obterDivisaoAtiva(item.divisaoId)"
+              (ionChange)="alterarEstadoTarefa(item)">
             </ion-checkbox>
 
 
             <ion-label>
 
               <h2>
-                {{ tarefa.nome }}
+
+                {{ item.tarefa.nome }}
+
               </h2>
+
 
               <p>
 
-                {{ obterNomeDivisao(tarefa.divisao) }}
+                {{ obterNomeDivisao(item.divisaoId) }}
 
                 ·
 
-                {{ obterNomeFrequencia(tarefa.frequencia) }}
+                {{ obterNomeFrequencia(item.tarefa.frequencia) }}
 
                 ·
 
-                {{ tarefa.duracao }} min
+                {{ item.tarefa.duracao }} min
 
                 ·
 
-                Prioridade {{ tarefa.prioridade }}
+                Prioridade {{ item.tarefa.prioridade }}
 
               </p>
 
             </ion-label>
 
 
-            <!-- =================================================
-                 APAGAR TAREFA
-                 ================================================= -->
-
             <ion-button
               fill="clear"
               color="danger"
               slot="end"
-              (click)="apagarTarefa(tarefa)">
+              (click)="apagarTarefa(item.tarefa)">
 
               🗑️
 
             </ion-button>
+
 
           </ion-item>
 
         </ion-list>
 
 
-
-        <!-- =================================================
+        <!-- =====================================================
              ADICIONAR TAREFA
-             ================================================= -->
+             ===================================================== -->
 
         <div class="adicionar">
 
@@ -305,15 +324,21 @@
               interface="popover">
 
               <ion-select-option value="diaria">
+
                 Diária
+
               </ion-select-option>
 
               <ion-select-option value="semanal">
+
                 Semanal
+
               </ion-select-option>
 
               <ion-select-option value="mensal">
+
                 Mensal
+
               </ion-select-option>
 
             </ion-select>
@@ -332,19 +357,27 @@
               interface="popover">
 
               <ion-select-option [value]="1">
+
                 1 — Baixa
+
               </ion-select-option>
 
               <ion-select-option [value]="2">
+
                 2 — Média
+
               </ion-select-option>
 
               <ion-select-option [value]="3">
+
                 3 — Alta
+
               </ion-select-option>
 
               <ion-select-option [value]="4">
+
                 4 — Muito alta
+
               </ion-select-option>
 
             </ion-select>
@@ -395,6 +428,319 @@
     </ion-accordion>
 
 
+
+    <!-- =====================================================
+         HISTÓRICO DE LIMPEZAS
+         ===================================================== -->
+
+    <ion-accordion
+      value="historico"
+      class="accordion-historico">
+
+      <ion-item
+        slot="header"
+        class="historico-header">
+
+        <ion-label>
+
+          🕘 Histórico de Limpezas
+
+        </ion-label>
+
+      </ion-item>
+
+
+      <div
+        slot="content"
+        class="accordion-content historico-content">
+
+
+        <!-- =================================================
+             ESTADO DA CASA
+             ================================================= -->
+
+        <div
+          class="estado-casa"
+          [class]="classeEstadoCasa">
+
+          <div class="estado-casa-titulo">
+
+            🏠 Estado da casa
+
+          </div>
+
+
+          <div class="estado-casa-valor">
+
+            {{ textoEstadoCasa }}
+
+          </div>
+
+
+          <div
+            class="estado-casa-info"
+            *ngIf="tarefasAtrasadas > 0">
+
+            {{ tarefasAtrasadas }}
+
+            {{ tarefasAtrasadas === 1
+              ? 'tarefa atrasada'
+              : 'tarefas atrasadas'
+            }}
+
+          </div>
+
+
+          <div
+            class="estado-casa-info"
+            *ngIf="
+              tarefasIntervencao > 0
+            ">
+
+            {{ tarefasIntervencao }}
+
+            {{
+              tarefasIntervencao === 1
+                ? 'tarefa necessita de intervenção'
+                : 'tarefas necessitam de intervenção'
+            }}
+
+          </div>
+
+        </div>
+
+
+
+        <!-- ESTADO DA CASA -->
+<!-- <div
+  class="estado-casa"
+  [class]="classeEstadoCasa">
+
+  <div class="estado-casa-titulo">
+    {{ textoEstadoCasa }}
+  </div>
+
+  <div class="estado-casa-descricao">
+    <ng-container [ngSwitch]="estadoCasa">
+
+      <span *ngSwitchCase="'em-dia'">
+        A casa está em dia.
+      </span>
+
+      <span *ngSwitchCase="'atencao'">
+        Existem algumas tarefas por fazer ou atrasadas.
+      </span>
+
+      <span *ngSwitchCase="'acumulado'">
+        Existem várias tarefas por fazer ou atrasadas.
+      </span>
+
+      <span *ngSwitchCase="'intervencao'">
+        Existem tarefas importantes que precisam de atenção.
+      </span>
+
+    </ng-container>
+  </div>
+</div> -->
+
+<!-- LEGENDA DOS ESTADOS -->
+<div class="legenda-estados">
+
+  <div class="legenda-titulo">
+    Estado da casa
+  </div>
+
+  <div class="legenda-item estado-em-dia">
+    <span class="legenda-indicador"></span>
+    <div>
+      <strong>🟢 Em dia</strong>
+      <span>Não existem tarefas pendentes ou atrasadas.</span>
+    </div>
+  </div>
+
+  <div class="legenda-item estado-atencao">
+    <span class="legenda-indicador"></span>
+    <div>
+      <strong>🟡 Atenção</strong>
+      <span>Existem algumas tarefas por fazer ou atrasadas.</span>
+    </div>
+  </div>
+
+  <div class="legenda-item estado-acumulado">
+    <span class="legenda-indicador"></span>
+    <div>
+      <strong>🟠 Acumulado</strong>
+      <span>Existem várias tarefas pendentes ou atrasadas.</span>
+    </div>
+  </div>
+
+  <div class="legenda-item estado-intervencao">
+    <span class="legenda-indicador"></span>
+    <div>
+      <strong>🔴 Intervenção</strong>
+      <span>Existem tarefas essenciais que precisam de atenção.</span>
+    </div>
+  </div>
+
+</div>
+
+
+        <!-- =================================================
+             LISTA DO HISTÓRICO
+             ================================================= -->
+
+        <ion-list
+          *ngIf="tarefasHistorico.length > 0">
+
+
+          <ion-item
+            *ngFor="let item of tarefasHistorico"
+            class="historico-tarefa"
+            [class]="obterClasseEstado(item.estado)">
+
+
+            <ion-label>
+
+              <h2>
+
+                🧹 {{ item.tarefa.nome }}
+
+              </h2>
+
+
+              <p>
+
+                📍
+                {{ obterNomeDivisao(item.divisaoId) }}
+
+              </p>
+
+
+              <p>
+
+                Última vez:
+                <strong>
+                  {{ obterTextoUltimaVez(item.diasDesdeUltima) }}
+                </strong>
+
+              </p>
+
+
+              <p>
+
+                Habitualmente:
+                <strong>
+                  {{ obterTextoHabitual(item.intervaloDias) }}
+                </strong>
+
+              </p>
+
+
+              <p
+                class="historico-estado-texto">
+
+                <strong>
+
+                  {{ obterTextoEstado(item.estado) }}
+
+                </strong>
+
+                ·
+
+                {{ obterTextoAtraso(item.diasAtraso) }}
+
+              </p>
+
+
+              <p class="historico-data">
+
+                Realizada em
+                {{ formatarData(item.ultimaData) }}
+
+              </p>
+
+            </ion-label>
+
+
+            <div
+              slot="end"
+              class="historico-prioridade">
+
+              P{{ item.tarefa.prioridade }}
+
+            </div>
+
+
+          </ion-item>
+
+        </ion-list>
+
+
+
+        <!-- =================================================
+             SEM HISTÓRICO
+             ================================================= -->
+
+        <div
+          *ngIf="tarefasHistorico.length === 0"
+          class="historico-vazio">
+
+          <div class="historico-vazio-icon">
+
+            🧹
+
+          </div>
+
+
+          <h2>
+
+            Ainda não existem limpezas registadas
+
+          </h2>
+
+
+          <p>
+
+            Quando guardares uma tarefa como realizada,
+            ela aparecerá aqui com a sua evolução.
+
+          </p>
+
+        </div>
+
+
+      </div>
+
+    </ion-accordion>
+
+
   </ion-accordion-group>
+
+
+
+  <!-- =====================================================
+       REPOR DADOS
+       ===================================================== -->
+
+  <div class="repor-dados-wrapper">
+
+    <ion-button
+      expand="block"
+      fill="outline"
+      color="warning"
+      (click)="reporDadosOriginais()">
+
+      ♻️ Repor dados originais
+
+    </ion-button>
+
+  </div>
+
+
+  <br>
+
+  <br>
+
+  <br>
 
 </ion-content>

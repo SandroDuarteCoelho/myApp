@@ -154,3 +154,459 @@ ion-select-option {
 .tarefa-indisponivel {
   opacity: 0.45;
 }
+
+.repor-dados-wrapper {
+  padding: 20px 16px 30px;
+}
+
+/* =====================================================
+   HISTÓRICO DE LIMPEZAS
+   ===================================================== */
+
+.accordion-historico {
+  margin-top: 8px;
+}
+
+
+/* Cabeçalho */
+
+.historico-header {
+  --background: #e8f1e8;
+  --color: #285c35;
+}
+
+
+/* Conteúdo */
+
+.historico-content {
+  background: #f7faf7;
+}
+
+
+/* Estado geral da casa */
+
+.estado-casa {
+  margin: 12px;
+  padding: 14px;
+  border-radius: 12px;
+  border-left: 6px solid;
+
+  background: #ffffff;
+}
+
+
+.estado-casa-titulo {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+
+.estado-casa-valor {
+  margin-top: 4px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+
+.estado-casa-info {
+  margin-top: 5px;
+  font-size: 13px;
+}
+
+
+/* Estados */
+
+.historico-em-dia {
+  border-left-color: #2e8b57;
+  background: #eef8f0;
+}
+
+
+.historico-atencao {
+  border-left-color: #d9a400;
+  background: #fff9df;
+}
+
+
+.historico-acumulado {
+  border-left-color: #e07800;
+  background: #fff0df;
+}
+
+
+.historico-intervencao {
+  border-left-color: #c62828;
+  background: #ffebeb;
+}
+
+
+/* Item histórico */
+
+.historico-tarefa {
+  margin: 6px 8px;
+  border-radius: 10px;
+  --background: #ffffff;
+}
+
+
+.historico-tarefa h2 {
+  font-weight: 700;
+}
+
+
+.historico-tarefa p {
+  margin-top: 5px;
+}
+
+
+.historico-estado-texto {
+  font-size: 14px;
+}
+
+
+.historico-data {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+
+.historico-prioridade {
+  font-size: 12px;
+  font-weight: 700;
+  margin-left: 8px;
+}
+
+
+/* Sem histórico */
+
+.historico-vazio {
+  padding: 30px 20px;
+  text-align: center;
+}
+
+
+.historico-vazio-icon {
+  font-size: 38px;
+  margin-bottom: 10px;
+}
+
+
+.historico-vazio h2 {
+  font-size: 18px;
+}
+
+
+.historico-vazio p {
+  font-size: 14px;
+  opacity: 0.75;
+}
+
+
+/* =====================================================
+   HISTÓRICO DE LIMPEZAS
+   ===================================================== */
+
+.accordion-historico {
+  margin-top: 8px;
+}
+
+
+/* Cabeçalho do acordeão */
+
+.historico-header {
+  --background: #e8f1e8;
+  --color: #1f4d2b;
+}
+
+.historico-header ion-label {
+  color: #1f4d2b !important;
+  font-weight: 700;
+}
+
+
+/* Conteúdo */
+
+.historico-content {
+  background: #f7faf7;
+  color: #222222;
+}
+
+
+/* =====================================================
+   ESTADO GERAL DA CASA
+   ===================================================== */
+
+.estado-casa {
+  margin: 12px;
+  padding: 14px;
+
+  border-radius: 12px;
+
+  border-left: 6px solid;
+
+  background: #ffffff;
+
+  color: #222222;
+}
+
+
+.estado-casa-titulo {
+  color: #333333;
+
+  font-size: 14px;
+
+  font-weight: 600;
+}
+
+
+.estado-casa-valor {
+  margin-top: 4px;
+
+  color: #222222;
+
+  font-size: 20px;
+
+  font-weight: 700;
+}
+
+
+.estado-casa-info {
+  margin-top: 5px;
+
+  color: #444444;
+
+  font-size: 13px;
+}
+
+
+/* =====================================================
+   CORES DO ESTADO
+   ===================================================== */
+
+.estado-casa.historico-em-dia {
+  border-left-color: #2e8b57;
+
+  background: #eef8f0;
+}
+
+
+.estado-casa.historico-atencao {
+  border-left-color: #d9a400;
+
+  background: #fff9df;
+}
+
+
+.estado-casa.historico-acumulado {
+  border-left-color: #e07800;
+
+  background: #fff0df;
+}
+
+
+.estado-casa.historico-intervencao {
+  border-left-color: #c62828;
+
+  background: #ffebeb;
+}
+
+
+/* =====================================================
+   ITENS DO HISTÓRICO
+   ===================================================== */
+
+.historico-tarefa {
+  margin: 6px 8px;
+
+  border-radius: 10px;
+
+  --background: #ffffff;
+
+  --color: #222222;
+
+  color: #222222;
+}
+
+
+.historico-tarefa ion-label {
+  color: #222222 !important;
+}
+
+
+.historico-tarefa h2 {
+  color: #222222 !important;
+
+  font-weight: 700;
+}
+
+
+.historico-tarefa p {
+  margin-top: 5px;
+
+  color: #444444 !important;
+}
+
+
+.historico-tarefa strong {
+  color: #222222 !important;
+}
+
+
+.historico-estado-texto {
+  font-size: 14px;
+}
+
+
+/* Texto do estado */
+
+.historico-tarefa.historico-em-dia
+  .historico-estado-texto {
+  color: #216b3a !important;
+}
+
+
+.historico-tarefa.historico-atencao
+  .historico-estado-texto {
+  color: #8a6800 !important;
+}
+
+
+.historico-tarefa.historico-acumulado
+  .historico-estado-texto {
+  color: #a84f00 !important;
+}
+
+
+.historico-tarefa.historico-intervencao
+  .historico-estado-texto {
+  color: #a51f1f !important;
+}
+
+
+.historico-data {
+  color: #666666 !important;
+
+  font-size: 12px;
+
+  opacity: 1;
+}
+
+
+.historico-prioridade {
+  color: #333333;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  margin-left: 8px;
+}
+
+
+/* =====================================================
+   SEM HISTÓRICO
+   ===================================================== */
+
+.historico-vazio {
+  padding: 30px 20px;
+
+  text-align: center;
+
+  color: #333333;
+}
+
+
+.historico-vazio-icon {
+  font-size: 38px;
+
+  margin-bottom: 10px;
+}
+
+
+.historico-vazio h2 {
+  color: #222222 !important;
+
+  font-size: 18px;
+}
+
+
+.historico-vazio p {
+  color: #555555 !important;
+
+  font-size: 14px;
+
+  opacity: 1;
+}
+
+
+/* =====================================================
+   LEGENDA — ESTADOS DA CASA
+   ===================================================== */
+
+.legenda-estados {
+  margin: 12px 0 16px;
+  padding: 12px;
+  background: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 10px;
+  color: #222222;
+}
+
+.legenda-titulo {
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #333333;
+}
+
+.legenda-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  padding: 7px 0;
+  color: #222222;
+}
+
+.legenda-item + .legenda-item {
+  border-top: 1px solid #eeeeee;
+}
+
+.legenda-indicador {
+  flex: 0 0 12px;
+  width: 12px;
+  height: 12px;
+  margin-top: 4px;
+  border-radius: 50%;
+}
+
+.legenda-item strong {
+  display: block;
+  font-size: 0.9rem;
+  color: #222222;
+}
+
+.legenda-item span:not(.legenda-indicador) {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.78rem;
+  line-height: 1.25;
+  color: #555555;
+}
+
+/* Cores dos indicadores */
+
+.estado-em-dia .legenda-indicador {
+  background: #4caf50;
+}
+
+.estado-atencao .legenda-indicador {
+  background: #f0c419;
+}
+
+.estado-acumulado .legenda-indicador {
+  background: #f28c28;
+}
+
+.estado-intervencao .legenda-indicador {
+  background: #d32f2f;
+}

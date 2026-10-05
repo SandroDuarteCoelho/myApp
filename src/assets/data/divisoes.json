@@ -4,31 +4,71 @@
       "id": "cozinha",
       "nome": "Cozinha",
       "prioridade": 4,
-      "ativa": true
+      "ativa": true,
+      "descricao":"O ressentimento e a fragilidade emocional são as mensagens transmitidas por uma cozinha negligenciada e em que a arrumação prima pela ausência. A cozinha representa o domínio que é regido pelo feminino. Como referi anteriormente a propósito do princípio feminino trata-se do aspecto nutritivo e criativo do ser humano, independentemente do nos referirmos a homens ou a mulheres. O princípio feminino consiste no dom de exprimir ternura e doçura na abertura à intuição e à dimensão psíquica do ser. Por conseguinte, o princípio feminino é aquele que está mais em contacto com as verdadeiras necessidades do ser. A tua cozinha está e ordem? É uma cozinha espaçosa, funcional e agradável? A tua cozinha revela claramente o que se passa dentro de ti e em que medida estás conectado com o teu princípio feminino." 
     },
     {
-      "id": "sala",
-      "nome": "Sala",
+      "id": "sala_de_estar",
+      "nome": "Sala de estar",
       "prioridade": 2,
-      "ativa": true
+      "ativa": true,
+      "descricao":"Outro indicador de fobia social é a desarrumação da sala de estar. Uma sala onde os objetos se acumulam sem qualquer ordem traduz o medo de a pessoa ser rejeitada socialmente."
+    },
+    {
+      "id": "sala_de_jantar",
+      "nome": "Sala de jantar",
+      "prioridade": 2,
+      "ativa": true,
+      "descricao":"Uma sala de jantar desarrumada indicia medo de não dar passos firmes e sólidos, tal como a sensação de ser dominado pela família."
     },
     {
       "id": "quarto",
       "nome": "Quarto",
       "prioridade": 3,
-      "ativa": true
+      "ativa": true,
+      "descricao":"Se o local onde dorme é um caos, isto indica que há assuntos pendentes na sua vida, muitas coisas por terminar, e que lhe é difícil ter um trabalho ou uma relação estável. É a divisão mais confortável da tua casa? Sentes-te bem no teu quarto? O teu quarto é do teu agrado? O teu quarto representa o aspecto Íntimo do teu ser. Se desejas conhecer o teu lado íntimo, descreve o teu quarto a alguém que nunca o tenha visto e presta a devida atenção às palavras que usas na tua descrição: são elas que te revelarão o clima da tua vida íntima."
     },
     {
-      "id": "casa_banho",
+      "id": "casa_de_banho",
       "nome": "Casa de banho",
       "prioridade": 4,
-      "ativa": true
+      "ativa": true,
+      "descricao":""
     },
     {
       "id": "garagem",
       "nome": "Garagem",
       "prioridade": 1,
-      "ativa": false
+      "ativa": false,
+      "descricao":"Se o lugar onde estaciona o carro está desarrumado, é sinal de que provavelmente sente medo e de que tem pouca capacidade para se manter atualizado."
+    },
+    {
+      "id": "hall_entrada",
+      "nome": "Hall de entrada",
+      "prioridade": 1,
+      "ativa": false,
+      "descricao":"A falta de ordem e a acumulação de objetos na entrada da casa são indicadores claros de pessoas com medo de socializar, de pessoas que evitam relacionar-se com outras."
+    },
+    {
+      "id": "corredores",
+      "nome": "Corredores",
+      "prioridade": 1,
+      "ativa": false,
+      "descricao":"Se os objetos se acumulam sem ordem nos corredores de casa, isto significa dificuldades em comunicar com os outros, medo de dizer o que se pensa."
+    },
+    {
+      "id": "despensa",
+      "nome": "Despensa",
+      "prioridade": 1,
+      "ativa": false,
+      "descricao":"A desarrumação na despensa transmite a mensagem de que vive no passado e que perdeu de vista o momento atual."
+    },
+    {
+      "id": "escritorio",
+      "nome": "Escritório",
+      "prioridade": 1,
+      "ativa": false,
+      "descricao":"A desarrumação do escritório, ou do lugar onde se trabalha, indica medo, frustração e necessidade de controlar as situações."
     }
   ]
 }

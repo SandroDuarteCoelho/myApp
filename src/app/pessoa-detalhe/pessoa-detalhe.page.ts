@@ -6,7 +6,7 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import {
   IonHeader,
   IonToolbar,
-  IonTitle,
+  
   IonContent,
   IonButton,
   IonButtons,
@@ -14,7 +14,7 @@ import {
   IonCardContent,
   IonCardHeader,
   IonCardTitle,
-  IonCardSubtitle,
+  
   IonAccordion,
   IonAccordionGroup,
   IonItem,
@@ -94,7 +94,7 @@ type DiaNascimento = {
 
     IonHeader,
     IonToolbar,
-    IonTitle,
+    
     IonContent,
     IonButton,
     IonButtons,
@@ -103,7 +103,7 @@ type DiaNascimento = {
     IonCardContent,
     IonCardHeader,
     IonCardTitle,
-    IonCardSubtitle,
+   
 
     IonAccordion,
     IonAccordionGroup,

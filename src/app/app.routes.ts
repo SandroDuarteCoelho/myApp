@@ -170,7 +170,7 @@ export const routes: Routes = [
 
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'oracao-perdao',
     pathMatch: 'full',
   },
   {

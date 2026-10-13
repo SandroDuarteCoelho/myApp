@@ -1,3 +1,4 @@
+
 <ion-header [translucent]="true">
 
   <ion-toolbar>
@@ -16,9 +17,7 @@
     </ion-buttons>
 
     <ion-title>
-
       Limpezas
-
     </ion-title>
 
   </ion-toolbar>
@@ -33,9 +32,7 @@
     <ion-toolbar>
 
       <ion-title size="large">
-
         Limpezas
-
       </ion-title>
 
     </ion-toolbar>
@@ -55,9 +52,7 @@
       <ion-item slot="header">
 
         <ion-label>
-
           🏠 Gerir divisões
-
         </ion-label>
 
       </ion-item>
@@ -83,17 +78,14 @@
             <ion-label>
 
               <h2>
-
                 {{ divisao.nome }}
-
               </h2>
 
               <p>
-
                 Prioridade {{ divisao.prioridade }}
-
               </p>
 
+             
             </ion-label>
 
 
@@ -138,27 +130,19 @@
               interface="popover">
 
               <ion-select-option [value]="1">
-
                 1 — Baixa
-
               </ion-select-option>
 
               <ion-select-option [value]="2">
-
                 2 — Média
-
               </ion-select-option>
 
               <ion-select-option [value]="3">
-
                 3 — Alta
-
               </ion-select-option>
 
               <ion-select-option [value]="4">
-
                 4 — Muito alta
-
               </ion-select-option>
 
             </ion-select>
@@ -192,9 +176,7 @@
       <ion-item slot="header">
 
         <ion-label>
-
           🧹 Gerir tarefas
-
         </ion-label>
 
       </ion-item>
@@ -228,30 +210,26 @@
             <ion-label>
 
               <h2>
-
                 {{ item.tarefa.nome }}
-
               </h2>
 
 
               <p>
-
                 {{ obterNomeDivisao(item.divisaoId) }}
-
                 ·
-
                 {{ obterNomeFrequencia(item.tarefa.frequencia) }}
-
                 ·
-
                 {{ item.tarefa.duracao }} min
-
                 ·
-
                 Prioridade {{ item.tarefa.prioridade }}
-
               </p>
 
+
+              <!-- =================================================
+                   DESCRIÇÃO DA TAREFA
+                   ================================================= -->
+
+             
             </ion-label>
 
 
@@ -265,10 +243,10 @@
 
             </ion-button>
 
-
           </ion-item>
 
         </ion-list>
+
 
 
         <!-- =====================================================
@@ -324,21 +302,15 @@
               interface="popover">
 
               <ion-select-option value="diaria">
-
                 Diária
-
               </ion-select-option>
 
               <ion-select-option value="semanal">
-
                 Semanal
-
               </ion-select-option>
 
               <ion-select-option value="mensal">
-
                 Mensal
-
               </ion-select-option>
 
             </ion-select>
@@ -357,27 +329,19 @@
               interface="popover">
 
               <ion-select-option [value]="1">
-
                 1 — Baixa
-
               </ion-select-option>
 
               <ion-select-option [value]="2">
-
                 2 — Média
-
               </ion-select-option>
 
               <ion-select-option [value]="3">
-
                 3 — Alta
-
               </ion-select-option>
 
               <ion-select-option [value]="4">
-
                 4 — Muito alta
-
               </ion-select-option>
 
             </ion-select>
@@ -442,9 +406,7 @@
         class="historico-header">
 
         <ion-label>
-
           🕘 Histórico de Limpezas
-
         </ion-label>
 
       </ion-item>
@@ -464,18 +426,12 @@
           [class]="classeEstadoCasa">
 
           <div class="estado-casa-titulo">
-
             🏠 Estado da casa
-
           </div>
-
 
           <div class="estado-casa-valor">
-
             {{ textoEstadoCasa }}
-
           </div>
-
 
           <div
             class="estado-casa-info"
@@ -483,13 +439,13 @@
 
             {{ tarefasAtrasadas }}
 
-            {{ tarefasAtrasadas === 1
-              ? 'tarefa atrasada'
-              : 'tarefas atrasadas'
+            {{
+              tarefasAtrasadas === 1
+                ? 'tarefa atrasada'
+                : 'tarefas atrasadas'
             }}
 
           </div>
-
 
           <div
             class="estado-casa-info"
@@ -508,6 +464,7 @@
         </div>
 
 
+
         <!-- =================================================
              LEGENDA DOS ESTADOS
              ================================================= -->
@@ -515,9 +472,7 @@
         <div class="legenda-estados">
 
           <div class="legenda-titulo">
-
             Estado da casa
-
           </div>
 
 
@@ -527,7 +482,9 @@
 
             <div>
 
-              <strong>🟢 Em dia</strong>
+              <strong>
+                🟢 Em dia
+              </strong>
 
               <span>
                 Não existem tarefas pendentes ou atrasadas.
@@ -544,7 +501,9 @@
 
             <div>
 
-              <strong>🟡 Atenção</strong>
+              <strong>
+                🟡 Atenção
+              </strong>
 
               <span>
                 Existem algumas tarefas por fazer ou atrasadas.
@@ -561,7 +520,9 @@
 
             <div>
 
-              <strong>🟠 Acumulado</strong>
+              <strong>
+                🟠 Acumulado
+              </strong>
 
               <span>
                 Existem várias tarefas pendentes ou atrasadas.
@@ -578,7 +539,9 @@
 
             <div>
 
-              <strong>🔴 Intervenção</strong>
+              <strong>
+                🔴 Intervenção
+              </strong>
 
               <span>
                 Existem tarefas essenciais que precisam de atenção.
@@ -589,6 +552,7 @@
           </div>
 
         </div>
+
 
 
         <!-- =================================================
@@ -608,49 +572,38 @@
             <ion-label>
 
               <h2>
-
                 🧹 {{ item.tarefa.nome }}
-
               </h2>
 
 
               <p>
-
                 📍
                 {{ obterNomeDivisao(item.divisaoId) }}
-
               </p>
 
 
               <p>
-
                 Última vez:
 
                 <strong>
                   {{ obterTextoUltimaVez(item.diasDesdeUltima) }}
                 </strong>
-
               </p>
 
 
               <p>
-
                 Habitualmente:
 
                 <strong>
                   {{ obterTextoHabitual(item.intervaloDias) }}
                 </strong>
-
               </p>
 
 
-              <p
-                class="historico-estado-texto">
+              <p class="historico-estado-texto">
 
                 <strong>
-
                   {{ obterTextoEstado(item.estado) }}
-
                 </strong>
 
                 ·
@@ -678,10 +631,10 @@
 
             </div>
 
-
           </ion-item>
 
         </ion-list>
+
 
 
         <!-- =================================================
@@ -693,24 +646,18 @@
           class="historico-vazio">
 
           <div class="historico-vazio-icon">
-
             🧹
-
           </div>
 
 
           <h2>
-
             Ainda não existem limpezas registadas
-
           </h2>
 
 
           <p>
-
             Quando guardares uma tarefa como realizada,
             ela aparecerá aqui com a sua evolução.
-
           </p>
 
         </div>
@@ -745,9 +692,8 @@
 
 
   <br>
-
   <br>
-
   <br>
 
 </ion-content>
+

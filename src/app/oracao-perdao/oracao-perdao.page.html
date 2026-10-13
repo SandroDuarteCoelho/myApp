@@ -24,18 +24,20 @@
     </ion-title>
 
 
-    <ion-buttons slot="end">
+    
+<ion-buttons slot="end">
+  <ion-button
+    fill="clear"
+    class="limpeza-header-btn"
+    (click)="navigateLimpezas()"
+    aria-label="Limpezas">
 
-      <ion-button
-        fill="clear"
-        (click)="navigateLimpezas()"
-        aria-label="Limpezas">
+    <span class="limpeza-header-icon">🧹</span>
 
-        🧹
+  </ion-button>
+</ion-buttons>
 
-      </ion-button>
 
-    </ion-buttons>
 
   </ion-toolbar>
 
@@ -101,7 +103,7 @@
       <ion-input
         type="number"
         [(ngModel)]="tempoDisponivel"
-        label="Quanto tempo tenho hoje?"
+        label="Quanto tempo tenho hoje (minutos)?"
         label-placement="stacked"
         placeholder="Ex.: 30"
         min="1"
@@ -681,7 +683,7 @@
                 (click)="mostrarDescricaoTarefa(item)">
 
                 🧹
-                Descrição da tarefa
+                Significado
 
               </ion-button>
 

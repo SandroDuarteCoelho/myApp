@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -5,6 +6,7 @@ import {
   HttpClient,
   HttpClientModule
 } from '@angular/common/http';
+
 import {
   IonHeader,
   IonToolbar,
@@ -149,6 +151,12 @@ export class LimpezasPage implements OnInit {
   private readonly STORAGE_HISTORICO =
     'limpezas_historico_v1';
 
+  private readonly STORAGE_DIVISOES_ELIMINADAS =
+    'limpezas_divisoes_eliminadas_v1';
+
+  private readonly STORAGE_TAREFAS_ELIMINADAS =
+    'limpezas_tarefas_eliminadas_v1';
+
   /* =====================================================
      CONSTRUCTOR
      ===================================================== */
@@ -181,43 +189,37 @@ export class LimpezasPage implements OnInit {
       );
 
     if (guardadas) {
-
       try {
-
         const divisoesGuardadas =
-          JSON.parse(
-            guardadas
-          ) as Divisao[];
+          JSON.parse(guardadas) as Divisao[];
 
         this.divisoes =
           divisoesGuardadas.map(
-            divisao => ({
-              ...divisao,
-
-              prioridade:
-                Number(divisao.prioridade) >= 1 &&
-                Number(divisao.prioridade) <= 4
-                  ? Number(divisao.prioridade)
-                  : 2,
-
-              ativa:
-                divisao.ativa !== false
-            })
+            divisao =>
+              this.normalizarDivisao(divisao)
           );
 
         this.guardarDivisoes();
-        this.atualizarHistorico();
-
-        return;
 
       } catch {
-
         console.warn(
           'Não foi possível ler as divisões guardadas.'
         );
 
+        this.divisoes = [];
       }
     }
+
+    /*
+     * Mesmo existindo dados no localStorage,
+     * consultamos sempre o JSON.
+     *
+     * Assim conseguimos encontrar:
+     *
+     * - divisões novas;
+     * - campos novos;
+     * - informação nova.
+     */
 
     this.http
       .get<{ divisoes: Divisao[] }>(
@@ -227,25 +229,9 @@ export class LimpezasPage implements OnInit {
 
         next: dados => {
 
-          this.divisoes =
-            dados.divisoes.map(
-              divisao => ({
-                ...divisao,
-
-                prioridade:
-                  Number(divisao.prioridade) >= 1 &&
-                  Number(divisao.prioridade) <= 4
-                    ? Number(divisao.prioridade)
-                    : 2,
-
-                ativa:
-                  divisao.ativa !== false
-              })
-            );
-
-          this.guardarDivisoes();
-          this.atualizarHistorico();
-
+          this.sincronizarDivisoesComJson(
+            dados.divisoes ?? []
+          );
         },
 
         error: erro => {
@@ -255,9 +241,125 @@ export class LimpezasPage implements OnInit {
             erro
           );
 
+          this.atualizarHistorico();
         }
-
       });
+  }
+
+  private normalizarDivisao(
+    divisao: Divisao
+  ): Divisao {
+
+    return {
+      ...divisao,
+
+      prioridade:
+        Number(divisao.prioridade) >= 1 &&
+        Number(divisao.prioridade) <= 4
+          ? Number(divisao.prioridade)
+          : 2,
+
+      ativa:
+        divisao.ativa !== false
+    };
+  }
+
+  private sincronizarDivisoesComJson(
+    divisoesJson: Divisao[]
+  ): void {
+
+    const eliminadas =
+      this.obterIdsEliminados(
+        this.STORAGE_DIVISOES_ELIMINADAS
+      );
+
+    let houveAlteracoes = false;
+
+    for (
+      const divisaoJsonOriginal of divisoesJson
+    ) {
+
+      const divisaoJson =
+        this.normalizarDivisao(
+          divisaoJsonOriginal
+        );
+
+      /*
+       * Se foi eliminada pelo utilizador,
+       * não volta a ser criada.
+       */
+
+      if (
+        eliminadas.has(divisaoJson.id)
+      ) {
+        continue;
+      }
+
+      const existente =
+        this.divisoes.find(
+          divisao =>
+            divisao.id === divisaoJson.id
+        );
+
+      /*
+       * DIVISÃO NOVA
+       */
+
+      if (!existente) {
+
+        this.divisoes.push({
+          ...divisaoJson
+        });
+
+        houveAlteracoes = true;
+
+        continue;
+      }
+
+      /*
+       * DIVISÃO EXISTENTE
+       *
+       * Só acrescentamos propriedades que
+       * ainda não existam.
+       */
+
+      for (
+        const chave of Object.keys(divisaoJson)
+      ) {
+
+        const valorJson =
+          (divisaoJson as any)[chave];
+
+        const valorExistente =
+          (existente as any)[chave];
+
+        if (
+          (
+            valorExistente === undefined ||
+            valorExistente === null ||
+            (
+              chave === 'descricao' &&
+              typeof valorExistente === 'string' &&
+              valorExistente.trim() === ''
+            )
+          ) &&
+          valorJson !== undefined &&
+          valorJson !== null
+        ) {
+
+          (existente as any)[chave] =
+            valorJson;
+
+          houveAlteracoes = true;
+        }
+      }
+    }
+
+    if (houveAlteracoes) {
+      this.guardarDivisoes();
+    }
+
+    this.atualizarHistorico();
   }
 
   private guardarDivisoes(): void {
@@ -300,6 +402,17 @@ export class LimpezasPage implements OnInit {
       return;
     }
 
+    /*
+     * Se anteriormente esta divisão tivesse
+     * sido eliminada, retiramos o ID da lista
+     * de eliminações.
+     */
+
+    this.removerIdEliminado(
+      this.STORAGE_DIVISOES_ELIMINADAS,
+      id
+    );
+
     this.divisoes.push({
       id,
       nome,
@@ -327,28 +440,68 @@ export class LimpezasPage implements OnInit {
       return;
     }
 
-    this.divisoes =
-      this.divisoes.filter(
-        d => d.id !== divisao.id
-      );
+    /*
+     * Regista a divisão como eliminada.
+     */
+
+    this.adicionarIdEliminado(
+      this.STORAGE_DIVISOES_ELIMINADAS,
+      divisao.id
+    );
+
+    /*
+     * Remove a divisão das tarefas.
+     *
+     * Se uma tarefa ficar sem qualquer divisão,
+     * essa tarefa é também considerada eliminada.
+     */
+
+    const tarefasRemovidas: string[] = [];
 
     this.tarefas =
       this.tarefas
-        .map(
-          tarefa => ({
-            ...tarefa,
+        .map(tarefa => ({
+          ...tarefa,
 
-            divisoes:
-              tarefa.divisoes.filter(
-                id =>
-                  id !== divisao.id
-              )
-          })
-        )
-        .filter(
-          tarefa =>
-            tarefa.divisoes.length > 0
-        );
+          divisoes:
+            tarefa.divisoes.filter(
+              id => id !== divisao.id
+            )
+        }))
+        .filter(tarefa => {
+
+          if (
+            tarefa.divisoes.length === 0
+          ) {
+
+            tarefasRemovidas.push(
+              tarefa.id
+            );
+
+            return false;
+          }
+
+          return true;
+        });
+
+    /*
+     * Regista como eliminadas as tarefas
+     * que ficaram sem divisões.
+     */
+
+    for (
+      const tarefaId of tarefasRemovidas
+    ) {
+
+      this.adicionarIdEliminado(
+        this.STORAGE_TAREFAS_ELIMINADAS,
+        tarefaId
+      );
+    }
+
+    /*
+     * Remove histórico da divisão.
+     */
 
     this.historico =
       this.historico.filter(
@@ -357,11 +510,22 @@ export class LimpezasPage implements OnInit {
           divisao.id
       );
 
+    /*
+     * Remove a divisão.
+     */
+
+    this.divisoes =
+      this.divisoes.filter(
+        d =>
+          d.id !== divisao.id
+      );
+
     this.atualizarTarefasApresentacao();
 
     this.guardarDivisoes();
     this.guardarTarefas();
     this.guardarHistorico();
+
     this.atualizarHistorico();
   }
 
@@ -387,6 +551,11 @@ export class LimpezasPage implements OnInit {
           (dados as any[]).map(
             tarefa => {
 
+              /*
+               * Compatibilidade com a estrutura antiga
+               * que tinha apenas "divisao".
+               */
+
               if (
                 Array.isArray(
                   tarefa.divisoes
@@ -395,11 +564,9 @@ export class LimpezasPage implements OnInit {
 
                 return {
                   ...tarefa,
-
                   divisoes:
                     tarefa.divisoes
                 };
-
               }
 
               return {
@@ -410,16 +577,18 @@ export class LimpezasPage implements OnInit {
                     ? [tarefa.divisao]
                     : []
               };
-
             }
           );
 
-        this.atualizarTarefasApresentacao();
+        this.tarefas =
+          this.tarefas.map(
+            tarefa =>
+              this.normalizarTarefa(
+                tarefa
+              )
+          );
 
         this.guardarTarefas();
-        this.atualizarHistorico();
-
-        return;
 
       } catch {
 
@@ -427,8 +596,14 @@ export class LimpezasPage implements OnInit {
           'Não foi possível ler as tarefas guardadas.'
         );
 
+        this.tarefas = [];
       }
     }
+
+    /*
+     * Mesmo existindo tarefas no localStorage,
+     * consultamos sempre o JSON.
+     */
 
     this.http
       .get<{ tarefas: Tarefa[] }>(
@@ -438,25 +613,9 @@ export class LimpezasPage implements OnInit {
 
         next: dados => {
 
-          this.tarefas =
-            dados.tarefas.map(
-              tarefa => ({
-                ...tarefa,
-
-                divisoes:
-                  Array.isArray(
-                    tarefa.divisoes
-                  )
-                    ? tarefa.divisoes
-                    : []
-              })
-            );
-
-          this.atualizarTarefasApresentacao();
-
-          this.guardarTarefas();
-          this.atualizarHistorico();
-
+          this.sincronizarTarefasComJson(
+            dados.tarefas ?? []
+          );
         },
 
         error: erro => {
@@ -466,9 +625,168 @@ export class LimpezasPage implements OnInit {
             erro
           );
 
+          this.atualizarTarefasApresentacao();
+          this.atualizarHistorico();
         }
-
       });
+  }
+
+  private normalizarTarefa(
+    tarefa: Tarefa
+  ): Tarefa {
+
+    return {
+      ...tarefa,
+
+      divisoes:
+        Array.isArray(tarefa.divisoes)
+          ? tarefa.divisoes
+          : [],
+
+      prioridade:
+        Number(tarefa.prioridade) >= 1 &&
+        Number(tarefa.prioridade) <= 4
+          ? Number(tarefa.prioridade)
+          : 2,
+
+      duracao:
+        Number(tarefa.duracao) > 0
+          ? Number(tarefa.duracao)
+          : 15,
+
+      ativa:
+        tarefa.ativa !== false
+    };
+  }
+
+  private sincronizarTarefasComJson(
+    tarefasJson: Tarefa[]
+  ): void {
+
+    const eliminadas =
+      this.obterIdsEliminados(
+        this.STORAGE_TAREFAS_ELIMINADAS
+      );
+
+    let houveAlteracoes = false;
+
+    for (
+      const tarefaJsonOriginal of tarefasJson
+    ) {
+
+      const tarefaJson =
+        this.normalizarTarefa(
+          tarefaJsonOriginal
+        );
+
+      /*
+       * Não recria uma tarefa que o utilizador
+       * tenha eliminado.
+       */
+
+      if (
+        eliminadas.has(tarefaJson.id)
+      ) {
+        continue;
+      }
+
+      const existente =
+        this.tarefas.find(
+          tarefa =>
+            tarefa.id === tarefaJson.id
+        );
+
+      /*
+       * TAREFA NOVA
+       */
+
+      if (!existente) {
+
+        this.tarefas.push({
+          ...tarefaJson
+        });
+
+        houveAlteracoes = true;
+
+        continue;
+      }
+
+      /*
+       * TAREFA EXISTENTE
+       *
+       * Acrescentamos propriedades novas.
+       *
+       * IMPORTANTE:
+       * Se descricao no localStorage estiver vazia,
+       * usamos a descrição do JSON.
+       */
+
+      for (
+        const chave of Object.keys(tarefaJson)
+      ) {
+
+        const valorJson =
+          (tarefaJson as any)[chave];
+
+        const valorExistente =
+          (existente as any)[chave];
+
+        const descricaoVazia =
+          chave === 'descricao' &&
+          typeof valorExistente === 'string' &&
+          valorExistente.trim() === '';
+
+        if (
+          (
+            valorExistente === undefined ||
+            valorExistente === null ||
+            descricaoVazia
+          ) &&
+          valorJson !== undefined &&
+          valorJson !== null
+        ) {
+
+          (existente as any)[chave] =
+            valorJson;
+
+          houveAlteracoes = true;
+        }
+      }
+
+      /*
+       * Se uma tarefa antiga ainda não tiver
+       * nenhuma divisão, podemos completar
+       * as divisões vindas do JSON.
+       *
+       * Não substituímos divisões que o utilizador
+       * já tenha alterado.
+       */
+
+      if (
+        (
+          !Array.isArray(
+            existente.divisoes
+          ) ||
+          existente.divisoes.length === 0
+        ) &&
+        tarefaJson.divisoes.length > 0
+      ) {
+
+        existente.divisoes =
+          [
+            ...tarefaJson.divisoes
+          ];
+
+        houveAlteracoes = true;
+      }
+    }
+
+    if (houveAlteracoes) {
+      this.guardarTarefas();
+    }
+
+    this.atualizarTarefasApresentacao();
+    this.atualizarHistorico();
   }
 
   private guardarTarefas(): void {
@@ -488,7 +806,9 @@ export class LimpezasPage implements OnInit {
     const resultado:
       TarefaApresentacao[] = [];
 
-    for (const tarefa of this.tarefas) {
+    for (
+      const tarefa of this.tarefas
+    ) {
 
       const divisoes =
         Array.isArray(tarefa.divisoes)
@@ -503,17 +823,14 @@ export class LimpezasPage implements OnInit {
           tarefa,
           divisaoId
         });
-
       }
     }
 
     const ordemFrequencia:
       Record<string, number> = {
-
         diaria: 1,
         semanal: 2,
         mensal: 3
-
       };
 
     resultado.sort(
@@ -528,7 +845,6 @@ export class LimpezasPage implements OnInit {
             b.tarefa.prioridade -
             a.tarefa.prioridade
           );
-
         }
 
         const frequenciaA =
@@ -550,14 +866,12 @@ export class LimpezasPage implements OnInit {
             frequenciaA -
             frequenciaB
           );
-
         }
 
         return (
           a.tarefa.duracao -
           b.tarefa.duracao
         );
-
       }
     );
 
@@ -586,6 +900,7 @@ export class LimpezasPage implements OnInit {
       !this.novaTarefaDivisao ||
       this.novaTarefaDuracao <= 0
     ) {
+
       return;
     }
 
@@ -603,8 +918,17 @@ export class LimpezasPage implements OnInit {
       return;
     }
 
-    this.tarefas.push({
+    /*
+     * Se anteriormente esta tarefa tivesse
+     * sido eliminada, permite voltar a criá-la.
+     */
 
+    this.removerIdEliminado(
+      this.STORAGE_TAREFAS_ELIMINADAS,
+      id
+    );
+
+    this.tarefas.push({
       id,
       nome,
 
@@ -622,11 +946,9 @@ export class LimpezasPage implements OnInit {
         this.novaTarefaDuracao,
 
       ativa: true
-
     });
 
     this.atualizarTarefasApresentacao();
-
     this.guardarTarefas();
 
     this.novaTarefa = '';
@@ -650,10 +972,28 @@ export class LimpezasPage implements OnInit {
       return;
     }
 
+    /*
+     * Regista a eliminação.
+     */
+
+    this.adicionarIdEliminado(
+      this.STORAGE_TAREFAS_ELIMINADAS,
+      tarefa.id
+    );
+
+    /*
+     * Remove a tarefa.
+     */
+
     this.tarefas =
       this.tarefas.filter(
-        t => t.id !== tarefa.id
+        t =>
+          t.id !== tarefa.id
       );
+
+    /*
+     * Remove o histórico correspondente.
+     */
 
     this.historico =
       this.historico.filter(
@@ -666,6 +1006,7 @@ export class LimpezasPage implements OnInit {
 
     this.guardarTarefas();
     this.guardarHistorico();
+
     this.atualizarHistorico();
   }
 
@@ -712,7 +1053,6 @@ export class LimpezasPage implements OnInit {
       } else {
 
         this.historico = [];
-
       }
 
       this.atualizarHistorico();
@@ -819,23 +1159,15 @@ export class LimpezasPage implements OnInit {
         );
 
       this.tarefasHistorico.push({
-
         tarefa,
-
         divisaoId:
           registo.divisaoId,
-
         ultimaData:
           registo.data,
-
         diasDesdeUltima,
-
         intervaloDias,
-
         diasAtraso,
-
         estado
-
       });
     }
 
@@ -851,14 +1183,12 @@ export class LimpezasPage implements OnInit {
             b.diasAtraso -
             a.diasAtraso
           );
-
         }
 
         return (
           Number(b.tarefa.prioridade) -
           Number(a.tarefa.prioridade)
         );
-
       }
     );
   }
@@ -933,7 +1263,6 @@ export class LimpezasPage implements OnInit {
     ) {
 
       return 'intervencao';
-
     }
 
     if (
@@ -941,7 +1270,6 @@ export class LimpezasPage implements OnInit {
     ) {
 
       return 'intervencao';
-
     }
 
     if (
@@ -949,7 +1277,6 @@ export class LimpezasPage implements OnInit {
     ) {
 
       return 'acumulado';
-
     }
 
     if (
@@ -957,7 +1284,6 @@ export class LimpezasPage implements OnInit {
     ) {
 
       return 'atencao';
-
     }
 
     return 'em-dia';
@@ -1072,7 +1398,6 @@ export class LimpezasPage implements OnInit {
             tarefa,
             divisaoId
           });
-
         }
       }
     }
@@ -1099,7 +1424,6 @@ export class LimpezasPage implements OnInit {
     ) {
 
       return 'intervencao';
-
     }
 
     const prioridades3PorFazer =
@@ -1126,7 +1450,6 @@ export class LimpezasPage implements OnInit {
     ) {
 
       return 'acumulado';
-
     }
 
     if (
@@ -1135,7 +1458,6 @@ export class LimpezasPage implements OnInit {
     ) {
 
       return 'atencao';
-
     }
 
     return 'em-dia';
@@ -1202,7 +1524,6 @@ export class LimpezasPage implements OnInit {
     ) {
 
       return data;
-
     }
 
     return (
@@ -1327,11 +1648,12 @@ export class LimpezasPage implements OnInit {
     const nomes:
       Record<string, string> = {
 
-      diaria: 'Diária',
-      semanal: 'Semanal',
-      mensal: 'Mensal'
+        diaria: 'Diária',
 
-    };
+        semanal: 'Semanal',
+
+        mensal: 'Mensal'
+      };
 
     return (
       nomes[frequencia] ??
@@ -1372,8 +1694,7 @@ export class LimpezasPage implements OnInit {
      ORDENAÇÃO DAS DIVISÕES
      ===================================================== */
 
-  get divisoesOrdenadas():
-    Divisao[] {
+  get divisoesOrdenadas(): Divisao[] {
 
     return [
       ...this.divisoes
@@ -1409,6 +1730,104 @@ export class LimpezasPage implements OnInit {
   }
 
   /* =====================================================
+     ELIMINAÇÕES - APOIO
+     ===================================================== */
+
+  private obterIdsEliminados(
+    storageKey: string
+  ): Set<string> {
+
+    const guardados =
+      localStorage.getItem(
+        storageKey
+      );
+
+    if (!guardados) {
+
+      return new Set<string>();
+    }
+
+    try {
+
+      const dados =
+        JSON.parse(guardados);
+
+      if (
+        Array.isArray(dados)
+      ) {
+
+        return new Set<string>(
+          dados.filter(
+            id =>
+              typeof id === 'string'
+          )
+        );
+      }
+
+    } catch {
+
+      console.warn(
+        `Não foi possível ler ${storageKey}.`
+      );
+    }
+
+    return new Set<string>();
+  }
+
+  private guardarIdsEliminados(
+    storageKey: string,
+    ids: Set<string>
+  ): void {
+
+    localStorage.setItem(
+      storageKey,
+      JSON.stringify(
+        Array.from(ids)
+      )
+    );
+  }
+
+  private adicionarIdEliminado(
+    storageKey: string,
+    id: string
+  ): void {
+
+    const ids =
+      this.obterIdsEliminados(
+        storageKey
+      );
+
+    ids.add(id);
+
+    this.guardarIdsEliminados(
+      storageKey,
+      ids
+    );
+  }
+
+  private removerIdEliminado(
+    storageKey: string,
+    id: string
+  ): void {
+
+    const ids =
+      this.obterIdsEliminados(
+        storageKey
+      );
+
+    if (!ids.has(id)) {
+      return;
+    }
+
+    ids.delete(id);
+
+    this.guardarIdsEliminados(
+      storageKey,
+      ids
+    );
+  }
+
+  /* =====================================================
      REPOR DADOS ORIGINAIS
      ===================================================== */
 
@@ -1428,6 +1847,17 @@ export class LimpezasPage implements OnInit {
       return;
     }
 
+    /*
+     * Esta função continua a ser a reposição
+     * TOTAL e destrutiva.
+     *
+     * A utilização normal da aplicação NÃO passa
+     * por aqui.
+     *
+     * A sincronização automática acontece quando
+     * a página é aberta.
+     */
+
     localStorage.removeItem(
       this.STORAGE_DIVISOES
     );
@@ -1440,6 +1870,14 @@ export class LimpezasPage implements OnInit {
       this.STORAGE_HISTORICO
     );
 
+    localStorage.removeItem(
+      this.STORAGE_DIVISOES_ELIMINADAS
+    );
+
+    localStorage.removeItem(
+      this.STORAGE_TAREFAS_ELIMINADAS
+    );
+
     window.location.reload();
   }
 
@@ -1450,7 +1888,6 @@ export class LimpezasPage implements OnInit {
   voltar(): void {
 
     window.history.back();
-
   }
-
 }
+

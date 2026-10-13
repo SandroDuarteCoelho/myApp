@@ -1,3 +1,4 @@
+
 import { CommonModule } from '@angular/common';
 
 import {
@@ -39,17 +40,11 @@ import {
    ===================================================== */
 
 interface Divisao {
-
   id: string;
-
   nome: string;
-
   prioridade: number;
-
   ativa: boolean;
-
   descricao?: string;
-
 }
 
 
@@ -58,25 +53,15 @@ interface Divisao {
    ===================================================== */
 
 interface Tarefa {
-
   id: string;
-
   nome: string;
-
   divisoes: string[];
-
   frequencia: string;
-
   prioridade: number;
-
   duracao: number;
-
   ativa: boolean;
-
   descricao?: string;
-
   concluida?: boolean;
-
 }
 
 
@@ -85,70 +70,39 @@ interface Tarefa {
    ===================================================== */
 
 interface TarefaApresentacao {
-
   tarefa: Tarefa;
-
   divisaoId: string;
-
 }
 
 
 @Component({
-
   selector: 'app-oracao-perdao',
-
   templateUrl: './oracao-perdao.page.html',
-
   styleUrls: ['./oracao-perdao.page.scss'],
-
   standalone: true,
-
   imports: [
-
     CommonModule,
-
     FormsModule,
-
     HttpClientModule,
-
     IonHeader,
-
     IonToolbar,
-
     IonTitle,
-
     IonContent,
-
     IonButton,
-
     IonGrid,
-
     IonRow,
-
     IonCol,
-
     IonCard,
-
     IonCardHeader,
-
     IonCardTitle,
-
     IonButtons,
-
     IonModal,
-
     IonList,
-
     IonItem,
-
     IonLabel,
-
     IonInput,
-
     IonCheckbox
-
   ]
-
 })
 
 
@@ -160,54 +114,87 @@ export class OracaoPerdaoPage implements OnInit {
      ===================================================== */
 
   regraTexto = '';
-
   casaAtual = '';
-
   descricaoCasaAtual = '';
-
   casaClass = '';
-
   backgroundImage = '';
 
-  backgroundByCasa: Record<string, string> = {
+  
+backgroundByCasa: Record<string, string[]> = {
+  'CASA DA VIDA': [
+    'assets/backgrounds/vida.webp',
+    'assets/backgrounds/vida2.webp'
+  ],
 
-    'CASA DA VIDA':
-      'assets/backgrounds/vida.webp',
+  'CASA DOS BENS': [
+    'assets/backgrounds/bens.webp',
+    'assets/backgrounds/bens2.webp'
+  ],
 
-    'CASA DOS BENS':
-      'assets/backgrounds/bens.webp',
+  'CASA DO SANGUE': [
+    'assets/backgrounds/sangue.webp',
+    'assets/backgrounds/sangue2.webp'
+  ],
 
-    'CASA DO SANGUE':
-      'assets/backgrounds/sangue.webp',
+  'CASA DA SOLIDEZ': [
+    'assets/backgrounds/solidez.webp',
+    'assets/backgrounds/solidez2.webp'
+  ],
 
-    'CASA DA SOLIDEZ':
-      'assets/backgrounds/solidez.webp',
+  'CASA DOS FILHOS': [
+    'assets/backgrounds/filhos.webp',
+    'assets/backgrounds/filhos2.webp'
+  ],
 
-    'CASA DOS FILHOS':
-      'assets/backgrounds/filhos.webp',
+  'CASA DA SAÚDE': [
+    'assets/backgrounds/saude.webp',
+    'assets/backgrounds/saude2.webp'
+  ],
 
-    'CASA DA SAÚDE':
-      'assets/backgrounds/saude.webp',
+  'CASA DO CASAMENTO': [
+    'assets/backgrounds/casamento.webp',
+    'assets/backgrounds/casamento2.webp'
+  ],
 
-    'CASA DO CASAMENTO':
-      'assets/backgrounds/casamento.webp',
+  'CASA DA MORTE/MUDANÇA': [
+    'assets/backgrounds/morte.webp',
+    'assets/backgrounds/morte2.webp'
+  ],
 
-    'CASA DA MORTE/MUDANÇA':
-      'assets/backgrounds/morte.webp',
+  'CASA DIVINA': [
+    'assets/backgrounds/divina.webp',
+    'assets/backgrounds/divina2.webp'
+  ],
 
-    'CASA DIVINA':
-      'assets/backgrounds/divina.webp',
+  'CASA DA POSIÇÃO SOCIAL': [
+    'assets/backgrounds/social.webp',
+    'assets/backgrounds/social2.webp'
+  ],
 
-    'CASA DA POSIÇÃO SOCIAL':
-      'assets/backgrounds/social.webp',
+  'CASA DOS AMIGOS': [
+    'assets/backgrounds/amigos.webp',
+    'assets/backgrounds/amigos2.webp'
+  ],
 
-    'CASA DOS AMIGOS':
-      'assets/backgrounds/amigos.webp',
+  'CASA DOS INIMIGOS': [
+    'assets/backgrounds/inimigos.webp',
+    'assets/backgrounds/inimigos2.webp'
+  ]
+};
 
-    'CASA DOS INIMIGOS':
-      'assets/backgrounds/inimigos.webp'
 
-  };
+private escolherImagemCasa(casa: string): void {
+  const imagens = this.backgroundByCasa[casa];
+
+  if (!imagens || imagens.length === 0) {
+    this.backgroundImage = '';
+    return;
+  }
+
+  const indice = Math.floor(Math.random() * imagens.length);
+
+  this.backgroundImage = imagens[indice];
+}
 
 
   /* =====================================================
@@ -215,7 +202,6 @@ export class OracaoPerdaoPage implements OnInit {
      ===================================================== */
 
   isCasasModalOpen = false;
-
   isRegraEditModalOpen = false;
 
 
@@ -224,9 +210,7 @@ export class OracaoPerdaoPage implements OnInit {
      ===================================================== */
 
   regraTextoEdit = '';
-
   regraTextoEditBackup = '';
-
   isEditAreaVisible = false;
 
 
@@ -286,15 +270,10 @@ export class OracaoPerdaoPage implements OnInit {
 
 
   casasList = Object.entries(this.casasMap).map(
-
     ([nome, descricao]) => ({
-
       nome,
-
       descricao
-
     })
-
   );
 
 
@@ -320,11 +299,18 @@ export class OracaoPerdaoPage implements OnInit {
   tarefaDescricaoAbertaId = '';
 
 
+  /* =====================================================
+     STORAGE
+     ===================================================== */
+
   private readonly STORAGE_TAREFAS =
     'limpezas_tarefas_v1';
 
   private readonly STORAGE_DIVISOES =
     'limpezas_divisoes_v1';
+
+  private readonly STORAGE_TAREFAS_ELIMINADAS =
+    'limpezas_tarefas_eliminadas_v1';
 
 
   /* =====================================================
@@ -370,11 +356,8 @@ export class OracaoPerdaoPage implements OnInit {
   savePhrase(): void {
 
     window.localStorage.setItem(
-
       this.phraseStorageKey,
-
       this.userPhrase.trim()
-
     );
 
   }
@@ -502,12 +485,12 @@ export class OracaoPerdaoPage implements OnInit {
 
 
     this.casaAtual = casa;
+this.escolherImagemCasa(this.casaAtual);
 
     this.descricaoCasaAtual =
       this.casasMap[casa] ?? '';
 
-    this.backgroundImage =
-      this.backgroundByCasa[casa] ?? '';
+  
 
     this.casaClass =
       this.getCasaClass(casa);
@@ -528,15 +511,10 @@ export class OracaoPerdaoPage implements OnInit {
   getCasaClass(casa: string): string {
 
     return casa
-
       .toLowerCase()
-
       .normalize('NFD')
-
       .replace(/[\u0300-\u036f]/g, '')
-
       .replace(/[^a-z0-9]+/g, '-')
-
       .replace(/^-|-$/g, '');
 
   }
@@ -564,11 +542,9 @@ export class OracaoPerdaoPage implements OnInit {
 
 
     this.http
-
       .get<{ texto: string }>(
         'assets/data/regra.json'
       )
-
       .subscribe({
 
         next: dados => {
@@ -625,14 +601,32 @@ export class OracaoPerdaoPage implements OnInit {
       this.regraTextoEdit.trim();
 
     window.localStorage.setItem(
-
       'oracao_perdao_regra_texto',
-
       this.regraTexto
-
     );
 
     this.isRegraEditModalOpen = false;
+
+  }
+
+
+  openRegraEdit(): void {
+
+    this.abrirEdicaoRegra();
+
+  }
+
+
+  closeRegraEdit(): void {
+
+    this.cancelarEdicaoRegra();
+
+  }
+
+
+  saveRegraEdit(): void {
+
+    this.guardarRegra();
 
   }
 
@@ -670,7 +664,7 @@ export class OracaoPerdaoPage implements OnInit {
 
 
   /* =====================================================
-     TAREFAS DE LIMPEZA
+     CARREGAR TAREFAS
      ===================================================== */
 
   private carregarTarefasLimpezas(): void {
@@ -680,74 +674,502 @@ export class OracaoPerdaoPage implements OnInit {
         this.STORAGE_TAREFAS
       );
 
+    let tarefasLocais: Tarefa[] = [];
 
-    if (!guardadas) {
 
-      this.tarefas = [];
+    if (guardadas) {
 
-      return;
+      try {
+
+        const dados =
+          JSON.parse(guardadas);
+
+
+        if (Array.isArray(dados)) {
+
+          tarefasLocais =
+            dados.map(
+              (tarefa: any): Tarefa => ({
+
+                ...tarefa,
+
+                divisoes:
+                  Array.isArray(tarefa.divisoes)
+                    ? tarefa.divisoes
+                    : [],
+
+                prioridade:
+                  Number(tarefa.prioridade) || 2,
+
+                duracao:
+                  Number(tarefa.duracao) || 15,
+
+                ativa:
+                  tarefa.ativa !== false
+
+              })
+            );
+
+        }
+
+      }
+
+      catch (erro) {
+
+        console.error(
+          'Não foi possível ler as tarefas de limpeza:',
+          erro
+        );
+
+        tarefasLocais = [];
+
+      }
 
     }
 
 
-    try {
-
-      const dados =
-        JSON.parse(guardadas) as any[];
+    this.tarefas =
+      tarefasLocais;
 
 
-      this.tarefas =
-        dados.map(tarefa => {
+    /*
+     * A sincronização é feita a partir do JSON,
+     * mas nunca elimina os dados existentes.
+     */
+    this.sincronizarTarefasComJson(
+      tarefasLocais
+    );
 
-          if (
-            Array.isArray(
-              tarefa.divisoes
-            )
+  }
+
+
+  /* =====================================================
+     SINCRONIZAÇÃO JSON + LOCALSTORAGE
+
+     REGRAS:
+
+     1. Tarefa nova no JSON -> é adicionada.
+
+     2. Campo inexistente localmente -> é adicionado.
+
+     3. Campo local vazio -> recebe o valor do JSON.
+
+     4. Campo local preenchido -> é preservado.
+
+     5. Isto aplica-se a TODAS as tarefas e a TODOS
+        os campos do JSON.
+
+     6. Tarefas eliminadas continuam eliminadas.
+
+     7. Histórico não é alterado.
+     ===================================================== */
+
+  private sincronizarTarefasComJson(
+    tarefasLocais: Tarefa[]
+  ): void {
+
+    this.http
+      .get<any>(
+        'assets/data/tarefas.json'
+      )
+      .subscribe({
+
+        next: resposta => {
+
+          /*
+           * Aceita tanto:
+           *
+           * { "tarefas": [...] }
+           *
+           * como:
+           *
+           * [...]
+           */
+          let tarefasJson: any[] = [];
+
+          if (Array.isArray(resposta)) {
+
+            tarefasJson = resposta;
+
+          }
+
+          else if (
+            resposta &&
+            Array.isArray(resposta.tarefas)
           ) {
 
-            return {
-
-              ...tarefa,
-
-              divisoes:
-                tarefa.divisoes
-
-            };
+            tarefasJson =
+              resposta.tarefas;
 
           }
 
 
-          return {
+          if (!tarefasJson.length) {
 
-            ...tarefa,
+            this.tarefas =
+              tarefasLocais;
 
-            divisoes:
-              tarefa.divisao
-                ? [tarefa.divisao]
-                : []
+            return;
 
-          };
+          }
 
-        });
 
-    }
+          /* ---------------------------------------------
+             TAREFAS ELIMINADAS
+             --------------------------------------------- */
 
-    catch (erro) {
+          let idsEliminados =
+            new Set<string>();
 
-      this.tarefas = [];
 
-      console.error(
+          try {
 
-        'Não foi possível ler as tarefas de limpeza:',
+            const guardado =
+              window.localStorage.getItem(
+                this.STORAGE_TAREFAS_ELIMINADAS
+              );
 
-        erro
 
-      );
+            if (guardado) {
 
-    }
+              const ids =
+                JSON.parse(
+                  guardado
+                );
+
+
+              if (Array.isArray(ids)) {
+
+                idsEliminados =
+                  new Set<string>(ids);
+
+              }
+
+            }
+
+          }
+
+          catch (erro) {
+
+            console.error(
+              'Erro ao ler tarefas eliminadas:',
+              erro
+            );
+
+          }
+
+
+          let houveAlteracoes =
+            false;
+
+
+          /* ---------------------------------------------
+             PERCORRER TODAS AS TAREFAS DO JSON
+             --------------------------------------------- */
+
+          for (
+            const tarefaJson of tarefasJson
+          ) {
+
+            if (
+              !tarefaJson ||
+              !tarefaJson.id ||
+              idsEliminados.has(
+                tarefaJson.id
+              )
+            ) {
+
+              continue;
+
+            }
+
+
+            const existente =
+              tarefasLocais.find(
+                tarefa =>
+                  tarefa.id ===
+                  tarefaJson.id
+              );
+
+
+            /* -----------------------------------------
+               NOVA TAREFA
+               ----------------------------------------- */
+
+            if (!existente) {
+
+              tarefasLocais.push({
+
+                ...tarefaJson,
+
+                divisoes:
+                  Array.isArray(
+                    tarefaJson.divisoes
+                  )
+                    ? tarefaJson.divisoes
+                    : [],
+
+                prioridade:
+                  Number(
+                    tarefaJson.prioridade
+                  ) || 2,
+
+                duracao:
+                  Number(
+                    tarefaJson.duracao
+                  ) || 15,
+
+                ativa:
+                  tarefaJson.ativa !== false
+
+              });
+
+
+              houveAlteracoes =
+                true;
+
+
+              continue;
+
+            }
+
+
+            /* -----------------------------------------
+               SINCRONIZAR CAMPOS
+               -----------------------------------------
+
+               Aqui está a parte importante.
+
+               Para cada campo existente no JSON:
+
+               - se não existe localmente -> adiciona;
+               - se está null/undefined -> adiciona;
+               - se é string vazia -> preenche;
+               - se já tem valor -> mantém.
+
+               Portanto, a descrição de qualquer tarefa
+               passa a ser sincronizada automaticamente.
+               ----------------------------------------- */
+
+            for (
+              const chave of Object.keys(
+                tarefaJson
+              )
+            ) {
+
+              const valorJson =
+                tarefaJson[chave];
+
+              const valorLocal =
+                (existente as any)[chave];
+
+
+              if (
+                valorJson === undefined ||
+                valorJson === null
+              ) {
+
+                continue;
+
+              }
+
+
+              /*
+               * Campo ainda não existe localmente.
+               */
+              if (
+                valorLocal === undefined ||
+                valorLocal === null
+              ) {
+
+                (existente as any)[chave] =
+                  valorJson;
+
+                houveAlteracoes =
+                  true;
+
+                continue;
+
+              }
+
+
+              /*
+               * Campo textual vazio localmente.
+               *
+               * Isto resolve, por exemplo:
+               *
+               * localStorage:
+               * descricao: ""
+               *
+               * JSON:
+               * descricao: "O poder das plantas..."
+               *
+               * -> passa a guardar a descrição do JSON.
+               */
+              if (
+                typeof valorLocal === 'string' &&
+                valorLocal.trim() === '' &&
+                typeof valorJson === 'string' &&
+                valorJson.trim() !== ''
+              ) {
+
+                (existente as any)[chave] =
+                  valorJson;
+
+                houveAlteracoes =
+                  true;
+
+                continue;
+
+              }
+
+            }
+
+
+            /* -----------------------------------------
+               NORMALIZAR DIVISÕES
+               ----------------------------------------- */
+
+            if (
+              !Array.isArray(
+                existente.divisoes
+              )
+            ) {
+
+              existente.divisoes =
+                [];
+
+              houveAlteracoes =
+                true;
+
+            }
+
+
+            /* -----------------------------------------
+               NORMALIZAR PRIORIDADE
+               ----------------------------------------- */
+
+            if (
+              typeof existente.prioridade !==
+              'number'
+            ) {
+
+              existente.prioridade =
+                Number(
+                  existente.prioridade
+                ) || 2;
+
+              houveAlteracoes =
+                true;
+
+            }
+
+
+            /* -----------------------------------------
+               NORMALIZAR DURAÇÃO
+               ----------------------------------------- */
+
+            if (
+              typeof existente.duracao !==
+              'number'
+            ) {
+
+              existente.duracao =
+                Number(
+                  existente.duracao
+                ) || 15;
+
+              houveAlteracoes =
+                true;
+
+            }
+
+
+            /* -----------------------------------------
+               NORMALIZAR ATIVA
+               ----------------------------------------- */
+
+            if (
+              existente.ativa === undefined ||
+              existente.ativa === null
+            ) {
+
+              existente.ativa =
+                true;
+
+              houveAlteracoes =
+                true;
+
+            }
+
+          }
+
+
+          /* ---------------------------------------------
+             GUARDAR ALTERAÇÕES
+             --------------------------------------------- */
+
+          if (houveAlteracoes) {
+
+            try {
+
+              window.localStorage.setItem(
+                this.STORAGE_TAREFAS,
+                JSON.stringify(
+                  tarefasLocais
+                )
+              );
+
+            }
+
+            catch (erro) {
+
+              console.error(
+                'Erro ao guardar tarefas sincronizadas:',
+                erro
+              );
+
+            }
+
+          }
+
+
+          /*
+           * IMPORTANTE:
+           * Só depois da sincronização terminada
+           * atualizamos this.tarefas.
+           */
+          this.tarefas =
+            tarefasLocais;
+
+        },
+
+
+        error: erro => {
+
+          console.error(
+            'Erro ao carregar tarefas.json:',
+            erro
+          );
+
+
+          /*
+           * Se o JSON falhar, mantém
+           * o localStorage.
+           */
+          this.tarefas =
+            tarefasLocais;
+
+        }
+
+      });
 
   }
 
+
+  /* =====================================================
+     DIVISÕES ATIVAS
+     ===================================================== */
 
   private obterDivisoesAtivas(): Set<string> {
 
@@ -759,10 +1181,6 @@ export class OracaoPerdaoPage implements OnInit {
 
     if (!guardadas) {
 
-      console.warn(
-        'Não existem divisões guardadas em localStorage.'
-      );
-
       return new Set<string>();
 
     }
@@ -771,19 +1189,32 @@ export class OracaoPerdaoPage implements OnInit {
     try {
 
       const divisoes =
-        JSON.parse(guardadas) as Divisao[];
+        JSON.parse(
+          guardadas
+        ) as Divisao[];
+
+
+      if (!Array.isArray(divisoes)) {
+
+        return new Set<string>();
+
+      }
 
 
       return new Set(
 
         divisoes
-
-          .filter(divisao =>
-            divisao.ativa === true
+          .filter(
+            divisao =>
+              divisao &&
+              divisao.ativa === true
           )
-
-          .map(divisao =>
-            divisao.id
+          .map(
+            divisao =>
+              divisao.id
+          )
+          .filter(
+            id => !!id
           )
 
       );
@@ -805,7 +1236,7 @@ export class OracaoPerdaoPage implements OnInit {
 
 
   /* =====================================================
-     IDENTIFICADOR DA TAREFA + DIVISÃO
+     ID DA OCORRÊNCIA
      ===================================================== */
 
   private obterIdOcorrencia(
@@ -819,25 +1250,35 @@ export class OracaoPerdaoPage implements OnInit {
 
 
   /* =====================================================
-     DATA LOCAL DE HOJE
+     DATA DE HOJE
      ===================================================== */
 
   private obterChaveDataHoje(): string {
 
-    const hoje = new Date();
+    const hoje =
+      new Date();
+
 
     const ano =
       hoje.getFullYear();
 
+
     const mes =
       String(
         hoje.getMonth() + 1
-      ).padStart(2, '0');
+      ).padStart(
+        2,
+        '0'
+      );
+
 
     const dia =
       String(
         hoje.getDate()
-      ).padStart(2, '0');
+      ).padStart(
+        2,
+        '0'
+      );
 
 
     return `${ano}-${mes}-${dia}`;
@@ -852,27 +1293,46 @@ export class OracaoPerdaoPage implements OnInit {
   calcularTarefas(): void {
 
     const tempo =
-      Number(this.tempoDisponivel);
+      Number(
+        this.tempoDisponivel
+      );
 
 
-    if (!tempo || tempo <= 0) {
+    if (
+      !tempo ||
+      tempo <= 0
+    ) {
 
-      this.tarefasSugeridas = [];
+      this.tarefasSugeridas =
+        [];
 
-      this.tempoTarefasSugeridas = 0;
+      this.tempoTarefasSugeridas =
+        0;
 
-      this.isTarefasModalOpen = true;
+      this.isTarefasModalOpen =
+        true;
 
       return;
 
     }
 
 
-    /* ---------------------------------------------
-       CARREGAR DADOS ATUAIS
-       --------------------------------------------- */
-
     this.carregarTarefasLimpezas();
+
+
+    /*
+     * Nota:
+     * A sincronização do JSON é assíncrona.
+     *
+     * Por isso o cálculo imediato pode acontecer
+     * antes de a descrição nova chegar.
+     *
+     * O HTML continuará a funcionar quando
+     * this.tarefas for atualizado, mas para evitar
+     * resultados inconsistentes, fazemos o cálculo
+     * também quando a sincronização termina através
+     * da atualização de this.tarefas.
+     */
 
 
     const divisoesAtivas =
@@ -880,14 +1340,15 @@ export class OracaoPerdaoPage implements OnInit {
 
 
     /* ---------------------------------------------
-       TAREFAS JÁ CONCLUÍDAS HOJE
+       TAREFAS CONCLUÍDAS HOJE
        --------------------------------------------- */
 
     const chaveHoje =
       `limpezas_concluidas_${this.obterChaveDataHoje()}`;
 
 
-    let tarefasConcluidasHoje: string[] = [];
+    let tarefasConcluidasHoje:
+      string[] = [];
 
 
     const guardadasHoje =
@@ -900,16 +1361,25 @@ export class OracaoPerdaoPage implements OnInit {
 
       try {
 
-        tarefasConcluidasHoje =
+        const dados =
           JSON.parse(
             guardadasHoje
-          ) as string[];
+          );
+
+
+        if (Array.isArray(dados)) {
+
+          tarefasConcluidasHoje =
+            dados;
+
+        }
 
       }
 
       catch {
 
-        tarefasConcluidasHoje = [];
+        tarefasConcluidasHoje =
+          [];
 
       }
 
@@ -921,22 +1391,42 @@ export class OracaoPerdaoPage implements OnInit {
        --------------------------------------------- */
 
     const tarefasDisponiveis:
-      TarefaApresentacao[] = [];
+      TarefaApresentacao[] =
+      [];
 
 
     for (
       const tarefa of this.tarefas
     ) {
 
-      if (!tarefa.ativa) {
+      if (
+        !tarefa.ativa
+      ) {
+
         continue;
+
       }
 
 
       if (
-        Number(tarefa.duracao) <= 0
+        !Array.isArray(
+          tarefa.divisoes
+        )
       ) {
+
         continue;
+
+      }
+
+
+      if (
+        Number(
+          tarefa.duracao
+        ) <= 0
+      ) {
+
+        continue;
+
       }
 
 
@@ -949,7 +1439,9 @@ export class OracaoPerdaoPage implements OnInit {
             divisaoId
           )
         ) {
+
           continue;
+
         }
 
 
@@ -965,7 +1457,9 @@ export class OracaoPerdaoPage implements OnInit {
             idOcorrencia
           )
         ) {
+
           continue;
+
         }
 
 
@@ -1052,15 +1546,12 @@ export class OracaoPerdaoPage implements OnInit {
 
 
         return (
-
           Number(
             a.tarefa.duracao
           ) -
-
           Number(
             b.tarefa.duracao
           )
-
         );
 
       }
@@ -1072,10 +1563,12 @@ export class OracaoPerdaoPage implements OnInit {
        --------------------------------------------- */
 
     const selecionadas:
-      TarefaApresentacao[] = [];
+      TarefaApresentacao[] =
+      [];
 
 
-    let tempoUsado = 0;
+    let tempoUsado =
+      0;
 
 
     for (
@@ -1089,7 +1582,8 @@ export class OracaoPerdaoPage implements OnInit {
 
 
       if (
-        tempoUsado + duracao <=
+        tempoUsado +
+        duracao <=
         tempo
       ) {
 
@@ -1097,7 +1591,8 @@ export class OracaoPerdaoPage implements OnInit {
           item
         );
 
-        tempoUsado += duracao;
+        tempoUsado +=
+          duracao;
 
       }
 
@@ -1109,38 +1604,35 @@ export class OracaoPerdaoPage implements OnInit {
        --------------------------------------------- */
 
     this.tarefasSugeridas =
-      selecionadas.map(item => ({
+      selecionadas.map(
+        item => ({
 
-        tarefa: {
+          tarefa: {
 
-          ...item.tarefa,
+            ...item.tarefa,
 
-          concluida: false
+            concluida:
+              false
 
-        },
+          },
 
-        divisaoId:
-          item.divisaoId
+          divisaoId:
+            item.divisaoId
 
-      }));
+        })
+      );
 
 
     this.tempoTarefasSugeridas =
       tempoUsado;
 
 
-    /* ---------------------------------------------
-       FECHAR DESCRIÇÃO ANTERIOR
-       --------------------------------------------- */
-
-    this.tarefaDescricaoAbertaId = '';
+    this.tarefaDescricaoAbertaId =
+      '';
 
 
-    /* ---------------------------------------------
-       ABRIR MODAL
-       --------------------------------------------- */
-
-    this.isTarefasModalOpen = true;
+    this.isTarefasModalOpen =
+      true;
 
   }
 
@@ -1151,15 +1643,17 @@ export class OracaoPerdaoPage implements OnInit {
 
   fecharTarefasModal(): void {
 
-    this.isTarefasModalOpen = false;
+    this.isTarefasModalOpen =
+      false;
 
-    this.tarefaDescricaoAbertaId = '';
+    this.tarefaDescricaoAbertaId =
+      '';
 
   }
 
 
   /* =====================================================
-     NOMES PARA APRESENTAÇÃO
+     NOMES DAS DIVISÕES
      ===================================================== */
 
   obterNomeDivisao(
@@ -1182,17 +1676,21 @@ export class OracaoPerdaoPage implements OnInit {
     try {
 
       const divisoes =
-        JSON.parse(guardadas) as Divisao[];
+        JSON.parse(
+          guardadas
+        ) as Divisao[];
 
 
       const divisao =
         divisoes.find(
-          d => d.id === id
+          d =>
+            d.id === id
         );
 
 
       return (
-        divisao?.nome ?? id
+        divisao?.nome ??
+        id
       );
 
     }
@@ -1210,19 +1708,30 @@ export class OracaoPerdaoPage implements OnInit {
     divisoes: string[]
   ): string {
 
-    return divisoes
+    if (
+      !Array.isArray(divisoes)
+    ) {
 
+      return '';
+
+    }
+
+
+    return divisoes
       .map(
         id =>
-          this.obterNomeDivisao(id)
+          this.obterNomeDivisao(
+            id
+          )
       )
-
-      .join(' · ');
+      .join(
+        ' · '
+      );
 
   }
 
 
-    /* =====================================================
+  /* =====================================================
      DESCRIÇÕES
      ===================================================== */
 
@@ -1235,25 +1744,36 @@ export class OracaoPerdaoPage implements OnInit {
         this.STORAGE_DIVISOES
       );
 
+
     if (!guardadas) {
+
       return '';
+
     }
+
 
     try {
 
       const divisoes =
-        JSON.parse(guardadas) as Divisao[];
+        JSON.parse(
+          guardadas
+        ) as Divisao[];
+
 
       const divisao =
         divisoes.find(
-          d => d.id === id
+          d =>
+            d.id === id
         );
 
+
       return (
-        divisao?.descricao?.trim() ?? ''
+        divisao?.descricao?.trim() ??
+        ''
       );
 
     }
+
     catch {
 
       return '';
@@ -1268,7 +1788,8 @@ export class OracaoPerdaoPage implements OnInit {
   ): string {
 
     return (
-      item.tarefa.descricao?.trim() ?? ''
+      item.tarefa.descricao?.trim() ??
+      ''
     );
 
   }
@@ -1305,10 +1826,15 @@ export class OracaoPerdaoPage implements OnInit {
   ): void {
 
     if (
-      !this.temDescricaoDivisao(item)
+      !this.temDescricaoDivisao(
+        item
+      )
     ) {
+
       return;
+
     }
+
 
     const id =
       'divisao__' +
@@ -1317,17 +1843,22 @@ export class OracaoPerdaoPage implements OnInit {
         item.divisaoId
       );
 
+
     if (
-      this.tarefaDescricaoAbertaId === id
+      this.tarefaDescricaoAbertaId ===
+      id
     ) {
 
-      this.tarefaDescricaoAbertaId = '';
+      this.tarefaDescricaoAbertaId =
+        '';
 
       return;
 
     }
 
-    this.tarefaDescricaoAbertaId = id;
+
+    this.tarefaDescricaoAbertaId =
+      id;
 
   }
 
@@ -1337,10 +1868,15 @@ export class OracaoPerdaoPage implements OnInit {
   ): void {
 
     if (
-      !this.temDescricaoTarefa(item)
+      !this.temDescricaoTarefa(
+        item
+      )
     ) {
+
       return;
+
     }
+
 
     const id =
       'tarefa__' +
@@ -1349,17 +1885,22 @@ export class OracaoPerdaoPage implements OnInit {
         item.divisaoId
       );
 
+
     if (
-      this.tarefaDescricaoAbertaId === id
+      this.tarefaDescricaoAbertaId ===
+      id
     ) {
 
-      this.tarefaDescricaoAbertaId = '';
+      this.tarefaDescricaoAbertaId =
+        '';
 
       return;
 
     }
 
-    this.tarefaDescricaoAbertaId = id;
+
+    this.tarefaDescricaoAbertaId =
+      id;
 
   }
 
@@ -1375,21 +1916,21 @@ export class OracaoPerdaoPage implements OnInit {
     const nomes:
       Record<string, string> = {
 
-        diaria: 'Diária',
+        diaria:
+          'Diária',
 
-        semanal: 'Semanal',
+        semanal:
+          'Semanal',
 
-        mensal: 'Mensal'
+        mensal:
+          'Mensal'
 
       };
 
 
     return (
-
       nomes[frequencia] ??
-
       frequencia
-
     );
 
   }
@@ -1458,53 +1999,6 @@ export class OracaoPerdaoPage implements OnInit {
 
     window.location.href =
       '/limpezas';
-
-  }
-
-
-  /* =====================================================
-     EDIÇÃO DA REGRA
-     ===================================================== */
-
-  openRegraEdit(): void {
-
-    this.regraTextoEdit =
-      this.regraTexto;
-
-    this.regraTextoEditBackup =
-      this.regraTexto;
-
-    this.isRegraEditModalOpen =
-      true;
-
-  }
-
-
-  closeRegraEdit(): void {
-
-    this.isRegraEditModalOpen =
-      false;
-
-  }
-
-
-  saveRegraEdit(): void {
-
-    this.regraTexto =
-      this.regraTextoEdit.trim();
-
-
-    window.localStorage.setItem(
-
-      'oracao_perdao_regra_texto',
-
-      this.regraTexto
-
-    );
-
-
-    this.isRegraEditModalOpen =
-      false;
 
   }
 
@@ -1610,241 +2104,310 @@ export class OracaoPerdaoPage implements OnInit {
      GUARDAR TAREFAS CONCLUÍDAS
      ===================================================== */
 
- guardarTarefasConcluidas(): void {
+  guardarTarefasConcluidas(): void {
 
-  const tarefasSelecionadas =
-    this.tarefasSugeridas.filter(
-      item =>
-        item.tarefa.concluida === true
-    );
-
-  if (
-    tarefasSelecionadas.length === 0
-  ) {
-    return;
-  }
-
-  const confirmar =
-    window.confirm(
-      'Tem a certeza que pretende guardar as tarefas selecionadas?'
-    );
-
-  if (!confirmar) {
-    return;
-  }
-
-  const hoje =
-    this.obterChaveDataHoje();
-
-  /* =====================================================
-     1. GUARDAR TAREFAS CONCLUÍDAS HOJE
-     ===================================================== */
-
-  const chave =
-    `limpezas_concluidas_${hoje}`;
-
-  try {
-
-    const raw =
-      window.localStorage.getItem(
-        chave
-      );
-
-    const idsGuardados: string[] =
-      raw
-        ? JSON.parse(raw)
-        : [];
-
-    const novosIds =
-      tarefasSelecionadas
-        .map(item =>
-          this.obterIdOcorrencia(
-            item.tarefa.id,
-            item.divisaoId
-          )
-        )
-        .filter(
-          id =>
-            !idsGuardados.includes(id)
-        );
-
-    const idsAtualizados = [
-      ...idsGuardados,
-      ...novosIds
-    ];
-
-    window.localStorage.setItem(
-      chave,
-      JSON.stringify(
-        idsAtualizados
-      )
-    );
-
-
-    /* =====================================================
-       2. GUARDAR NO HISTÓRICO
-       ===================================================== */
-
-    const chaveHistorico =
-      'limpezas_historico_v1';
-
-    const rawHistorico =
-      window.localStorage.getItem(
-        chaveHistorico
-      );
-
-    let historico: {
-      tarefaId: string;
-      divisaoId: string;
-      data: string;
-    }[] = [];
-
-    if (rawHistorico) {
-
-      try {
-
-        historico =
-          JSON.parse(
-            rawHistorico
-          );
-
-      }
-      catch {
-
-        historico = [];
-
-      }
-
-    }
-
-
-    /* =====================================================
-       3. ATUALIZAR A ÚLTIMA DATA DE CADA TAREFA/DIVISÃO
-       ===================================================== */
-
-    for (
-      const item of tarefasSelecionadas
-    ) {
-
-      const existente =
-        historico.find(
-          registo =>
-            registo.tarefaId ===
-              item.tarefa.id &&
-            registo.divisaoId ===
-              item.divisaoId
-        );
-
-      if (existente) {
-
-        existente.data =
-          hoje;
-
-      }
-      else {
-
-        historico.push({
-
-          tarefaId:
-            item.tarefa.id,
-
-          divisaoId:
-            item.divisaoId,
-
-          data:
-            hoje
-
-        });
-
-      }
-
-    }
-
-
-    /* =====================================================
-       4. GUARDAR HISTÓRICO
-       ===================================================== */
-
-    window.localStorage.setItem(
-      chaveHistorico,
-      JSON.stringify(
-        historico
-      )
-    );
-
-
-    /* =====================================================
-       5. RETIRAR DA LISTA ATUAL
-       ===================================================== */
-
-    this.tarefasSugeridas =
+    const tarefasSelecionadas =
       this.tarefasSugeridas.filter(
         item =>
-          !tarefasSelecionadas.some(
-            selecionada =>
-              selecionada.tarefa.id ===
-                item.tarefa.id &&
-              selecionada.divisaoId ===
-                item.divisaoId
-          )
+          item.tarefa.concluida === true
       );
 
-
-    /* =====================================================
-       6. ATUALIZAR TEMPO
-       ===================================================== */
-
-    this.tempoTarefasSugeridas =
-      this.tarefasSugeridas.reduce(
-        (total, item) =>
-          total +
-          Number(
-            item.tarefa.duracao
-          ),
-        0
-      );
-
-
-    /* =====================================================
-       7. FECHAR MODAL SE NÃO HOUVER MAIS TAREFAS
-       ===================================================== */
 
     if (
-      this.tarefasSugeridas.length ===
-      0
+      tarefasSelecionadas.length === 0
     ) {
 
-      this.fecharTarefasModal();
+      return;
+
+    }
+
+
+    const confirmar =
+      window.confirm(
+        'Tem a certeza que pretende guardar as tarefas selecionadas?'
+      );
+
+
+    if (!confirmar) {
+
+      return;
+
+    }
+
+
+    const hoje =
+      this.obterChaveDataHoje();
+
+
+    /* =====================================================
+       1. GUARDAR CONCLUÍDAS DE HOJE
+       ===================================================== */
+
+    const chave =
+      `limpezas_concluidas_${hoje}`;
+
+
+    try {
+
+      const raw =
+        window.localStorage.getItem(
+          chave
+        );
+
+
+      let idsGuardados:
+        string[] =
+        [];
+
+
+      if (raw) {
+
+        const dados =
+          JSON.parse(
+            raw
+          );
+
+
+        if (Array.isArray(dados)) {
+
+          idsGuardados =
+            dados;
+
+        }
+
+      }
+
+
+      const novosIds =
+        tarefasSelecionadas
+          .map(
+            item =>
+              this.obterIdOcorrencia(
+                item.tarefa.id,
+                item.divisaoId
+              )
+          )
+          .filter(
+            id =>
+              !idsGuardados.includes(
+                id
+              )
+          );
+
+
+      const idsAtualizados = [
+
+        ...idsGuardados,
+
+        ...novosIds
+
+      ];
+
+
+      window.localStorage.setItem(
+
+        chave,
+
+        JSON.stringify(
+          idsAtualizados
+        )
+
+      );
+
+
+      /* =====================================================
+         2. HISTÓRICO
+         ===================================================== */
+
+      const chaveHistorico =
+        'limpezas_historico_v1';
+
+
+      const rawHistorico =
+        window.localStorage.getItem(
+          chaveHistorico
+        );
+
+
+      let historico:
+        {
+          tarefaId: string;
+          divisaoId: string;
+          data: string;
+        }[] =
+        [];
+
+
+      if (rawHistorico) {
+
+        try {
+
+          const dados =
+            JSON.parse(
+              rawHistorico
+            );
+
+
+          if (Array.isArray(dados)) {
+
+            historico =
+              dados;
+
+          }
+
+        }
+
+        catch {
+
+          historico =
+            [];
+
+        }
+
+      }
+
+
+      /* =====================================================
+         3. ATUALIZAR ÚLTIMA DATA
+         ===================================================== */
+
+      for (
+        const item of tarefasSelecionadas
+      ) {
+
+        const existente =
+          historico.find(
+            registo =>
+
+              registo.tarefaId ===
+                item.tarefa.id &&
+
+              registo.divisaoId ===
+                item.divisaoId
+          );
+
+
+        if (existente) {
+
+          existente.data =
+            hoje;
+
+        }
+
+        else {
+
+          historico.push({
+
+            tarefaId:
+              item.tarefa.id,
+
+            divisaoId:
+              item.divisaoId,
+
+            data:
+              hoje
+
+          });
+
+        }
+
+      }
+
+
+      /* =====================================================
+         4. GUARDAR HISTÓRICO
+         ===================================================== */
+
+      window.localStorage.setItem(
+
+        chaveHistorico,
+
+        JSON.stringify(
+          historico
+        )
+
+      );
+
+
+      /* =====================================================
+         5. RETIRAR DA LISTA ATUAL
+         ===================================================== */
+
+      this.tarefasSugeridas =
+        this.tarefasSugeridas.filter(
+          item =>
+            !tarefasSelecionadas.some(
+              selecionada =>
+
+                selecionada.tarefa.id ===
+                  item.tarefa.id &&
+
+                selecionada.divisaoId ===
+                  item.divisaoId
+            )
+        );
+
+
+      /* =====================================================
+         6. ATUALIZAR TEMPO
+         ===================================================== */
+
+      this.tempoTarefasSugeridas =
+        this.tarefasSugeridas.reduce(
+          (total, item) =>
+
+            total +
+            Number(
+              item.tarefa.duracao
+            ),
+
+          0
+        );
+
+
+      this.tarefaDescricaoAbertaId =
+        '';
+
+
+      /* =====================================================
+         7. FECHAR SE NÃO HOUVER MAIS TAREFAS
+         ===================================================== */
+
+      if (
+        this.tarefasSugeridas.length ===
+        0
+      ) {
+
+        this.fecharTarefasModal();
+
+      }
+
+    }
+
+    catch (erro) {
+
+      console.error(
+        'Erro ao guardar tarefas concluídas:',
+        erro
+      );
 
     }
 
   }
-  catch (erro) {
-
-    console.error(
-      'Erro ao guardar tarefas concluídas:',
-      erro
-    );
-
-  }
-
-}
 
 
   /* =====================================================
-     VERIFICAR SE EXISTE ALGUMA
-     TAREFA SELECIONADA
+     EXISTEM TAREFAS SELECIONADAS?
      ===================================================== */
 
   temTarefasSelecionadas(): boolean {
 
     return this.tarefasSugeridas.some(
-
       item =>
         item.tarefa.concluida === true
-
     );
 
   }
 
 }
+

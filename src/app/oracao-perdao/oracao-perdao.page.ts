@@ -2409,5 +2409,10 @@ this.escolherImagemCasa(this.casaAtual);
 
   }
 
+
+  navigateCalendario(): void {
+  window.location.href = '/calendario';
+}
+
 }
 

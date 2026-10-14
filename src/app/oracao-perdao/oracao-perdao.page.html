@@ -25,7 +25,9 @@
 
 
     
-<ion-buttons slot="end">
+<div class="header-actions" slot="end">
+
+  <!-- Limpezas -->
   <ion-button
     fill="clear"
     class="limpeza-header-btn"
@@ -35,7 +37,19 @@
     <span class="limpeza-header-icon">🧹</span>
 
   </ion-button>
-</ion-buttons>
+
+  <!-- Calendário -->
+  <ion-button
+    fill="clear"
+    class="calendario-header-btn"
+    (click)="navigateCalendario()"
+    aria-label="Calendário">
+
+    <span class="calendario-header-icon">📅</span>
+
+  </ion-button>
+
+</div>
 
 
 

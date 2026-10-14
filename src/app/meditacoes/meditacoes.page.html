@@ -1,69 +1,289 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-
+<ion-header>
+  <ion-toolbar color="light">
     <ion-buttons slot="start">
-      <ion-button fill="clear" size="small" (click)="voltar()">
+      <ion-button fill="clear" (click)="voltar()">
         Voltar
       </ion-button>
     </ion-buttons>
 
     <ion-title>Meditações</ion-title>
-
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="ion-padding">
+<ion-content [fullscreen]="false">
+  <div class="pagina-meditacoes">
 
-  <h1>Meditações</h1>
+    <div class="introducao">
+      <span class="subtitulo">UM CAMINHO INTERIOR</span>
 
-  <p class="intro">
-    Escolhe uma meditação para ouvir.
-  </p>
+      <h1>Descobre o teu caminho</h1>
 
-  <!-- Áudios -->
-  <section class="secao">
+      <p>
+        Cada etapa é um convite para parar, escutar e descobrir
+        novas formas de estar contigo próprio.
+      </p>
 
-    <h2>🎧 Meditações disponíveis</h2>
+      <div class="indicacao">
+        <span class="indicacao-ponto"></span>
+        Seleciona um ponto para explorar uma meditação
+      </div>
+    </div>
 
-    <div class="audio-row">
+    <!-- CAMINHO DAS MEDITAÇÕES -->
+    <div class="mapa-meditacoes">
 
-      <div
-        class="audio-item"
-        *ngFor="let audio of audios"
-        [class.selecionado]="audioSelecionado === audio"
-        (click)="selecionarAudio(audio)"
-      >
-        🎧 {{ audio.nome }}
+      <!-- ZONAS DE CORES SUAVES -->
+      <div class="zona zona-1"></div>
+      <div class="zona zona-2"></div>
+      <div class="zona zona-3"></div>
+      <div class="zona zona-4"></div>
+      <div class="zona zona-5"></div>
+      <div class="zona zona-6"></div>
+      <div class="zona zona-7"></div>
+      <div class="zona zona-8"></div>
+
+      <!-- ILUSTRAÇÕES DECORATIVAS -->
+      <span class="decoracao decoracao-1" aria-hidden="true">🌿</span>
+      <span class="decoracao decoracao-2" aria-hidden="true">🌼</span>
+      <span class="decoracao decoracao-3" aria-hidden="true">🦋</span>
+      <span class="decoracao decoracao-4" aria-hidden="true">🍃</span>
+      <span class="decoracao decoracao-5" aria-hidden="true">🌸</span>
+      <span class="decoracao decoracao-6" aria-hidden="true">🪨</span>
+      <span class="decoracao decoracao-7" aria-hidden="true">🌿</span>
+      <span class="decoracao decoracao-8" aria-hidden="true">✨</span>
+      <span class="decoracao decoracao-9" aria-hidden="true">🌼</span>
+      <span class="decoracao decoracao-10" aria-hidden="true">🍃</span>
+
+      <!-- LINHA DO CAMINHO -->
+      <svg
+        class="linha-caminho"
+        viewBox="0 0 360 1450"
+        preserveAspectRatio="none"
+        aria-hidden="true">
+
+        <path
+          class="linha-sombra"
+          d="
+            M 180 40
+            C 180 100, 270 100, 270 175
+            C 270 250, 90 245, 90 340
+            C 90 425, 265 415, 265 510
+            C 265 600, 100 590, 100 685
+            C 100 775, 270 770, 270 860
+            C 270 950, 90 945, 90 1040
+            C 90 1130, 255 1120, 255 1210
+            C 255 1300, 180 1300, 180 1400
+          "/>
+
+        <path
+          class="linha-principal"
+          d="
+            M 180 40
+            C 180 100, 270 100, 270 175
+            C 270 250, 90 245, 90 340
+            C 90 425, 265 415, 265 510
+            C 265 600, 100 590, 100 685
+            C 100 775, 270 770, 270 860
+            C 270 950, 90 945, 90 1040
+            C 90 1130, 255 1120, 255 1210
+            C 255 1300, 180 1300, 180 1400
+          "/>
+      </svg>
+
+      <!-- INÍCIO -->
+      <div class="etiqueta-caminho inicio-caminho">
+        <span>☀️</span>
+        <span>Começa por ti</span>
+      </div>
+
+      <!-- PONTO 1 -->
+      <button
+        type="button"
+        class="ponto ponto-1"
+        (click)="abrirTipo('mindfulness')"
+        aria-label="Explorar atenção plena">
+        <span class="numero-ponto">1</span>
+        <span class="texto-ponto">Atenção plena</span>
+      </button>
+
+      <!-- PONTO 2 -->
+      <button
+        type="button"
+        class="ponto ponto-2"
+        (click)="abrirTipo('concentracao')"
+        aria-label="Explorar concentração">
+        <span class="numero-ponto">2</span>
+        <span class="texto-ponto">Concentração</span>
+      </button>
+
+      <!-- PONTO 3 -->
+      <button
+        type="button"
+        class="ponto ponto-3"
+        (click)="abrirTipo('metta')"
+        aria-label="Explorar bondade amorosa">
+        <span class="numero-ponto">3</span>
+        <span class="texto-ponto">Bondade amorosa</span>
+      </button>
+
+      <!-- PONTO 4 -->
+      <button
+        type="button"
+        class="ponto ponto-4"
+        (click)="abrirTipo('corpo')"
+        aria-label="Explorar consciência corporal">
+        <span class="numero-ponto">4</span>
+        <span class="texto-ponto">Consciência corporal</span>
+      </button>
+
+      <!-- PONTO 5 -->
+      <button
+        type="button"
+        class="ponto ponto-5"
+        (click)="abrirTipo('contemplacao')"
+        aria-label="Explorar contemplação">
+        <span class="numero-ponto">5</span>
+        <span class="texto-ponto">Contemplação</span>
+      </button>
+
+      <!-- PONTO 6 -->
+      <button
+        type="button"
+        class="ponto ponto-6"
+        (click)="abrirTipo('mantra')"
+        aria-label="Explorar meditação com mantra">
+        <span class="numero-ponto">6</span>
+        <span class="texto-ponto">Mantra</span>
+      </button>
+
+      <!-- PONTO 7 -->
+      <button
+        type="button"
+        class="ponto ponto-7"
+        (click)="abrirTipo('movimento')"
+        aria-label="Explorar meditação em movimento">
+        <span class="numero-ponto">7</span>
+        <span class="texto-ponto">Movimento</span>
+      </button>
+
+      <!-- PONTO 8 -->
+      <button
+        type="button"
+        class="ponto ponto-8"
+        (click)="abrirTipo('espiritual')"
+        aria-label="Explorar meditação espiritual">
+        <span class="numero-ponto">8</span>
+        <span class="texto-ponto">Espiritualidade</span>
+      </button>
+
+      <!-- FIM DO CAMINHO -->
+      <div class="etiqueta-caminho fim-caminho">
+        <span>🌱</span>
+        <span>Continua ao teu ritmo</span>
       </div>
 
     </div>
 
-  </section>
+    <!-- ESPAÇO LIVRE NO FINAL -->
+    <div class="espaco-final" aria-hidden="true"></div>
 
-  <!-- Áudio selecionado -->
-  <section
-    class="audio-player"
-    *ngIf="audioSelecionado"
-  >
+  </div>
 
-    <h2>{{ audioSelecionado.nome }}</h2>
+  <!-- JANELA COM A DESCRIÇÃO DA MEDITAÇÃO -->
+  <div
+    class="fundo-modal"
+    *ngIf="tipoSelecionado"
+    (click)="fecharTipo()">
 
-    <audio
-      controls
-      autoplay
-      [src]="audioSelecionado.src"
-    >
-      O teu dispositivo não suporta a reprodução deste áudio.
-    </audio>
+    <div
+      class="modal-meditacao"
+      role="dialog"
+      aria-modal="true"
+      [attr.aria-label]="tipoSelecionado.titulo"
+      (click)="$event.stopPropagation()">
 
-    <ion-button
-      expand="block"
-      fill="outline"
-      (click)="parar()"
-    >
-      ⏹ Parar áudio
-    </ion-button>
+      <button
+        type="button"
+        class="botao-fechar"
+        aria-label="Fechar"
+        (click)="fecharTipo()">
+        ✕
+      </button>
 
-  </section>
+      <div class="modal-simbolo">
+        {{ tipoSelecionado.simbolo }}
+      </div>
 
+      <span class="modal-subtitulo">
+        ETAPA {{ tipoSelecionado.numero }} DO CAMINHO
+      </span>
+
+      <h2>{{ tipoSelecionado.titulo }}</h2>
+
+      <p class="modal-descricao">
+        {{ tipoSelecionado.descricao }}
+      </p>
+
+      <div class="objetivo-meditacao">
+        <strong>O que podes explorar</strong>
+        <p>{{ tipoSelecionado.objetivo }}</p>
+      </div>
+
+      <div class="lista-audios">
+        <h3>Meditações disponíveis</h3>
+
+        <div
+          class="audio-item"
+          *ngFor="let audio of tipoSelecionado.audios">
+
+          <div class="audio-info">
+            <span class="audio-simbolo">♫</span>
+            <span>{{ audio.nome }}</span>
+          </div>
+
+          <button
+            type="button"
+            class="botao-ouvir"
+            (click)="selecionarAudio(audio)">
+            {{ audioSelecionado?.src === audio.src ? 'Selecionado' : 'Ouvir' }}
+          </button>
+        </div>
+
+        <p
+          class="sem-audios"
+          *ngIf="tipoSelecionado.audios.length === 0">
+          Ainda não existem áudios associados a esta etapa.
+        </p>
+
+        <div class="reprodutor" *ngIf="audioSelecionado">
+          <p class="audio-atual">
+            A reproduzir: {{ audioSelecionado.nome }}
+          </p>
+
+          <audio
+            controls
+            autoplay
+            playsinline
+            [src]="audioSelecionado.src">
+            O teu navegador não suporta a reprodução de áudio.
+          </audio>
+
+          <button
+            type="button"
+            class="botao-parar"
+            (click)="parar()">
+            Parar áudio
+          </button>
+        </div>
+      </div>
+
+      <button
+        type="button"
+        class="botao-concluir"
+        (click)="fecharTipo()">
+        Voltar ao caminho
+      </button>
+
+    </div>
+  </div>
 </ion-content>

@@ -1,0 +1,778 @@
+
+:host {
+  display: block;
+}
+
+/* =========================================
+   CALENDÁRIO
+   ========================================= */
+
+.calendario-content {
+  --background: #f1f7f0;
+}
+
+.calendario-toolbar {
+  --background: #39764f;
+  --color: #ffffff;
+}
+
+.calendario-toolbar ion-title {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.calendario-toolbar ion-button {
+  --color: #ffffff;
+}
+
+/* Área principal */
+.calendario-container {
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 22px 16px 32px;
+  box-sizing: border-box;
+}
+
+/* Cabeçalho do calendário */
+.cabecalho-calendario {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.titulo-mes {
+  margin: 0;
+  color: #315b43;
+  font-size: 25px;
+  font-weight: 750;
+  line-height: 1.3;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+/* Navegação semanal */
+.navegacao-semana {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 8px;
+}
+
+.seta-semana {
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  --color: #39764f;
+  font-size: 34px;
+  font-weight: 400;
+}
+
+.informacao-semana {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: #315b43;
+  text-align: center;
+}
+
+.periodo-semana {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.texto-semana {
+  font-size: 13px;
+  color: #67806c;
+}
+
+.botao-semana-atual {
+  min-height: 34px;
+  --border-color: #a8c9ad;
+  --color: #315b43;
+  --border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* =========================================
+   DIAS DA SEMANA
+   Segunda a sexta na primeira fila
+   Sábado e domingo na segunda fila
+   ========================================= */
+
+.dias-calendario {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+  width: 100%;
+  margin: 22px 0 18px;
+  box-sizing: border-box;
+}
+
+.dia-botao {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  min-width: 0;
+  min-height: 126px;
+  padding: 12px 3px;
+
+  appearance: none;
+  border: 1px solid #d5e5d5;
+  border-radius: 16px;
+  background: #ffffff;
+  color: #315b43;
+
+  cursor: pointer;
+  box-sizing: border-box;
+
+  box-shadow: 0 2px 5px rgb(34 75 45 / 5%);
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.dia-botao:active {
+  transform: scale(0.97);
+}
+
+.dia-nome {
+  margin-bottom: 12px;
+  color: #52735a;
+  font-size: 14px;
+  font-weight: 650;
+  text-align: center;
+}
+
+.dia-numero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+
+  background: #edf5ed;
+  color: #285638;
+
+  font-size: 23px;
+  font-weight: 750;
+  line-height: 1;
+}
+
+.dia-indicador {
+  min-height: 16px;
+  margin-top: 9px;
+  color: #39764f;
+  font-size: 11px;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* Dia atual */
+.dia-hoje {
+  border: 2px solid #4c9560;
+  background: #e2f1e3;
+}
+
+.dia-hoje .dia-numero {
+  background: #4c9560;
+  color: #ffffff;
+}
+
+.dia-hoje .dia-nome {
+  color: #285638;
+}
+
+/* Fim de semana na segunda fila */
+.dia-fim-de-semana:nth-child(6) {
+  grid-column: 1;
+}
+
+.dia-fim-de-semana:nth-child(7) {
+  grid-column: 2;
+}
+
+/* Legenda do calendário */
+.nota-calendario {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 4px;
+  color: #67806c;
+  font-size: 13px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.ponto-legenda {
+  flex: 0 0 9px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #4c9560;
+}
+
+/* =========================================
+   MODAL DA AGENDA
+   Predominantemente branco e cinzento claro
+   ========================================= */
+
+.modal-fundo {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+
+  overflow-y: auto;
+  padding:
+    max(16px, env(safe-area-inset-top))
+    10px
+    max(16px, env(safe-area-inset-bottom));
+
+  background: rgb(20 35 24 / 58%);
+  box-sizing: border-box;
+}
+
+.modal-agenda {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  max-width: 700px;
+  min-width: 0;
+  flex-shrink: 0;
+
+  max-height: calc(
+    100dvh -
+    env(safe-area-inset-top, 0px) -
+    env(safe-area-inset-bottom, 0px) -
+    32px
+  );
+
+  overflow-y: auto;
+  overscroll-behavior: contain;
+
+  border-radius: 18px;
+  background: #ffffff;
+  color: #26382a;
+
+  box-shadow: 0 12px 40px rgb(0 0 0 / 20%);
+}
+
+/* Cabeçalho branco */
+.modal-cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  padding: 15px 16px;
+  background: #ffffff;
+  color: #26382a;
+
+  border-bottom: 1px solid #e6ebe6;
+}
+
+.modal-cabecalho h2 {
+  margin: 0;
+  color: #315b43;
+  font-size: 20px;
+  font-weight: 750;
+}
+
+.modal-cabecalho p {
+  margin: 5px 0 0;
+  color: #778279;
+  font-size: 13px;
+}
+
+.botao-fechar {
+  flex: 0 0 auto;
+  --color: #647468;
+  font-size: 20px;
+}
+
+/* Data por extenso */
+.data-dia-destaque {
+  padding: 12px 16px;
+  background: #f3f7f2;
+  border-bottom: 1px solid #e5ebe3;
+}
+
+.data-dia-legenda {
+  margin-bottom: 5px;
+  color: #748176;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.data-dia-texto {
+  color: #315b43;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+/* =========================================
+   REFEIÇÕES
+   ========================================= */
+
+.refeicoes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  padding: 15px;
+}
+
+.campo-refeicao {
+  min-width: 0;
+  padding: 12px;
+
+  border: 1px solid #e3e7e3;
+  border-radius: 12px;
+  background: #fafbfa;
+}
+
+.campo-refeicao label {
+  display: block;
+  margin-bottom: 8px;
+  color: #315b43;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.campo-refeicao ion-textarea {
+  --background: #ffffff;
+  --color: #26382a;
+  --placeholder-color: #929b94;
+  --padding-start: 10px;
+  --padding-end: 10px;
+  --padding-top: 9px;
+  --padding-bottom: 9px;
+
+  border: 1px solid #e0e5e0;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+/* =========================================
+   ATIVIDADES
+   ========================================= */
+
+.titulo-atividades {
+  margin: 6px 15px 5px;
+  color: #315b43;
+  font-size: 18px;
+  font-weight: 750;
+}
+
+.instrucao-horarios {
+  margin: 0 15px 12px;
+  color: #778279;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* Área de deslocamento horizontal, se necessário */
+.tabela-scroll {
+  width: 100%;
+  padding: 0 10px;
+  overflow-x: auto;
+  box-sizing: border-box;
+}
+
+/* Tabela */
+.agenda-tabela {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid #e0e6e0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.agenda-cabecalho,
+.agenda-linha {
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr) minmax(0, 1fr);
+}
+
+/* Cabeçalho verde muito suave */
+.agenda-cabecalho {
+  background: #eaf1e9;
+  color: #315b43;
+}
+
+.coluna-hora,
+.coluna-pessoa {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  padding: 10px 3px;
+  font-size: 12px;
+  font-weight: 750;
+  text-align: center;
+}
+
+.coluna-pessoa.sandro,
+.coluna-pessoa.joana {
+  background: #eaf1e9;
+  color: #315b43;
+}
+
+/* Linhas da tabela */
+.agenda-linha {
+  min-height: 45px;
+  border-top: 1px solid #e9ede9;
+}
+
+.agenda-linha:nth-child(even) {
+  background: #fafbfa;
+}
+
+.hora-valor {
+  background: #f1f3f1;
+  color: #59675b;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.celula-atividade {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  padding: 2px;
+  border-left: 1px solid #e9ede9;
+}
+
+.celula-atividade ion-input {
+  width: 100%;
+  min-width: 0;
+
+  --background: transparent;
+  --color: #26382a;
+  --placeholder-color: #a0a8a1;
+  --padding-start: 5px;
+  --padding-end: 3px;
+  --padding-top: 8px;
+  --padding-bottom: 8px;
+
+  font-size: 12px;
+}
+
+/* =========================================
+   RODAPÉ DO MODAL
+   ========================================= */
+
+.modal-rodape {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 15px;
+  background: #ffffff;
+}
+
+.modal-rodape span {
+  color: #778279;
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.botao-concluido {
+  margin: 0;
+  --background: #39764f;
+  --background-activated: #2e603f;
+  --color: #ffffff;
+  --border-radius: 10px;
+  font-weight: 700;
+}
+
+/* =========================================
+   ECRÃS PEQUENOS
+   ========================================= */
+
+@media (max-width: 380px) {
+  .calendario-container {
+    padding: 16px 10px 24px;
+  }
+
+  .titulo-mes {
+    font-size: 22px;
+  }
+
+  .dias-calendario {
+    gap: 7px;
+    margin: 16px 0 12px;
+  }
+
+  .dia-botao {
+    min-height: 102px;
+    padding: 8px 2px;
+    border-radius: 12px;
+  }
+
+  .dia-nome {
+    margin-bottom: 8px;
+    font-size: 12px;
+  }
+
+  .dia-numero {
+    width: 36px;
+    height: 36px;
+    font-size: 19px;
+  }
+
+  .dia-indicador {
+    margin-top: 7px;
+    font-size: 10px;
+  }
+
+  .refeicoes {
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .campo-refeicao {
+    padding: 8px;
+  }
+
+  .campo-refeicao label {
+    font-size: 13px;
+  }
+
+  .data-dia-destaque {
+    padding: 11px 13px;
+  }
+
+  .data-dia-texto {
+    font-size: 16px;
+  }
+
+  .agenda-cabecalho,
+  .agenda-linha {
+    grid-template-columns: 48px minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .coluna-hora,
+  .coluna-pessoa {
+    font-size: 11px;
+  }
+
+  .celula-atividade ion-input {
+    font-size: 11px;
+  }
+}
+
+/* =========================================
+   ECRÃS MAIORES
+   ========================================= */
+
+@media (min-width: 600px) {
+  .calendario-container {
+    padding: 28px 24px 40px;
+  }
+
+  .titulo-mes {
+    font-size: 30px;
+  }
+
+  .dia-botao {
+    min-height: 145px;
+  }
+
+  .dia-numero {
+    width: 54px;
+    height: 54px;
+    font-size: 27px;
+  }
+
+  .dia-nome {
+    font-size: 15px;
+  }
+}
+
+
+
+/* =========================================
+   NOVA PALETA DO MODAL: BRANCO + AZUL
+   Colocar no FINAL do ficheiro SCSS
+   ========================================= */
+
+.modal-agenda {
+  background: #ffffff !important;
+  color: #263746;
+}
+
+/* Cabeçalho branco */
+.modal-agenda .modal-cabecalho {
+  background: #ffffff !important;
+  color: #263746;
+  border-bottom: 1px solid #e1e8ef;
+}
+
+.modal-agenda .modal-cabecalho h2 {
+  color: #244c66;
+}
+
+.modal-agenda .modal-cabecalho p {
+  color: #728394;
+}
+
+.modal-agenda .botao-fechar {
+  --color: #52697b;
+}
+
+/* Data: azul muito suave */
+.modal-agenda .data-dia-destaque {
+  background: #eaf3f9 !important;
+  border-bottom: 1px solid #d8e7f1;
+}
+
+.modal-agenda .data-dia-legenda {
+  color: #587b91;
+}
+
+.modal-agenda .data-dia-texto {
+  color: #244c66;
+}
+
+/* Refeições */
+.modal-agenda .campo-refeicao {
+  background: #f8fafc !important;
+  border-color: #dfe7ee;
+}
+
+.modal-agenda .campo-refeicao label {
+  color: #315c78;
+}
+
+.modal-agenda .campo-refeicao ion-textarea {
+  --background: #ffffff;
+  --color: #263746;
+  --placeholder-color: #98a5b1;
+  border-color: #dce4eb;
+}
+
+/* Títulos e instruções */
+.modal-agenda .titulo-atividades {
+  color: #244c66;
+}
+
+.modal-agenda .instrucao-horarios {
+  color: #728394;
+}
+
+/* Cabeçalho da tabela */
+.modal-agenda .agenda-cabecalho {
+  background: #dcebf5 !important;
+  color: #244c66;
+}
+
+.modal-agenda .coluna-pessoa.sandro,
+.modal-agenda .coluna-pessoa.joana {
+  background: #dcebf5 !important;
+  color: #244c66;
+}
+
+/* Linhas da tabela */
+.modal-agenda .agenda-linha {
+  border-top-color: #e5ebf0;
+  background: #ffffff;
+}
+
+.modal-agenda .agenda-linha:nth-child(even) {
+  background: #f7f9fb;
+}
+
+.modal-agenda .hora-valor {
+  background: #edf1f5;
+  color: #536879;
+}
+
+.modal-agenda .celula-atividade {
+  border-left-color: #e5ebf0;
+}
+
+.modal-agenda .celula-atividade ion-input {
+  --background: transparent;
+  --color: #263746;
+  --placeholder-color: #9aa8b4;
+}
+
+/* Rodapé branco */
+.modal-agenda .modal-rodape {
+  background: #ffffff !important;
+}
+
+.modal-agenda .modal-rodape span {
+  color: #728394;
+}
+
+/* Botão principal azul-petróleo */
+.modal-agenda .botao-concluido {
+  --background: #326b8a;
+  --background-activated: #244f68;
+  --color: #ffffff;
+}
+
+/* Campos em foco */
+.modal-agenda ion-input:focus-within,
+.modal-agenda ion-textarea:focus-within {
+  --highlight-color: #4b91b5;
+}
+
+
+
+/* Cabeçalho da agenda: nomes maiores e mais legíveis */
+.modal-agenda .coluna-pessoa {
+  min-height: 48px;
+  padding: 12px 4px;
+  font-size: 16px;
+  font-weight: 750;
+}
+
+/* Aumentar ligeiramente a coluna das horas */
+.modal-agenda .agenda-cabecalho,
+.modal-agenda .agenda-linha {
+  grid-template-columns: 58px minmax(0, 1fr) minmax(0, 1fr);
+}
+
+/* Campos de atividade mais confortáveis no telemóvel */
+.modal-agenda .celula-atividade ion-input {
+  min-height: 44px;
+  font-size: 14px;
+  --padding-start: 7px;
+  --padding-end: 5px;
+}
+
+/* Evitar que a agenda fique demasiado apertada */
+.modal-agenda .agenda-linha {
+  min-height: 48px;
+}
+
+/* Aumentar a legibilidade das horas */
+.modal-agenda .hora-valor {
+  font-size: 13px;
+}

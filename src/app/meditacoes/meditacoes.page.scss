@@ -1,75 +1,961 @@
+:host {
+  display: block;
+}
+
+/* PÁGINA */
+
 ion-content {
-  --background: #f7f7f7;
+  --background: #faf9f5;
+  --padding-bottom: 90px;
 }
 
-h1 {
-  margin-top: 10px;
-  margin-bottom: 6px;
-  font-size: 24px;
+ion-toolbar {
+  --background: #faf9f5;
+  --color: #35483b;
+}
+
+ion-title {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+.pagina-meditacoes {
+  width: 100%;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 20px 12px 0;
+  box-sizing: border-box;
+  color: #35443a;
+}
+
+/* INTRODUÇÃO */
+
+.introducao {
+  text-align: center;
+  padding: 12px 12px 25px;
+}
+
+.subtitulo {
+  display: inline-block;
+  margin-bottom: 9px;
+  color: #728c76;
+  font-size: 10px;
   font-weight: 700;
-  color: #222;
+  letter-spacing: 2px;
 }
 
-.intro {
-  margin-top: 0;
-  margin-bottom: 20px;
-  color: #555;
+.introducao h1 {
+  margin: 0 0 12px;
+  color: #35483b;
+  font-size: 27px;
+  line-height: 1.25;
+  font-weight: 600;
 }
 
-.secao {
-  margin-top: 10px;
+.introducao p {
+  max-width: 390px;
+  margin: 0 auto;
+  color: #69756b;
+  font-size: 14px;
+  line-height: 1.65;
 }
 
-.secao h2 {
-  margin-bottom: 12px;
-  font-size: 19px;
-  font-weight: 700;
-  color: #222;
+.indicacao {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  color: #778276;
+  font-size: 11px;
 }
 
-.audio-row {
+.indicacao-ponto {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #8da98d;
+  box-shadow: 0 0 0 4px rgba(141, 169, 141, 0.14);
+}
+
+/* MAPA */
+
+.mapa-meditacoes {
+  position: relative;
+  width: 100%;
+  height: 1450px;
+  overflow: hidden;
+  border-radius: 26px;
+  isolation: isolate;
+  background: #f8f7f0;
+}
+
+/* ZONAS COLORIDAS */
+
+.zona {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 12.5%;
+  z-index: -2;
+  opacity: 0.72;
+}
+
+.zona-1 {
+  top: 0;
+  background: #e9f0e4;
+}
+
+.zona-2 {
+  top: 12.5%;
+  background: #f5ebdd;
+}
+
+.zona-3 {
+  top: 25%;
+  background: #e7eef5;
+}
+
+.zona-4 {
+  top: 37.5%;
+  background: #f2e8ee;
+}
+
+.zona-5 {
+  top: 50%;
+  background: #e9f0e4;
+}
+
+.zona-6 {
+  top: 62.5%;
+  background: #f5ebdd;
+}
+
+.zona-7 {
+  top: 75%;
+  background: #e7eef5;
+}
+
+.zona-8 {
+  top: 87.5%;
+  background: #f2e8ee;
+}
+
+/* DEGRADÉ PARA SUAVIZAR AS TRANSIÇÕES */
+
+.mapa-meditacoes::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.12),
+      rgba(255, 255, 255, 0.28)
+    );
+}
+
+/* ILUSTRAÇÕES DECORATIVAS */
+
+.decoracao {
+  position: absolute;
+  z-index: 1;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0.78;
+  filter: saturate(0.78);
+}
+
+.decoracao-1 {
+  top: 3%;
+  left: 8%;
+  font-size: 33px;
+  transform: rotate(-18deg);
+}
+
+.decoracao-2 {
+  top: 8%;
+  right: 7%;
+  font-size: 27px;
+  transform: rotate(12deg);
+}
+
+.decoracao-3 {
+  top: 18%;
+  left: 7%;
+  font-size: 28px;
+  transform: rotate(-10deg);
+}
+
+.decoracao-4 {
+  top: 28%;
+  right: 8%;
+  font-size: 34px;
+  transform: rotate(25deg);
+}
+
+.decoracao-5 {
+  top: 39%;
+  left: 7%;
+  font-size: 30px;
+  transform: rotate(-12deg);
+}
+
+.decoracao-6 {
+  top: 50%;
+  right: 7%;
+  font-size: 27px;
+}
+
+.decoracao-7 {
+  top: 62%;
+  left: 8%;
+  font-size: 35px;
+  transform: rotate(-25deg);
+}
+
+.decoracao-8 {
+  top: 72%;
+  right: 8%;
+  font-size: 25px;
+}
+
+.decoracao-9 {
+  top: 83%;
+  left: 7%;
+  font-size: 29px;
+  transform: rotate(15deg);
+}
+
+.decoracao-10 {
+  top: 92%;
+  right: 8%;
+  font-size: 32px;
+  transform: rotate(-18deg);
+}
+
+/* LINHA DO CAMINHO */
+
+.linha-caminho {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.linha-sombra {
+  fill: none;
+  stroke: rgba(100, 120, 98, 0.12);
+  stroke-width: 27;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.linha-principal {
+  fill: none;
+  stroke: #c2cfb8;
+  stroke-width: 18;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ETIQUETAS DE INÍCIO E FIM */
+
+.etiqueta-caminho {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 13px;
+  border: 1px solid rgba(133, 153, 127, 0.25);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.86);
+  color: #536750;
+  font-size: 11px;
+  font-weight: 600;
+  box-shadow: 0 3px 12px rgba(61, 77, 57, 0.05);
+}
+
+.inicio-caminho {
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.fim-caminho {
+  top: 91%;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+/* PONTOS CLICÁVEIS */
+
+.ponto {
+  position: absolute;
+  z-index: 3;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  align-items: center;
+  gap: 7px;
+  width: 145px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #35483b;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transform: translateX(-50%);
+}
+
+.ponto:focus-visible {
+  outline: 2px solid #607f62;
+  outline-offset: 5px;
+  border-radius: 14px;
+}
+
+.numero-ponto {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 57px;
+  height: 57px;
+  border: 4px solid rgba(255, 255, 255, 0.94);
+  border-radius: 50%;
+  background: #799779;
+  color: #fff;
+  font-size: 21px;
+  font-weight: 600;
+  box-shadow:
+    0 4px 12px rgba(45, 67, 46, 0.15),
+    0 0 0 5px rgba(255, 255, 255, 0.3);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.ponto:active .numero-ponto {
+  transform: scale(0.94);
+  box-shadow: 0 2px 5px rgba(45, 67, 46, 0.16);
+}
+
+.texto-ponto {
+  display: inline-block;
+  max-width: 145px;
+  padding: 6px 10px;
+  border: 1px solid rgba(139, 155, 133, 0.19);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.92);
+  color: #3d5040;
+  font-size: 12px;
+  line-height: 1.3;
+  font-weight: 600;
+  text-align: center;
+  white-space: normal;
+  box-shadow: 0 3px 9px rgba(55, 70, 53, 0.06);
+}
+
+/* POSIÇÃO DOS OITO PONTOS */
+
+.ponto-1 {
+  top: 3.3%;
+  left: 50%;
+}
+
+.ponto-2 {
+  top: 11%;
+  left: 75%;
+}
+
+.ponto-3 {
+  top: 22.5%;
+  left: 25%;
+}
+
+.ponto-4 {
+  top: 34.5%;
+  left: 73%;
+}
+
+.ponto-5 {
+  top: 46.5%;
+  left: 28%;
+}
+
+.ponto-6 {
+  top: 58.5%;
+  left: 75%;
+}
+
+.ponto-7 {
+  top: 70.5%;
+  left: 25%;
+}
+
+.ponto-8 {
+  top: 82.5%;
+  left: 71%;
+}
+
+/* ESPAÇO DEPOIS DO MAPA */
+
+.espaco-final {
+  height: 85px;
+  width: 100%;
+}
+
+/* FUNDO DA JANELA */
+
+.fundo-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  padding-top: max(18px, env(safe-area-inset-top));
+  padding-bottom: max(18px, env(safe-area-inset-bottom));
+  overflow-y: auto;
+  background: rgba(35, 45, 36, 0.58);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* JANELA DA MEDITAÇÃO */
+
+.modal-meditacao {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 27px 21px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 24px;
+  background: #fffefa;
+  color: #35443a;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.18);
+  text-align: center;
+}
+
+.botao-fechar {
+  position: absolute;
+  top: 13px;
+  right: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  border: 0;
+  border-radius: 50%;
+  background: #f0f1eb;
+  color: #526350;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.modal-simbolo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 62px;
+  height: 62px;
+  margin: 0 auto 12px;
+  border-radius: 50%;
+  background: #eaf0e5;
+  font-size: 29px;
+}
+
+.modal-subtitulo {
+  color: #7a9277;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.modal-meditacao h2 {
+  margin: 9px 0 12px;
+  color: #35483b;
+  font-size: 23px;
+  line-height: 1.3;
+  font-weight: 600;
+}
+
+.modal-descricao {
+  margin: 0;
+  color: #657066;
+  font-size: 14px;
+  line-height: 1.65;
+  text-align: left;
+}
+
+/* OBJETIVO */
+
+.objetivo-meditacao {
+  margin-top: 19px;
+  padding: 14px;
+  border-radius: 14px;
+  background: #edf2e9;
+  text-align: left;
+}
+
+.objetivo-meditacao strong {
+  display: block;
+  margin-bottom: 6px;
+  color: #405640;
+  font-size: 13px;
+}
+
+.objetivo-meditacao p {
+  margin: 0;
+  color: #5e6e5d;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+/* LISTA DE ÁUDIOS */
+
+.lista-audios {
+  margin-top: 22px;
+  text-align: left;
+}
+
+.lista-audios h3 {
+  margin: 0 0 11px;
+  color: #35483b;
+  font-size: 15px;
+  font-weight: 600;
 }
 
 .audio-item {
-  padding: 14px 16px;
-  background: white;
-  border-radius: 10px;
-  color: #222;
-  font-size: 16px;
-  font-weight: 500;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
-  cursor: pointer;
-  transition: transform 0.15s ease;
-}
-
-.audio-item:active {
-  transform: scale(0.98);
-}
-
-.audio-item.selecionado {
-  font-weight: 700;
-}
-
-.audio-player {
-  margin-top: 24px;
-  padding: 16px;
-  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 9px;
+  padding: 11px 12px;
+  border: 1px solid #e5e9df;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  background: #fff;
 }
 
-.audio-player h2 {
-  margin-top: 0;
-  margin-bottom: 14px;
-  font-size: 18px;
-  color: #222;
+.audio-info {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+  color: #455347;
+  font-size: 13px;
+  line-height: 1.4;
 }
 
-.audio-player audio {
+.audio-simbolo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 30px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #eaf0e5;
+  color: #5d795b;
+  font-size: 17px;
+}
+
+.botao-ouvir {
+  flex: 0 0 auto;
+  padding: 8px 13px;
+  border: 0;
+  border-radius: 20px;
+  background: #728d70;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.sem-audios {
+  margin: 0;
+  padding: 13px;
+  border-radius: 12px;
+  background: #f5f4ef;
+  color: #74796e;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+/* REPRODUTOR */
+
+.reprodutor {
+  margin-top: 15px;
+  padding: 13px;
+  border-radius: 14px;
+  background: #f2f4ee;
+}
+
+.audio-atual {
+  margin: 0 0 10px;
+  color: #526350;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.reprodutor audio {
   display: block;
   width: 100%;
-  margin-bottom: 16px;
+  max-width: 100%;
+  height: 42px;
+}
+
+.botao-parar {
+  display: block;
+  margin: 11px auto 0;
+  padding: 8px 16px;
+  border: 1px solid #d7dfd2;
+  border-radius: 20px;
+  background: #fff;
+  color: #526350;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+/* BOTÃO FINAL */
+
+.botao-concluir {
+  width: 100%;
+  margin-top: 23px;
+  padding: 13px 18px;
+  border: 0;
+  border-radius: 13px;
+  background: #718b70;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* TELEMÓVEIS */
+
+@media (max-width: 420px) {
+  .pagina-meditacoes {
+    padding-right: 8px;
+    padding-left: 8px;
+  }
+
+  .introducao {
+    padding-right: 7px;
+    padding-left: 7px;
+  }
+
+  .introducao h1 {
+    font-size: 24px;
+  }
+
+  .introducao p {
+    font-size: 13px;
+  }
+
+  .mapa-meditacoes {
+    height: 1390px;
+    border-radius: 20px;
+  }
+
+  .linha-caminho {
+    height: 100%;
+  }
+
+  .ponto {
+    width: 125px;
+  }
+
+  .numero-ponto {
+    width: 51px;
+    height: 51px;
+    font-size: 19px;
+  }
+
+  .texto-ponto {
+    max-width: 125px;
+    padding: 6px 8px;
+    font-size: 11px;
+  }
+
+  .ponto-1 {
+    top: 3.3%;
+  }
+
+  .ponto-2 {
+    left: 76%;
+  }
+
+  .ponto-3 {
+    left: 24%;
+  }
+
+  .ponto-4 {
+    left: 75%;
+  }
+
+  .ponto-5 {
+    left: 26%;
+  }
+
+  .ponto-6 {
+    left: 76%;
+  }
+
+  .ponto-7 {
+    left: 24%;
+  }
+
+  .ponto-8 {
+    left: 73%;
+  }
+
+  .decoracao {
+    font-size: 25px;
+  }
+
+  .decoracao-1,
+  .decoracao-4,
+  .decoracao-7 {
+    font-size: 30px;
+  }
+
+  .fim-caminho {
+    font-size: 10px;
+  }
+
+  .modal-meditacao {
+    padding: 25px 16px 20px;
+    border-radius: 20px;
+  }
+
+  .modal-meditacao h2 {
+    font-size: 21px;
+  }
+}
+
+/* ECRÃS MUITO ESTREITOS */
+
+@media (max-width: 350px) {
+  .ponto {
+    width: 112px;
+  }
+
+  .texto-ponto {
+    max-width: 112px;
+    font-size: 10px;
+  }
+
+  .ponto-2,
+  .ponto-4,
+  .ponto-6,
+  .ponto-8 {
+    left: 76%;
+  }
+
+  .ponto-3,
+  .ponto-5,
+  .ponto-7 {
+    left: 24%;
+  }
+
+  .decoracao-1,
+  .decoracao-3,
+  .decoracao-5,
+  .decoracao-7,
+  .decoracao-9 {
+    left: 3%;
+  }
+
+  .decoracao-2,
+  .decoracao-4,
+  .decoracao-6,
+  .decoracao-8,
+  .decoracao-10 {
+    right: 3%;
+  }
+}
+
+/* RESPEITAR A PREFERÊNCIA POR MENOS ANIMAÇÕES */
+
+@media (prefers-reduced-motion: reduce) {
+  .numero-ponto {
+    transition: none;
+  }
+}
+
+/* =====================================================
+   MELHORAR A LEITURA — MEDITAÇÕES
+   ===================================================== */
+
+/* Introdução */
+.introducao .subtitulo {
+  font-size: 12px;
+  letter-spacing: 1.5px;
+}
+
+.introducao h1 {
+  font-size: clamp(26px, 6vw, 32px);
+  font-weight: 750;
+  line-height: 1.3;
+}
+
+.introducao p {
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.indicacao {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Nomes das oito meditações no caminho */
+.texto-ponto {
+  font-size: 15px !important;
+  line-height: 1.4;
+  font-weight: 750;
+  padding: 8px 9px;
+  overflow-wrap: break-word;
+}
+
+/* Números dos pontos */
+.numero-ponto {
+  font-size: 23px;
+  font-weight: 750;
+}
+
+/* Etiquetas de início e fim */
+.etiqueta-caminho {
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+/* Janela de cada meditação */
+.modal-meditacao h2 {
+  font-size: 27px;
+  line-height: 1.3;
+  font-weight: 750;
+}
+
+.modal-subtitulo {
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.modal-descricao {
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.objetivo-meditacao strong {
+  font-size: 16px;
+}
+
+.objetivo-meditacao p {
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* Lista de meditações disponíveis */
+.lista-audios h3 {
+  font-size: 19px;
+  line-height: 1.4;
+}
+
+.audio-info {
+  font-size: 15px;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.botao-ouvir,
+.botao-parar {
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.audio-atual,
+.sem-audios {
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.botao-concluir {
+  font-size: 16px;
+  font-weight: 700;
+  min-height: 48px;
+}
+
+/* Botão de fechar mais fácil de tocar */
+.botao-fechar {
+  width: 42px;
+  height: 42px;
+  font-size: 20px;
+}
+
+/* Telemóveis */
+@media (max-width: 420px) {
+  .introducao h1 {
+    font-size: 27px;
+  }
+
+  .introducao p {
+    font-size: 15px;
+  }
+
+  .indicacao {
+    font-size: 13px;
+  }
+
+  .texto-ponto {
+    font-size: 14px !important;
+    line-height: 1.35;
+    padding: 7px 6px;
+  }
+
+  .numero-ponto {
+    width: 53px;
+    height: 53px;
+    font-size: 22px;
+  }
+
+  .modal-meditacao h2 {
+    font-size: 24px;
+  }
+
+  .modal-descricao {
+    font-size: 15px;
+  }
+
+  .audio-info {
+    font-size: 14px;
+  }
+
+  .lista-audios h3 {
+    font-size: 18px;
+  }
+}
+
+/* Telemóveis muito estreitos */
+@media (max-width: 350px) {
+  .texto-ponto {
+    font-size: 13px !important;
+  }
+
+  .modal-meditacao h2 {
+    font-size: 22px;
+  }
 }

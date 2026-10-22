@@ -183,4 +183,18 @@ export const routes: Routes = [
     import('./calendario/calendario.page')
       .then(m => m.CalendarioPage)
 },
+
+{
+  path: 'calendario',
+  loadComponent: () =>
+    import('./calendario/calendario.page')
+      .then(m => m.CalendarioPage)
+},
+{
+  path: 'agenda-diaria',
+  loadComponent: () =>
+    import('./agenda-diaria/agenda-diaria.page')
+      .then(m => m.AgendaDiariaPage)
+},
+
 ];

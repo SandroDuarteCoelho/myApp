@@ -1,0 +1,343 @@
+<ion-header>
+  <ion-toolbar class="agenda-toolbar">
+    <ion-buttons slot="start">
+      <ion-button fill="clear" (click)="voltarCalendario()">
+        Voltar
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>Agenda diária</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="agenda-content">
+  <div class="agenda-container">
+
+    <!-- Data selecionada -->
+    <div class="data-dia-destaque">
+      <div class="data-dia-legenda">Dia selecionado</div>
+      <h1 class="data-dia-texto">{{ dataSelecionadaTexto }}</h1>
+    </div>
+
+    <!-- Refeições -->
+    <div class="refeicoes">
+
+      <div class="campo-refeicao">
+        <label for="almoco">Almoço</label>
+
+        <ion-textarea
+          id="almoco"
+          [(ngModel)]="agendaAtual.almoco"
+          (ionInput)="guardarAgenda()"
+          placeholder="O que está previsto para o almoço?"
+          [autoGrow]="true"
+          rows="2">
+        </ion-textarea>
+      </div>
+
+      <div class="campo-refeicao">
+        <label for="jantar">Jantar</label>
+
+        <ion-textarea
+          id="jantar"
+          [(ngModel)]="agendaAtual.jantar"
+          (ionInput)="guardarAgenda()"
+          placeholder="O que está previsto para o jantar?"
+          [autoGrow]="true"
+          rows="2">
+        </ion-textarea>
+      </div>
+
+    </div>
+
+    <p class="instrucao-horarios">
+      Carrega em Sandro ou Joana para adicionar um evento.
+      Os eventos novos repetem-se semanalmente. As alterações
+      aplicam-se à data selecionada e às semanas seguintes.
+    </p>
+
+    <!-- Tabela da agenda -->
+    <div class="tabela-scroll">
+
+      <table class="agenda-tabela">
+
+        <thead>
+          <tr>
+            <th class="coluna-hora">Hora</th>
+
+            <th class="coluna-pessoa sandro">
+              <button
+                type="button"
+                class="botao-pessoa"
+                (click)="abrirNovoEvento('sandro')">
+                Sandro
+                <span>+ Evento</span>
+              </button>
+            </th>
+
+            <th class="coluna-pessoa joana">
+              <button
+                type="button"
+                class="botao-pessoa"
+                (click)="abrirNovoEvento('joana')">
+                Joana
+                <span>+ Evento</span>
+              </button>
+            </th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <tr *ngFor="let linha of linhasAgenda">
+
+            <!-- Hora da linha -->
+            <td class="coluna-hora hora-valor">
+              {{ linha.hora }}
+            </td>
+
+            <!-- Eventos do Sandro -->
+            <ng-container
+              *ngIf="!obterEventoVisivel(linha.hora, 'sandro')?.continuacao">
+
+              <td
+                class="celula-evento"
+                [class.celula-com-evento]="!!obterEventoVisivel(linha.hora, 'sandro')"
+                [attr.rowspan]="rowspanEvento(linha.hora, 'sandro')"
+                [class.celula-clicavel]="!!obterEventoVisivel(linha.hora, 'sandro')"
+                (click)="obterEventoVisivel(linha.hora, 'sandro') && abrirEvento(linha.hora, 'sandro')">
+
+                <ng-container
+                  *ngIf="obterEventoVisivel(linha.hora, 'sandro') as eventoSandro">
+
+                  <div class="evento-bloco">
+                    <strong>{{ eventoSandro.texto }}</strong>
+
+                    <small>
+                      {{ eventoSandro.inicio }}–{{ eventoSandro.horaFim }}
+                    </small>
+                  </div>
+
+                </ng-container>
+
+              </td>
+
+            </ng-container>
+
+            <!-- Eventos da Joana -->
+            <ng-container
+              *ngIf="!obterEventoVisivel(linha.hora, 'joana')?.continuacao">
+
+              <td
+                class="celula-evento"
+                [class.celula-com-evento]="!!obterEventoVisivel(linha.hora, 'joana')"
+                [attr.rowspan]="rowspanEvento(linha.hora, 'joana')"
+                [class.celula-clicavel]="!!obterEventoVisivel(linha.hora, 'joana')"
+                (click)="obterEventoVisivel(linha.hora, 'joana') && abrirEvento(linha.hora, 'joana')">
+
+                <ng-container
+                  *ngIf="obterEventoVisivel(linha.hora, 'joana') as eventoJoana">
+
+                  <div class="evento-bloco">
+                    <strong>{{ eventoJoana.texto }}</strong>
+
+                    <small>
+                      {{ eventoJoana.inicio }}–{{ eventoJoana.horaFim }}
+                    </small>
+                  </div>
+
+                </ng-container>
+
+              </td>
+
+            </ng-container>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+      <div class="agenda-vazia" *ngIf="linhasAgenda.length === 0">
+        Ainda não existem eventos para este dia.
+        <br>
+        Carrega em Sandro ou Joana para adicionar o primeiro evento.
+      </div>
+
+    </div>
+
+    <!-- Modal de criação e edição de eventos -->
+    <div
+      class="fundo-editor-evento"
+      *ngIf="eventoModalAberto"
+      (click)="cancelarEdicaoEvento()">
+
+      <div
+        class="editor-evento"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="tituloEditorEvento"
+        (click)="$event.stopPropagation()">
+
+        <!-- Cabeçalho do modal -->
+        <div class="cabecalho-evento">
+
+          <div>
+            <h2 id="tituloEditorEvento">
+              {{ eventoOrigemTexto ? 'Editar evento' : 'Novo evento' }}
+            </h2>
+
+            <p>
+              Agenda de {{ eventoPessoa === 'sandro' ? 'Sandro' : 'Joana' }}
+            </p>
+          </div>
+
+          <button
+            type="button"
+            class="botao-fechar-editor"
+            aria-label="Cancelar edição"
+            (click)="cancelarEdicaoEvento()">
+            ✕
+          </button>
+
+        </div>
+
+        <form (ngSubmit)="guardarEvento()">
+
+          <!-- Nome do evento -->
+          <div class="campo-evento">
+
+            <label for="nomeEvento">Qual é o evento?</label>
+
+            <ion-input
+              id="nomeEvento"
+              name="nomeEvento"
+              [(ngModel)]="eventoTexto"
+              placeholder="Ex.: consulta, caminhada, reunião"
+              required
+              maxlength="160">
+            </ion-input>
+
+          </div>
+
+          <!-- Hora de início -->
+          <div class="campo-evento">
+
+            <label>Hora de início</label>
+
+            <div class="hora-selecionada">
+              {{ eventoHora }}
+            </div>
+
+            <div
+              class="lista-horas"
+              aria-label="Escolher hora de início">
+
+              <button
+                *ngFor="let hora of horas"
+                type="button"
+                class="opcao-hora"
+                [class.hora-escolhida]="eventoHora === hora"
+                [attr.aria-pressed]="eventoHora === hora"
+                (click)="selecionarHoraInicio(hora)">
+
+                {{ hora }}
+
+              </button>
+
+            </div>
+
+          </div>
+
+          <!-- Hora de fim -->
+          <div class="campo-evento">
+
+            <label>Hora de fim</label>
+
+            <div class="hora-selecionada">
+              {{ eventoHoraFim }}
+            </div>
+
+            <div
+              class="lista-horas"
+              aria-label="Escolher hora de fim">
+
+              <button
+                *ngFor="let hora of horas"
+                type="button"
+                class="opcao-hora"
+                [class.hora-escolhida]="eventoHoraFim === hora"
+                [attr.aria-pressed]="eventoHoraFim === hora"
+                (click)="selecionarHoraFim(hora)">
+
+                {{ hora }}
+
+              </button>
+
+            </div>
+
+          </div>
+
+          <!-- Mensagem de validação -->
+          <p class="mensagem-evento" *ngIf="mensagemEvento">
+            {{ mensagemEvento }}
+          </p>
+
+          <!-- Guardar e cancelar -->
+          <div class="acoes-evento">
+
+            <ion-button
+              type="button"
+              fill="outline"
+              class="botao-cancelar-evento"
+              (click)="cancelarEdicaoEvento()">
+
+              Cancelar
+
+            </ion-button>
+
+            <ion-button
+              type="submit"
+              class="botao-guardar-evento">
+
+              Guardar
+
+            </ion-button>
+
+          </div>
+
+          <!-- Apagar evento -->
+          <button
+            *ngIf="eventoOrigemTexto"
+            type="button"
+            class="botao-apagar-evento"
+            (click)="apagarEvento()">
+
+            Apagar este evento e terminar a repetição
+
+          </button>
+
+        </form>
+
+      </div>
+
+    </div>
+
+    <!-- Rodapé -->
+    <div class="rodape-agenda">
+
+      <p>As alterações ficam guardadas neste dispositivo.</p>
+
+      <ion-button
+        expand="block"
+        class="botao-concluido"
+        (click)="voltarCalendario()">
+
+        Concluído
+
+      </ion-button>
+
+    </div>
+
+  </div>
+</ion-content>

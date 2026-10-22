@@ -1,0 +1,611 @@
+
+:host {
+  display: block;
+  color: #263238;
+}
+
+/* Cabeçalho */
+
+.agenda-toolbar {
+  --background: #244b43;
+  --color: #ffffff;
+
+  ion-title {
+    color: #ffffff;
+    font-weight: 600;
+  }
+
+  ion-button {
+    --color: #ffffff;
+  }
+}
+
+/* Página */
+
+.agenda-content {
+  --background: #f3f5f4;
+  --padding-bottom: 40px;
+}
+
+.agenda-container {
+  width: 100%;
+  max-width: 950px;
+  margin: 0 auto;
+  padding: 16px 12px calc(100px + env(safe-area-inset-bottom));
+  box-sizing: border-box;
+}
+
+/* Data */
+
+.data-dia-destaque {
+  padding: 17px;
+  margin-bottom: 16px;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid #dce5e1;
+  box-shadow: 0 2px 7px rgb(0 0 0 / 4%);
+}
+
+.data-dia-legenda {
+  color: #64736e;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.data-dia-texto {
+  margin: 0;
+  color: #244b43;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+/* Refeições */
+
+.refeicoes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.campo-refeicao {
+  min-width: 0;
+  padding: 13px;
+  border: 1px solid #dce5e1;
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.campo-refeicao label,
+.campo-evento label {
+  display: block;
+  margin-bottom: 7px;
+  color: #344640;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.campo-refeicao ion-textarea,
+.campo-evento ion-input {
+  --background: #f8faf9;
+  --color: #263238;
+  --padding-start: 10px;
+  --padding-end: 10px;
+  --padding-top: 9px;
+  --padding-bottom: 9px;
+
+  border: 1px solid #dbe3df;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.instrucao-horarios {
+  margin: 14px 2px;
+  color: #586861;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* Tabela */
+
+.tabela-scroll {
+  width: 100%;
+  margin-bottom: 24px;
+  overflow-x: auto;
+  overflow-y: visible;
+  border: 1px solid #d9e2de;
+  border-radius: 12px;
+  background: #ffffff;
+  -webkit-overflow-scrolling: touch;
+}
+
+.agenda-tabela {
+  width: 100%;
+  min-width: 300px;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #ffffff;
+}
+
+.agenda-tabela th,
+.agenda-tabela td {
+  box-sizing: border-box;
+  padding: 3px;
+  border: 0;
+  border-bottom: 1px solid #edf0ee;
+}
+
+.agenda-tabela th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  height: 58px;
+  background: #e6eeea;
+  color: #344640;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.agenda-tabela th + th,
+.agenda-tabela td + td {
+  border-left: 1px solid #edf0ee;
+}
+
+.agenda-tabela .coluna-hora {
+  width: 66px;
+  text-align: center;
+}
+
+.agenda-tabela tbody tr {
+  height: 58px;
+}
+
+/* Horas */
+
+.agenda-tabela .hora-valor {
+  padding: 6px 2px;
+  background: #f7f9f8;
+  color: #56665f;
+  font-size: 13px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+/* Células vazias: fundo branco */
+
+.agenda-tabela td.celula-evento {
+  padding: 0;
+  min-width: 0;
+  background: #ffffff;
+  border-bottom: 1px solid #edf0ee;
+  vertical-align: middle;
+}
+
+/*
+ * Célula ocupada pelo evento.
+ * O fundo verde pertence à célula com rowspan,
+ * pelo que abrange toda a altura das linhas ocupadas.
+ */
+
+.agenda-tabela td.celula-evento.celula-com-evento {
+  padding: 0;
+  background: #dcece4;
+  border: 1px solid #7da993;
+  vertical-align: middle;
+}
+
+/* Cabeçalhos Sandro e Joana */
+
+.botao-pessoa {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+
+  width: 100%;
+  min-height: 48px;
+  padding: 5px 3px;
+
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: #244b43;
+
+  font: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.botao-pessoa span {
+  color: #586861;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.botao-pessoa:active {
+  background: #d5e4dc;
+}
+
+/* Conteúdo do evento */
+
+.agenda-tabela .evento-bloco {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 6px;
+
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 8px;
+
+  background: transparent;
+  color: #244b43;
+  border: 0;
+  border-radius: 0;
+
+  font: inherit;
+  text-align: left;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+}
+
+.agenda-tabela .evento-bloco strong {
+  display: block;
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.agenda-tabela .evento-bloco small {
+  display: block;
+  margin: 0;
+  color: #385f50;
+  font-size: 11px;
+  line-height: 1.3;
+  font-variant-numeric: tabular-nums;
+}
+
+.evento-bloco:active {
+  background: rgb(204 227 214 / 35%);
+}
+
+.botao-pessoa:focus-visible,
+.evento-bloco:focus-visible {
+  outline: 2px solid #28634f;
+  outline-offset: 2px;
+}
+
+/* Agenda sem eventos */
+
+.agenda-vazia {
+  padding: 24px 14px;
+  color: #74847c;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Fundo do editor */
+
+.fundo-editor-evento {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+
+  padding: 16px 12px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+
+  background: rgb(0 0 0 / 55%);
+}
+
+/* Modal */
+
+.editor-evento {
+  display: block;
+  box-sizing: border-box;
+
+  width: 100%;
+  max-width: 480px;
+  max-height: calc(100dvh - 32px);
+
+  margin: auto 0;
+  padding: 20px;
+
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+
+  border: 1px solid #dce5e1;
+  border-radius: 16px;
+  background: #ffffff;
+  color: #26332e;
+  box-shadow: 0 12px 35px rgb(0 0 0 / 20%);
+}
+
+.cabecalho-evento {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 17px;
+}
+
+.cabecalho-evento h2 {
+  margin: 0;
+  color: #244b43;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.cabecalho-evento p {
+  margin: 5px 0 0;
+  color: #63736c;
+  font-size: 14px;
+}
+
+.botao-fechar-editor {
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 50%;
+  background: #edf2ef;
+  color: #344640;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.campo-evento {
+  min-width: 0;
+  margin-bottom: 18px;
+}
+
+/* Hora selecionada */
+
+.hora-selecionada {
+  margin: 0 0 8px;
+  padding: 10px 12px;
+  border: 1px solid #c2ddce;
+  border-radius: 8px;
+  background: #e3f1e9;
+  color: #214d38;
+  font-size: 19px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Seletores de horas */
+
+.lista-horas {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+
+  max-height: 155px;
+  padding: 7px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+
+  border: 1px solid #dbe3df;
+  border-radius: 9px;
+  background: #f8faf9;
+}
+
+.opcao-hora {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 0;
+  min-height: 37px;
+  padding: 5px 2px;
+
+  border: 1px solid #dce5e1;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #344640;
+
+  font-size: 14px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+}
+
+.opcao-hora.hora-escolhida {
+  border-color: #28634f;
+  background: #28634f;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.opcao-hora:focus-visible {
+  outline: 2px solid #28634f;
+  outline-offset: 2px;
+}
+
+/* Mensagens e ações */
+
+.mensagem-evento {
+  margin: 8px 0 12px;
+  padding: 10px;
+  border-radius: 8px;
+  background: #fff1e9;
+  color: #8c341d;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.acoes-evento {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.botao-cancelar-evento {
+  --color: #38564a;
+  --border-color: #b8c9c0;
+  margin: 0;
+}
+
+.botao-guardar-evento {
+  --background: #28634f;
+  --color: #ffffff;
+  margin: 0;
+}
+
+.botao-apagar-evento {
+  display: block;
+  width: 100%;
+  margin: 15px auto 0;
+  padding: 10px;
+
+  border: 0;
+  border-radius: 7px;
+  background: #fff3f1;
+  color: #b33b32;
+
+  font-size: 13px;
+  cursor: pointer;
+}
+
+/* Rodapé */
+
+.rodape-agenda {
+  margin-top: 24px;
+  padding-bottom: 30px;
+}
+
+.rodape-agenda p {
+  margin: 0 0 12px;
+  color: #63736c;
+  font-size: 12px;
+  text-align: center;
+}
+
+.botao-concluido {
+  --background: #244b43;
+  --color: #ffffff;
+  margin: 0;
+}
+
+/* Telemóveis */
+
+@media (max-width: 480px) {
+  .agenda-container {
+    padding: 12px 8px calc(100px + env(safe-area-inset-bottom));
+  }
+
+  .refeicoes {
+    gap: 8px;
+  }
+
+  .campo-refeicao {
+    padding: 9px;
+  }
+
+  .data-dia-texto {
+    font-size: 18px;
+  }
+
+  .agenda-tabela .coluna-hora {
+    width: 52px;
+  }
+
+  .agenda-tabela th {
+    padding: 5px 2px;
+    font-size: 13px;
+  }
+
+  .agenda-tabela tbody tr {
+    height: 58px;
+  }
+
+  .botao-pessoa {
+    font-size: 14px;
+  }
+
+  .botao-pessoa span {
+    font-size: 10px;
+  }
+
+  .agenda-tabela .evento-bloco {
+    padding: 6px 4px;
+    gap: 4px;
+  }
+
+  .agenda-tabela .evento-bloco strong {
+    font-size: 12px;
+  }
+
+  .agenda-tabela .evento-bloco small {
+    font-size: 10px;
+  }
+
+  .fundo-editor-evento {
+    padding: 8px;
+  }
+
+  .editor-evento {
+    max-height: calc(100dvh - 16px);
+    padding: 15px;
+    border-radius: 13px;
+  }
+
+  .lista-horas {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    max-height: 135px;
+    gap: 5px;
+    padding: 6px;
+  }
+
+  .opcao-hora {
+    min-height: 36px;
+    font-size: 13px;
+  }
+}
+
+
+
+.agenda-tabela td.celula-com-evento {
+  cursor: pointer;
+}
+
+.agenda-tabela td.celula-com-evento .evento-bloco {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+
+.agenda-tabela td.celula-clicavel {
+  cursor: pointer;
+}
+
+.agenda-tabela td.celula-clicavel .evento-bloco {
+  min-height: 100%;
+}

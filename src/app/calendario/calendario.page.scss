@@ -776,3 +776,506 @@
 .modal-agenda .hora-valor {
   font-size: 13px;
 }
+
+
+/* =====================================================
+   AGENDA DIÁRIA — TABELA E EVENTOS
+   ===================================================== */
+
+.modal-agenda {
+  display: flex;
+  flex-direction: column;
+  max-height: 92vh;
+  overflow: hidden;
+  background: #ffffff !important;
+  color: #263746;
+}
+
+.cabecalho-modal-agenda,
+.cabecalho-evento {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.cabecalho-modal-agenda {
+  padding: 16px 18px 12px;
+  border-bottom: 1px solid #e1e8ef;
+}
+
+.cabecalho-modal-agenda h2,
+.cabecalho-evento h2 {
+  margin: 0;
+  color: #244c66;
+  font-size: 21px;
+  font-weight: 750;
+}
+
+.cabecalho-modal-agenda p,
+.cabecalho-evento p {
+  margin: 4px 0 0;
+  color: #728394;
+  font-size: 14px;
+}
+
+.botao-fechar-agenda {
+  flex: 0 0 42px;
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 50%;
+  background: #edf3f7;
+  color: #315c78;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.data-dia-destaque {
+  flex-shrink: 0;
+  padding: 12px 16px;
+  background: #eaf3f9 !important;
+  border-bottom: 1px solid #d8e7f1;
+}
+
+.data-dia-legenda {
+  color: #587b91;
+  font-size: 12px;
+}
+
+.data-dia-texto {
+  margin-top: 3px;
+  color: #244c66;
+  font-size: 17px;
+  line-height: 1.4;
+  font-weight: 700;
+}
+
+/* Refeições */
+.refeicoes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 12px;
+  flex-shrink: 0;
+}
+
+.campo-refeicao {
+  min-width: 0;
+  padding: 10px;
+  border: 1px solid #dfe7ee;
+  border-radius: 12px;
+  background: #f8fafc !important;
+}
+
+.campo-refeicao label {
+  display: block;
+  margin-bottom: 7px;
+  color: #315c78;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.campo-refeicao ion-textarea {
+  --background: #ffffff;
+  --color: #263746;
+  --placeholder-color: #98a5b1;
+  font-size: 14px;
+}
+
+/* Instrução */
+.instrucao-horarios {
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0 12px 10px;
+  color: #728394;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* =====================================================
+   TABELA COM CABEÇALHO FIXO
+   ===================================================== */
+
+.tabela-scroll {
+  position: relative;
+  flex: 0 1 auto;
+  min-height: 120px;
+  max-height: min(42vh, 380px);
+  overflow: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 4px;
+  scrollbar-gutter: stable;
+}
+
+.agenda-tabela {
+  width: 100%;
+  min-width: 0;
+  color: #263746;
+}
+
+.agenda-cabecalho,
+.agenda-linha {
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.agenda-cabecalho {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  min-height: 48px;
+  background: #dcebf5 !important;
+  box-shadow: 0 2px 4px rgba(36, 76, 102, 0.12);
+}
+
+.coluna-hora,
+.coluna-pessoa {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  padding: 8px 3px;
+  text-align: center;
+}
+
+.coluna-pessoa {
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.coluna-pessoa.sandro,
+.coluna-pessoa.joana {
+  background: #dcebf5 !important;
+  color: #244c66;
+}
+
+.coluna-hora {
+  color: #536879;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.agenda-linha {
+  min-height: 54px;
+  border-top: 1px solid #e5ebf0;
+  background: #ffffff;
+}
+
+.agenda-linha:nth-child(even) {
+  background: #f7f9fb;
+}
+
+.hora-valor {
+  align-self: stretch;
+  background: #edf1f5;
+  color: #536879;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.celula-atividade {
+  display: flex;
+  align-items: stretch;
+  min-width: 0;
+  padding: 4px;
+  border-left: 1px solid #e5ebf0;
+}
+
+/* Cada célula passa a ser um botão */
+.botao-evento {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 6px;
+  border: 1px solid #dfe7ee;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #263746;
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1.4;
+  text-align: left;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.botao-evento:active {
+  background: #eaf3f9;
+  border-color: #7fa8c1;
+}
+
+.botao-evento.tem-evento {
+  background: #eaf3f9;
+  border-color: #c3dce9;
+  color: #244c66;
+  font-weight: 600;
+}
+
+.evento-placeholder {
+  color: #7b94a5;
+  font-size: 12px;
+}
+
+/* =====================================================
+   RODAPÉ DA AGENDA
+   ===================================================== */
+
+.modal-rodape {
+  flex-shrink: 0;
+  padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+  background: #ffffff !important;
+  border-top: 1px solid #e1e8ef;
+}
+
+.modal-rodape > span {
+  display: block;
+  margin-bottom: 10px;
+  color: #728394;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.botao-concluido {
+  --background: #326b8a;
+  --background-activated: #244f68;
+  --color: #ffffff;
+  font-weight: 700;
+}
+
+/* =====================================================
+   MODAL PARA CRIAR OU EDITAR UM EVENTO
+   ===================================================== */
+
+.fundo-modal-evento {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+  padding: 18px;
+  padding-top: max(18px, env(safe-area-inset-top));
+  padding-bottom: max(18px, env(safe-area-inset-bottom));
+  background: rgba(25, 39, 49, 0.58);
+  overscroll-behavior: contain;
+}
+
+.modal-evento {
+  width: 100%;
+  max-width: 420px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 20px;
+  border-radius: 20px;
+  background: #ffffff;
+  color: #263746;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.2);
+}
+
+.cabecalho-evento {
+  margin-bottom: 22px;
+}
+
+.campo-evento {
+  margin-bottom: 18px;
+}
+
+.campo-evento label {
+  display: block;
+  margin-bottom: 8px;
+  color: #315c78;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.campo-evento ion-input {
+  --background: #f8fafc;
+  --color: #263746;
+  --placeholder-color: #98a5b1;
+  --padding-start: 12px;
+  --padding-end: 12px;
+  min-height: 48px;
+  border: 1px solid #dfe7ee;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+.campo-evento select {
+  display: block;
+  width: 100%;
+  min-height: 48px;
+  padding: 10px 12px;
+  border: 1px solid #dfe7ee;
+  border-radius: 10px;
+  background: #f8fafc;
+  color: #263746;
+  font: inherit;
+  font-size: 16px;
+}
+
+.mensagem-evento {
+  margin: 0 0 12px;
+  color: #a33a32;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.acoes-evento {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.acoes-evento ion-button {
+  min-height: 46px;
+  margin: 0;
+  font-weight: 700;
+}
+
+.botao-cancelar-evento {
+  --color: #315c78;
+  --border-color: #cbd9e3;
+}
+
+.botao-guardar-evento {
+  --background: #326b8a;
+  --background-activated: #244f68;
+  --color: #ffffff;
+}
+
+.botao-apagar-evento {
+  display: block;
+  width: 100%;
+  margin-top: 14px;
+  padding: 12px;
+  border: 0;
+  border-radius: 10px;
+  background: #fff0ef;
+  color: #a33a32;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* Ecrãs pequenos */
+@media (max-width: 380px) {
+  .refeicoes {
+    gap: 7px;
+    padding: 8px;
+  }
+
+  .campo-refeicao {
+    padding: 8px;
+  }
+
+  .agenda-cabecalho,
+  .agenda-linha {
+    grid-template-columns: 48px minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .coluna-pessoa {
+    font-size: 14px;
+  }
+
+  .celula-atividade {
+    padding: 3px;
+  }
+
+  .botao-evento {
+    padding: 5px 4px;
+    font-size: 12px;
+  }
+
+  .modal-evento {
+    padding: 16px;
+  }
+}
+
+
+
+/* Modal da agenda: afastar do cabeçalho principal */
+.modal-fundo {
+  padding-top: max(76px, calc(env(safe-area-inset-top, 0px) + 64px));
+  padding-bottom: max(20px, env(safe-area-inset-bottom, 0px));
+}
+
+/* A agenda ocupa o espaço disponível sem ficar por baixo do cabeçalho */
+.modal-agenda {
+  width: 100%;
+  max-height: calc(100dvh - 100px);
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Apenas a área da tabela rola */
+.tabela-scroll {
+  flex: 1 1 auto;
+  min-height: 120px;
+  max-height: none;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Cabeçalho fixo enquanto as horas rolam */
+.agenda-cabecalho {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: #dcebf5;
+  box-shadow: 0 2px 5px rgba(36, 76, 102, 0.16);
+}
+
+/* Melhor leitura dos eventos nas linhas de meia hora */
+.agenda-linha {
+  min-height: 48px;
+}
+
+.botao-evento {
+  min-height: 40px;
+  height: 100%;
+  overflow-wrap: anywhere;
+}
+
+/* Campos de início e fim no modal do evento */
+.campo-evento select {
+  width: 100%;
+  min-height: 48px;
+  padding: 10px 12px;
+  border: 1px solid #dfe7ee;
+  border-radius: 10px;
+  background: #f8fafc;
+  color: #263746;
+  font: inherit;
+  font-size: 16px;
+}
+
+@media (max-width: 380px) {
+  .modal-fundo {
+    padding-top: max(68px, calc(env(safe-area-inset-top, 0px) + 56px));
+  }
+
+  .modal-agenda {
+    max-height: calc(100dvh - 88px);
+  }
+
+  .agenda-cabecalho,
+  .agenda-linha {
+    grid-template-columns: 52px minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .botao-evento {
+    padding: 4px;
+    font-size: 11px;
+  }
+}

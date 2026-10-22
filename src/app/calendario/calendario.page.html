@@ -1,9 +1,11 @@
-
 <ion-header>
   <ion-toolbar class="calendario-toolbar">
     <ion-buttons slot="start">
-      <ion-button fill="clear" (click)="voltar()">Voltar</ion-button>
+      <ion-button fill="clear" (click)="voltar()">
+        Voltar
+      </ion-button>
     </ion-buttons>
+
     <ion-title>Calendário</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -11,7 +13,6 @@
 <ion-content class="calendario-content">
   <div class="calendario-container">
 
-    <!-- Título e navegação semanal -->
     <div class="cabecalho-calendario">
       <h1 class="titulo-mes">{{ tituloMes }}</h1>
 
@@ -25,8 +26,13 @@
         </ion-button>
 
         <div class="informacao-semana">
-          <span class="periodo-semana">{{ periodoSemana }}</span>
-          <span class="texto-semana">{{ textoSemana }}</span>
+          <span class="periodo-semana">
+            {{ periodoSemana }}
+          </span>
+
+          <span class="texto-semana">
+            {{ textoSemana }}
+          </span>
         </div>
 
         <ion-button
@@ -47,19 +53,20 @@
       </ion-button>
     </div>
 
-    <!-- Dias: segunda a sexta na primeira fila,
-         sábado e domingo na segunda -->
     <div class="dias-calendario">
       <button
+        *ngFor="let dia of diasSemana"
         type="button"
         class="dia-botao"
-        *ngFor="let dia of diasSemana"
         [class.dia-hoje]="dia.eHoje"
-        [class.dia-fim-de-semana]="dia.nome === 'Sáb' || dia.nome === 'Dom'"
+        [class.dia-fim-de-semana]="
+          dia.nome === 'Sáb' || dia.nome === 'Dom'
+        "
         (click)="abrirDia(dia)">
 
         <span class="dia-nome">{{ dia.nome }}</span>
         <span class="dia-numero">{{ dia.numero }}</span>
+
         <span class="dia-indicador">
           {{ dia.eHoje ? 'Hoje' : '\u00A0' }}
         </span>
@@ -68,134 +75,10 @@
 
     <div class="nota-calendario">
       <span class="ponto-legenda"></span>
-      <span>Seleciona um dia para consultar ou organizar a agenda.</span>
+      <span>
+        Seleciona um dia para consultar ou organizar a agenda.
+      </span>
     </div>
 
-  </div>
-
-  <!-- Modal da agenda diária -->
-  <div
-    class="modal-fundo"
-    *ngIf="diaSelecionado"
-    (click)="fecharDia()">
-
-    <section
-      class="modal-agenda"
-      role="dialog"
-      aria-modal="true"
-      aria-label="Agenda diária"
-      (click)="$event.stopPropagation()">
-
-      <!-- Cabeçalho do modal -->
-      <div class="modal-cabecalho">
-        <div>
-          <h2>Agenda diária</h2>
-          <p>Refeições e organização do dia</p>
-        </div>
-
-        <ion-button
-          fill="clear"
-          class="botao-fechar"
-          aria-label="Fechar agenda"
-          (click)="fecharDia()">
-          ✕
-        </ion-button>
-      </div>
-
-      <!-- Data por extenso, antes das refeições -->
-      <div class="data-dia-destaque">
-        <div class="data-dia-legenda">Dia selecionado</div>
-        <div class="data-dia-texto">{{ dataSelecionadaTexto }}</div>
-      </div>
-
-      <!-- Almoço e jantar -->
-      <div class="refeicoes">
-
-        <div class="campo-refeicao">
-          <label for="almoco">Almoço</label>
-
-          <ion-textarea
-            id="almoco"
-            [(ngModel)]="agendaAtual.almoco"
-            (ionInput)="guardarAgenda()"
-            placeholder="O que está previsto para o almoço?"
-            [autoGrow]="true"
-            rows="2">
-          </ion-textarea>
-        </div>
-
-        <div class="campo-refeicao">
-          <label for="jantar">Jantar</label>
-
-          <ion-textarea
-            id="jantar"
-            [(ngModel)]="agendaAtual.jantar"
-            (ionInput)="guardarAgenda()"
-            placeholder="O que está previsto para o jantar?"
-            [autoGrow]="true"
-            rows="2">
-          </ion-textarea>
-        </div>
-
-      </div>
-
-      <!-- Agenda horária -->
-      <h3 class="titulo-atividades">Atividades do dia</h3>
-
-      <p class="instrucao-horarios">
-        Regista as atividades de Sandro e Joana à hora correspondente.
-        As alterações são guardadas automaticamente.
-      </p>
-
-      <div class="tabela-scroll">
-        <div class="agenda-tabela">
-
-          <div class="agenda-cabecalho">
-            <div class="coluna-hora">Hora</div>
-            <div class="coluna-pessoa sandro">Sandro</div>
-            <div class="coluna-pessoa joana">Joana</div>
-          </div>
-
-          <div class="agenda-linha" *ngFor="let hora of horas">
-
-            <div class="coluna-hora hora-valor">
-              {{ hora }}
-            </div>
-
-            <div class="celula-atividade">
-              <ion-input
-                [value]="obterAtividade(hora, 'sandro')"
-                (ionInput)="atualizarAtividade(hora, 'sandro', $any($event).detail.value || '')"
-                placeholder="Atividade"
-                aria-label="{{ hora }} - Sandro">
-              </ion-input>
-            </div>
-
-            <div class="celula-atividade">
-              <ion-input
-                [value]="obterAtividade(hora, 'joana')"
-                (ionInput)="atualizarAtividade(hora, 'joana', $any($event).detail.value || '')"
-                placeholder="Atividade"
-                aria-label="{{ hora }} - Joana">
-              </ion-input>
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-      <!-- Rodapé -->
-      <div class="modal-rodape">
-        <span>As alterações ficam guardadas neste dispositivo.</span>
-
-        <ion-button
-          expand="block"
-          class="botao-concluido"
-          (click)="fecharDia()">
-          Concluído
-        </ion-button>
-      </div>
-
-    </section>
   </div>
 </ion-content>

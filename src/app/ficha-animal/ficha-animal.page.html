@@ -45,10 +45,21 @@
       </ion-button>
     </div>
 
-    <div class="animal-identificacao">
-      <h2>{{ nome || 'Animal' }}</h2>
-      <p>Animal de estimação</p>
-    </div>
+    
+<div class="animal-identificacao">
+  <h2>{{ nome || 'Animal' }}</h2>
+  <p>Animal de estimação</p>
+
+  <ion-button
+    fill="clear"
+    size="small"
+    class="botao-editar-nome"
+    (click)="editarNome()">
+    <ion-icon name="create-outline" slot="start"></ion-icon>
+    Editar nome
+  </ion-button>
+</div>
+
   </div>
 
   <input

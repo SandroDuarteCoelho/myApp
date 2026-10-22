@@ -40,6 +40,8 @@ interface LinhaAgenda {
   hora: string;
 }
 
+type PessoaAgenda = 'sandro' | 'joana';
+
 interface RegraRecorrencia {
   id: string;
   pessoa: PessoaAgenda;
@@ -55,8 +57,6 @@ interface ArmazenamentoAgenda {
   [chave: string]: any;
   __recorrenciasAgenda?: RegraRecorrencia[];
 }
-
-type PessoaAgenda = 'sandro' | 'joana';
 
 @Component({
   selector: 'app-agenda-diaria',
@@ -126,6 +126,9 @@ export class AgendaDiariaPage implements OnInit, OnDestroy {
           ? data
           : this.chaveData(new Date());
 
+      // Limpa os registos antigos antes de carregar a agenda.
+      this.limparHistoricoAntigo();
+
       this.atualizarDataTexto();
       this.agendaAtual = this.lerAgenda(this.dataSelecionada);
       this.cancelarEdicaoEvento();
@@ -155,42 +158,176 @@ export class AgendaDiariaPage implements OnInit, OnDestroy {
     this.routeSubscription?.unsubscribe();
   }
 
-  
-get linhasAgenda(): LinhaAgenda[] {
-  const horasComEventos = new Set<string>();
+  get linhasAgenda(): LinhaAgenda[] {
+    const horasComEventos = new Set<string>();
 
-  for (const chave of Object.keys(this.agendaAtual.atividades)) {
-    if (!this.pessoaDaChave(chave)) {
-      continue;
+    for (const chave of Object.keys(this.agendaAtual.atividades)) {
+      if (!this.pessoaDaChave(chave)) {
+        continue;
+      }
+
+      const inicio = chave.substring(0, 5);
+      const evento = this.obterEvento(chave);
+
+      if (!evento || !this.horaValida(inicio)) {
+        continue;
+      }
+
+      const inicioMinutos = this.minutos(inicio);
+      const fimMinutos = this.minutos(evento.horaFim);
+
+      for (
+        let minutos = inicioMinutos;
+        minutos <= fimMinutos;
+        minutos += 30
+      ) {
+        const hora =
+          `${String(Math.floor(minutos / 60)).padStart(2, '0')}:` +
+          `${String(minutos % 60).padStart(2, '0')}`;
+
+        horasComEventos.add(hora);
+      }
     }
 
-    const inicio = chave.substring(0, 5);
-    const evento = this.obterEvento(chave);
-
-    if (!evento || !this.horaValida(inicio)) {
-      continue;
-    }
-
-    const inicioMinutos = this.minutos(inicio);
-    const fimMinutos = this.minutos(evento.horaFim);
-
-    // Acrescenta todas as horas de 30 em 30 minutos,
-    // incluindo a hora de fim do evento.
-    for (
-      let minutos = inicioMinutos;
-      minutos <= fimMinutos;
-      minutos += 30
-    ) {
-      const hora = `${String(Math.floor(minutos / 60)).padStart(2, '0')}:${String(minutos % 60).padStart(2, '0')}`;
-      horasComEventos.add(hora);
-    }
+    return Array.from(horasComEventos)
+      .sort((a, b) => this.minutos(a) - this.minutos(b))
+      .map(hora => ({ hora }));
   }
 
-  return Array.from(horasComEventos)
-    .sort((a, b) => this.minutos(a) - this.minutos(b))
-    .map(hora => ({ hora }));
-}
+  // =====================================================
+  // LIMPEZA AUTOMÁTICA DO HISTÓRICO COM MAIS DE 6 MESES
+  // =====================================================
 
+  /**
+   * Calcula a data correspondente a seis meses antes de hoje.
+   * Se o mês de destino tiver menos dias, utiliza o último
+   * dia desse mês.
+   */
+  private dataLimiteHistorico(): string {
+    const hoje = new Date();
+
+    const anoAtual = hoje.getFullYear();
+    const mesAtual = hoje.getMonth();
+    const diaAtual = hoje.getDate();
+
+    const primeiroDiaMesDestino = new Date(
+      anoAtual,
+      mesAtual - 6,
+      1,
+      12
+    );
+
+    const anoDestino = primeiroDiaMesDestino.getFullYear();
+    const mesDestino = primeiroDiaMesDestino.getMonth();
+
+    const ultimoDiaMesDestino = new Date(
+      anoDestino,
+      mesDestino + 1,
+      0,
+      12
+    ).getDate();
+
+    const diaDestino = Math.min(diaAtual, ultimoDiaMesDestino);
+
+    const dataLimite = new Date(
+      anoDestino,
+      mesDestino,
+      diaDestino,
+      12
+    );
+
+    return this.chaveData(dataLimite);
+  }
+
+  /**
+   * Remove definitivamente os registos diários anteriores
+   * à data-limite.
+   *
+   * Mantém:
+   * - os registos dos últimos seis meses;
+   * - as regras de recorrência ainda ativas;
+   * - as regras terminadas cujo fim ainda está dentro
+   *   do período de histórico conservado;
+   * - outras propriedades que não sejam datas de agenda.
+   *
+   * As regras com datas inválidas são conservadas por
+   * precaução, para evitar eliminar informação desconhecida.
+   */
+  private limparHistoricoAntigo(
+    todas?: ArmazenamentoAgenda
+  ): ArmazenamentoAgenda {
+    const armazenamento = todas ?? this.lerTodasAgendas();
+    const limite = this.dataLimiteHistorico();
+
+    let alterado = false;
+
+    // Apagar agendas diárias anteriores ao limite.
+    for (const chave of Object.keys(armazenamento)) {
+      if (
+        /^\d{4}-\d{2}-\d{2}$/.test(chave) &&
+        this.dataValida(chave) &&
+        chave < limite
+      ) {
+        delete armazenamento[chave];
+        alterado = true;
+      }
+    }
+
+    // Limpar regras de recorrência que já não são necessárias.
+    const regras = armazenamento[this.chaveRecorrencias];
+
+    if (Array.isArray(regras)) {
+      const regrasConservadas = regras.filter(
+        (regra: RegraRecorrencia) => {
+          // Regras sem data de fim continuam ativas.
+          if (!regra || !regra.dataFim) {
+            return true;
+          }
+
+          // Não eliminar regras com datas desconhecidas ou inválidas.
+          if (
+            typeof regra.dataFim !== 'string' ||
+            !this.dataValida(regra.dataFim)
+          ) {
+            return true;
+          }
+
+          // Manter regras que ainda são necessárias para
+          // mostrar o histórico dos últimos seis meses.
+          return regra.dataFim >= limite;
+        }
+      );
+
+      if (regrasConservadas.length !== regras.length) {
+        armazenamento[this.chaveRecorrencias] =
+          regrasConservadas;
+
+        alterado = true;
+      }
+    }
+
+    // Se a limpeza foi chamada sem um armazenamento fornecido,
+    // guardar imediatamente as alterações.
+    if (!todas && alterado) {
+      try {
+        localStorage.setItem(
+          this.chaveArmazenamento,
+          JSON.stringify(armazenamento)
+        );
+      } catch (erro) {
+        console.error(
+          'Não foi possível limpar o histórico antigo da agenda.',
+          erro
+        );
+      }
+    }
+
+    return armazenamento;
+  }
+
+  // =====================================================
+  // DATAS
+  // =====================================================
 
   private dataValida(data: string): boolean {
     if (!/^\d{4}-\d{2}-\d{2}$/.test(data)) {
@@ -198,7 +335,11 @@ get linhasAgenda(): LinhaAgenda[] {
     }
 
     const partes = data.split('-').map(Number);
-    const convertida = new Date(partes[0], partes[1] - 1, partes[2]);
+    const convertida = new Date(
+      partes[0],
+      partes[1] - 1,
+      partes[2]
+    );
 
     return convertida.getFullYear() === partes[0] &&
       convertida.getMonth() === partes[1] - 1 &&
@@ -220,12 +361,36 @@ get linhasAgenda(): LinhaAgenda[] {
       texto.charAt(0).toLocaleUpperCase('pt-PT') + texto.slice(1);
   }
 
+  private chaveData(data: Date): string {
+    const ano = data.getFullYear();
+    const mes = String(data.getMonth() + 1).padStart(2, '0');
+    const dia = String(data.getDate()).padStart(2, '0');
+
+    return `${ano}-${mes}-${dia}`;
+  }
+
+  private diaSemana(data: string): number {
+    const [ano, mes, dia] = data.split('-').map(Number);
+    return new Date(ano, mes - 1, dia, 12).getDay();
+  }
+
+  private diaAnterior(data: string): string {
+    const [ano, mes, dia] = data.split('-').map(Number);
+    const anterior = new Date(ano, mes - 1, dia, 12);
+
+    anterior.setDate(anterior.getDate() - 1);
+
+    return this.chaveData(anterior);
+  }
+
   voltarCalendario(): void {
     this.router.navigate(['/calendario']);
   }
 
-  // Guarda refeições e eventos não recorrentes da data.
-  // As regras semanais ficam guardadas na mesma estrutura.
+  // =====================================================
+  // GUARDAR A AGENDA DIÁRIA
+  // =====================================================
+
   guardarAgenda(): void {
     if (!this.dataSelecionada) {
       return;
@@ -235,7 +400,11 @@ get linhasAgenda(): LinhaAgenda[] {
       const todas = this.lerTodasAgendas();
       const atividadesGuardadas: AgendaDia['atividades'] = {};
 
-      for (const [chave, valor] of Object.entries(this.agendaAtual.atividades)) {
+      for (
+        const [chave, valor] of Object.entries(
+          this.agendaAtual.atividades
+        )
+      ) {
         if (this.eEventoRecorrente(valor)) {
           continue;
         }
@@ -249,11 +418,21 @@ get linhasAgenda(): LinhaAgenda[] {
         atividades: atividadesGuardadas
       };
 
-      localStorage.setItem(this.chaveArmazenamento, JSON.stringify(todas));
+      // Impede que um registo antigo volte a ser guardado.
+      this.limparHistoricoAntigo(todas);
+
+      localStorage.setItem(
+        this.chaveArmazenamento,
+        JSON.stringify(todas)
+      );
     } catch (erro) {
       console.error('Não foi possível guardar a agenda.', erro);
     }
   }
+
+  // =====================================================
+  // EVENTOS VISÍVEIS
+  // =====================================================
 
   obterEventoVisivel(
     hora: string,
@@ -286,6 +465,23 @@ get linhasAgenda(): LinhaAgenda[] {
 
     return null;
   }
+
+  rowspanEvento(hora: string, pessoa: PessoaAgenda): number {
+    const evento = this.obterEventoVisivel(hora, pessoa);
+
+    if (!evento || evento.continuacao) {
+      return 1;
+    }
+
+    const inicio = this.minutos(evento.inicio);
+    const fim = this.minutos(evento.horaFim);
+
+    return Math.max(1, Math.ceil((fim - inicio) / 30));
+  }
+
+  // =====================================================
+  // CRIAR E EDITAR EVENTOS
+  // =====================================================
 
   abrirNovoEvento(pessoa: PessoaAgenda): void {
     this.eventoPessoa = pessoa;
@@ -341,7 +537,8 @@ get linhasAgenda(): LinhaAgenda[] {
     const texto = this.eventoTexto.trim();
 
     if (!texto) {
-      this.mensagemEvento = 'Escreve uma descrição para o evento.';
+      this.mensagemEvento =
+        'Escreve uma descrição para o evento.';
       return;
     }
 
@@ -353,7 +550,10 @@ get linhasAgenda(): LinhaAgenda[] {
       return;
     }
 
-    if (this.minutos(this.eventoHoraFim) <= this.minutos(this.eventoHora)) {
+    if (
+      this.minutos(this.eventoHoraFim) <=
+      this.minutos(this.eventoHora)
+    ) {
       this.mensagemEvento =
         'A hora de fim tem de ser posterior à hora de início.';
       return;
@@ -363,7 +563,6 @@ get linhasAgenda(): LinhaAgenda[] {
     const inicioNovo = this.minutos(this.eventoHora);
     const fimNovo = this.minutos(this.eventoHoraFim);
 
-    // Verifica conflitos com os eventos visíveis nesse dia.
     for (const chave of Object.keys(this.agendaAtual.atividades)) {
       if (
         chave === this.eventoOrigemChave ||
@@ -381,11 +580,15 @@ get linhasAgenda(): LinhaAgenda[] {
       const inicioExistente = this.minutos(chave.substring(0, 5));
       const fimExistente = this.minutos(eventoExistente.horaFim);
 
-      if (inicioNovo < fimExistente && fimNovo > inicioExistente) {
+      if (
+        inicioNovo < fimExistente &&
+        fimNovo > inicioExistente
+      ) {
         this.mensagemEvento =
           `Este horário sobrepõe-se a "${eventoExistente.texto}" ` +
           `(${chave.substring(0, 5)}–${eventoExistente.horaFim}). ` +
           'Escolhe outro horário.';
+
         return;
       }
     }
@@ -393,8 +596,8 @@ get linhasAgenda(): LinhaAgenda[] {
     const todas = this.lerTodasAgendas();
     const regras = this.lerRegras(todas);
 
-    // Se era recorrente, termina a versão anterior no dia anterior
-    // à data selecionada. O passado mantém a versão antiga.
+    // Se o evento editado já era recorrente, terminar a regra
+    // anterior no dia anterior à data selecionada.
     if (this.eventoOrigemRecorrenciaId) {
       const regraAnterior = regras.find(
         regra =>
@@ -403,16 +606,18 @@ get linhasAgenda(): LinhaAgenda[] {
       );
 
       if (regraAnterior) {
-        regraAnterior.dataFim = this.diaAnterior(this.dataSelecionada);
+        regraAnterior.dataFim =
+          this.diaAnterior(this.dataSelecionada);
       }
     }
 
-    // Retira a ocorrência visível da memória antes de criar a nova versão.
     if (this.eventoOrigemChave) {
-      delete this.agendaAtual.atividades[this.eventoOrigemChave];
+      delete this.agendaAtual.atividades[
+        this.eventoOrigemChave
+      ];
     }
 
-    // Os eventos novos e os eventos editados passam a ser semanais.
+    // Os novos eventos continuam a repetir-se semanalmente.
     const novaRegra: RegraRecorrencia = {
       id: this.novoIdRecorrencia(),
       pessoa: this.eventoPessoa,
@@ -432,7 +637,6 @@ get linhasAgenda(): LinhaAgenda[] {
       recorrenciaId: novaRegra.id
     };
 
-    // Persiste as regras e os dados da data sem duplicar a ocorrência.
     try {
       todas[this.dataSelecionada] = {
         almoco: this.agendaAtual.almoco,
@@ -442,15 +646,26 @@ get linhasAgenda(): LinhaAgenda[] {
         )
       };
 
-      localStorage.setItem(this.chaveArmazenamento, JSON.stringify(todas));
+      // Preserva as recorrências ativas e elimina o histórico antigo.
+      this.limparHistoricoAntigo(todas);
+
+      localStorage.setItem(
+        this.chaveArmazenamento,
+        JSON.stringify(todas)
+      );
     } catch (erro) {
       console.error('Não foi possível guardar o evento.', erro);
-      this.mensagemEvento = 'Não foi possível guardar. Tenta novamente.';
+      this.mensagemEvento =
+        'Não foi possível guardar. Tenta novamente.';
       return;
     }
 
     this.cancelarEdicaoEvento();
   }
+
+  // =====================================================
+  // APAGAR EVENTOS
+  // =====================================================
 
   apagarEvento(): void {
     if (!this.eventoOrigemChave) {
@@ -462,6 +677,7 @@ get linhasAgenda(): LinhaAgenda[] {
 
     if (this.eventoOrigemRecorrenciaId) {
       const regras = this.lerRegras(todas);
+
       const regra = regras.find(
         item =>
           item.id === this.eventoOrigemRecorrenciaId &&
@@ -469,14 +685,15 @@ get linhasAgenda(): LinhaAgenda[] {
       );
 
       if (regra) {
-        // Termina a repetição a partir da data selecionada.
         regra.dataFim = this.diaAnterior(this.dataSelecionada);
       }
 
       todas[this.chaveRecorrencias] = regras;
     }
 
-    delete this.agendaAtual.atividades[this.eventoOrigemChave];
+    delete this.agendaAtual.atividades[
+      this.eventoOrigemChave
+    ];
 
     try {
       todas[this.dataSelecionada] = {
@@ -487,7 +704,12 @@ get linhasAgenda(): LinhaAgenda[] {
         )
       };
 
-      localStorage.setItem(this.chaveArmazenamento, JSON.stringify(todas));
+      this.limparHistoricoAntigo(todas);
+
+      localStorage.setItem(
+        this.chaveArmazenamento,
+        JSON.stringify(todas)
+      );
     } catch (erro) {
       console.error('Não foi possível apagar o evento.', erro);
     }
@@ -505,6 +727,10 @@ get linhasAgenda(): LinhaAgenda[] {
     this.eventoHora = '07:00';
     this.eventoHoraFim = '07:30';
   }
+
+  // =====================================================
+  // FUNÇÕES AUXILIARES DOS EVENTOS
+  // =====================================================
 
   private encontrarEventoAtivo(
     hora: string,
@@ -541,7 +767,9 @@ get linhasAgenda(): LinhaAgenda[] {
       const inicio = this.horas[i];
       const fim = this.horas[i + 1];
 
-      const sobreposto = Object.keys(this.agendaAtual.atividades).some(chave => {
+      const sobreposto = Object.keys(
+        this.agendaAtual.atividades
+      ).some(chave => {
         if (this.pessoaDaChave(chave) !== pessoa) {
           return false;
         }
@@ -552,8 +780,10 @@ get linhasAgenda(): LinhaAgenda[] {
           return false;
         }
 
-        const inicioExistente = this.minutos(chave.substring(0, 5));
-        const fimExistente = this.minutos(evento.horaFim);
+        const inicioExistente =
+          this.minutos(chave.substring(0, 5));
+        const fimExistente =
+          this.minutos(evento.horaFim);
 
         return this.minutos(inicio) < fimExistente &&
           this.minutos(fim) > inicioExistente;
@@ -602,7 +832,6 @@ get linhasAgenda(): LinhaAgenda[] {
       return null;
     }
 
-    // Compatibilidade com eventos antigos guardados como texto.
     if (typeof valor === 'string') {
       return {
         texto: valor,
@@ -616,7 +845,8 @@ get linhasAgenda(): LinhaAgenda[] {
   private eEventoRecorrente(
     valor: string | EventoAgenda
   ): boolean {
-    return typeof valor !== 'string' && !!valor.recorrenciaId;
+    return typeof valor !== 'string' &&
+      !!valor.recorrenciaId;
   }
 
   private atividadesSemRecorrencias(
@@ -633,6 +863,10 @@ get linhasAgenda(): LinhaAgenda[] {
     return resultado;
   }
 
+  // =====================================================
+  // CARREGAR A AGENDA E APLICAR RECORRÊNCIAS
+  // =====================================================
+
   private lerAgenda(data: string): AgendaDia {
     const todas = this.lerTodasAgendas();
     const guardada = todas[data];
@@ -645,7 +879,6 @@ get linhasAgenda(): LinhaAgenda[] {
         }
       : this.novaAgenda();
 
-    // Calcula as ocorrências semanais para a data selecionada.
     const diaSemana = this.diaSemana(data);
 
     for (const regra of this.lerRegras(todas)) {
@@ -658,7 +891,6 @@ get linhasAgenda(): LinhaAgenda[] {
 
       const chave = `${regra.inicio}_${regra.pessoa}`;
 
-      // Evita substituir silenciosamente uma atividade já guardada.
       if (!agenda.atividades[chave]) {
         agenda.atividades[chave] = {
           texto: regra.texto,
@@ -687,21 +919,13 @@ get linhasAgenda(): LinhaAgenda[] {
       (!regra.dataFim || data <= regra.dataFim);
   }
 
-  private diaSemana(data: string): number {
-    const [ano, mes, dia] = data.split('-').map(Number);
-    return new Date(ano, mes - 1, dia, 12).getDay();
-  }
-
-  private diaAnterior(data: string): string {
-    const [ano, mes, dia] = data.split('-').map(Number);
-    const anterior = new Date(ano, mes - 1, dia, 12);
-    anterior.setDate(anterior.getDate() - 1);
-    return this.chaveData(anterior);
-  }
-
   private novoIdRecorrencia(): string {
     return `rec-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
   }
+
+  // =====================================================
+  // HORAS E ARMAZENAMENTO
+  // =====================================================
 
   private somarMeiaHora(hora: string): string {
     const [h, m] = hora.split(':').map(Number);
@@ -725,31 +949,14 @@ get linhasAgenda(): LinhaAgenda[] {
 
   private lerTodasAgendas(): ArmazenamentoAgenda {
     try {
-      const dados = localStorage.getItem(this.chaveArmazenamento);
+      const dados = localStorage.getItem(
+        this.chaveArmazenamento
+      );
+
       return dados ? JSON.parse(dados) : {};
-    } catch {
+    } catch (erro) {
+      console.error('Não foi possível ler a agenda guardada.', erro);
       return {};
     }
   }
-
-  private chaveData(data: Date): string {
-    const ano = data.getFullYear();
-    const mes = String(data.getMonth() + 1).padStart(2, '0');
-    const dia = String(data.getDate()).padStart(2, '0');
-
-    return `${ano}-${mes}-${dia}`;
-  }
-
-  rowspanEvento(hora: string, pessoa: PessoaAgenda): number {
-  const evento = this.obterEventoVisivel(hora, pessoa);
-
-  if (!evento || evento.continuacao) {
-    return 1;
-  }
-
-  const inicio = this.minutos(evento.inicio);
-  const fim = this.minutos(evento.horaFim);
-
-  return Math.max(1, Math.ceil((fim - inicio) / 30));
-}
 }

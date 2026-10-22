@@ -939,3 +939,26 @@ ion-toolbar {
   }
 }
 
+
+.animal-identificacao {
+  min-width: 0;
+  flex: 1;
+}
+
+.animal-identificacao h2 {
+  overflow-wrap: anywhere;
+}
+
+.botao-editar-nome {
+  margin: 4px 0 0 -8px;
+  font-size: 12px;
+  --padding-start: 8px;
+  --padding-end: 8px;
+  min-height: 32px;
+}
+
+
+ion-content {
+  --background: #f4f3ef;
+  --padding-bottom: 100px;
+}

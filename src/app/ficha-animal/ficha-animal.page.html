@@ -1,0 +1,567 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="voltar()">Voltar</ion-button>
+    </ion-buttons>
+    <ion-title>Ficha do Animal</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- IDENTIFICAÇÃO -->
+  <div class="animal-cabecalho">
+    <div class="foto-coluna">
+      <div
+        class="foto-container"
+        (click)="selecionarFoto()"
+        role="button"
+        tabindex="0"
+        (keydown.enter)="selecionarFoto()"
+        aria-label="Adicionar ou alterar fotografia">
+
+        <img *ngIf="foto; else semFoto" [src]="foto" alt="Fotografia do animal">
+
+        <ng-template #semFoto>
+          <div class="foto-placeholder">
+            <span class="foto-icone">📷</span>
+            <span>Adicionar foto</span>
+          </div>
+        </ng-template>
+
+        <div class="foto-editar">+</div>
+      </div>
+
+      <ion-button
+        *ngIf="foto"
+        fill="clear"
+        color="danger"
+        size="small"
+        class="botao-remover-foto"
+        (click)="limparFoto($event)">
+        <ion-icon name="trash-outline" slot="start"></ion-icon>
+        Remover foto
+      </ion-button>
+    </div>
+
+    <div class="animal-identificacao">
+      <h2>{{ nome || 'Animal' }}</h2>
+      <p>Animal de estimação</p>
+    </div>
+  </div>
+
+  <input
+    #inputFoto
+    type="file"
+    accept="image/*"
+    hidden
+    (change)="aoSelecionarFoto($event)">
+
+  <!-- REFLEXÃO SOBRE O AMOR E A DESPEDIDA -->
+  <section class="secao-reflexao">
+    <button
+      type="button"
+      class="cabecalho-acordeao"
+      [attr.aria-expanded]="reflexaoAberta"
+      (click)="reflexaoAberta = !reflexaoAberta">
+
+      <span class="cabecalho-icone reflexao-icone">
+        <ion-icon name="heart-outline"></ion-icon>
+      </span>
+
+      <span class="cabecalho-texto">
+        <strong>Uma pergunta delicada</strong>
+        <small>Amor, sofrimento e despedida</small>
+      </span>
+
+      <ion-icon
+        [name]="reflexaoAberta ? 'chevron-up-outline' : 'chevron-down-outline'">
+      </ion-icon>
+    </button>
+
+    <div *ngIf="reflexaoAberta" class="conteudo-acordeao reflexao-conteudo">
+
+      <h3>Estamos a cuidar do animal ou a tentar evitar a nossa dor?</h3>
+
+      <p>
+        Esta pergunta merece ser colocada com ternura, não como acusação.
+      </p>
+
+      <p>
+        O vínculo com um animal é real e a antecipação da perda pode ser
+        profundamente dolorosa. É natural querer mais tempo, procurar
+        alternativas e ter esperança.
+      </p>
+
+      <p>Mas podemos, sem querer, confundir duas necessidades:</p>
+
+      <ul>
+        <li>A nossa necessidade de continuar a ter o animal connosco.</li>
+        <li>
+          A necessidade do animal de continuar a viver com conforto e sem
+          sofrimento desproporcionado.
+        </li>
+      </ul>
+
+      <p>Por vezes, estas necessidades coincidem. Outras vezes, entram em conflito.</p>
+
+      <p>
+        O amor não exige que aceitemos a morte antecipadamente, nem que
+        desistamos de tratamentos úteis. Exige, antes, disponibilidade
+        para olhar honestamente para o que o animal está a viver, mesmo
+        quando essa realidade nos custa.
+      </p>
+
+      <p class="reflexao-destaque">
+        A decisão mais amorosa nem sempre é a que nos permite ter mais
+        tempo com ele; é aquela que melhor protege o seu bem-estar,
+        dentro das possibilidades reais.
+      </p>
+
+      <div class="reflexao-separador"></div>
+
+      <p>
+        Há um ponto particularmente importante: amar um animal não é o
+        mesmo que fazer tudo para o manter vivo, tal como aceitar a morte
+        não significa desistir de cuidar dele.
+      </p>
+
+      <p>
+        Podemos prolongar a vida de um animal com tratamentos que lhe dão
+        mais tempo de boa qualidade. E podemos, noutras circunstâncias,
+        prolongar um processo de sofrimento por dificuldade nossa em
+        aceitar a despedida.
+      </p>
+
+      <p>
+        O desafio consiste em distinguir estas situações sem julgar a
+        decisão apenas pelo nosso medo de o perder ou pela nossa vontade
+        de o manter connosco.
+      </p>
+
+      <div class="pergunta-reflexao">
+        <ion-icon name="leaf-outline"></ion-icon>
+        <div>
+          <strong>Para refletir com serenidade</strong>
+          <p>
+            Se eu conseguisse colocar momentaneamente de lado o meu medo
+            de o perder, o que observaria no seu conforto, no seu
+            comportamento e na sua qualidade de vida?
+          </p>
+        </div>
+      </div>
+
+      <p class="reflexao-nota">
+        Esta reflexão não serve para tomar decisões sozinho nem para
+        substituir o aconselhamento veterinário. Serve para ajudar a
+        formular perguntas honestas e a conversar sobre as opções
+        disponíveis.
+      </p>
+    </div>
+  </section>
+
+  <!-- AVALIAÇÃO -->
+  <section class="secao-avaliacao">
+    <button
+      type="button"
+      class="cabecalho-acordeao"
+      [attr.aria-expanded]="avaliacaoAberta"
+      (click)="avaliacaoAberta = !avaliacaoAberta">
+
+      <span class="cabecalho-icone">
+        <ion-icon name="clipboard-outline"></ion-icon>
+      </span>
+
+      <span class="cabecalho-texto">
+        <strong>Avaliação do bem-estar</strong>
+        <small>5 indicadores · 0 a 3 pontos cada</small>
+      </span>
+
+      <ion-icon
+        [name]="avaliacaoAberta ? 'chevron-up-outline' : 'chevron-down-outline'">
+      </ion-icon>
+    </button>
+
+    <div *ngIf="avaliacaoAberta" class="conteudo-acordeao">
+
+      <p class="descricao-avaliacao">
+        Avalia o estado atual do animal, tendo em conta a sua espécie,
+        idade, personalidade e condição habitual.
+      </p>
+
+      <div *ngIf="aCarregar" class="mensagem-estado">
+        A carregar os indicadores...
+      </div>
+
+      <div *ngIf="erroConfiguracao" class="aviso-erro">
+        {{ erroConfiguracao }}
+      </div>
+
+      <ng-container *ngIf="!aCarregar && indicadores.length > 0">
+
+        <div
+          *ngFor="let indicador of indicadores; let i = index"
+          class="indicador-card">
+
+          <div class="indicador-titulo">
+            <span class="indicador-numero">{{ i + 1 }}</span>
+            <h3>{{ indicador.titulo }}</h3>
+          </div>
+
+          <p class="indicador-pergunta">{{ indicador.pergunta }}</p>
+
+          <p *ngIf="indicador.orientacao" class="indicador-orientacao">
+            {{ indicador.orientacao }}
+          </p>
+
+          <div class="opcoes-pontuacao">
+            <button
+              *ngFor="let opcao of opcoesEscala"
+              type="button"
+              class="opcao-pontuacao"
+              [class.selecionada]="pontuacoes[indicador.id] === opcao.valor"
+              [attr.aria-pressed]="pontuacoes[indicador.id] === opcao.valor"
+              (click)="selecionarPontuacao(indicador.id, opcao.valor)">
+
+              <strong>{{ opcao.valor }}</strong>
+              <span>{{ opcao.nome }}</span>
+            </button>
+          </div>
+
+          <div
+            *ngIf="pontuacoes[indicador.id] !== undefined"
+            class="criterio-selecionado">
+            {{ obterCriterio(indicador, pontuacoes[indicador.id]) }}
+          </div>
+        </div>
+
+        <!-- RESULTADO -->
+        <div class="resultado-card">
+          <div class="resultado-cabecalho">
+            <div>
+              <span class="resultado-legenda">Resultado global</span>
+              <div class="resultado-pontos">
+                {{ pontuacaoTotal }} <span>/ {{ pontuacaoMaxima }}</span>
+              </div>
+            </div>
+
+            <div
+              *ngIf="avaliacaoCompleta"
+              class="resultado-estado"
+              [ngClass]="'estado-' + resultadoAtual.estado">
+              {{ resultadoAtual.titulo }}
+            </div>
+
+            <div *ngIf="!avaliacaoCompleta" class="resultado-pendente">
+              Por completar
+            </div>
+          </div>
+
+          <div class="barra-progresso">
+            <div
+              class="barra-progresso-valor"
+              [style.width]="percentagemResultado + '%'">
+            </div>
+          </div>
+
+          <p class="resultado-orientacao">
+            {{ avaliacaoCompleta
+              ? resultadoAtual.orientacao
+              : 'Seleciona uma pontuação em cada indicador para obter o resultado.' }}
+          </p>
+        </div>
+
+        <!-- OBSERVAÇÕES -->
+        <div class="observacoes-container">
+          <ion-label>Observações</ion-label>
+          <p class="observacoes-ajuda">
+            Regista alterações, comportamentos ou aspetos que queiras acompanhar.
+          </p>
+
+          <ion-textarea
+            [(ngModel)]="observacoes"
+            [autoGrow]="true"
+            rows="3"
+            placeholder="Escreve aqui as tuas observações..."
+            class="campo-observacoes">
+          </ion-textarea>
+        </div>
+
+        <!-- ALERTAS -->
+        <div class="sinais-alerta" *ngIf="sinaisAlerta.length > 0">
+          <h3>
+            <ion-icon name="alert-circle-outline"></ion-icon>
+            Sinais de alerta
+          </h3>
+
+          <p>Não esperes pelo resultado total se o animal apresentar sinais graves.</p>
+
+          <ul>
+            <li *ngFor="let sinal of sinaisAlerta">{{ sinal }}</li>
+          </ul>
+
+          <strong>{{ mensagemAlerta }}</strong>
+        </div>
+
+        <ion-button
+          expand="block"
+          class="botao-guardar"
+          [disabled]="!avaliacaoCompleta || aGuardar"
+          (click)="guardarAvaliacao()">
+
+          <ion-icon name="save-outline" slot="start"></ion-icon>
+          {{ aGuardar ? 'A guardar...' : 'Guardar avaliação' }}
+        </ion-button>
+
+        <ion-button
+          expand="block"
+          fill="outline"
+          class="botao-nova-avaliacao"
+          (click)="novaAvaliacao()">
+
+          <ion-icon name="add-circle-outline" slot="start"></ion-icon>
+          Nova avaliação — começar em branco
+        </ion-button>
+
+        <p class="nota-avaliacao">
+          Esta avaliação é orientativa e não substitui uma avaliação
+          veterinária. Um indicador muito baixo pode justificar atenção,
+          mesmo quando a pontuação total é elevada.
+        </p>
+      </ng-container>
+    </div>
+  </section>
+
+  <!-- HISTÓRICO DO ANIMAL ATUAL -->
+  <section class="secao-historico">
+    <button
+      type="button"
+      class="cabecalho-acordeao"
+      [attr.aria-expanded]="historicoAberto"
+      (click)="alternarHistorico()">
+
+      <span class="cabecalho-icone historico-icone">
+        <ion-icon name="time-outline"></ion-icon>
+      </span>
+
+      <span class="cabecalho-texto">
+        <strong>Ver todas as avaliações</strong>
+        <small>
+          {{ historico.length }}
+          {{ historico.length === 1 ? 'avaliação deste animal' : 'avaliações deste animal' }}
+        </small>
+      </span>
+
+      <ion-icon
+        [name]="historicoAberto ? 'chevron-up-outline' : 'chevron-down-outline'">
+      </ion-icon>
+    </button>
+
+    <div *ngIf="historicoAberto" class="conteudo-acordeao">
+
+      <div *ngIf="historico.length === 0" class="historico-vazio">
+        <ion-icon name="document-text-outline"></ion-icon>
+        <p>Ainda não existem avaliações guardadas para este animal.</p>
+      </div>
+
+
+
+
+<!-- EVOLUÇÃO AO LONGO DO TEMPO: só aparece com 2 ou mais avaliações -->
+<div *ngIf="historico.length >= 2" class="evolucao-container">
+
+  <h3>Evolução do bem-estar</h3>
+  <p class="evolucao-descricao">
+    Compara a pontuação global ao longo do tempo. Uma pontuação mais
+    elevada significa uma avaliação mais favorável dos indicadores.
+  </p>
+
+  <div class="evolucao-resumo">
+    <div class="evolucao-indicador">
+      <span>Primeira avaliação</span>
+      <strong>{{ historicoCronologico[0].total }}/15</strong>
+      <small>{{ formatarDataCurta(historicoCronologico[0].data) }}</small>
+    </div>
+
+    <div class="evolucao-indicador">
+      <span>Última avaliação</span>
+      <strong>{{ historicoCronologico[historicoCronologico.length - 1].total }}/15</strong>
+      <small>{{ formatarDataCurta(historicoCronologico[historicoCronologico.length - 1].data) }}</small>
+    </div>
+
+    <div class="evolucao-indicador">
+      <span>Variação</span>
+      <strong [ngClass]="classeVariacao">
+        {{ variacaoTotal > 0 ? '+' : '' }}{{ variacaoTotal }} pontos
+      </strong>
+      <small>{{ textoVariacao }}</small>
+    </div>
+  </div>
+
+  <!-- Gráfico da pontuação global -->
+  <div class="grafico-scroll">
+    <svg
+      class="grafico-evolucao"
+      viewBox="0 0 340 190"
+      role="img"
+      aria-label="Gráfico da evolução da pontuação global ao longo do tempo">
+
+      <g *ngFor="let nivel of [0, 5, 10, 15]">
+        <line
+          x1="35"
+          [attr.y1]="145 - (nivel / 15) * 120"
+          x2="325"
+          [attr.y2]="145 - (nivel / 15) * 120"
+          stroke="#deded5"
+          stroke-width="1"
+          stroke-dasharray="3 3">
+        </line>
+
+        <text
+          x="27"
+          [attr.y]="149 - (nivel / 15) * 120"
+          text-anchor="end"
+          font-size="10"
+          fill="#77796f">
+          {{ nivel }}
+        </text>
+      </g>
+
+      <polyline
+        [attr.points]="pontosGrafico"
+        fill="none"
+        stroke="#47765b"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round">
+      </polyline>
+
+      <g *ngFor="let ponto of dadosGrafico">
+        <circle
+          [attr.cx]="ponto.x"
+          [attr.cy]="ponto.y"
+          r="4"
+          fill="#47765b"
+          stroke="#ffffff"
+          stroke-width="1.5">
+        </circle>
+
+        <text
+          [attr.x]="ponto.x"
+          [attr.y]="ponto.y - 9"
+          text-anchor="middle"
+          font-size="10"
+          font-weight="600"
+          fill="#354f3a">
+          {{ ponto.total }}
+        </text>
+
+        <text
+          [attr.x]="ponto.x"
+          y="166"
+          text-anchor="middle"
+          font-size="9"
+          fill="#77796f">
+          {{ ponto.dataCurta }}
+        </text>
+      </g>
+    </svg>
+  </div>
+
+  <p class="grafico-legenda">
+    Pontuação global de 0 a 15 · Da avaliação mais antiga à mais recente.
+  </p>
+
+  <!-- Comparação individual dos indicadores -->
+  <h4>Evolução por indicador</h4>
+
+  <div
+    *ngFor="let indicador of indicadores"
+    class="evolucao-indicador-linha">
+
+    <span>{{ indicador.titulo }}</span>
+
+    <div class="comparacao-pontuacoes">
+      <strong>
+        {{ obterPontuacaoHistorica(historicoCronologico[0], indicador.id) }}/3
+      </strong>
+
+      <ion-icon
+        [name]="iconeTendencia(indicador.id)"
+        [ngClass]="classeTendencia(indicador.id)">
+      </ion-icon>
+
+      <strong>
+        {{ obterPontuacaoHistorica(
+          historicoCronologico[historicoCronologico.length - 1],
+          indicador.id
+        ) }}/3
+      </strong>
+    </div>
+  </div>
+
+  <p class="nota-evolucao">
+    A comparação mostra a diferença entre a primeira e a última avaliação.
+    Não substitui a observação diária nem a avaliação veterinária.
+    Uma pontuação global favorável não exclui problemas num indicador
+    específico.
+  </p>
+</div>
+
+
+
+
+      <div *ngFor="let registo of historico" class="historico-card">
+        <div class="historico-cabecalho">
+          <div>
+            <strong>{{ formatarData(registo.data) }}</strong>
+            <small>{{ formatarHora(registo.data) }}</small>
+          </div>
+
+          <div class="historico-pontuacao">
+            <strong>{{ registo.total }}/{{ pontuacaoMaxima }}</strong>
+            <span [ngClass]="'estado-' + registo.estado">
+              {{ registo.tituloEstado }}
+            </span>
+          </div>
+        </div>
+
+        <div class="historico-detalhes">
+          <div *ngFor="let indicador of indicadores" class="historico-indicador">
+            <span>{{ indicador.titulo }}</span>
+            <strong>{{ obterPontuacaoHistorica(registo, indicador.id) }}/3</strong>
+          </div>
+        </div>
+
+        <p *ngIf="registo.observacoes" class="historico-observacoes">
+          {{ registo.observacoes }}
+        </p>
+
+        <div class="historico-acoes">
+          <ion-button
+            fill="outline"
+            size="small"
+            (click)="carregarAvaliacao(registo)">
+            Consultar
+          </ion-button>
+
+          <ion-button
+            fill="clear"
+            size="small"
+            color="danger"
+            (click)="confirmarApagarAvaliacao(registo)">
+            <ion-icon name="trash-outline" slot="start"></ion-icon>
+            Apagar
+          </ion-button>
+        </div>
+      </div>
+
+      <p *ngIf="historico.length > 1" class="historico-nota">
+        As avaliações estão ordenadas da mais recente para a mais antiga.
+        Podes consultar as pontuações anteriores para acompanhar a evolução.
+      </p>
+    </div>
+  </section>
+
+</ion-content>

@@ -196,5 +196,22 @@ export const routes: Routes = [
     import('./agenda-diaria/agenda-diaria.page')
       .then(m => m.AgendaDiariaPage)
 },
-
+{
+  path: 'qualidade-vida',
+  loadComponent: () =>
+    import('./qualidade-vida/qualidade-vida.page')
+      .then(m => m.QualidadeVidaPage)
+},
+{
+  path: 'reflexao',
+  loadComponent: () =>
+    import('./reflexao/reflexao.page')
+      .then(m => m.ReflexaoPage)
+},
+{
+  path: 'ficha-animal/:id',
+  loadComponent: () =>
+    import('./ficha-animal/ficha-animal.page')
+      .then(m => m.FichaAnimalPage)
+}
 ];

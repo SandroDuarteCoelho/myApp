@@ -1,5 +1,6 @@
 
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 import {
   Component,
@@ -317,9 +318,12 @@ private escolherImagemCasa(casa: string): void {
      INICIALIZAÇÃO
      ===================================================== */
 
-  constructor(
-    private http: HttpClient
-  ) {}
+ 
+constructor(
+  private http: HttpClient,
+  private router: Router
+) {}
+
 
 
   ngOnInit(): void {
@@ -2412,6 +2416,10 @@ this.escolherImagemCasa(this.casaAtual);
 
   navigateCalendario(): void {
   window.location.href = '/calendario';
+}
+
+navigateQualidadeVida() {
+  this.router.navigate(['/qualidade-vida']);
 }
 
 }

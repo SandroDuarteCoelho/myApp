@@ -2,20 +2,27 @@
 
   <ion-toolbar>
 
-    <ion-buttons slot="start">
+    <ion-buttons slot="start" class="header-left-actions">
 
-      <ion-button
-        class="info-btn"
-        fill="clear"
-        (click)="openCasasInfo()"
-        aria-label="Informações das casas">
+  <!-- Informações das casas -->
+  <ion-button
+    class="info-btn"
+    fill="clear"
+    (click)="openCasasInfo()"
+    aria-label="Informações das casas">
+    ℹ️
+  </ion-button>
 
-        ℹ️
+  <!-- Qualidade de vida e aceitação da morte -->
+  <ion-button
+    fill="clear"
+    class="reflexao-header-btn"
+    (click)="navigateQualidadeVida()"
+    aria-label="Qualidade de vida e aceitação da morte">
+    <span class="reflexao-header-icon">🌿</span>
+  </ion-button>
 
-      </ion-button>
-
-    </ion-buttons>
-
+</ion-buttons>
 
     <ion-title>
 

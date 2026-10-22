@@ -1,0 +1,104 @@
+ion-content {
+  --background: #f4f3ef;
+  color: #292929;
+}
+
+.reflexoes-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.reflexoes-grid ion-card {
+  margin: 0;
+  min-height: 145px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
+  border: 1px solid #e5e2da;
+}
+
+.reflexoes-grid ion-card-content {
+  width: 100%;
+  padding: 18px 8px;
+}
+
+.cartao-icon {
+  font-size: 30px;
+  margin-bottom: 12px;
+}
+
+.reflexoes-grid h2 {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.4;
+  font-weight: 600;
+  color: #333333;
+}
+
+.animais-section {
+  margin-top: 28px;
+}
+
+.animais-titulo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.animais-titulo h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #292929;
+}
+
+.botao-adicionar {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  font-size: 28px;
+  --background: #47765b;
+  --background-activated: #365b46;
+  --color: #ffffff;
+  --box-shadow: none;
+}
+
+.animais-lista ion-card {
+  margin: 8px 0;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.05);
+}
+
+.animal-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #333333;
+}
+
+.animal-item strong {
+  flex: 1;
+  font-size: 15px;
+}
+
+.animal-item ion-button {
+  margin: 0;
+}
+
+@media (max-width: 360px) {
+  .reflexoes-grid ion-card {
+    min-height: 125px;
+  }
+
+  .reflexoes-grid h2 {
+    font-size: 13px;
+  }
+}

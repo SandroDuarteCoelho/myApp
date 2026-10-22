@@ -1,0 +1,150 @@
+
+{
+  "versao": 1,
+  "titulo": "Avaliação da qualidade de vida do animal",
+  "descricao": "Avaliação orientativa do bem-estar físico e emocional do animal, considerando a sua espécie, idade, personalidade e condição clínica.",
+  "escala": {
+    "minimo": 0,
+    "maximo": 3,
+    "orientacao": "Uma pontuação mais elevada representa uma situação mais favorável.",
+    "opcoes": [
+      {
+        "valor": 0,
+        "nome": "Muito comprometido",
+        "descricao": "Necessidade gravemente comprometida ou sofrimento importante."
+      },
+      {
+        "valor": 1,
+        "nome": "Comprometido",
+        "descricao": "Dificuldades frequentes ou necessidade de ajuda significativa."
+      },
+      {
+        "valor": 2,
+        "nome": "Razoável",
+        "descricao": "Necessidades geralmente satisfeitas, com algumas limitações controladas."
+      },
+      {
+        "valor": 3,
+        "nome": "Favorável",
+        "descricao": "Necessidades satisfeitas e bem-estar geralmente preservado."
+      }
+    ]
+  },
+  "indicadores": [
+    {
+      "id": "necessidades_basicas",
+      "titulo": "Necessidades básicas",
+      "pergunta": "Come e bebe adequadamente? Consegue dormir, respirar, eliminar e manter uma higiene confortável?",
+      "orientacao": "Considerar alterações face ao comportamento habitual, dificuldades de alimentação, hidratação, sono, respiração, eliminação ou higiene.",
+      "criterios": {
+        "0": "Não consegue satisfazer necessidades essenciais ou apresenta alterações graves.",
+        "1": "Apresenta dificuldades frequentes ou necessita de ajuda significativa.",
+        "2": "Satisfaz a maioria das necessidades, com algumas limitações controladas.",
+        "3": "Satisfaz as necessidades básicas de forma confortável e habitual."
+      }
+    },
+    {
+      "id": "mobilidade_autonomia",
+      "titulo": "Mobilidade e autonomia",
+      "pergunta": "Consegue levantar-se, deslocar-se e chegar à comida, à água e ao local de repouso sem esforço excessivo ou dor significativa?",
+      "orientacao": "Avaliar a mobilidade adequada à espécie e à idade, incluindo o acesso aos recursos essenciais.",
+      "criterios": {
+        "0": "Não consegue deslocar-se ou alcançar recursos essenciais sem ajuda, ou apresenta dor intensa.",
+        "1": "Tem grandes dificuldades de mobilidade ou depende frequentemente de ajuda.",
+        "2": "Move-se com algumas limitações, mantendo acesso adequado aos recursos.",
+        "3": "Move-se e acede aos recursos com conforto, de acordo com a sua condição habitual."
+      }
+    },
+    {
+      "id": "relacao_seguranca",
+      "titulo": "Relação e segurança",
+      "pergunta": "Procura contacto quando deseja? Consegue afastar-se quando precisa? Mostra sinais de tranquilidade no ambiente habitual?",
+      "orientacao": "Considerar o temperamento individual, os comportamentos sociais habituais e a possibilidade de procurar segurança ou distância.",
+      "criterios": {
+        "0": "Apresenta medo, angústia ou insegurança intensos e persistentes.",
+        "1": "Mostra frequentemente sinais de medo, tensão ou dificuldade em encontrar segurança.",
+        "2": "Geralmente sente-se seguro, embora apresente algumas dificuldades.",
+        "3": "Demonstra tranquilidade e consegue escolher entre contacto e afastamento."
+      }
+    },
+    {
+      "id": "interesse_quotidiano",
+      "titulo": "Interesse pela vida quotidiana",
+      "pergunta": "Demonstra interesse por atividades, cheiros, brinquedos, passeios, comida ou pessoas de que habitualmente gosta?",
+      "orientacao": "Comparar com o comportamento habitual do animal, respeitando a espécie, a personalidade, a idade e as limitações conhecidas.",
+      "criterios": {
+        "0": "Perdeu quase todo o interesse habitual e apresenta uma alteração muito marcada.",
+        "1": "Demonstra pouco interesse ou deixou de procurar várias experiências habitualmente apreciadas.",
+        "2": "Mantém algum interesse, embora apresente uma redução percetível.",
+        "3": "Mantém interesse pelas experiências de que habitualmente gosta."
+      }
+    },
+    {
+      "id": "sofrimento_conforto",
+      "titulo": "Sofrimento e conforto",
+      "pergunta": "Está confortável, sem sofrimento persistente ou com os sintomas adequadamente controlados?",
+      "orientacao": "Observar possíveis sinais de dor, falta de ar, náuseas, ansiedade, confusão ou medo. A ausência de sinais visíveis não exclui sofrimento.",
+      "criterios": {
+        "0": "Apresenta sofrimento intenso ou sintomas importantes não controlados.",
+        "1": "Apresenta sofrimento frequente ou sintomas insuficientemente controlados.",
+        "2": "O desconforto é ocasional ou parece estar geralmente controlado.",
+        "3": "Não são observados sinais relevantes de sofrimento e o conforto parece preservado."
+      }
+    }
+  ],
+  "resultado": {
+    "pontuacaoMinima": 0,
+    "pontuacaoMaxima": 15,
+    "intervalos": [
+      {
+        "minimo": 13,
+        "maximo": 15,
+        "estado": "favoravel",
+        "titulo": "Bem-estar global favorável",
+        "orientacao": "Manter os cuidados e continuar a acompanhar o animal."
+      },
+      {
+        "minimo": 9,
+        "maximo": 12,
+        "estado": "atencao",
+        "titulo": "Atenção",
+        "orientacao": "Identificar os indicadores mais baixos e rever os cuidados."
+      },
+      {
+        "minimo": 5,
+        "maximo": 8,
+        "estado": "preocupante",
+        "titulo": "Bem-estar preocupante",
+        "orientacao": "Contactar o veterinário para avaliar as dificuldades identificadas."
+      },
+      {
+        "minimo": 0,
+        "maximo": 4,
+        "estado": "muito_preocupante",
+        "titulo": "Situação muito preocupante",
+        "orientacao": "Procurar avaliação veterinária com urgência."
+      }
+    ],
+    "nota": "Os intervalos são orientativos e não constituem uma escala clínica validada. A pontuação total não substitui a avaliação veterinária. Um indicador muito baixo pode justificar atenção mesmo quando o total é elevado."
+  },
+  "sinaisAlerta": {
+    "titulo": "Sinais que exigem atenção imediata",
+    "mensagem": "Não esperes pelo resultado total se o animal apresentar sinais graves.",
+    "itens": [
+      "Dificuldade respiratória",
+      "Dor intensa ou sofrimento acentuado",
+      "Colapso ou perda de consciência",
+      "Deterioração súbita do estado geral",
+      "Incapacidade de urinar ou esforço repetido sem conseguir",
+      "Incapacidade súbita de se levantar ou de se deslocar"
+    ],
+    "acao": "Contactar imediatamente um serviço veterinário quando existir um destes sinais."
+  },
+  "registo": {
+    "guardarData": true,
+    "guardarPontuacoesPorIndicador": true,
+    "guardarPontuacaoTotal": true,
+    "guardarObservacoes": true,
+    "compararAvaliacoesAnteriores": true
+  }
+}

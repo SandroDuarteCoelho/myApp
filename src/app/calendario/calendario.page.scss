@@ -1279,3 +1279,584 @@
     font-size: 11px;
   }
 }
+
+/* Lista de compras — estilos isolados */
+.lista-compras {
+  margin: 20px 0;
+  padding: 16px;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  color: #333;
+}
+
+.lista-compras button {
+  cursor: pointer;
+}
+
+.lista-compras input,
+.lista-compras select {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.lista-compras .compras-categoria {
+  margin-top: 8px;
+  padding: 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.lista-compras .compra-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+/* =====================================================
+   LISTA DE COMPRAS
+   Estilos isolados: não alterar o calendário existente
+   ===================================================== */
+
+.lista-compras {
+  margin-top: 22px;
+  padding: 14px;
+  background: #fff;
+  color: #333;
+  border: 1px solid #e1e5e9;
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+
+.lista-compras,
+.lista-compras *,
+.compras-modal,
+.compras-modal * {
+  box-sizing: border-box;
+}
+
+.lista-compras .compras-cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.lista-compras .compras-cabecalho h2 {
+  margin: 0;
+  color: #293746;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.lista-compras .compras-cabecalho p {
+  margin: 5px 0 0;
+  color: #687582;
+  font-size: 0.82rem;
+}
+
+.lista-compras .compras-botoes-cabecalho {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.lista-compras .compras-botao-topo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  min-height: 36px;
+  padding: 7px 10px;
+  border: 1px solid #d5dce3;
+  border-radius: 8px;
+  background: #f7f9fb;
+  color: #334155;
+  font: inherit;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.lista-compras .compras-botao-topo:active {
+  background: #e9eef4;
+}
+
+.lista-compras .compras-botao-limpar {
+  color: #a93232;
+  border-color: #ecd0d0;
+  background: #fffafa;
+}
+
+/* Acordeões */
+
+.lista-compras .compras-categorias {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.lista-compras .compras-categoria {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid #dfe4e9;
+  border-radius: 9px;
+  background: #fff;
+}
+
+.lista-compras .compras-categoria > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: 44px;
+  padding: 10px 12px;
+  color: #344256;
+  background: #f7f9fb;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+}
+
+.lista-compras .compras-categoria > summary::-webkit-details-marker {
+  display: none;
+}
+
+.lista-compras .compras-categoria > summary::before {
+  content: '›';
+  display: inline-block;
+  margin-right: 2px;
+  color: #64748b;
+  font-size: 1.25rem;
+  transition: transform 0.15s ease;
+}
+
+.lista-compras .compras-categoria[open] > summary::before {
+  transform: rotate(90deg);
+}
+
+.lista-compras .compras-categoria > summary > span:first-of-type {
+  flex: 1;
+}
+
+.lista-compras .compras-contagem {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 23px;
+  height: 23px;
+  padding: 0 6px;
+  border-radius: 12px;
+  background: #e8edf3;
+  color: #465568;
+  font-size: 0.76rem;
+}
+
+.lista-compras .compras-conteudo-categoria {
+  padding: 10px;
+  background: #fff;
+}
+
+/* Botão para adicionar */
+
+.lista-compras .compras-adicionar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  min-height: 37px;
+  margin-bottom: 8px;
+  padding: 8px 10px;
+  border: 1px dashed #b9c8d7;
+  border-radius: 7px;
+  background: #f8fafc;
+  color: #355b80;
+  font: inherit;
+  font-size: 0.86rem;
+  cursor: pointer;
+}
+
+.lista-compras .compras-adicionar span {
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+/* Produto */
+
+.lista-compras .compra-produto {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 10px 2px;
+  border-bottom: 1px solid #edf0f2;
+}
+
+.lista-compras .compra-produto:last-of-type {
+  border-bottom: 0;
+}
+
+.lista-compras .compra-checkbox {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: #347c59;
+  cursor: pointer;
+}
+
+.lista-compras .compra-detalhes {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.lista-compras .compra-nome {
+  color: #293746;
+  font-size: 0.91rem;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.lista-compras .compra-selecionada {
+  color: #667085;
+  text-decoration: line-through;
+}
+
+.lista-compras .compra-loja {
+  color: #687582;
+  font-size: 0.79rem;
+  overflow-wrap: anywhere;
+}
+
+.lista-compras .compra-preco {
+  color: #344256;
+  font-size: 0.83rem;
+  font-weight: 600;
+}
+
+.lista-compras .compra-acoes {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 3px;
+}
+
+.lista-compras .compra-botao-acao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 1px solid #e0e5ea;
+  border-radius: 7px;
+  background: #fff;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.lista-compras .compra-botao-acao:active {
+  background: #edf2f7;
+}
+
+.lista-compras .compras-vazio {
+  margin: 10px 0 3px;
+  color: #77818c;
+  font-size: 0.82rem;
+  text-align: center;
+}
+
+/* =====================================================
+   MODAIS DA LISTA DE COMPRAS
+   ===================================================== */
+
+.compras-modal-fundo {
+  position: fixed;
+  z-index: 10000;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  overflow-y: auto;
+  background: rgba(20, 30, 42, 0.56);
+}
+
+.compras-modal {
+  width: 100%;
+  max-width: 430px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 18px;
+  border-radius: 14px;
+  background: #fff;
+  color: #293746;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.22);
+}
+
+.compras-modal .compras-modal-cabecalho {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.compras-modal .compras-modal-cabecalho h2,
+.compras-modal-confirmacao h2 {
+  margin: 0;
+  color: #293746;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.compras-modal .compras-modal-cabecalho p {
+  margin: 5px 0 0;
+  color: #687582;
+  font-size: 0.82rem;
+}
+
+.compras-modal .compras-fechar-modal {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 0;
+  border-radius: 7px;
+  background: #f0f2f5;
+  color: #344256;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.compras-modal .compras-modal-conteudo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.compras-modal .compras-modal-conteudo > label {
+  margin-top: 5px;
+  color: #344256;
+  font-size: 0.87rem;
+  font-weight: 600;
+}
+
+.compras-modal .compras-modal-conteudo > input,
+.compras-modal .compras-modal-conteudo > select {
+  display: block;
+  width: 100%;
+  min-height: 42px;
+  padding: 9px 10px;
+  border: 1px solid #cfd7df;
+  border-radius: 7px;
+  background: #fff;
+  color: #293746;
+  font: inherit;
+  font-size: 0.92rem;
+}
+
+.compras-modal .compras-modal-conteudo > input:focus,
+.compras-modal .compras-modal-conteudo > select:focus {
+  border-color: #6b91b5;
+  outline: 2px solid rgba(107, 145, 181, 0.18);
+}
+
+.compras-modal .compras-mensagem {
+  margin: 5px 0 0;
+  color: #b42318;
+  font-size: 0.84rem;
+}
+
+.compras-modal .compras-modal-rodape {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.compras-modal .compras-botao-principal,
+.compras-modal .compras-botao-secundario,
+.compras-modal .compras-botao-apagar-confirmar {
+  width: 100%;
+  min-height: 42px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.compras-modal .compras-botao-principal {
+  border: 1px solid #2f6e50;
+  background: #347c59;
+  color: #fff;
+}
+
+.compras-modal .compras-botao-principal:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.compras-modal .compras-botao-secundario {
+  border: 1px solid #d3dbe3;
+  background: #fff;
+  color: #344256;
+}
+
+.compras-modal .compras-botao-apagar-confirmar {
+  border: 1px solid #a93232;
+  background: #b93838;
+  color: #fff;
+}
+
+.compras-modal-confirmacao > p {
+  margin: 12px 0 0;
+  color: #526071;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* Lista de produtos no modal de impressão */
+
+.compras-modal .compras-impressao-categoria {
+  margin-bottom: 14px;
+}
+
+.compras-modal .compras-impressao-categoria h3 {
+  margin: 0 0 6px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #dfe4e9;
+  color: #344256;
+  font-size: 0.95rem;
+}
+
+.compras-modal .compras-impressao-produto {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 3px 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid #edf0f2;
+  font-size: 0.86rem;
+}
+
+.compras-modal .compras-impressao-nome {
+  color: #293746;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.compras-modal .compras-impressao-loja {
+  grid-column: 1;
+  color: #687582;
+  font-size: 0.8rem;
+}
+
+.compras-modal .compras-impressao-preco {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: center;
+  color: #344256;
+  white-space: nowrap;
+}
+
+/* Ajustes para ecrãs pequenos */
+
+@media (max-width: 420px) {
+  .lista-compras {
+    padding: 10px;
+  }
+
+  .lista-compras .compras-cabecalho {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .lista-compras .compras-botoes-cabecalho {
+    justify-content: flex-start;
+  }
+
+  .lista-compras .compra-produto {
+    gap: 7px;
+  }
+
+  .lista-compras .compra-botao-acao {
+    width: 30px;
+    height: 32px;
+  }
+
+  .compras-modal-fundo {
+    padding: 10px;
+  }
+
+  .compras-modal {
+    padding: 14px;
+  }
+}
+
+/* =====================================================
+   IMPRESSÃO
+   ===================================================== */
+
+@media print {
+  body * {
+    visibility: hidden !important;
+  }
+
+  .compras-modal-fundo,
+  .compras-modal-fundo * {
+    visibility: visible !important;
+  }
+
+  .compras-modal-fundo {
+    position: absolute !important;
+    inset: 0 !important;
+    display: block !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    background: #fff !important;
+  }
+
+  .compras-modal.modal-lista-impressao {
+    position: static !important;
+    width: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    color: #000 !important;
+  }
+
+  .compras-modal .nao-imprimir,
+  .compras-modal .compras-fechar-modal {
+    display: none !important;
+  }
+
+  .compras-modal .compras-modal-cabecalho h2,
+  .compras-modal .compras-modal-cabecalho p,
+  .compras-modal .compras-impressao-categoria h3,
+  .compras-modal .compras-impressao-nome,
+  .compras-modal .compras-impressao-loja,
+  .compras-modal .compras-impressao-preco {
+    color: #000 !important;
+  }
+
+  .compras-modal .compras-impressao-produto {
+    break-inside: avoid;
+  }
+}

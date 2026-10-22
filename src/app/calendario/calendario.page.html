@@ -5,7 +5,6 @@
         Voltar
       </ion-button>
     </ion-buttons>
-
     <ion-title>Calendário</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -13,6 +12,7 @@
 <ion-content class="calendario-content">
   <div class="calendario-container">
 
+    <!-- CALENDÁRIO ORIGINAL -->
     <div class="cabecalho-calendario">
       <h1 class="titulo-mes">{{ tituloMes }}</h1>
 
@@ -26,13 +26,8 @@
         </ion-button>
 
         <div class="informacao-semana">
-          <span class="periodo-semana">
-            {{ periodoSemana }}
-          </span>
-
-          <span class="texto-semana">
-            {{ textoSemana }}
-          </span>
+          <span class="periodo-semana">{{ periodoSemana }}</span>
+          <span class="texto-semana">{{ textoSemana }}</span>
         </div>
 
         <ion-button
@@ -66,7 +61,6 @@
 
         <span class="dia-nome">{{ dia.nome }}</span>
         <span class="dia-numero">{{ dia.numero }}</span>
-
         <span class="dia-indicador">
           {{ dia.eHoje ? 'Hoje' : '\u00A0' }}
         </span>
@@ -80,5 +74,355 @@
       </span>
     </div>
 
+    <!-- LISTA DE COMPRAS -->
+    <section class="lista-compras">
+
+      <div class="compras-cabecalho">
+        <div>
+          <h2>Lista de compras</h2>
+          <p>{{ totalSelecionados }} produto(s) selecionado(s)</p>
+        </div>
+
+        <div class="compras-botoes-cabecalho">
+          <button
+            type="button"
+            class="compras-botao-topo"
+            (click)="abrirListaImpressao()"
+            aria-label="Imprimir lista"
+            title="Imprimir lista">
+            🖨️ Imprimir lista
+          </button>
+
+          <button
+            type="button"
+            class="compras-botao-topo compras-botao-limpar"
+            (click)="abrirConfirmacaoLimpar()"
+            aria-label="Limpar lista"
+            title="Limpar lista">
+            🗑️ Limpar lista
+          </button>
+        </div>
+      </div>
+
+      <!-- ACORDEÕES DAS CATEGORIAS -->
+      <div class="compras-categorias">
+        <details
+          class="compras-categoria"
+          *ngFor="let categoria of categoriasCompras">
+
+          <summary>
+            <span>{{ categoria }}</span>
+
+            <span class="compras-contagem">
+              {{ produtosDaCategoria(categoria).length }}
+            </span>
+          </summary>
+
+          <div class="compras-conteudo-categoria">
+
+            <button
+              type="button"
+              class="compras-adicionar"
+              (click)="abrirAdicionarProduto(categoria)">
+              <span>＋</span> Adicionar produto
+            </button>
+
+            <div
+              class="compra-produto"
+              *ngFor="let produto of produtosDaCategoria(categoria)">
+
+              <input
+                class="compra-checkbox"
+                type="checkbox"
+                [checked]="produto.selecionado"
+                [attr.aria-label]="'Selecionar ' + produto.nome"
+                (change)="alternarSelecao(produto, $event)">
+
+              <div class="compra-detalhes">
+                <span
+                  class="compra-nome"
+                  [class.compra-selecionada]="produto.selecionado">
+                  {{ produto.nome }}
+                </span>
+
+                <span class="compra-loja">
+                  {{ produto.loja || 'Loja não indicada' }}
+                </span>
+
+                <span class="compra-preco">
+                  {{ formatarPreco(produto.preco) }}
+                </span>
+              </div>
+
+              <div class="compra-acoes">
+                <button
+                  type="button"
+                  class="compra-botao-acao"
+                  aria-label="Editar produto"
+                  title="Editar"
+                  (click)="abrirEditarProduto(produto)">
+                  ✏️
+                </button>
+
+                <button
+                  type="button"
+                  class="compra-botao-acao"
+                  aria-label="Remover produto"
+                  title="Remover"
+                  (click)="abrirConfirmacaoRemover(produto)">
+                  🗑️
+                </button>
+              </div>
+            </div>
+
+            <p
+              class="compras-vazio"
+              *ngIf="produtosDaCategoria(categoria).length === 0">
+              Ainda não existem produtos nesta categoria.
+            </p>
+          </div>
+        </details>
+      </div>
+    </section>
   </div>
+
+  <!-- MODAL: ADICIONAR / EDITAR PRODUTO -->
+  <div
+    class="compras-modal-fundo"
+    *ngIf="modalProdutoAberto"
+    (click)="fecharModalProduto()">
+
+    <section
+      class="compras-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Dados do produto"
+      (click)="$event.stopPropagation()">
+
+      <div class="compras-modal-cabecalho">
+        <h2>
+          {{ produtoEmEdicaoId !== null
+              ? 'Editar produto'
+              : 'Adicionar produto' }}
+        </h2>
+
+        <button
+          type="button"
+          class="compras-fechar-modal"
+          aria-label="Fechar"
+          (click)="fecharModalProduto()">
+          ✕
+        </button>
+      </div>
+
+      <div class="compras-modal-conteudo">
+        <label for="compra-nome">Nome do produto *</label>
+        <input
+          id="compra-nome"
+          type="text"
+          [(ngModel)]="formCompra.nome"
+          placeholder="Ex.: Bananas"
+          autocomplete="off">
+
+        <label for="compra-categoria">Categoria *</label>
+        <select
+          id="compra-categoria"
+          [(ngModel)]="formCompra.categoria">
+          <option
+            *ngFor="let categoria of categoriasCompras"
+            [value]="categoria">
+            {{ categoria }}
+          </option>
+        </select>
+
+        <label for="compra-loja">Loja</label>
+        <input
+          id="compra-loja"
+          type="text"
+          [(ngModel)]="formCompra.loja"
+          placeholder="Ex.: Intermarché"
+          autocomplete="off">
+
+        <label for="compra-preco">Preço (€)</label>
+        <input
+          id="compra-preco"
+          type="number"
+          min="0"
+          step="0.01"
+          [(ngModel)]="formCompra.preco"
+          placeholder="Ex.: 1.19">
+
+        <p class="compras-mensagem" *ngIf="mensagemCompras">
+          {{ mensagemCompras }}
+        </p>
+      </div>
+
+      <div class="compras-modal-rodape">
+        <button
+          type="button"
+          class="compras-botao-principal"
+          (click)="guardarProduto()">
+          {{ produtoEmEdicaoId !== null
+              ? 'Guardar alterações'
+              : 'Adicionar produto' }}
+        </button>
+
+        <button
+          type="button"
+          class="compras-botao-secundario"
+          (click)="fecharModalProduto()">
+          Cancelar
+        </button>
+      </div>
+    </section>
+  </div>
+
+  <!-- MODAL: CONFIRMAR REMOÇÃO -->
+  <div
+    class="compras-modal-fundo"
+    *ngIf="modalRemoverAberto"
+    (click)="fecharConfirmacaoRemover()">
+
+    <section
+      class="compras-modal compras-modal-confirmacao"
+      role="dialog"
+      aria-modal="true"
+      (click)="$event.stopPropagation()">
+
+      <h2>Remover produto?</h2>
+      <p>
+        Queres remover
+        <strong>{{ produtoParaRemover?.nome }}</strong>
+        da lista de compras?
+      </p>
+
+      <div class="compras-modal-rodape">
+        <button
+          type="button"
+          class="compras-botao-apagar-confirmar"
+          (click)="confirmarRemoverProduto()">
+          Remover
+        </button>
+
+        <button
+          type="button"
+          class="compras-botao-secundario"
+          (click)="fecharConfirmacaoRemover()">
+          Cancelar
+        </button>
+      </div>
+    </section>
+  </div>
+
+  <!-- MODAL: CONFIRMAR LIMPEZA -->
+  <div
+    class="compras-modal-fundo"
+    *ngIf="modalLimparAberto"
+    (click)="fecharConfirmacaoLimpar()">
+
+    <section
+      class="compras-modal compras-modal-confirmacao"
+      role="dialog"
+      aria-modal="true"
+      (click)="$event.stopPropagation()">
+
+      <h2>Limpar lista de compras?</h2>
+      <p>
+        Esta operação remove todos os produtos selecionados.
+        Não pode ser anulada.
+      </p>
+
+      <div class="compras-modal-rodape">
+        <button
+          type="button"
+          class="compras-botao-apagar-confirmar"
+          (click)="confirmarLimparLista()">
+          Sim, limpar lista
+        </button>
+
+        <button
+          type="button"
+          class="compras-botao-secundario"
+          (click)="fecharConfirmacaoLimpar()">
+          Cancelar
+        </button>
+      </div>
+    </section>
+  </div>
+
+  <!-- MODAL: LISTA PARA IMPRESSÃO -->
+  <div
+    class="compras-modal-fundo"
+    *ngIf="mostrarListaImpressao"
+    (click)="fecharListaImpressao()">
+
+    <section
+      class="compras-modal modal-lista-impressao"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Lista de compras selecionada"
+      (click)="$event.stopPropagation()">
+
+      <div class="compras-modal-cabecalho">
+        <div>
+          <h2>Lista de compras</h2>
+          <p>{{ totalSelecionados }} produto(s) selecionado(s)</p>
+        </div>
+
+        <button
+          type="button"
+          class="compras-fechar-modal"
+          aria-label="Fechar"
+          (click)="fecharListaImpressao()">
+          ✕
+        </button>
+      </div>
+
+      <div class="compras-modal-conteudo">
+
+        <ng-container *ngFor="let categoria of categoriasCompras">
+          <div
+            class="compras-impressao-categoria"
+            *ngIf="produtosSelecionadosDaCategoria(categoria).length > 0">
+
+            <h3>{{ categoria }}</h3>
+
+            <div
+              class="compras-impressao-produto"
+              *ngFor="let produto of produtosSelecionadosDaCategoria(categoria)">
+
+              <span class="compras-impressao-nome">
+                {{ produto.nome }}
+              </span>
+
+              <span class="compras-impressao-loja">
+                {{ produto.loja || 'Loja não indicada' }}
+              </span>
+
+              <span class="compras-impressao-preco">
+                {{ formatarPreco(produto.preco) }}
+              </span>
+            </div>
+          </div>
+        </ng-container>
+
+        <p class="compras-vazio" *ngIf="totalSelecionados === 0">
+          Ainda não selecionaste produtos. Fecha esta janela e assinala
+          os produtos que pretendes comprar.
+        </p>
+      </div>
+
+      <div class="compras-modal-rodape nao-imprimir">
+       
+
+        <button
+          type="button"
+          class="compras-botao-secundario"
+          (click)="fecharListaImpressao()">
+          Fechar
+        </button>
+      </div>
+    </section>
+  </div>
+<br><br><br><br>
 </ion-content>

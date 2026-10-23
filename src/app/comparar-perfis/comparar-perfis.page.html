@@ -7,8 +7,7 @@
         Voltar
       </ion-button>
     </ion-buttons>
-
-    <ion-title>Comparar perfis</ion-title>
+    <ion-title>Mapa relacional</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -16,10 +15,11 @@
   <div class="pagina">
 
     <div class="introducao">
-      <h2>Comparar perfis</h2>
+      <h2>Mapa de compatibilidade relacional</h2>
       <p>
-        Escolhe uma pessoa de referência e observa semelhanças e diferenças
-        com outras pessoas, sem pressupor que uma seja melhor do que outra.
+        Explora o que duas pessoas podem reconhecer, despertar e aprender
+        uma com a outra. A semelhança não garante harmonia e a diferença
+        não significa incompatibilidade.
       </p>
     </div>
 
@@ -34,7 +34,7 @@
 
     <ng-container *ngIf="!carregando && !erro">
 
-      <!-- Seleção dos perfis -->
+      <!-- SELEÇÃO DAS PESSOAS -->
       <ion-grid class="selecao-grid">
         <ion-row>
 
@@ -42,12 +42,11 @@
           <ion-col size="12" size-md="6">
             <ion-card class="selecao-card pessoa-a">
               <ion-card-header>
-                <ion-card-subtitle>Perfil de referência</ion-card-subtitle>
+                <ion-card-subtitle>Primeiro perfil</ion-card-subtitle>
                 <ion-card-title>Pessoa A</ion-card-title>
               </ion-card-header>
 
               <ion-card-content>
-
                 <ion-grid class="filtros-grid">
                   <ion-row>
                     <ion-col size="6">
@@ -117,21 +116,19 @@
                 <p class="contador-perfis">
                   {{ pessoasFiltradasA.length }} perfil(is) disponível(eis)
                 </p>
-
               </ion-card-content>
             </ion-card>
           </ion-col>
 
-          <!-- PESSOA B: comparação tradicional -->
+          <!-- PESSOA B -->
           <ion-col size="12" size-md="6">
             <ion-card class="selecao-card pessoa-b">
               <ion-card-header>
-                <ion-card-subtitle>Comparação individual</ion-card-subtitle>
+                <ion-card-subtitle>Segundo perfil</ion-card-subtitle>
                 <ion-card-title>Pessoa B</ion-card-title>
               </ion-card-header>
 
               <ion-card-content>
-
                 <ion-grid class="filtros-grid">
                   <ion-row>
                     <ion-col size="6">
@@ -201,7 +198,6 @@
                 <p class="contador-perfis">
                   {{ pessoasFiltradasB.length }} perfil(is) disponível(eis)
                 </p>
-
               </ion-card-content>
             </ion-card>
           </ion-col>
@@ -217,24 +213,33 @@
         Seleciona duas pessoas diferentes para comparar.
       </div>
 
-      <!-- COMPARAÇÃO TRADICIONAL ENTRE A E B -->
+      <!-- MAPA RELACIONAL PRINCIPAL -->
       <ng-container *ngIf="podeComparar">
 
         <div class="titulo-comparacao">
-          <h2>Comparação direta</h2>
-          <p>Comparação entre os dois perfis selecionados.</p>
+          <h2>O que esta relação pode revelar?</h2>
+          <p>
+            {{ nomeCompleto(pessoaA) }} e {{ nomeCompleto(pessoaB) }}
+          </p>
         </div>
 
+        <!-- CAMADA 1 -->
         <ion-card class="resultado-card">
-          <ion-card-content>
+          <ion-card-header>
+            <ion-card-subtitle>
+              Camada 1 · Identidade e fase de vida
+            </ion-card-subtitle>
+            <ion-card-title>Os dois perfis</ion-card-title>
+          </ion-card-header>
 
+          <ion-card-content>
             <div class="cabecalho-comparacao">
               <div class="coluna-pessoa coluna-a">
                 <span class="etiqueta">PESSOA A</span>
                 <h3>{{ nomeCompleto(pessoaA) }}</h3>
               </div>
 
-              <div class="separador">VS</div>
+              <div class="separador">↔</div>
 
               <div class="coluna-pessoa coluna-b">
                 <span class="etiqueta">PESSOA B</span>
@@ -244,104 +249,461 @@
 
             <div class="linha-comparacao">
               <div class="valor-pessoa">{{ valor(pessoaA, 'data') }}</div>
-              <div class="nome-campo">Data de nascimento</div>
+              <div class="nome-campo">Nascimento</div>
               <div class="valor-pessoa">{{ valor(pessoaB, 'data') }}</div>
             </div>
 
             <div class="linha-comparacao">
-              <div class="valor-pessoa">{{ valor(pessoaA, 'localidade') }}</div>
-              <div class="nome-campo">Localidade</div>
-              <div class="valor-pessoa">{{ valor(pessoaB, 'localidade') }}</div>
+              <div class="valor-pessoa">
+                {{ analiseDe(pessoaA).idade ?? 'Não indicado' }}
+              </div>
+              <div class="nome-campo">Idade</div>
+              <div class="valor-pessoa">
+                {{ analiseDe(pessoaB).idade ?? 'Não indicado' }}
+              </div>
             </div>
 
             <div class="linha-comparacao">
-              <div class="valor-pessoa">{{ valor(pessoaA, 'grupo') }}</div>
-              <div class="nome-campo">Grupo</div>
-              <div class="valor-pessoa">{{ valor(pessoaB, 'grupo') }}</div>
+              <div class="valor-pessoa">
+                {{ analiseDe(pessoaA).signoSolar || 'Não indicado' }}
+              </div>
+              <div class="nome-campo">Signo solar</div>
+              <div class="valor-pessoa">
+                {{ analiseDe(pessoaB).signoSolar || 'Não indicado' }}
+              </div>
+            </div>
+
+            <div class="linha-comparacao">
+              <div class="valor-pessoa">
+                {{ analiseDe(pessoaA).signoChines || 'Não indicado' }}
+              </div>
+              <div class="nome-campo">Signo chinês</div>
+              <div class="valor-pessoa">
+                {{ analiseDe(pessoaB).signoChines || 'Não indicado' }}
+              </div>
+            </div>
+
+            <div class="linha-comparacao">
+              <div class="valor-pessoa">
+                {{ analiseDe(pessoaA).setenio || 'Não indicado' }}
+              </div>
+              <div class="nome-campo">Seténio atual</div>
+              <div class="valor-pessoa">
+                {{ analiseDe(pessoaB).setenio || 'Não indicado' }}
+              </div>
             </div>
 
             <div class="linha-comparacao">
               <div class="valor-pessoa">
                 {{ valor(pessoaA, 'eneagrama_tipo') }}
               </div>
-              <div class="nome-campo">Tipo de Eneagrama</div>
+              <div class="nome-campo">Eneagrama</div>
               <div class="valor-pessoa">
                 {{ valor(pessoaB, 'eneagrama_tipo') }}
+              </div>
+            </div>
+          </ion-card-content>
+        </ion-card>
+
+        <!-- CAMADA 2 -->
+        <ion-card class="resultado-card">
+          <ion-card-header>
+            <ion-card-subtitle>
+              Camada 2 · Feridas e necessidades
+            </ion-card-subtitle>
+            <ion-card-title>O que cada pessoa traz</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+
+            <!-- PERFIL A -->
+            <div class="bloco-pessoa">
+              <h3>{{ nomeCompleto(pessoaA) }}</h3>
+
+              <div class="campo-reflexao">
+                <strong>Ferida ou padrão nuclear</strong>
+                <p>{{ analiseDe(pessoaA).ferida || 'Não indicado nos dados disponíveis.' }}</p>
+              </div>
+
+              <div class="campo-reflexao">
+                <strong>Necessidade profunda</strong>
+                <p>{{ analiseDe(pessoaA).necessidade || 'Não indicado nos dados disponíveis.' }}</p>
+              </div>
+
+              <div class="campo-reflexao">
+                <strong>Mecanismo de defesa</strong>
+                <p>{{ analiseDe(pessoaA).defesa || 'Não indicado nos dados disponíveis.' }}</p>
+              </div>
+
+              <div class="campo-reflexao">
+                <strong>Valores em falta</strong>
+                <p>{{ analiseDe(pessoaA).valores || 'Não indicado nos dados disponíveis.' }}</p>
+              </div>
+
+              <div class="campo-reflexao">
+                <strong>Questão sistémica</strong>
+                <p>{{ analiseDe(pessoaA).questao || 'Não indicada nos dados disponíveis.' }}</p>
+              </div>
+
+              <div class="campo-reflexao">
+                <strong>Afirmação integrada</strong>
+                <p>{{ analiseDe(pessoaA).afirmacao || 'Não indicada nos dados disponíveis.' }}</p>
+              </div>
+
+              <div class="campo-reflexao">
+                <strong>Frase-matriz</strong>
+                <p>{{ analiseDe(pessoaA).fraseMatriz || 'Não indicada nos dados disponíveis.' }}</p>
+              </div>
+            </div>
+
+            <div class="divisor-relacional"></div>
+
+            <!-- PERFIL B -->
+            <div class="bloco-pessoa">
+              <h3>{{ nomeCompleto(pessoaB) }}</h3>
+
+              <div class="campo-reflexao">
+                <strong>Ferida ou padrão nuclear</strong>
+                <p>{{ analiseDe(pessoaB).ferida || 'Não indicado nos dados disponíveis.' }}</p>
+              </div>
+
+              <div class="campo-reflexao">
+                <strong>Necessidade profunda</strong>
+                <p>{{ analiseDe(pessoaB).necessidade || 'Não indicado nos dados disponíveis.' }}</p>
+              </div>
+
+              <div class="campo-reflexao">
+                <strong>Mecanismo de defesa</strong>
+                <p>{{ analiseDe(pessoaB).defesa || 'Não indicado nos dados disponíveis.' }}</p>
+              </div>
+
+              <div class="campo-reflexao">
+                <strong>Valores em falta</strong>
+                <p>{{ analiseDe(pessoaB).valores || 'Não indicado nos dados disponíveis.' }}</p>
+              </div>
+
+              <div class="campo-reflexao">
+                <strong>Questão sistémica</strong>
+                <p>{{ analiseDe(pessoaB).questao || 'Não indicada nos dados disponíveis.' }}</p>
+              </div>
+
+              <div class="campo-reflexao">
+                <strong>Afirmação integrada</strong>
+                <p>{{ analiseDe(pessoaB).afirmacao || 'Não indicada nos dados disponíveis.' }}</p>
+              </div>
+
+              <div class="campo-reflexao">
+                <strong>Frase-matriz</strong>
+                <p>{{ analiseDe(pessoaB).fraseMatriz || 'Não indicada nos dados disponíveis.' }}</p>
               </div>
             </div>
 
           </ion-card-content>
         </ion-card>
 
+        <!-- LEGENDA DOS TIPOS DE RELAÇÃO -->
+        <ion-card class="legenda-relacional-card">
+          <ion-card-header>
+            <ion-card-title>Tipos de relação</ion-card-title>
+            <ion-card-subtitle>
+              Possíveis dinâmicas a explorar entre os perfis
+            </ion-card-subtitle>
+          </ion-card-header>
+
+          <ion-card-content>
+            <div class="legenda-relacional">
+
+              <div class="item-legenda">
+                <span class="etiqueta-tipo-relacao tipo-facilitadora">
+                  🟢 Facilitadora
+                </span>
+                <p>Ativa valores que ajudam a integrar as feridas.</p>
+              </div>
+
+              <div class="item-legenda">
+                <span class="etiqueta-tipo-relacao tipo-desafiante">
+                  🟡 Desafiante
+                </span>
+                <p>Toca feridas, mas pode favorecer crescimento.</p>
+              </div>
+
+              <div class="item-legenda">
+                <span class="etiqueta-tipo-relacao tipo-ativadora">
+                  🔴 Ativadora
+                </span>
+                <p>Reforça padrões defensivos de ambas as pessoas.</p>
+              </div>
+
+              <div class="item-legenda">
+                <span class="etiqueta-tipo-relacao tipo-complementar">
+                  🔵 Complementar
+                </span>
+                <p>Cada pessoa traz recursos que faltam à outra.</p>
+              </div>
+
+              <div class="item-legenda">
+                <span class="etiqueta-tipo-relacao tipo-espelho">
+                  🟣 Espelho
+                </span>
+                <p>As duas pessoas têm feridas ou padrões semelhantes.</p>
+              </div>
+
+            </div>
+
+            <p class="nota-explicativa">
+              Estes tipos são hipóteses de reflexão baseadas nos dados
+              disponíveis. Não constituem diagnósticos nem determinam
+              a qualidade real da relação.
+            </p>
+          </ion-card-content>
+        </ion-card>
+
+        <!-- RESULTADO DO CRUZAMENTO -->
         <div class="titulo-comparacao">
-          <h2>Semelhanças observadas</h2>
-          <p>Comparação automática dos campos disponíveis.</p>
+          <h2>O cruzamento dos dois perfis</h2>
+          <p>
+            Hipóteses de reflexão construídas a partir dos campos encontrados.
+          </p>
         </div>
 
-        <ion-card class="semelhancas-card">
+        <ion-card class="mapa-card">
           <ion-card-content>
 
-            <div class="resultado-semelhanca">
-              <ion-icon
-                [name]="mesmoGrupo
-                  ? 'checkmark-circle-outline'
-                  : 'git-compare-outline'">
-              </ion-icon>
+            <div class="tipos-relacao-detectados">
+              <strong>Dinâmicas que podem estar presentes</strong>
 
-              <div>
-                <strong>Grupo</strong>
-                <p>
-                  {{
-                    mesmoGrupo
-                      ? 'As duas pessoas pertencem ao mesmo grupo.'
-                      : 'As duas pessoas pertencem a grupos diferentes.'
-                  }}
+              <div class="etiquetas-tipos">
+                <span
+                  *ngFor="let tipo of mapaRelacional(pessoaA, pessoaB).tipoRelacao"
+                  class="etiqueta-tipo-relacao"
+                  [ngClass]="classeTipoRelacao(tipo)"
+                  [ngStyle]="estiloTipoRelacao(tipo)">
+                  {{ tipo }}
+                </span>
+              </div>
+
+              <ng-container
+                *ngFor="let tipo of mapaRelacional(pessoaA, pessoaB).tipoRelacao">
+
+                <p
+                  *ngIf="tipo !== 'Dados insuficientes' &&
+                         tipo !== 'Em exploração'">
+                  <strong>{{ tipo }}:</strong>
+                  {{ descricaoTipoRelacao(tipo) }}
                 </p>
+
+                <p *ngIf="tipo === 'Dados insuficientes'">
+                  Os dados disponíveis ainda não permitem identificar
+                  dinâmicas relacionais com segurança.
+                </p>
+
+                <p *ngIf="tipo === 'Em exploração'">
+                  Os dados sugerem temas que podem ser explorados,
+                  sem uma classificação mais específica.
+                </p>
+              </ng-container>
+            </div>
+
+            <div class="divisor-relacional"></div>
+
+            <div class="resultado-semelhanca">
+              <ion-icon name="eye-outline"></ion-icon>
+              <div>
+                <strong>Espelhamento</strong>
+                <p>{{ mapaRelacional(pessoaA, pessoaB).espelhamento }}</p>
+                <p>{{ mapaRelacional(pessoaA, pessoaB).resumoComum }}</p>
               </div>
             </div>
 
             <div class="resultado-semelhanca">
-              <ion-icon
-                [name]="mesmoEneagrama
-                  ? 'checkmark-circle-outline'
-                  : 'git-compare-outline'">
-              </ion-icon>
-
+              <ion-icon name="git-branch-outline"></ion-icon>
               <div>
-                <strong>Eneagrama</strong>
-                <p>
-                  {{
-                    mesmoEneagrama
-                      ? 'As duas pessoas têm o mesmo tipo registado.'
-                      : 'Os tipos de Eneagrama registados são diferentes.'
-                  }}
-                </p>
+                <strong>Complementaridade</strong>
+                <p>{{ mapaRelacional(pessoaA, pessoaB).complementaridade }}</p>
               </div>
             </div>
 
+            <div class="resultado-semelhanca">
+              <ion-icon name="warning-outline"></ion-icon>
+              <div>
+                <strong>Possível ativação de feridas</strong>
+                <p>{{ mapaRelacional(pessoaA, pessoaB).ativacao }}</p>
+                <p>{{ mapaRelacional(pessoaA, pessoaB).risco }}</p>
+              </div>
+            </div>
+
+            <div class="resultado-semelhanca">
+              <ion-icon name="leaf-outline"></ion-icon>
+              <div>
+                <strong>Potencial de integração</strong>
+                <p>{{ mapaRelacional(pessoaA, pessoaB).integracao }}</p>
+              </div>
+            </div>
+
+            <div class="campo-reflexao">
+              <strong>Temas presentes no perfil A</strong>
+              <p>
+                {{
+                  mapaRelacional(pessoaA, pessoaB).temasA.join(' · ') ||
+                  'Ainda não identificados nos campos disponíveis.'
+                }}
+              </p>
+            </div>
+
+            <div class="campo-reflexao">
+              <strong>Temas presentes no perfil B</strong>
+              <p>
+                {{
+                  mapaRelacional(pessoaA, pessoaB).temasB.join(' · ') ||
+                  'Ainda não identificados nos campos disponíveis.'
+                }}
+              </p>
+            </div>
+
+            <div class="campo-reflexao">
+              <strong>Temas partilhados</strong>
+              <p>
+                {{
+                  mapaRelacional(pessoaA, pessoaB).temasComuns.join(' · ') ||
+                  'Não foram encontrados temas partilhados suficientemente claros.'
+                }}
+              </p>
+            </div>
+
+            <div
+              *ngIf="mapaRelacional(pessoaA, pessoaB).temasOpostos.length > 0"
+              class="campo-reflexao">
+              <strong>Possíveis pontos de tensão</strong>
+              <p>{{ mapaRelacional(pessoaA, pessoaB).temasOpostos.join(' · ') }}</p>
+            </div>
+
+          </ion-card-content>
+        </ion-card>
+
+        <!-- SETÉNIOS -->
+        <ion-card class="resultado-card">
+          <ion-card-header>
+            <ion-card-subtitle>
+              Camada 5 · Dimensão temporal
+            </ion-card-subtitle>
+            <ion-card-title>O momento de vida de cada pessoa</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <p>
+              O seténio acrescenta uma perspetiva temporal à reflexão.
+              As prioridades e os desafios podem mudar ao longo da vida.
+            </p>
+
+            <div class="campo-reflexao">
+              <strong>{{ nomeCompleto(pessoaA) }}</strong>
+              <p>
+                <strong>Seténio:</strong>
+                {{ analiseDe(pessoaA).setenio || 'Não indicado.' }}
+              </p>
+              <p>
+                <strong>Descrição:</strong>
+                {{ analiseDe(pessoaA).setenioDescricao ||
+                   'Não existe uma descrição disponível para este seténio.' }}
+              </p>
+            </div>
+
+            <div class="campo-reflexao">
+              <strong>{{ nomeCompleto(pessoaB) }}</strong>
+              <p>
+                <strong>Seténio:</strong>
+                {{ analiseDe(pessoaB).setenio || 'Não indicado.' }}
+              </p>
+              <p>
+                <strong>Descrição:</strong>
+                {{ analiseDe(pessoaB).setenioDescricao ||
+                   'Não existe uma descrição disponível para este seténio.' }}
+              </p>
+            </div>
+
+            <div class="divisor-relacional"></div>
+
+            <ng-container
+              *ngIf="analiseSeteniosRelacional(pessoaA, pessoaB) as cruzamento">
+
+              <h3>O encontro entre as duas fases de vida</h3>
+              <p>{{ cruzamento.descricao }}</p>
+
+              <div class="campo-reflexao" *ngIf="cruzamento.temasA.length > 0">
+                <strong>Temas identificados no perfil A</strong>
+                <p>{{ cruzamento.temasA.join(' · ') }}</p>
+              </div>
+
+              <div class="campo-reflexao" *ngIf="cruzamento.temasB.length > 0">
+                <strong>Temas identificados no perfil B</strong>
+                <p>{{ cruzamento.temasB.join(' · ') }}</p>
+              </div>
+
+              <div class="campo-reflexao" *ngIf="cruzamento.temasComuns.length > 0">
+                <strong>Temas comuns</strong>
+                <p>{{ cruzamento.temasComuns.join(' · ') }}</p>
+              </div>
+
+              <div class="campo-reflexao" *ngIf="cruzamento.temasDiferentes.length > 0">
+                <strong>Temas diferentes</strong>
+                <p>{{ cruzamento.temasDiferentes.join(' · ') }}</p>
+              </div>
+
+              <div class="campo-reflexao">
+                <strong>Pergunta para reflexão</strong>
+                <p>{{ cruzamento.pergunta }}</p>
+              </div>
+
+            </ng-container>
+
+            <p class="nota-explicativa">
+              Esta leitura é simbólica e serve para reflexão. Os temas
+              comuns não garantem compatibilidade e as diferenças não
+              significam necessariamente conflito. A interpretação depende
+              também da experiência e das escolhas de cada pessoa.
+            </p>
+          </ion-card-content>
+        </ion-card>
+
+        <!-- PERGUNTA CENTRAL -->
+        <ion-card class="pergunta-central-card">
+          <ion-card-content>
+            <ion-icon name="heart-outline"></ion-icon>
+            <h2>Pergunta central da relação</h2>
+
+            <p class="pergunta-central">
+              {{ mapaRelacional(pessoaA, pessoaB).pergunta }}
+            </p>
+
+            <p>
+              A resposta não precisa de ser encontrada apenas através da análise.
+              Pode ser explorada observando situações reais, comunicando necessidades
+              e reconhecendo como cada pessoa reage quando se sente vulnerável.
+            </p>
           </ion-card-content>
         </ion-card>
 
       </ng-container>
 
-      <!-- COMPARAÇÃO COM OS PARTICIPANTES DA AGENDA -->
+      <!-- PARTICIPANTES DA AGENDA -->
       <section class="secao-evento" *ngIf="temEvento">
 
         <div class="titulo-comparacao">
           <h2>Participantes do evento</h2>
+
           <p *ngIf="eventoOrigem">
             <ion-icon name="calendar-outline"></ion-icon>
             {{ eventoOrigem }}
             <span *ngIf="dataEvento"> · {{ dataEvento }}</span>
           </p>
+
           <p *ngIf="!eventoOrigem">
-            Abre cada participante para comparar o seu perfil com a Pessoa A.
+            Escolhe a Pessoa A para construir o mapa relacional com cada participante.
           </p>
         </div>
 
         <div *ngIf="!pessoaA" class="aviso">
-          Escolhe primeiro a Pessoa A. Depois poderás comparar o seu perfil
-          com cada participante do evento.
+          Escolhe primeiro a Pessoa A.
         </div>
 
         <div
@@ -350,8 +712,8 @@
           <ion-icon name="people-outline"></ion-icon>
           <h3>Não há participantes disponíveis</h3>
           <p>
-            Os participantes do evento podem não ter perfis registados ou
-            podem corresponder à própria Pessoa A.
+            Os participantes podem não ter perfis registados ou podem
+            corresponder à própria Pessoa A.
           </p>
         </div>
 
@@ -365,10 +727,7 @@
             [value]="participante.id">
 
             <ion-item slot="header" class="participante-header">
-              <ion-icon
-                name="person-outline"
-                slot="start">
-              </ion-icon>
+              <ion-icon name="person-outline" slot="start"></ion-icon>
 
               <ion-label>
                 <h3>{{ nomeCompleto(participante) }}</h3>
@@ -383,92 +742,70 @@
 
             <div slot="content" class="conteudo-participante">
 
-              <div class="cabecalho-comparacao">
-                <div class="coluna-pessoa coluna-a">
-                  <span class="etiqueta">PESSOA A</span>
-                  <h3>{{ nomeCompleto(pessoaA) }}</h3>
+              <div class="tipos-relacao-detectados">
+                <strong>
+                  Dinâmicas possíveis com {{ nomeCompleto(pessoaA) }}
+                </strong>
+
+                <div class="etiquetas-tipos">
+                  <span
+                    *ngFor="let tipo of mapaRelacional(pessoaA, participante).tipoRelacao"
+                    class="etiqueta-tipo-relacao"
+                    [ngClass]="classeTipoRelacao(tipo)"
+                    [ngStyle]="estiloTipoRelacao(tipo)">
+                    {{ tipo }}
+                  </span>
                 </div>
 
-                <div class="separador">VS</div>
+                <ng-container
+                  *ngFor="let tipo of mapaRelacional(pessoaA, participante).tipoRelacao">
 
-                <div class="coluna-pessoa coluna-b">
-                  <span class="etiqueta">PARTICIPANTE</span>
-                  <h3>{{ nomeCompleto(participante) }}</h3>
-                </div>
-              </div>
-
-              <div class="linha-comparacao">
-                <div class="valor-pessoa">{{ valor(pessoaA, 'data') }}</div>
-                <div class="nome-campo">Data de nascimento</div>
-                <div class="valor-pessoa">
-                  {{ valor(participante, 'data') }}
-                </div>
-              </div>
-
-              <div class="linha-comparacao">
-                <div class="valor-pessoa">
-                  {{ valor(pessoaA, 'localidade') }}
-                </div>
-                <div class="nome-campo">Localidade</div>
-                <div class="valor-pessoa">
-                  {{ valor(participante, 'localidade') }}
-                </div>
-              </div>
-
-              <div class="linha-comparacao">
-                <div class="valor-pessoa">{{ valor(pessoaA, 'grupo') }}</div>
-                <div class="nome-campo">Grupo</div>
-                <div class="valor-pessoa">
-                  {{ valor(participante, 'grupo') }}
-                </div>
-              </div>
-
-              <div class="linha-comparacao">
-                <div class="valor-pessoa">
-                  {{ valor(pessoaA, 'eneagrama_tipo') }}
-                </div>
-                <div class="nome-campo">Tipo de Eneagrama</div>
-                <div class="valor-pessoa">
-                  {{ valor(participante, 'eneagrama_tipo') }}
-                </div>
-              </div>
-
-              <div class="resultado-semelhanca">
-                <ion-icon
-                  [name]="mesmoGrupoCom(participante)
-                    ? 'checkmark-circle-outline'
-                    : 'git-compare-outline'">
-                </ion-icon>
-
-                <div>
-                  <strong>Grupo</strong>
-                  <p>
-                    {{
-                      mesmoGrupoCom(participante)
-                        ? 'Pertencem ao mesmo grupo.'
-                        : 'Pertencem a grupos diferentes.'
-                    }}
+                  <p
+                    *ngIf="tipo !== 'Dados insuficientes' &&
+                           tipo !== 'Em exploração'">
+                    <strong>{{ tipo }}:</strong>
+                    {{ descricaoTipoRelacao(tipo) }}
                   </p>
-                </div>
+
+                  <p *ngIf="tipo === 'Dados insuficientes'">
+                    Os dados disponíveis ainda não permitem identificar
+                    dinâmicas relacionais com segurança.
+                  </p>
+
+                  <p *ngIf="tipo === 'Em exploração'">
+                    Os dados sugerem temas que podem ser explorados,
+                    sem uma classificação mais específica.
+                  </p>
+                </ng-container>
               </div>
 
-              <div class="resultado-semelhanca">
-                <ion-icon
-                  [name]="mesmoEneagramaCom(participante)
-                    ? 'checkmark-circle-outline'
-                    : 'git-compare-outline'">
-                </ion-icon>
+              <div class="divisor-relacional"></div>
 
-                <div>
-                  <strong>Eneagrama</strong>
-                  <p>
-                    {{
-                      mesmoEneagramaCom(participante)
-                        ? 'Têm o mesmo tipo de Eneagrama registado.'
-                        : 'Têm tipos de Eneagrama diferentes ou não coincidentes.'
-                    }}
-                  </p>
-                </div>
+              <div class="campo-reflexao">
+                <strong>Espelhamento</strong>
+                <p>{{ mapaRelacional(pessoaA, participante).espelhamento }}</p>
+                <p>{{ mapaRelacional(pessoaA, participante).resumoComum }}</p>
+              </div>
+
+              <div class="campo-reflexao">
+                <strong>Complementaridade</strong>
+                <p>{{ mapaRelacional(pessoaA, participante).complementaridade }}</p>
+              </div>
+
+              <div class="campo-reflexao">
+                <strong>Possível ativação de feridas</strong>
+                <p>{{ mapaRelacional(pessoaA, participante).ativacao }}</p>
+                <p>{{ mapaRelacional(pessoaA, participante).risco }}</p>
+              </div>
+
+              <div class="campo-reflexao">
+                <strong>Potencial de integração</strong>
+                <p>{{ mapaRelacional(pessoaA, participante).integracao }}</p>
+              </div>
+
+              <div class="campo-reflexao">
+                <strong>Pergunta central</strong>
+                <p>{{ mapaRelacional(pessoaA, participante).pergunta }}</p>
               </div>
 
             </div>
@@ -479,24 +816,35 @@
           *ngIf="idsParticipantesNaoEncontrados.length > 0"
           class="aviso aviso-secundario">
           {{ idsParticipantesNaoEncontrados.length }}
-          participante(s) do evento não têm um perfil correspondente
-          disponível nesta página.
+          participante(s) do evento não têm um perfil correspondente disponível.
         </div>
-
       </section>
 
-      <!-- Nenhum perfil disponível -->
+      <!-- AUSÊNCIA DE PERFIS -->
       <div *ngIf="pessoas.length === 0" class="estado-vazio">
         <ion-icon name="people-outline"></ion-icon>
         <h3>Não existem perfis para comparar</h3>
         <p>Cria ou importa perfis na página Perfil para começar.</p>
       </div>
 
-      <p class="nota-final">
-        Estas comparações limitam-se aos dados registados. Não constituem
-        uma avaliação psicológica nem determinam a compatibilidade entre
-        pessoas.
-      </p>
+      <!-- NOTA FINAL -->
+      <ion-card class="nota-final-card">
+        <ion-card-content>
+          <strong>Como interpretar este mapa</strong>
+
+          <p>
+            Este mapa é uma ferramenta de reflexão, não um diagnóstico
+            psicológico nem uma previsão do futuro da relação.
+          </p>
+
+          <p>
+            As referências a feridas, signos, valores e seténios devem ser
+            entendidas como hipóteses simbólicas. A qualidade real de uma
+            relação depende também das escolhas, dos limites, da comunicação,
+            do respeito e dos comportamentos concretos das pessoas.
+          </p>
+        </ion-card-content>
+      </ion-card>
 
     </ng-container>
   </div>

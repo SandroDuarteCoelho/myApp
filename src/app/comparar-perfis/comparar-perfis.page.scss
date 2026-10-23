@@ -1,5 +1,10 @@
 
+/* =========================================================
+   ESTILO GERAL
+   ========================================================= */
+
 :host {
+  display: block;
   color: #26352b;
   background: #f4f6f4;
 }
@@ -32,6 +37,10 @@ ion-button {
   color: #26352b;
 }
 
+/* =========================================================
+   INTRODUÇÃO
+   ========================================================= */
+
 .introducao {
   padding: 8px 8px 14px;
 
@@ -50,13 +59,36 @@ ion-button {
   }
 }
 
-.selecao-grid {
-  padding: 0;
+.titulo-comparacao {
+  padding: 18px 8px 8px;
+
+  h2 {
+    margin: 0 0 6px;
+    color: #263b31;
+    font-size: 19px;
+    font-weight: 700;
+  }
+
+  p {
+    margin: 0;
+    color: #59685e;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  ion-icon {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 4px;
+    color: #39764f;
+  }
 }
 
-.selecao-card,
-.resultado-card,
-.semelhancas-card {
+/* =========================================================
+   CARTÕES — FUNDO CLARO E TEXTO ESCURO
+   ========================================================= */
+
+ion-card {
   --background: #ffffff;
   --color: #26352b;
 
@@ -67,32 +99,65 @@ ion-button {
   box-shadow: 0 3px 12px rgb(30 50 35 / 7%);
 }
 
+ion-card-header {
+  --background: #ffffff;
+
+  background: #ffffff;
+  color: #26352b;
+  padding-bottom: 8px;
+}
+
+ion-card-title {
+  color: #263b31;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+ion-card-subtitle {
+  color: #59685e;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+}
+
+ion-card-content {
+  --background: #ffffff;
+  --color: #26352b;
+
+  background: #ffffff;
+  color: #26352b;
+}
+
+.resultado-card,
+.semelhancas-card {
+  margin: 8px 0;
+
+  ion-card-content {
+    padding: 14px;
+  }
+}
+
+/* =========================================================
+   SELEÇÃO DOS PERFIS
+   ========================================================= */
+
+.selecao-grid {
+  padding: 0;
+}
+
 .selecao-card {
   height: calc(100% - 12px);
   margin: 6px 0;
 
-  ion-card-header {
-    padding-bottom: 8px;
-    background: #ffffff;
-  }
-
   ion-card-title {
-    color: #263b31;
     font-size: 19px;
-    font-weight: 700;
   }
 
   ion-card-subtitle {
-    color: #59685e;
-    font-size: 11px;
-    letter-spacing: 0.7px;
     text-transform: uppercase;
   }
 
   ion-card-content {
     padding-top: 0;
-    background: #ffffff;
-    color: #26352b;
   }
 
   ion-item {
@@ -165,41 +230,9 @@ ion-button {
   font-size: 12px;
 }
 
-.titulo-comparacao {
-  padding: 18px 8px 8px;
-
-  h2 {
-    margin: 0 0 6px;
-    color: #263b31;
-    font-size: 19px;
-    font-weight: 700;
-  }
-
-  p {
-    margin: 0;
-    color: #59685e;
-    font-size: 13px;
-    line-height: 1.5;
-  }
-
-  ion-icon {
-    display: inline-block;
-    vertical-align: middle;
-    margin-right: 4px;
-    color: #39764f;
-  }
-}
-
-.resultado-card,
-.semelhancas-card {
-  margin: 8px 0;
-
-  ion-card-content {
-    padding: 14px;
-    background: #ffffff;
-    color: #26352b;
-  }
-}
+/* =========================================================
+   COMPARAÇÃO DOS DOIS PERFIS
+   ========================================================= */
 
 .cabecalho-comparacao {
   display: grid;
@@ -283,21 +316,223 @@ ion-button {
   text-align: center;
 }
 
+/* =========================================================
+   FERIDAS, NECESSIDADES E REFLEXÕES
+   ========================================================= */
+
+.bloco-pessoa {
+  padding: 12px 0;
+
+  h3 {
+    margin: 4px 0 14px;
+    color: #285c45;
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+}
+
+.campo-reflexao {
+  margin: 12px 0;
+  padding: 12px;
+  border-left: 3px solid #8aac96;
+  border-radius: 0 9px 9px 0;
+  background: #f5f8f5;
+  color: #26352b;
+}
+
+.campo-reflexao strong {
+  display: block;
+  margin-bottom: 6px;
+  color: #294d3b;
+}
+
+.campo-reflexao p {
+  margin: 5px 0;
+  color: #343b36;
+  font-size: 13px;
+  line-height: 1.55;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
+.divisor-relacional {
+  height: 1px;
+  margin: 18px 0;
+  background: #dce5de;
+}
+
+/* =========================================================
+   LEGENDA DOS CINCO TIPOS DE RELAÇÃO
+   ========================================================= */
+
+.legenda-relacional-card {
+  margin: 16px 0;
+
+  ion-card-content {
+    padding: 16px;
+  }
+}
+
+.legenda-relacional {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 2px 0;
+}
+
+.item-legenda {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  min-width: 0;
+
+  p {
+    margin: 0;
+    color: #46564b;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+}
+
+/* Etiquetas comuns */
+
+.etiqueta-tipo-relacao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 6px 12px;
+  border: 1px solid;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+/* Facilitadora — verde */
+
+.etiqueta-tipo-relacao.tipo-facilitadora {
+  color: #237342;
+  background: #ddf3e4;
+  border-color: #237342;
+}
+
+/* Desafiante — amarelo */
+
+.etiqueta-tipo-relacao.tipo-desafiante {
+  color: #805700;
+  background: #fff0c2;
+  border-color: #946300;
+}
+
+/* Ativadora — vermelho */
+
+.etiqueta-tipo-relacao.tipo-ativadora {
+  color: #a51e1e;
+  background: #fbe0e0;
+  border-color: #b42323;
+}
+
+/* Complementar — azul */
+
+.etiqueta-tipo-relacao.tipo-complementar {
+  color: #24549a;
+  background: #ddebff;
+  border-color: #245db0;
+}
+
+/* Espelho — roxo */
+
+.etiqueta-tipo-relacao.tipo-espelho {
+  color: #694091;
+  background: #ede0ff;
+  border-color: #7541a5;
+}
+
+/* Categorias sem classificação específica */
+
+.etiqueta-tipo-relacao.tipo-neutro {
+  color: #4b554e;
+  background: #eeeeee;
+  border-color: #aeb7b0;
+}
+
+.nota-explicativa {
+  margin: 16px 0 0;
+  color: #59645d;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+/* =========================================================
+   TIPOS IDENTIFICADOS NO CRUZAMENTO
+   ========================================================= */
+
+.tipos-relacao-detectados {
+  margin-bottom: 16px;
+  color: #26352b;
+
+  > strong {
+    display: block;
+    margin-bottom: 8px;
+    color: #294d3b;
+    font-size: 14px;
+  }
+
+  p {
+    margin: 8px 0;
+    color: #46564b;
+    font-size: 13px;
+    line-height: 1.55;
+    overflow-wrap: anywhere;
+  }
+
+  p strong {
+    color: #294d3b;
+  }
+}
+
+.etiquetas-tipos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 10px 0;
+}
+
+/* =========================================================
+   RESULTADOS DO MAPA RELACIONAL
+   ========================================================= */
+
+.mapa-card {
+  margin: 8px 0 18px;
+
+  ion-card-content {
+    padding: 16px;
+  }
+}
+
 .resultado-semelhanca {
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  padding: 12px 0;
+  padding: 14px 0;
   background: #ffffff;
+  border-bottom: 1px solid #e7ece8;
 
-  & + .resultado-semelhanca {
-    border-top: 1px solid #e1e7e1;
+  &:last-child {
+    border-bottom: 0;
   }
 
   ion-icon {
     flex-shrink: 0;
-    font-size: 23px;
+    margin-top: 2px;
     color: #39764f;
+    font-size: 23px;
   }
 
   strong {
@@ -308,14 +543,66 @@ ion-button {
   }
 
   p {
-    margin: 0;
-    color: #59685e;
+    margin: 5px 0;
+    color: #46564b;
     font-size: 13px;
-    line-height: 1.5;
+    line-height: 1.55;
+    white-space: pre-line;
+    overflow-wrap: anywhere;
   }
 }
 
-/* Participantes do evento */
+/* =========================================================
+   PERGUNTA CENTRAL
+   ========================================================= */
+
+.pergunta-central-card {
+  --background: #edf5ef;
+  --color: #26352b;
+
+  margin: 16px 0;
+  background: #edf5ef;
+  text-align: center;
+
+  ion-card-header,
+  ion-card-content {
+    --background: #edf5ef;
+
+    background: #edf5ef;
+    color: #26352b;
+  }
+
+  ion-card-content {
+    padding: 24px 18px;
+  }
+
+  ion-icon {
+    color: #39764f;
+    font-size: 30px;
+  }
+
+  h2 {
+    color: #285c45;
+    font-size: 1.2rem;
+  }
+
+  p {
+    color: #46564b;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .pergunta-central {
+    color: #234b36;
+    font-size: 1.15rem;
+    font-weight: 600;
+    line-height: 1.6;
+  }
+}
+
+/* =========================================================
+   PARTICIPANTES DO EVENTO
+   ========================================================= */
 
 .secao-evento {
   margin-top: 12px;
@@ -330,7 +617,11 @@ ion-button {
 }
 
 .participantes-accordion ion-accordion {
+  --background: #ffffff;
+  --color: #26352b;
+
   background: #ffffff;
+  color: #26352b;
 }
 
 .participantes-accordion ion-accordion + ion-accordion {
@@ -347,9 +638,9 @@ ion-button {
   --inner-padding-end: 12px;
 
   ion-icon[slot='start'] {
+    margin-right: 12px;
     color: #39764f;
     font-size: 21px;
-    margin-right: 12px;
   }
 
   ion-label {
@@ -380,25 +671,57 @@ ion-button {
   background: #ffffff;
   color: #26352b;
 
-  .cabecalho-comparacao {
-    padding-bottom: 14px;
+  .campo-reflexao {
+    background: #f5f8f5;
   }
 
-  .linha-comparacao {
-    padding: 11px 0;
+  .divisor-relacional {
+    margin: 16px 0;
   }
 
   .resultado-semelhanca {
-    border-top: 1px solid #e1e7e1;
+    background: #ffffff;
   }
 }
 
-.nota-final {
-  margin: 16px 8px;
-  color: #59685e;
-  font-size: 12px;
-  line-height: 1.6;
+/* =========================================================
+   NOTA FINAL
+   ========================================================= */
+
+.nota-final-card {
+  --background: #f7f8f7;
+  --color: #343b36;
+
+  margin: 16px 0;
+  background: #f7f8f7;
+  color: #343b36;
+
+  ion-card-header,
+  ion-card-content {
+    --background: #f7f8f7;
+
+    background: #f7f8f7;
+    color: #343b36;
+  }
+
+  ion-card-content {
+    padding: 18px;
+  }
+
+  strong {
+    color: #294d3b;
+  }
+
+  p {
+    color: #46564b;
+    font-size: 12px;
+    line-height: 1.6;
+  }
 }
+
+/* =========================================================
+   ESTADOS, AVISOS E ERROS
+   ========================================================= */
 
 .estado {
   display: flex;
@@ -410,6 +733,10 @@ ion-button {
 
   ion-spinner {
     color: #39764f;
+  }
+
+  p {
+    color: #59685e;
   }
 }
 
@@ -427,18 +754,18 @@ ion-button {
 
 .aviso-secundario {
   margin-top: 10px;
-  background: #fff8e9;
   border-color: #e9d7a8;
+  background: #fff8e9;
   color: #705622;
 }
 
 .estado-vazio {
   margin: 12px 0;
   padding: 28px 16px;
-  text-align: center;
-  background: #ffffff;
   border: 1px solid #e1e7e1;
   border-radius: 15px;
+  background: #ffffff;
+  text-align: center;
 
   ion-icon {
     color: #39764f;
@@ -454,6 +781,52 @@ ion-button {
     color: #59685e;
     font-size: 13px;
     line-height: 1.5;
+  }
+}
+
+/* =========================================================
+   RESPONSIVIDADE
+   ========================================================= */
+
+@media (max-width: 576px) {
+  .pagina {
+    padding: 12px 10px 32px;
+  }
+
+  .introducao h2 {
+    font-size: 21px;
+  }
+
+  .campo-reflexao {
+    padding: 10px;
+  }
+
+  .pergunta-central-card .pergunta-central {
+    font-size: 1.05rem;
+  }
+
+  .legenda-relacional-card ion-card-content,
+  .mapa-card ion-card-content {
+    padding: 12px;
+  }
+
+  .linha-comparacao {
+    grid-template-columns: minmax(0, 1fr) minmax(68px, 0.9fr) minmax(0, 1fr);
+    gap: 3px;
+  }
+
+  .valor-pessoa {
+    font-size: 12px;
+  }
+
+  .nome-campo {
+    font-size: 10px;
+  }
+}
+
+@media (min-width: 700px) {
+  .legenda-relacional {
+    gap: 18px;
   }
 }
 
@@ -482,4 +855,24 @@ ion-button {
   .conteudo-participante {
     padding: 20px;
   }
+}
+
+
+ion-header {
+  background: #39764f;
+}
+
+ion-toolbar {
+  --background: #39764f;
+  --color: #ffffff;
+  --border-color: transparent;
+}
+
+ion-title {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+ion-header ion-button {
+  --color: #ffffff;
 }

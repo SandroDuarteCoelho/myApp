@@ -9,6 +9,7 @@ import {
 
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import {
   HttpClient,
@@ -248,7 +249,8 @@ mostrarNovoGrupo = false;
 
   constructor(
     private readonly http: HttpClient,
-    private readonly cdr: ChangeDetectorRef
+    private readonly cdr: ChangeDetectorRef,
+     private router: Router
   ) {}
 
 
@@ -666,6 +668,10 @@ private loadUpdatedAt(): void {
 
   }
 
+
+  abrirComparacaoPerfis(): void {
+  this.router.navigate(['/comparar-perfis']);
+}
 
   /* =====================================================
      CRIAR
@@ -1756,4 +1762,5 @@ alterarGrupo(event: any): void {
 
   }
 
+  
 }

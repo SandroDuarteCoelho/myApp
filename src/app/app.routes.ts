@@ -213,5 +213,11 @@ export const routes: Routes = [
   loadComponent: () =>
     import('./ficha-animal/ficha-animal.page')
       .then(m => m.FichaAnimalPage)
+},
+{
+  path: 'comparar-perfis',
+  loadComponent: () =>
+    import('./comparar-perfis/comparar-perfis.page')
+      .then(m => m.CompararPerfisPage)
 }
 ];

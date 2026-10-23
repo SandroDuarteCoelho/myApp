@@ -1,0 +1,303 @@
+
+.comparar-content {
+  --background: #f4f6f5;
+}
+
+.pagina {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 16px 12px 40px;
+  box-sizing: border-box;
+}
+
+.introducao {
+  padding: 8px 8px 14px;
+
+  h2 {
+    margin: 0 0 8px;
+    color: #263b31;
+    font-size: 23px;
+    font-weight: 700;
+  }
+
+  p {
+    margin: 0;
+    color: #657168;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+}
+
+.selecao-grid {
+  padding: 0;
+}
+
+.selecao-card {
+  height: calc(100% - 12px);
+  margin: 6px 0;
+  border-radius: 15px;
+  box-shadow: 0 3px 12px rgb(0 0 0 / 5%);
+
+  ion-card-header {
+    padding-bottom: 8px;
+  }
+
+  ion-card-title {
+    color: #263b31;
+    font-size: 19px;
+    font-weight: 700;
+  }
+
+  ion-card-subtitle {
+    font-size: 11px;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+  }
+
+  ion-card-content {
+    padding-top: 0;
+  }
+
+  ion-item {
+    --background: transparent;
+    --padding-start: 0;
+    --inner-padding-end: 0;
+  }
+
+  ion-label {
+    color: #5b675f;
+    font-size: 13px;
+  }
+
+  ion-select {
+    width: 100%;
+    max-width: 100%;
+    color: #263b31;
+    font-size: 14px;
+  }
+}
+
+.pessoa-a {
+  border-top: 4px solid #39764f;
+}
+
+.pessoa-b {
+  border-top: 4px solid #d58a32;
+}
+
+.titulo-comparacao {
+  padding: 18px 8px 8px;
+
+  h2 {
+    margin: 0 0 6px;
+    color: #263b31;
+    font-size: 19px;
+    font-weight: 700;
+  }
+
+  p {
+    margin: 0;
+    color: #69756d;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+}
+
+.resultado-card,
+.semelhancas-card {
+  margin: 8px 0;
+  border-radius: 15px;
+  box-shadow: 0 3px 12px rgb(0 0 0 / 5%);
+
+  ion-card-content {
+    padding: 14px;
+  }
+}
+
+.cabecalho-comparacao {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 36px minmax(0, 1fr);
+  align-items: center;
+  gap: 6px;
+  padding: 4px 0 18px;
+}
+
+.coluna-pessoa {
+  min-width: 0;
+  text-align: center;
+
+  h3 {
+    margin: 7px 0 0;
+    color: #263b31;
+    font-size: 14px;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+  }
+}
+
+.etiqueta {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #6b786e;
+}
+
+.coluna-a {
+  color: #39764f;
+}
+
+.coluna-b {
+  color: #bd7625;
+}
+
+.separador {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #edf0ed;
+  color: #647067;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.linha-comparacao {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(90px, 1.1fr) minmax(0, 1fr);
+  align-items: stretch;
+  gap: 5px;
+  padding: 12px 0;
+  border-top: 1px solid #e8ece8;
+}
+
+.valor-pessoa {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  color: #283a30;
+  font-size: 13px;
+  line-height: 1.5;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.nome-campo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #718076;
+  font-size: 11px;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.semelhancas-card {
+  .resultado-semelhanca {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0;
+
+    & + .resultado-semelhanca {
+      border-top: 1px solid #e8ece8;
+    }
+
+    ion-icon {
+      flex-shrink: 0;
+      font-size: 23px;
+      color: #39764f;
+    }
+
+    strong {
+      display: block;
+      margin-bottom: 4px;
+      color: #293b30;
+      font-size: 14px;
+    }
+
+    p {
+      margin: 0;
+      color: #68746b;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+  }
+}
+
+.nota-final {
+  margin: 16px 8px;
+  color: #788179;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.estado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 40px 12px;
+  color: #657168;
+
+  ion-spinner {
+    color: #39764f;
+  }
+}
+
+.mensagem-erro,
+.aviso {
+  margin: 12px 4px;
+  padding: 12px;
+  border-radius: 10px;
+  background: #fff1e8;
+  color: #8c4828;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.estado-vazio {
+  padding: 35px 16px;
+  text-align: center;
+
+  ion-icon {
+    color: #39764f;
+    font-size: 42px;
+  }
+
+  h3 {
+    color: #293b30;
+    font-size: 17px;
+  }
+
+  p {
+    color: #68746b;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+}
+
+@media (min-width: 768px) {
+  .pagina {
+    padding: 24px 20px 48px;
+  }
+
+  .introducao h2 {
+    font-size: 27px;
+  }
+
+  .resultado-card ion-card-content {
+    padding: 22px;
+  }
+
+  .valor-pessoa {
+    font-size: 14px;
+  }
+
+  .nome-campo {
+    font-size: 12px;
+  }
+}

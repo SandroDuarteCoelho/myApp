@@ -1,10 +1,21 @@
+
 <ion-header [translucent]="true">
   <ion-toolbar>
 
     <ion-buttons slot="start">
-      <ion-button fill="clear" size="small" (click)="voltar()">
-        Voltar
-      </ion-button>
+      <div class="header-left-buttons">
+        <ion-button fill="clear" size="small" (click)="voltar()">
+          Voltar
+        </ion-button>
+
+        <ion-button
+          fill="outline"
+          size="small"
+          class="comparar-perfis-header"
+          (click)="abrirComparacaoPerfis()">
+          Comparar perfis
+        </ion-button>
+      </div>
     </ion-buttons>
 
     <ion-title>Perfil</ion-title>
@@ -67,9 +78,7 @@
       expand="block"
       class="criar-btn"
       (click)="abrirCriar()">
-
       Criar novo
-
     </ion-button>
 
 
@@ -106,9 +115,7 @@
           <ion-select-option
             *ngFor="let grupo of grupos"
             [value]="grupo">
-
             {{ grupo }}
-
           </ion-select-option>
 
         </ion-select>
@@ -135,9 +142,7 @@
           <ion-select-option
             *ngFor="let localidade of localidades"
             [value]="localidade">
-
             {{ localidade }}
-
           </ion-select-option>
 
         </ion-select>
@@ -243,21 +248,6 @@
 
 
               <ion-button
-                class="mini-btn comparar"
-                size="small"
-                fill="outline"
-                (click)="
-                  comparar(p);
-                  $event.stopPropagation()
-                ">
-
-                <ion-icon name="git-compare-outline"></ion-icon>
-                Comparar
-
-              </ion-button>
-
-
-              <ion-button
                 class="mini-btn apagar"
                 size="small"
                 color="danger"
@@ -307,379 +297,352 @@
        ===================================================== -->
 
   <ion-popover
-  #popover
-  class="perfil-popover"
-  [dismissOnSelect]="false">
+    #popover
+    class="perfil-popover"
+    [dismissOnSelect]="false">
 
-  <ng-template>
+    <ng-template>
 
-    <ion-content
-      style="--background: #ffffff; color: #222222;">
+      <ion-content style="--background: #ffffff; color: #222222;">
 
-      <ion-list
-        style="background: #ffffff; padding: 16px;">
+        <ion-list style="background: #ffffff; padding: 16px;">
 
-        <!-- PRIMEIRO NOME -->
-        <ion-item
-          style="
-            --background: #ffffff;
-            --color: #222222;
-            color: #222222;
-            margin-bottom: 12px;
-          ">
+          <!-- PRIMEIRO NOME -->
 
-          <ion-label
-            position="stacked"
-            style="
-              color: #222222 !important;
-              --color: #222222;
-              font-weight: 600;
-            ">
-
-            Primeiro nome
-
-          </ion-label>
-
-          <ion-input
-            [(ngModel)]="primeiroNome"
-            type="text"
+          <ion-item
             style="
               --background: #ffffff;
               --color: #222222;
-              --placeholder-color: #777777;
-              color: #222222 !important;
-            ">
-          </ion-input>
-
-        </ion-item>
-
-
-        <!-- ÚLTIMO NOME -->
-        <ion-item
-          style="
-            --background: #ffffff;
-            --color: #222222;
-            color: #222222;
-            margin-bottom: 12px;
-          ">
-
-          <ion-label
-            position="stacked"
-            style="
-              color: #222222 !important;
-              --color: #222222;
-              font-weight: 600;
+              color: #222222;
+              margin-bottom: 12px;
             ">
 
-            Último nome
+            <ion-label
+              position="stacked"
+              style="
+                color: #222222 !important;
+                --color: #222222;
+                font-weight: 600;
+              ">
+              Primeiro nome
+            </ion-label>
 
-          </ion-label>
+            <ion-input
+              [(ngModel)]="primeiroNome"
+              type="text"
+              style="
+                --background: #ffffff;
+                --color: #222222;
+                --placeholder-color: #777777;
+                color: #222222 !important;
+              ">
+            </ion-input>
 
-          <ion-input
-            [(ngModel)]="ultimoNome"
-            type="text"
-            style="
-              --background: #ffffff;
-              --color: #222222;
-              --placeholder-color: #777777;
-              color: #222222 !important;
-            ">
-          </ion-input>
-
-        </ion-item>
+          </ion-item>
 
 
-        <!-- DATA NASCIMENTO -->
-        <ion-item
-          style="
-            --background: #ffffff;
-            --color: #222222;
-            color: #222222;
-            margin-bottom: 12px;
-          ">
+          <!-- ÚLTIMO NOME -->
 
-          <ion-label
-            position="stacked"
-            style="
-              color: #222222 !important;
-              --color: #222222;
-              font-weight: 600;
-            ">
-
-            Data nascimento
-
-          </ion-label>
-
-          <ion-input
-            [(ngModel)]="dataNascimento"
-            type="date"
+          <ion-item
             style="
               --background: #ffffff;
               --color: #222222;
-              --placeholder-color: #777777;
-              color: #222222 !important;
-            ">
-          </ion-input>
-
-        </ion-item>
-
-
-       <!-- =================================================
-     LOCALIDADE
-     ================================================= -->
-
-<ion-item
-  style="
-    --background: #ffffff;
-    --color: #222222;
-    color: #222222;
-    margin-bottom: 12px;
-  ">
-
-  <ion-label
-    position="stacked"
-    style="
-      color: #222222 !important;
-      --color: #222222;
-      font-weight: 600;
-      margin-bottom: 8px;
-    ">
-
-    Localidade
-
-  </ion-label>
-
-  <!-- ESCOLHER EXISTENTE -->
-
- <ion-select
-  *ngIf="!mostrarNovaLocalidade"
-  [(ngModel)]="localidade"
-  interface="popover"
-  placeholder="Escolher localidade"
-  (ionChange)="alterarLocalidade($event)"
-  style="
-    --color: #222222;
-    --placeholder-color: #777777;
-    color: #222222 !important;
-    width: 100%;
-  ">
-
-    <ion-select-option
-      *ngFor="let item of localidades"
-      [value]="item">
-
-      {{ item }}
-
-    </ion-select-option>
-
-    <ion-select-option
-      value="__NOVA_LOCALIDADE__">
-
-      + Nova localidade
-
-    </ion-select-option>
-
-  </ion-select>
-
-
-  <!-- NOVA LOCALIDADE -->
-
-  <div
-    *ngIf="mostrarNovaLocalidade"
-    style="width: 100%;">
-
-    <ion-input
-      [(ngModel)]="novaLocalidade"
-      type="text"
-      placeholder="Escrever nova localidade"
-      style="
-        --background: #ffffff;
-        --color: #222222;
-        --placeholder-color: #777777;
-        color: #222222 !important;
-      ">
-    </ion-input>
-
-    <ion-button
-      size="small"
-      fill="outline"
-      (click)="confirmarNovaLocalidade()">
-
-      Usar esta localidade
-
-    </ion-button>
-
-    <ion-button
-      size="small"
-      fill="clear"
-      (click)="escolherLocalidadeExistente()">
-
-      Escolher existente
-
-    </ion-button>
-
-  </div>
-
-</ion-item>
-
-
-   <!-- =================================================
-     GRUPO
-     ================================================= -->
-
-<ion-item
-  style="
-    --background: #ffffff;
-    --color: #222222;
-    color: #222222;
-    margin-bottom: 12px;
-  ">
-
-  <ion-label
-    position="stacked"
-    style="
-      color: #222222 !important;
-      --color: #222222;
-      font-weight: 600;
-      margin-bottom: 8px;
-    ">
-
-    Grupo
-
-  </ion-label>
-
-  <!-- ESCOLHER EXISTENTE -->
-
-  <ion-select
-    *ngIf="!mostrarNovoGrupo"
-    [(ngModel)]="grupo"
-    interface="popover"
-    placeholder="Escolher grupo"
-    (ionChange)="alterarGrupo($event)"
-    style="
-      --color: #222222;
-      --placeholder-color: #777777;
-      color: #222222 !important;
-      width: 100%;
-    ">
-
-    <ion-select-option
-      *ngFor="let item of grupos"
-      [value]="item">
-
-      {{ item }}
-
-    </ion-select-option>
-
-    <ion-select-option
-      value="__NOVO_GRUPO__">
-
-      + Novo grupo
-
-    </ion-select-option>
-
-  </ion-select>
-
-
-  <!-- NOVO GRUPO -->
-
-  <div
-    *ngIf="mostrarNovoGrupo"
-    style="width: 100%;">
-
-    <ion-input
-      [(ngModel)]="novoGrupo"
-      type="text"
-      placeholder="Escrever novo grupo"
-      style="
-        --background: #ffffff;
-        --color: #222222;
-        --placeholder-color: #777777;
-        color: #222222 !important;
-      ">
-    </ion-input>
-
-    <ion-button
-      size="small"
-      fill="outline"
-      (click)="confirmarNovoGrupo()">
-
-      Usar este grupo
-
-    </ion-button>
-
-    <ion-button
-      size="small"
-      fill="clear"
-      (click)="escolherGrupoExistente()">
-
-      Escolher existente
-
-    </ion-button>
-
-  </div>
-
-</ion-item>
-
-
-        <!-- ENEAGRAMA -->
-        <ion-item
-          style="
-            --background: #ffffff;
-            --color: #222222;
-            color: #222222;
-            margin-bottom: 12px;
-          ">
-
-          <ion-label
-            position="stacked"
-            style="
-              color: #222222 !important;
-              --color: #222222;
-              font-weight: 600;
+              color: #222222;
+              margin-bottom: 12px;
             ">
 
-            Eneagrama
+            <ion-label
+              position="stacked"
+              style="
+                color: #222222 !important;
+                --color: #222222;
+                font-weight: 600;
+              ">
+              Último nome
+            </ion-label>
 
-          </ion-label>
+            <ion-input
+              [(ngModel)]="ultimoNome"
+              type="text"
+              style="
+                --background: #ffffff;
+                --color: #222222;
+                --placeholder-color: #777777;
+                color: #222222 !important;
+              ">
+            </ion-input>
 
-          <ion-input
-            [(ngModel)]="eneagrama"
-            type="text"
+          </ion-item>
+
+
+          <!-- DATA NASCIMENTO -->
+
+          <ion-item
             style="
               --background: #ffffff;
               --color: #222222;
-              --placeholder-color: #777777;
-              color: #222222 !important;
+              color: #222222;
+              margin-bottom: 12px;
             ">
-          </ion-input>
 
-        </ion-item>
+            <ion-label
+              position="stacked"
+              style="
+                color: #222222 !important;
+                --color: #222222;
+                font-weight: 600;
+              ">
+              Data nascimento
+            </ion-label>
+
+            <ion-input
+              [(ngModel)]="dataNascimento"
+              type="date"
+              style="
+                --background: #ffffff;
+                --color: #222222;
+                --placeholder-color: #777777;
+                color: #222222 !important;
+              ">
+            </ion-input>
+
+          </ion-item>
 
 
-        <!-- GUARDAR -->
-        <div
-          style="
-            padding-top: 10px;
-            padding-bottom: 10px;
-          ">
+          <!-- =================================================
+               LOCALIDADE
+               ================================================= -->
 
-          <ion-button
-            expand="block"
-            (click)="guardar()">
+          <ion-item
+            style="
+              --background: #ffffff;
+              --color: #222222;
+              color: #222222;
+              margin-bottom: 12px;
+            ">
 
-            Guardar
+            <ion-label
+              position="stacked"
+              style="
+                color: #222222 !important;
+                --color: #222222;
+                font-weight: 600;
+                margin-bottom: 8px;
+              ">
+              Localidade
+            </ion-label>
 
-          </ion-button>
 
-        </div>
+            <!-- ESCOLHER EXISTENTE -->
 
-      </ion-list>
+            <ion-select
+              *ngIf="!mostrarNovaLocalidade"
+              [(ngModel)]="localidade"
+              interface="popover"
+              placeholder="Escolher localidade"
+              (ionChange)="alterarLocalidade($event)"
+              style="
+                --color: #222222;
+                --placeholder-color: #777777;
+                color: #222222 !important;
+                width: 100%;
+              ">
 
-    </ion-content>
+              <ion-select-option
+                *ngFor="let item of localidades"
+                [value]="item">
+                {{ item }}
+              </ion-select-option>
 
-  </ng-template>
+              <ion-select-option value="__NOVA_LOCALIDADE__">
+                + Nova localidade
+              </ion-select-option>
 
-</ion-popover>
+            </ion-select>
+
+
+            <!-- NOVA LOCALIDADE -->
+
+            <div
+              *ngIf="mostrarNovaLocalidade"
+              style="width: 100%;">
+
+              <ion-input
+                [(ngModel)]="novaLocalidade"
+                type="text"
+                placeholder="Escrever nova localidade"
+                style="
+                  --background: #ffffff;
+                  --color: #222222;
+                  --placeholder-color: #777777;
+                  color: #222222 !important;
+                ">
+              </ion-input>
+
+              <ion-button
+                size="small"
+                fill="outline"
+                (click)="confirmarNovaLocalidade()">
+                Usar esta localidade
+              </ion-button>
+
+              <ion-button
+                size="small"
+                fill="clear"
+                (click)="escolherLocalidadeExistente()">
+                Escolher existente
+              </ion-button>
+
+            </div>
+
+          </ion-item>
+
+
+          <!-- =================================================
+               GRUPO
+               ================================================= -->
+
+          <ion-item
+            style="
+              --background: #ffffff;
+              --color: #222222;
+              color: #222222;
+              margin-bottom: 12px;
+            ">
+
+            <ion-label
+              position="stacked"
+              style="
+                color: #222222 !important;
+                --color: #222222;
+                font-weight: 600;
+                margin-bottom: 8px;
+              ">
+              Grupo
+            </ion-label>
+
+
+            <!-- ESCOLHER EXISTENTE -->
+
+            <ion-select
+              *ngIf="!mostrarNovoGrupo"
+              [(ngModel)]="grupo"
+              interface="popover"
+              placeholder="Escolher grupo"
+              (ionChange)="alterarGrupo($event)"
+              style="
+                --color: #222222;
+                --placeholder-color: #777777;
+                color: #222222 !important;
+                width: 100%;
+              ">
+
+              <ion-select-option
+                *ngFor="let item of grupos"
+                [value]="item">
+                {{ item }}
+              </ion-select-option>
+
+              <ion-select-option value="__NOVO_GRUPO__">
+                + Novo grupo
+              </ion-select-option>
+
+            </ion-select>
+
+
+            <!-- NOVO GRUPO -->
+
+            <div
+              *ngIf="mostrarNovoGrupo"
+              style="width: 100%;">
+
+              <ion-input
+                [(ngModel)]="novoGrupo"
+                type="text"
+                placeholder="Escrever novo grupo"
+                style="
+                  --background: #ffffff;
+                  --color: #222222;
+                  --placeholder-color: #777777;
+                  color: #222222 !important;
+                ">
+              </ion-input>
+
+              <ion-button
+                size="small"
+                fill="outline"
+                (click)="confirmarNovoGrupo()">
+                Usar este grupo
+              </ion-button>
+
+              <ion-button
+                size="small"
+                fill="clear"
+                (click)="escolherGrupoExistente()">
+                Escolher existente
+              </ion-button>
+
+            </div>
+
+          </ion-item>
+
+
+          <!-- ENEAGRAMA -->
+
+          <ion-item
+            style="
+              --background: #ffffff;
+              --color: #222222;
+              color: #222222;
+              margin-bottom: 12px;
+            ">
+
+            <ion-label
+              position="stacked"
+              style="
+                color: #222222 !important;
+                --color: #222222;
+                font-weight: 600;
+              ">
+              Eneagrama
+            </ion-label>
+
+            <ion-input
+              [(ngModel)]="eneagrama"
+              type="text"
+              style="
+                --background: #ffffff;
+                --color: #222222;
+                --placeholder-color: #777777;
+                color: #222222 !important;
+              ">
+            </ion-input>
+
+          </ion-item>
+
+
+          <!-- GUARDAR -->
+
+          <div
+            style="
+              padding-top: 10px;
+              padding-bottom: 10px;
+            ">
+
+            <ion-button
+              expand="block"
+              (click)="guardar()">
+              Guardar
+            </ion-button>
+
+          </div>
+
+        </ion-list>
+
+      </ion-content>
+
+    </ng-template>
+
+  </ion-popover>
 
 </ion-content>

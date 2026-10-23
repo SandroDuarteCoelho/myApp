@@ -220,6 +220,109 @@
 
           </div>
 
+
+
+
+<!-- Participantes do evento -->
+<div class="campo-evento campo-participantes">
+
+  <label>Participantes (opcional)</label>
+
+  <p class="ajuda-participantes">
+    Filtra por localidade e/ou grupo e seleciona as pessoas que
+    queres associar ao evento.
+  </p>
+
+  <div class="filtros-participantes">
+
+    <div>
+      <label for="filtroLocalidade">Localidade</label>
+      <select
+        id="filtroLocalidade"
+        name="filtroLocalidade"
+        [(ngModel)]="filtroLocalidade"
+        (ngModelChange)="atualizarFiltrosParticipantes()">
+
+        <option value="">Todas as localidades</option>
+
+        <option
+          *ngFor="let localidade of localidadesDisponiveis"
+          [value]="localidade">
+          {{ localidade }}
+        </option>
+
+      </select>
+    </div>
+
+    <div>
+      <label for="filtroGrupo">Grupo</label>
+      <select
+        id="filtroGrupo"
+        name="filtroGrupo"
+        [(ngModel)]="filtroGrupo"
+        (ngModelChange)="atualizarFiltrosParticipantes()">
+
+        <option value="">Todos os grupos</option>
+
+        <option
+          *ngFor="let grupo of gruposDisponiveis"
+          [value]="grupo">
+          {{ grupo }}
+        </option>
+
+      </select>
+    </div>
+
+  </div>
+
+  <div class="lista-participantes">
+
+    <p *ngIf="participantesFiltrados.length === 0">
+      Não existem pessoas para os filtros selecionados.
+    </p>
+
+    <label
+      class="participante-opcao"
+      *ngFor="let pessoa of participantesFiltrados">
+
+      <input
+        type="checkbox"
+        [checked]="eventoPessoasSelecionadas.includes(pessoa.id)"
+        (change)="alternarParticipante(pessoa.id, $any($event.target).checked)">
+
+      <span>
+        <strong>{{ pessoa.nome }} {{ pessoa.apelido }}</strong>
+        <small>
+          {{ pessoa.localidade || 'Sem localidade' }}
+          ·
+          {{ pessoa.grupo || 'Sem grupo' }}
+        </small>
+      </span>
+
+    </label>
+
+  </div>
+
+  <div class="participantes-selecionados" *ngIf="pessoasSelecionadas.length">
+    <strong>Selecionados: {{ pessoasSelecionadas.length }}</strong>
+
+    <div class="participante-etiquetas">
+      <span *ngFor="let pessoa of pessoasSelecionadas">
+        {{ pessoa.nome }} {{ pessoa.apelido }}
+        <button
+          type="button"
+          [attr.aria-label]="'Remover ' + pessoa.nome"
+          (click)="alternarParticipante(pessoa.id, false)">
+          ×
+        </button>
+      </span>
+    </div>
+  </div>
+
+</div>
+
+
+
           <!-- Hora de início -->
           <div class="campo-evento">
 

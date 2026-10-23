@@ -1,0 +1,243 @@
+
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-button fill="clear" (click)="voltar()">
+        <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
+        Voltar
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>Comparar perfis</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="comparar-content">
+  <div class="pagina">
+
+    <div class="introducao">
+      <h2>Dois perfis, duas perspetivas</h2>
+      <p>
+        Seleciona duas pessoas para observar semelhanças e diferenças
+        nos dados dos seus perfis.
+      </p>
+    </div>
+
+    <div *ngIf="carregando" class="estado">
+      <ion-spinner name="crescent"></ion-spinner>
+      <p>A carregar perfis...</p>
+    </div>
+
+    <div *ngIf="erro && !carregando" class="mensagem-erro">
+      {{ erro }}
+    </div>
+
+    <ng-container *ngIf="!carregando && !erro">
+
+      <ion-grid class="selecao-grid">
+        <ion-row>
+          <ion-col size="12" size-md="6">
+            <ion-card class="selecao-card pessoa-a">
+              <ion-card-header>
+                <ion-card-subtitle>Primeiro perfil</ion-card-subtitle>
+                <ion-card-title>Pessoa A</ion-card-title>
+              </ion-card-header>
+
+              <ion-card-content>
+                <ion-item lines="none">
+                  <ion-label position="stacked">
+                    Escolher pessoa
+                  </ion-label>
+
+                  <ion-select
+                    [(ngModel)]="pessoaAId"
+                    interface="popover"
+                    placeholder="Selecionar perfil"
+                    cancelText="Cancelar"
+                    okText="Confirmar">
+
+                    <ion-select-option
+                      *ngFor="let pessoa of pessoas"
+                      [value]="pessoa.id"
+                      [disabled]="pessoa.id === pessoaBId">
+
+                      {{ nomeCompleto(pessoa) }}
+
+                    </ion-select-option>
+                  </ion-select>
+                </ion-item>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+
+          <ion-col size="12" size-md="6">
+            <ion-card class="selecao-card pessoa-b">
+              <ion-card-header>
+                <ion-card-subtitle>Segundo perfil</ion-card-subtitle>
+                <ion-card-title>Pessoa B</ion-card-title>
+              </ion-card-header>
+
+              <ion-card-content>
+                <ion-item lines="none">
+                  <ion-label position="stacked">
+                    Escolher pessoa
+                  </ion-label>
+
+                  <ion-select
+                    [(ngModel)]="pessoaBId"
+                    interface="popover"
+                    placeholder="Selecionar perfil"
+                    cancelText="Cancelar"
+                    okText="Confirmar">
+
+                    <ion-select-option
+                      *ngFor="let pessoa of pessoas"
+                      [value]="pessoa.id"
+                      [disabled]="pessoa.id === pessoaAId">
+
+                      {{ nomeCompleto(pessoa) }}
+
+                    </ion-select-option>
+                  </ion-select>
+                </ion-item>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <div
+        *ngIf="pessoaAId !== null && pessoaBId !== null && pessoaAId === pessoaBId"
+        class="aviso">
+
+        Seleciona duas pessoas diferentes para comparar.
+      </div>
+
+      <ng-container *ngIf="podeComparar">
+
+        <div class="titulo-comparacao">
+          <h2>Comparação direta</h2>
+          <p>Observa cada característica sem pressupor que uma seja melhor do que outra.</p>
+        </div>
+
+        <ion-card class="resultado-card">
+          <ion-card-content>
+            <div class="cabecalho-comparacao">
+              <div class="coluna-pessoa coluna-a">
+                <span class="etiqueta">PESSOA A</span>
+                <h3>{{ nomeCompleto(pessoaA) }}</h3>
+              </div>
+
+              <div class="separador">VS</div>
+
+              <div class="coluna-pessoa coluna-b">
+                <span class="etiqueta">PESSOA B</span>
+                <h3>{{ nomeCompleto(pessoaB) }}</h3>
+              </div>
+            </div>
+
+            <div class="linha-comparacao">
+              <div class="valor-pessoa">
+                {{ valor(pessoaA, 'data') }}
+              </div>
+              <div class="nome-campo">Data de nascimento</div>
+              <div class="valor-pessoa">
+                {{ valor(pessoaB, 'data') }}
+              </div>
+            </div>
+
+            <div class="linha-comparacao">
+              <div class="valor-pessoa">
+                {{ valor(pessoaA, 'localidade') }}
+              </div>
+              <div class="nome-campo">Localidade</div>
+              <div class="valor-pessoa">
+                {{ valor(pessoaB, 'localidade') }}
+              </div>
+            </div>
+
+            <div class="linha-comparacao">
+              <div class="valor-pessoa">
+                {{ valor(pessoaA, 'grupo') }}
+              </div>
+              <div class="nome-campo">Grupo</div>
+              <div class="valor-pessoa">
+                {{ valor(pessoaB, 'grupo') }}
+              </div>
+            </div>
+
+            <div class="linha-comparacao">
+              <div class="valor-pessoa">
+                {{ valor(pessoaA, 'eneagrama_tipo') }}
+              </div>
+              <div class="nome-campo">Tipo de Eneagrama</div>
+              <div class="valor-pessoa">
+                {{ valor(pessoaB, 'eneagrama_tipo') }}
+              </div>
+            </div>
+          </ion-card-content>
+        </ion-card>
+
+        <div class="titulo-comparacao">
+          <h2>Semelhanças observadas</h2>
+          <p>Comparação automática apenas dos campos disponíveis.</p>
+        </div>
+
+        <ion-card class="semelhancas-card">
+          <ion-card-content>
+            <div class="resultado-semelhanca">
+              <ion-icon
+                [name]="mesmoGrupo ? 'checkmark-circle-outline' : 'git-compare-outline'">
+              </ion-icon>
+
+              <div>
+                <strong>Grupo</strong>
+                <p>
+                  {{
+                    mesmoGrupo
+                      ? 'As duas pessoas pertencem ao mesmo grupo.'
+                      : 'As duas pessoas pertencem a grupos diferentes.'
+                  }}
+                </p>
+              </div>
+            </div>
+
+            <div class="resultado-semelhanca">
+              <ion-icon
+                [name]="mesmoEneagrama ? 'checkmark-circle-outline' : 'git-compare-outline'">
+              </ion-icon>
+
+              <div>
+                <strong>Eneagrama</strong>
+                <p>
+                  {{
+                    mesmoEneagrama
+                      ? 'As duas pessoas têm o mesmo tipo registado.'
+                      : 'Os tipos de Eneagrama registados são diferentes.'
+                  }}
+                </p>
+              </div>
+            </div>
+          </ion-card-content>
+        </ion-card>
+
+        <p class="nota-final">
+          Estas semelhanças são apenas comparações dos dados registados.
+          Não constituem uma avaliação psicológica nem determinam a
+          compatibilidade entre as pessoas.
+        </p>
+
+      </ng-container>
+
+      <div
+        *ngIf="pessoas.length === 0"
+        class="estado-vazio">
+
+        <ion-icon name="people-outline"></ion-icon>
+        <h3>Não existem perfis para comparar</h3>
+        <p>Cria ou importa perfis na página Perfil para começar.</p>
+      </div>
+
+    </ng-container>
+  </div>
+</ion-content>

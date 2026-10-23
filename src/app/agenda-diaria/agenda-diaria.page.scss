@@ -609,3 +609,108 @@
 .agenda-tabela td.celula-clicavel .evento-bloco {
   min-height: 100%;
 }
+
+.campo-participantes {
+  margin: 16px 0;
+  padding: 14px;
+  border: 1px solid #d9dfd9;
+  border-radius: 12px;
+  background: #f8faf8;
+}
+
+.ajuda-participantes {
+  margin: 6px 0 12px;
+  color: #59665d;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.filtros-participantes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.filtros-participantes select {
+  width: 100%;
+  min-height: 42px;
+  margin-top: 6px;
+  padding: 8px;
+  border: 1px solid #cbd5cb;
+  border-radius: 8px;
+  background: #fff;
+  color: #26352b;
+}
+
+.lista-participantes {
+  max-height: 220px;
+  overflow-y: auto;
+  margin-top: 12px;
+  border: 1px solid #e0e5e0;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.participante-opcao {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-bottom: 1px solid #edf0ed;
+}
+
+.participante-opcao:last-child {
+  border-bottom: 0;
+}
+
+.participante-opcao input {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.participante-opcao span {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.participante-opcao small {
+  color: #68746b;
+  font-size: 0.78rem;
+}
+
+.participantes-selecionados {
+  margin-top: 12px;
+  font-size: 0.85rem;
+}
+
+.participante-etiquetas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.participante-etiquetas span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 8px;
+  border-radius: 16px;
+  background: #e3eee5;
+  color: #26352b;
+}
+
+.participante-etiquetas button {
+  border: 0;
+  background: transparent;
+  color: #26352b;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 380px) {
+  .filtros-participantes {
+    grid-template-columns: 1fr;
+  }
+}

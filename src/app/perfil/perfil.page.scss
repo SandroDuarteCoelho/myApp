@@ -614,3 +614,38 @@ ion-content {
   }
 
 }
+
+
+.header-left-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.header-left-buttons ion-button {
+  margin: 0;
+  --border-radius: 8px;
+}
+
+.header-left-buttons ion-button[fill="outline"] {
+  --border-width: 1px;
+}
+
+
+.header-left-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.header-left-buttons ion-button {
+  margin: 0;
+  --border-radius: 8px;
+}
+
+.comparar-perfis-header {
+  font-size: 11px;
+  --border-width: 1px;
+}

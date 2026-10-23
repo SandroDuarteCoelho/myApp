@@ -1,6 +1,26 @@
 
-.comparar-content {
-  --background: #f4f6f5;
+:host {
+  color: #26352b;
+  background: #f4f6f4;
+}
+
+ion-content.comparar-content {
+  --background: #f4f6f4;
+  --color: #26352b;
+}
+
+ion-toolbar {
+  --background: #ffffff;
+  --color: #26352b;
+  --border-color: #e0e5e0;
+}
+
+ion-title {
+  color: #26352b;
+}
+
+ion-button {
+  --color: #39764f;
 }
 
 .pagina {
@@ -9,6 +29,7 @@
   margin: 0 auto;
   padding: 16px 12px 40px;
   box-sizing: border-box;
+  color: #26352b;
 }
 
 .introducao {
@@ -23,7 +44,7 @@
 
   p {
     margin: 0;
-    color: #657168;
+    color: #59685e;
     font-size: 14px;
     line-height: 1.6;
   }
@@ -33,14 +54,26 @@
   padding: 0;
 }
 
+.selecao-card,
+.resultado-card,
+.semelhancas-card {
+  --background: #ffffff;
+  --color: #26352b;
+
+  background: #ffffff;
+  color: #26352b;
+  border: 1px solid #e1e7e1;
+  border-radius: 15px;
+  box-shadow: 0 3px 12px rgb(30 50 35 / 7%);
+}
+
 .selecao-card {
   height: calc(100% - 12px);
   margin: 6px 0;
-  border-radius: 15px;
-  box-shadow: 0 3px 12px rgb(0 0 0 / 5%);
 
   ion-card-header {
     padding-bottom: 8px;
+    background: #ffffff;
   }
 
   ion-card-title {
@@ -50,6 +83,7 @@
   }
 
   ion-card-subtitle {
+    color: #59685e;
     font-size: 11px;
     letter-spacing: 0.7px;
     text-transform: uppercase;
@@ -57,23 +91,30 @@
 
   ion-card-content {
     padding-top: 0;
+    background: #ffffff;
+    color: #26352b;
   }
 
   ion-item {
-    --background: transparent;
+    --background: #ffffff;
+    --color: #26352b;
+    --border-color: #e1e7e1;
     --padding-start: 0;
     --inner-padding-end: 0;
   }
 
   ion-label {
-    color: #5b675f;
+    color: #59685e;
     font-size: 13px;
   }
 
   ion-select {
+    --color: #26352b;
+    --placeholder-color: #68766c;
+
     width: 100%;
     max-width: 100%;
-    color: #263b31;
+    color: #26352b;
     font-size: 14px;
   }
 }
@@ -84,6 +125,44 @@
 
 .pessoa-b {
   border-top: 4px solid #d58a32;
+}
+
+.filtros-grid {
+  padding: 0;
+
+  ion-row {
+    align-items: start;
+  }
+
+  ion-col {
+    min-width: 0;
+    padding: 0 4px;
+  }
+
+  ion-item {
+    --padding-start: 4px;
+    --inner-padding-end: 2px;
+    --min-height: 64px;
+
+    font-size: 13px;
+  }
+
+  ion-label {
+    font-size: 12px;
+  }
+
+  ion-select {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    font-size: 13px;
+  }
+}
+
+.contador-perfis {
+  margin: 8px 4px 0;
+  color: #68766c;
+  font-size: 12px;
 }
 
 .titulo-comparacao {
@@ -98,20 +177,27 @@
 
   p {
     margin: 0;
-    color: #69756d;
+    color: #59685e;
     font-size: 13px;
     line-height: 1.5;
+  }
+
+  ion-icon {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 4px;
+    color: #39764f;
   }
 }
 
 .resultado-card,
 .semelhancas-card {
   margin: 8px 0;
-  border-radius: 15px;
-  box-shadow: 0 3px 12px rgb(0 0 0 / 5%);
 
   ion-card-content {
     padding: 14px;
+    background: #ffffff;
+    color: #26352b;
   }
 }
 
@@ -121,6 +207,7 @@
   align-items: center;
   gap: 6px;
   padding: 4px 0 18px;
+  background: #ffffff;
 }
 
 .coluna-pessoa {
@@ -137,10 +224,10 @@
 }
 
 .etiqueta {
+  color: #59685e;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 1px;
-  color: #6b786e;
 }
 
 .coluna-a {
@@ -148,7 +235,7 @@
 }
 
 .coluna-b {
-  color: #bd7625;
+  color: #a96013;
 }
 
 .separador {
@@ -158,8 +245,8 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: #edf0ed;
-  color: #647067;
+  background: #edf2ed;
+  color: #35473a;
   font-size: 10px;
   font-weight: 800;
 }
@@ -170,7 +257,8 @@
   align-items: stretch;
   gap: 5px;
   padding: 12px 0;
-  border-top: 1px solid #e8ece8;
+  border-top: 1px solid #e1e7e1;
+  background: #ffffff;
 }
 
 .valor-pessoa {
@@ -178,7 +266,7 @@
   align-items: center;
   justify-content: center;
   min-width: 0;
-  color: #283a30;
+  color: #26352b;
   font-size: 13px;
   line-height: 1.5;
   text-align: center;
@@ -189,48 +277,125 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #718076;
+  color: #59685e;
   font-size: 11px;
   line-height: 1.4;
   text-align: center;
 }
 
-.semelhancas-card {
-  .resultado-semelhanca {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    padding: 12px 0;
+.resultado-semelhanca {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 0;
+  background: #ffffff;
 
-    & + .resultado-semelhanca {
-      border-top: 1px solid #e8ece8;
-    }
+  & + .resultado-semelhanca {
+    border-top: 1px solid #e1e7e1;
+  }
 
-    ion-icon {
-      flex-shrink: 0;
-      font-size: 23px;
-      color: #39764f;
-    }
+  ion-icon {
+    flex-shrink: 0;
+    font-size: 23px;
+    color: #39764f;
+  }
 
-    strong {
-      display: block;
-      margin-bottom: 4px;
-      color: #293b30;
+  strong {
+    display: block;
+    margin-bottom: 4px;
+    color: #263b31;
+    font-size: 14px;
+  }
+
+  p {
+    margin: 0;
+    color: #59685e;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+}
+
+/* Participantes do evento */
+
+.secao-evento {
+  margin-top: 12px;
+}
+
+.participantes-accordion {
+  margin: 8px 0;
+  border: 1px solid #e1e7e1;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.participantes-accordion ion-accordion {
+  background: #ffffff;
+}
+
+.participantes-accordion ion-accordion + ion-accordion {
+  border-top: 1px solid #e1e7e1;
+}
+
+.participante-header {
+  --background: #ffffff;
+  --background-focused: #f0f5f0;
+  --background-hover: #f5f8f5;
+  --color: #26352b;
+  --border-color: #e1e7e1;
+  --padding-start: 14px;
+  --inner-padding-end: 12px;
+
+  ion-icon[slot='start'] {
+    color: #39764f;
+    font-size: 21px;
+    margin-right: 12px;
+  }
+
+  ion-label {
+    margin-top: 12px;
+    margin-bottom: 12px;
+
+    h3 {
+      margin: 0 0 4px;
+      color: #263b31;
       font-size: 14px;
+      font-weight: 700;
+      white-space: normal;
     }
 
     p {
       margin: 0;
-      color: #68746b;
-      font-size: 13px;
-      line-height: 1.5;
+      color: #68766c;
+      font-size: 12px;
+      line-height: 1.4;
+      white-space: normal;
     }
+  }
+}
+
+.conteudo-participante {
+  padding: 16px 12px 12px;
+  border-top: 1px solid #e1e7e1;
+  background: #ffffff;
+  color: #26352b;
+
+  .cabecalho-comparacao {
+    padding-bottom: 14px;
+  }
+
+  .linha-comparacao {
+    padding: 11px 0;
+  }
+
+  .resultado-semelhanca {
+    border-top: 1px solid #e1e7e1;
   }
 }
 
 .nota-final {
   margin: 16px 8px;
-  color: #788179;
+  color: #59685e;
   font-size: 12px;
   line-height: 1.6;
 }
@@ -241,7 +406,7 @@
   align-items: center;
   gap: 10px;
   padding: 40px 12px;
-  color: #657168;
+  color: #35473a;
 
   ion-spinner {
     color: #39764f;
@@ -252,16 +417,28 @@
 .aviso {
   margin: 12px 4px;
   padding: 12px;
+  border: 1px solid #edc9b5;
   border-radius: 10px;
   background: #fff1e8;
-  color: #8c4828;
+  color: #793b20;
   font-size: 13px;
   line-height: 1.5;
 }
 
+.aviso-secundario {
+  margin-top: 10px;
+  background: #fff8e9;
+  border-color: #e9d7a8;
+  color: #705622;
+}
+
 .estado-vazio {
-  padding: 35px 16px;
+  margin: 12px 0;
+  padding: 28px 16px;
   text-align: center;
+  background: #ffffff;
+  border: 1px solid #e1e7e1;
+  border-radius: 15px;
 
   ion-icon {
     color: #39764f;
@@ -269,12 +446,12 @@
   }
 
   h3 {
-    color: #293b30;
+    color: #263b31;
     font-size: 17px;
   }
 
   p {
-    color: #68746b;
+    color: #59685e;
     font-size: 13px;
     line-height: 1.5;
   }
@@ -289,7 +466,8 @@
     font-size: 27px;
   }
 
-  .resultado-card ion-card-content {
+  .resultado-card ion-card-content,
+  .semelhancas-card ion-card-content {
     padding: 22px;
   }
 
@@ -299,5 +477,9 @@
 
   .nome-campo {
     font-size: 12px;
+  }
+
+  .conteudo-participante {
+    padding: 20px;
   }
 }

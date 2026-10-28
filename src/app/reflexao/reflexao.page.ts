@@ -1,4 +1,3 @@
-
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -115,6 +114,11 @@ interface ExpressaoHistorica {
   expressao: ExpressaoArtisticaGuardada;
 }
 
+interface PerguntaSelecionadaHistorico {
+  grupoTitulo: string;
+  pergunta: Pergunta;
+}
+
 // =========================================================
 // COMPONENTE
 // =========================================================
@@ -146,15 +150,34 @@ export class ReflexaoPage implements OnInit, OnDestroy {
 
   expressoesArtisticas: Record<string, ExpressaoArtisticaAtual> = {};
 
-  // ID do registo que está aberto no histórico.
   registoAbertoId: string | null = null;
 
-  // Ficheiros associados a cada registo histórico.
   ficheirosHistoricos: Record<string, FicheiroHistorico[]> = {};
 
   aCarregarFicheirosHistorico: Record<string, boolean> = {};
 
-  // Mantidos públicos porque o HTML utiliza router e route.
+  private readonly CHAVE_HISTORICO =
+    'qualidade_vida_reflexoes_historico_v1';
+
+  private readonly tiposValidos: TipoReflexao[] = [
+    'diaria',
+    'semanal',
+    'mensal',
+    'anual'
+  ];
+
+  private readonly NOME_BASE_DADOS =
+    'qualidade_vida_criacoes_artisticas_v1';
+
+  private readonly NOME_ARMAZENAMENTO = 'ficheiros';
+
+  private readonly TAMANHO_MAXIMO_FICHEIRO =
+    50 * 1024 * 1024;
+
+  private readonly urlsCriados = new Set<string>();
+
+  private subscricaoRota?: Subscription;
+
   constructor(
     public route: ActivatedRoute,
     public router: Router,
@@ -180,28 +203,6 @@ export class ReflexaoPage implements OnInit, OnDestroy {
       'attach': attachOutline
     });
   }
-
-  private readonly CHAVE_HISTORICO =
-    'qualidade_vida_reflexoes_historico_v1';
-
-  private readonly tiposValidos: TipoReflexao[] = [
-    'diaria',
-    'semanal',
-    'mensal',
-    'anual'
-  ];
-
-  private readonly NOME_BASE_DADOS =
-    'qualidade_vida_criacoes_artisticas_v1';
-
-  private readonly NOME_ARMAZENAMENTO = 'ficheiros';
-
-  private readonly TAMANHO_MAXIMO_FICHEIRO =
-    50 * 1024 * 1024;
-
-  private readonly urlsCriados = new Set<string>();
-
-  private subscricaoRota?: Subscription;
 
   // =========================================================
   // INICIALIZAÇÃO
@@ -784,25 +785,30 @@ export class ReflexaoPage implements OnInit, OnDestroy {
   }
 
   // =========================================================
-  // HISTÓRICO: ABRIR E FECHAR DETALHES
+  // HISTÓRICO: PERGUNTAS ASSINALADAS
   // =========================================================
 
-  async verRegisto(registo: Registo): Promise<void> {
-    // Se o registo já estiver aberto, fecha-o.
-    if (this.registoAbertoId === registo.id) {
-      this.registoAbertoId = null;
-      this.limparUrlsHistorico();
-      return;
+  obterPerguntasAssinaladas(
+    registo: Registo
+  ): PerguntaSelecionadaHistorico[] {
+    if (!this.definicao) {
+      return [];
     }
 
-    // Liberta os recursos do registo anteriormente aberto.
-    this.limparUrlsHistorico();
+    const selecionadas: PerguntaSelecionadaHistorico[] = [];
 
-    // Atualiza o estado usado pelo *ngIf do HTML.
-    this.registoAbertoId = registo.id;
+    for (const grupo of this.definicao.grupos) {
+      for (const pergunta of grupo.perguntas) {
+        if (registo.respostas?.[pergunta.id] === true) {
+          selecionadas.push({
+            grupoTitulo: grupo.titulo,
+            pergunta
+          });
+        }
+      }
+    }
 
-    // Carrega os ficheiros artísticos associados.
-    await this.carregarFicheirosDoRegisto(registo);
+    return selecionadas;
   }
 
   obterExpressoesDoRegisto(registo: Registo): ExpressaoHistorica[] {
@@ -815,10 +821,25 @@ export class ReflexaoPage implements OnInit, OnDestroy {
     }));
   }
 
+  obterExpressaoDoRegisto(
+    registo: Registo,
+    perguntaId: string
+  ): ExpressaoArtisticaGuardada | undefined {
+    return registo.expressoesArtisticas?.[perguntaId];
+  }
+
+  obterFicheiroHistorico(
+    registoId: string,
+    perguntaId: string
+  ): FicheiroHistorico | undefined {
+    return (this.ficheirosHistoricos[registoId] || [])
+      .find(ficheiro => ficheiro.perguntaId === perguntaId);
+  }
+
   nomeTipoArte(tipo: TipoExpressaoArtistica): string {
     switch (tipo) {
       case 'desenho':
-        return 'Desenho';
+        return 'Desenho ou pintura';
 
       case 'fotografia':
         return 'Fotografia';
@@ -827,7 +848,7 @@ export class ReflexaoPage implements OnInit, OnDestroy {
         return 'Áudio ou música';
 
       case 'livre':
-        return 'Outra expressão';
+        return 'Expressão livre';
 
       default:
         return 'Expressão artística';
@@ -871,6 +892,23 @@ export class ReflexaoPage implements OnInit, OnDestroy {
     perguntaId: string
   ): boolean {
     return registo.respostas?.[perguntaId] === true;
+  }
+
+  // =========================================================
+  // ABRIR E FECHAR DETALHES DO HISTÓRICO
+  // =========================================================
+
+  async verRegisto(registo: Registo): Promise<void> {
+    if (this.registoAbertoId === registo.id) {
+      this.registoAbertoId = null;
+      this.limparUrlsHistorico();
+      return;
+    }
+
+    this.limparUrlsHistorico();
+    this.registoAbertoId = registo.id;
+
+    await this.carregarFicheirosDoRegisto(registo);
   }
 
   // =========================================================
@@ -924,7 +962,6 @@ export class ReflexaoPage implements OnInit, OnDestroy {
           item.imagem = mime.startsWith('image/');
           item.audio = mime.startsWith('audio/');
 
-          // Fallback para ficheiros cujo tipo MIME não foi identificado.
           if (!mime && expressao.nomeFicheiro) {
             const nome = expressao.nomeFicheiro.toLowerCase();
 
@@ -944,7 +981,6 @@ export class ReflexaoPage implements OnInit, OnDestroy {
         }
       }
 
-      // Só publica a lista se este registo continuar aberto.
       if (this.registoAbertoId === registo.id) {
         this.ficheirosHistoricos = {
           ...this.ficheirosHistoricos,
@@ -968,16 +1004,16 @@ export class ReflexaoPage implements OnInit, OnDestroy {
 
     let ficheiro: FicheiroHistorico | undefined;
 
-for (const lista of Object.values(this.ficheirosHistoricos)) {
-  ficheiro = lista.find(
-    (item: FicheiroHistorico) =>
-      item.expressao.ficheiroId === ficheiroId
-  );
+    for (const lista of Object.values(this.ficheirosHistoricos)) {
+      ficheiro = lista.find(
+        item => item.expressao.ficheiroId === ficheiroId
+      );
 
-  if (ficheiro) {
-    break;
-  }
-}
+      if (ficheiro) {
+        break;
+      }
+    }
+
     if (!ficheiro?.url) {
       void this.mostrarToast('O ficheiro ainda não está disponível.');
       return;
@@ -1001,16 +1037,16 @@ for (const lista of Object.values(this.ficheirosHistoricos)) {
 
     let ficheiro: FicheiroHistorico | undefined;
 
-for (const lista of Object.values(this.ficheirosHistoricos)) {
-  ficheiro = lista.find(
-    (item: FicheiroHistorico) =>
-      item.expressao.ficheiroId === ficheiroId
-  );
+    for (const lista of Object.values(this.ficheirosHistoricos)) {
+      ficheiro = lista.find(
+        item => item.expressao.ficheiroId === ficheiroId
+      );
 
-  if (ficheiro) {
-    break;
-  }
-}
+      if (ficheiro) {
+        break;
+      }
+    }
+
     if (!ficheiro?.url) {
       void this.mostrarToast('O ficheiro ainda não está disponível.');
       return;
@@ -1074,7 +1110,6 @@ for (const lista of Object.values(this.ficheirosHistoricos)) {
       }
 
       await this.limparFicheirosOrfaos(restantes);
-
       await this.mostrarToast('Registo eliminado.');
     } catch (erro) {
       console.error('Não foi possível eliminar o registo:', erro);

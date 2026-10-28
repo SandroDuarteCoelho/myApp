@@ -1,9 +1,9 @@
-
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-button (click)="voltar()">Voltar</ion-button>
     </ion-buttons>
+
     <ion-title>{{ definicao?.titulo || 'Reflexão' }}</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -37,6 +37,7 @@
               <span class="estatistica-valor">
                 {{ totalAssinaladas }}/{{ totalPerguntas }}
               </span>
+
               <span class="estatistica-legenda">
                 Respostas assinaladas
               </span>
@@ -48,6 +49,7 @@
               <span class="estatistica-valor">
                 {{ percentagemAtual }}%
               </span>
+
               <span class="estatistica-legenda">
                 Percentagem assinalada
               </span>
@@ -116,9 +118,7 @@
 
                 <!-- IDENTIFICAÇÃO DA PERGUNTA -->
                 <div class="pergunta-cabecalho">
-                  <span class="pergunta-numero">
-                    {{ i + 1 }}
-                  </span>
+                  <span class="pergunta-numero">{{ i + 1 }}</span>
                   <span class="pergunta-etiqueta">PERGUNTA</span>
                 </div>
 
@@ -191,9 +191,7 @@
                           <ion-icon name="brush-outline"></ion-icon>
                         </span>
 
-                        <span class="arte-titulo">
-                          Desenho ou pintura
-                        </span>
+                        <span class="arte-titulo">Desenho ou pintura</span>
 
                         <span class="arte-descricao">
                           Dar forma e cor ao que sentes.
@@ -217,9 +215,7 @@
                           <ion-icon name="camera-outline"></ion-icon>
                         </span>
 
-                        <span class="arte-titulo">
-                          Fotografia
-                        </span>
+                        <span class="arte-titulo">Fotografia</span>
 
                         <span class="arte-descricao">
                           Captar uma imagem significativa.
@@ -243,9 +239,7 @@
                           <ion-icon name="musical-notes-outline"></ion-icon>
                         </span>
 
-                        <span class="arte-titulo">
-                          Música ou som
-                        </span>
+                        <span class="arte-titulo">Música ou som</span>
 
                         <span class="arte-descricao">
                           Expressar através de sons, música ou voz.
@@ -269,9 +263,7 @@
                           <ion-icon name="infinite-outline"></ion-icon>
                         </span>
 
-                        <span class="arte-titulo">
-                          Expressão livre
-                        </span>
+                        <span class="arte-titulo">Expressão livre</span>
 
                         <span class="arte-descricao">
                           Criar sem uma forma ou técnica definida.
@@ -431,10 +423,7 @@
       <section class="historico">
         <h3>Histórico de reflexões</h3>
 
-        <p
-          class="historico-vazio"
-          *ngIf="registosOrdenados.length === 0">
-
+        <p class="historico-vazio" *ngIf="registosOrdenados.length === 0">
           Ainda não existem registos guardados para esta reflexão.
           Quando guardares a primeira avaliação, aparecerá aqui.
         </p>
@@ -444,9 +433,12 @@
           *ngFor="let registo of registosOrdenados">
 
           <ion-card-content>
+
+            <!-- CABEÇALHO DO REGISTO -->
             <div class="registo-cabecalho">
               <div>
                 <h4>{{ formatarData(registo.data) }}</h4>
+
                 <p>
                   {{ registo.assinaladas }} de
                   {{ registo.totalPerguntas }} respostas assinaladas
@@ -463,19 +455,23 @@
               color="success">
             </ion-progress-bar>
 
-            <p
-              class="resumo-escrito"
-              *ngIf="resumoReflexoes(registo)">
-
-              {{ resumoReflexoes(registo) }}
-            </p>
-
+            <!-- AÇÕES DO REGISTO -->
             <div class="registo-acoes">
               <ion-button
                 fill="clear"
                 size="small"
                 (click)="verRegisto(registo)">
-                Ver registo
+
+                <ion-icon
+                  slot="start"
+                  [name]="registoAbertoId === registo.id
+                    ? 'chevron-up-outline'
+                    : 'chevron-down-outline'">
+                </ion-icon>
+
+                {{ registoAbertoId === registo.id
+                  ? 'Fechar registo'
+                  : 'Ver registo' }}
               </ion-button>
 
               <ion-button
@@ -483,9 +479,177 @@
                 size="small"
                 color="danger"
                 (click)="confirmarEliminarRegisto(registo.id)">
+
                 Eliminar
               </ion-button>
             </div>
+
+            <!-- DETALHES EXPANDIDOS -->
+            <section
+              class="detalhes-registo"
+              *ngIf="registoAbertoId === registo.id">
+
+              <ion-spinner
+                *ngIf="aCarregarFicheirosHistorico[registo.id]"
+                name="crescent">
+              </ion-spinner>
+
+              <h4 class="titulo-perguntas-historico">
+                Perguntas selecionadas
+              </h4>
+
+              <ng-container
+                *ngIf="obterPerguntasAssinaladas(registo) as selecionadas">
+
+                <p
+                  class="historico-sem-respostas"
+                  *ngIf="selecionadas.length === 0">
+
+                  Não foram assinaladas perguntas neste registo.
+                </p>
+
+                <article
+                  class="pergunta-historica"
+                  *ngFor="let item of selecionadas">
+
+                  <p class="grupo-historico">
+                    {{ item.grupoTitulo }}
+                  </p>
+
+                  <p class="texto-pergunta-historica">
+                    <ion-icon
+                      name="checkmark-circle"
+                      color="success">
+                    </ion-icon>
+
+                    {{ item.pergunta.texto }}
+                  </p>
+
+                  <!-- EXPRESSÃO ARTÍSTICA ASSOCIADA À PERGUNTA -->
+                  <ng-container
+                    *ngIf="obterExpressaoDoRegisto(
+                      registo,
+                      item.pergunta.id
+                    ) as expressao">
+
+                    <div class="arte-no-historico">
+
+                      <p class="etiqueta-arte-historico">
+                        <ion-icon name="color-palette-outline"></ion-icon>
+                        {{ nomeTipoArte(expressao.tipo) }}
+                      </p>
+
+                      <!-- IMAGEM EM MINIATURA -->
+                      <ng-container
+                        *ngIf="obterFicheiroHistorico(
+                          registo.id,
+                          item.pergunta.id
+                        ) as ficheiro">
+
+                        <button
+                          *ngIf="ficheiro.url && ficheiro.imagem"
+                          type="button"
+                          class="botao-miniatura-historico"
+                          (click)="abrirFicheiroHistorico(
+                            expressao.ficheiroId
+                          )"
+                          [attr.aria-label]="'Abrir imagem ' + (expressao.nomeFicheiro || '')">
+
+                          <img
+                            class="miniatura-arte-historico"
+                            [src]="ficheiro.url"
+                            [alt]="expressao.nomeFicheiro || 'Expressão artística'"
+                            loading="lazy">
+                        </button>
+
+                        <!-- ÁUDIO -->
+                        <audio
+                          *ngIf="ficheiro.url && ficheiro.audio"
+                          class="audio-historico"
+                          controls
+                          preload="none"
+                          [src]="ficheiro.url">
+
+                          O teu navegador não suporta a reprodução deste áudio.
+                        </audio>
+
+                        <!-- OUTROS FICHEIROS -->
+                        <div
+                          class="ficheiro-outro-historico"
+                          *ngIf="ficheiro.url && !ficheiro.imagem && !ficheiro.audio">
+
+                          <p>
+                            <ion-icon name="document-attach-outline"></ion-icon>
+                            {{ expressao.nomeFicheiro || 'Ficheiro artístico' }}
+                          </p>
+
+                          <ion-button
+                            fill="outline"
+                            size="small"
+                            (click)="abrirFicheiroHistorico(
+                              expressao.ficheiroId
+                            )">
+
+                            Abrir ficheiro
+                          </ion-button>
+
+                          <ion-button
+                            fill="clear"
+                            size="small"
+                            (click)="descarregarFicheiroHistorico(
+                              expressao.ficheiroId
+                            )">
+
+                            Descarregar
+                          </ion-button>
+                        </div>
+
+                        <!-- FICHEIRO NÃO ENCONTRADO -->
+                        <p
+                          class="ficheiro-indisponivel"
+                          *ngIf="ficheiro.indisponivel">
+
+                          O ficheiro já não está disponível neste dispositivo.
+                        </p>
+                      </ng-container>
+
+                      <!-- NOME DO FICHEIRO DE IMAGEM OU ÁUDIO -->
+                      <p
+                        class="nome-ficheiro-historico"
+                        *ngIf="expressao.nomeFicheiro">
+
+                        {{ expressao.nomeFicheiro }}
+                      </p>
+
+                      <!-- NOTA ARTÍSTICA -->
+                      <p
+                        class="nota-arte-historico"
+                        *ngIf="expressao.nota">
+
+                        {{ expressao.nota }}
+                      </p>
+                    </div>
+                  </ng-container>
+                </article>
+              </ng-container>
+
+              <!-- REFLEXÕES ESCRITAS GUARDADAS -->
+              <div
+                class="reflexoes-historico"
+                *ngIf="obterReflexoesRegisto(registo).length > 0">
+
+                <h4>Reflexões escritas</h4>
+
+                <article
+                  class="reflexao-historica"
+                  *ngFor="let reflexao of obterReflexoesRegisto(registo)">
+
+                  <strong>{{ reflexao.rotulo }}</strong>
+                  <p>{{ reflexao.texto }}</p>
+                </article>
+              </div>
+            </section>
+
           </ion-card-content>
         </ion-card>
       </section>
@@ -506,6 +670,7 @@
     <ion-card class="erro-card">
       <ion-card-content>
         <h2>Não foi possível abrir esta reflexão</h2>
+
         <p>
           Verifica se o tipo de reflexão foi indicado na navegação
           e se o ficheiro assets/data/reflexoes.json existe.

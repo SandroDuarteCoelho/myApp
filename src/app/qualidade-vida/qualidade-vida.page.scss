@@ -63,11 +63,12 @@ ion-content.qualidade-content {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 4px;
+  gap: 7px;
   color: #39764f;
-  font-size: clamp(0.85rem, 3vw, 1.05rem);
+  font-size: clamp(1.15rem, 4.5vw, 1.5rem);
   font-weight: 700;
   font-variant-numeric: tabular-nums;
+  line-height: 1.5;
 }
 
 .contador span:not(.prazo-terminado) {

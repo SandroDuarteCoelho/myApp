@@ -1,3 +1,4 @@
+
 import {
   Component,
   OnDestroy
@@ -38,8 +39,23 @@ interface ContadorReflexao {
   horas: string;
   minutos: string;
   segundos: string;
-  terminado: boolean;
+
+  /** Indica se a janela de resposta está aberta. */
+  aberto: boolean;
+
+  /** Texto que explica o objetivo do contador. */
+  descricaoContador: string;
+
+  /** Data e hora do próximo evento: desbloqueio ou limite. */
   descricaoPrazo: string;
+
+  /** Mantido por compatibilidade com o HTML anterior. */
+  terminado: boolean;
+}
+
+interface EventoContador {
+  data: Date;
+  aberto: boolean;
 }
 
 @Component({
@@ -99,8 +115,10 @@ export class QualidadeVidaPage implements OnDestroy {
       horas: '00',
       minutos: '00',
       segundos: '00',
-      terminado: false,
-      descricaoPrazo: ''
+      aberto: false,
+      descricaoContador: 'Tempo até ao desbloqueio',
+      descricaoPrazo: '',
+      terminado: false
     };
   }
 
@@ -120,38 +138,18 @@ export class QualidadeVidaPage implements OnDestroy {
     agora: Date
   ): ContadorReflexao {
 
-    const prazo = this.obterPrazo(tipo, agora);
-    const diferenca = prazo.getTime() - agora.getTime();
+    const evento = this.obterEventoContador(tipo, agora);
 
-    const terminado = diferenca <= 0;
-
-    if (terminado) {
-      return {
-        dias: 0,
-        horas: '00',
-        minutos: '00',
-        segundos: '00',
-        terminado: true,
-        descricaoPrazo: `Limite: ${this.formatarDataHora(prazo)}`
-      };
-    }
-
-    const totalSegundos = Math.floor(
-      diferenca / 1000
+    const diferenca = Math.max(
+      0,
+      evento.data.getTime() - agora.getTime()
     );
 
-    const dias = Math.floor(
-      totalSegundos / 86400
-    );
+    const totalSegundos = Math.floor(diferenca / 1000);
 
-    const horas = Math.floor(
-      (totalSegundos % 86400) / 3600
-    );
-
-    const minutos = Math.floor(
-      (totalSegundos % 3600) / 60
-    );
-
+    const dias = Math.floor(totalSegundos / 86400);
+    const horas = Math.floor((totalSegundos % 86400) / 3600);
+    const minutos = Math.floor((totalSegundos % 3600) / 60);
     const segundos = totalSegundos % 60;
 
     return {
@@ -159,61 +157,142 @@ export class QualidadeVidaPage implements OnDestroy {
       horas: this.doisDigitos(horas),
       minutos: this.doisDigitos(minutos),
       segundos: this.doisDigitos(segundos),
-      terminado: false,
-      descricaoPrazo: `Limite: ${this.formatarDataHora(prazo)}`
+
+      aberto: evento.aberto,
+
+      descricaoContador: evento.aberto
+        ? 'Tempo restante para responder'
+        : 'Tempo até ao desbloqueio',
+
+      descricaoPrazo: evento.aberto
+        ? `Limite para responder: ${this.formatarDataHora(evento.data)}`
+        : `Desbloqueia: ${this.formatarDataHora(evento.data)}`,
+
+      // O contador passa sempre para o próximo evento.
+      // Não fica bloqueado num estado de "prazo terminado".
+      terminado: false
     };
   }
 
-  private obterPrazo(
+  /**
+   * Determina o próximo evento de cada reflexão.
+   *
+   * Antes da abertura, conta até à hora de desbloqueio.
+   * Durante a janela, conta até ao limite para responder.
+   */
+  private obterEventoContador(
     tipo: TipoReflexao,
     agora: Date
-  ): Date {
+  ): EventoContador {
 
     const ano = agora.getFullYear();
     const mes = agora.getMonth();
     const dia = agora.getDate();
 
-    if (tipo === 'diaria') {
-      const prazo = new Date(
-        ano, mes, dia, 21, 0, 0, 0
-      );
+    const horaAtual =
+      agora.getHours() * 3600 +
+      agora.getMinutes() * 60 +
+      agora.getSeconds();
 
-      return prazo;
+    // --------------------------------------------------
+    // DIÁRIA
+    // Desbloqueia todos os dias às 21:00.
+    // Fecha à meia-noite.
+    // --------------------------------------------------
+
+    if (tipo === 'diaria') {
+      const horaDesbloqueio = 21 * 3600;
+
+      if (horaAtual >= horaDesbloqueio) {
+        return {
+          data: new Date(ano, mes, dia + 1, 0, 0, 0, 0),
+          aberto: true
+        };
+      }
+
+      return {
+        data: new Date(ano, mes, dia, 21, 0, 0, 0),
+        aberto: false
+      };
     }
+
+    // --------------------------------------------------
+    // SEMANAL
+    // Desbloqueia domingo às 17:00.
+    // Fecha à meia-noite de domingo para segunda-feira.
+    // --------------------------------------------------
 
     if (tipo === 'semanal') {
-      const diasAteDomingo =
-        (7 - agora.getDay()) % 7;
+      const domingo = agora.getDay() === 0;
+      const horaDesbloqueio = 17 * 3600;
 
-      return new Date(
-        ano,
-        mes,
-        dia + diasAteDomingo,
-        20, 0, 0, 0
-      );
+      if (domingo && horaAtual >= horaDesbloqueio) {
+        return {
+          data: new Date(ano, mes, dia + 1, 0, 0, 0, 0),
+          aberto: true
+        };
+      }
+
+      const diasAteDomingo = (7 - agora.getDay()) % 7;
+
+      return {
+        data: new Date(
+          ano,
+          mes,
+          dia + diasAteDomingo,
+          17,
+          0,
+          0,
+          0
+        ),
+        aberto: false
+      };
     }
+
+    // --------------------------------------------------
+    // MENSAL
+    // Desbloqueia no último dia do mês às 17:00.
+    // Fecha à meia-noite do início do mês seguinte.
+    // --------------------------------------------------
 
     if (tipo === 'mensal') {
-      const ultimoDia = new Date(
-        ano,
-        mes + 1,
-        0
-      ).getDate();
+      const ultimoDia = new Date(ano, mes + 1, 0).getDate();
+      const ultimoDiaDoMes = dia === ultimoDia;
+      const horaDesbloqueio = 17 * 3600;
 
-      return new Date(
-        ano,
-        mes,
-        ultimoDia,
-        20, 0, 0, 0
-      );
+      if (ultimoDiaDoMes && horaAtual >= horaDesbloqueio) {
+        return {
+          data: new Date(ano, mes + 1, 1, 0, 0, 0, 0),
+          aberto: true
+        };
+      }
+
+      return {
+        data: new Date(ano, mes, ultimoDia, 17, 0, 0, 0),
+        aberto: false
+      };
     }
 
-    return new Date(
-      ano,
-      11,
-      31,
-      18, 0, 0, 0
-    );
+    // --------------------------------------------------
+    // ANUAL
+    // Desbloqueia a 31 de dezembro às 15:00.
+    // Fecha à meia-noite do início do novo ano.
+    // --------------------------------------------------
+
+    const diaDezembro = mes === 11 && dia === 31;
+    const horaDesbloqueioAnual = 15 * 3600;
+
+    if (diaDezembro && horaAtual >= horaDesbloqueioAnual) {
+      return {
+        data: new Date(ano + 1, 0, 1, 0, 0, 0, 0),
+        aberto: true
+      };
+    }
+
+    return {
+      data: new Date(ano, 11, 31, 15, 0, 0, 0),
+      aberto: false
+    };
   }
 
   private doisDigitos(valor: number): string {
@@ -350,9 +429,7 @@ export class QualidadeVidaPage implements OnDestroy {
       );
 
       if (dadosHistorico) {
-        const historico: unknown = JSON.parse(
-          dadosHistorico
-        );
+        const historico: unknown = JSON.parse(dadosHistorico);
 
         if (Array.isArray(historico)) {
           const atualizado = historico.filter(
@@ -366,8 +443,7 @@ export class QualidadeVidaPage implements OnDestroy {
               }
 
               return (
-                (registo as RegistoAvaliacao).animalId
-                !== animal.id
+                (registo as RegistoAvaliacao).animalId !== animal.id
               );
             }
           );
@@ -452,9 +528,7 @@ export class QualidadeVidaPage implements OnDestroy {
   ): Promise<void> {
 
     return new Promise((resolve, reject) => {
-      const pedido = indexedDB.open(
-        'fotos_animais_v1'
-      );
+      const pedido = indexedDB.open('fotos_animais_v1');
 
       pedido.onerror = () => {
         reject(pedido.error);
@@ -463,9 +537,7 @@ export class QualidadeVidaPage implements OnDestroy {
       pedido.onsuccess = () => {
         const baseDados = pedido.result;
 
-        if (
-          !baseDados.objectStoreNames.contains('fotos')
-        ) {
+        if (!baseDados.objectStoreNames.contains('fotos')) {
           baseDados.close();
           resolve();
           return;
@@ -508,9 +580,7 @@ export class QualidadeVidaPage implements OnDestroy {
 
   private carregarAnimais(): void {
     try {
-      const dados = localStorage.getItem(
-        this.CHAVE_ANIMAIS
-      );
+      const dados = localStorage.getItem(this.CHAVE_ANIMAIS);
 
       if (!dados) {
         this.animais = [];

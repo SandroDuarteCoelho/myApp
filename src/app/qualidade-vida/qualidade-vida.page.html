@@ -1,3 +1,4 @@
+
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
@@ -9,8 +10,10 @@
 
 <ion-content class="ion-padding qualidade-content">
 
+  <!-- CARTÕES DE REFLEXÃO -->
   <div class="reflexoes-grid">
 
+    <!-- REFLEXÃO DIÁRIA -->
     <ion-card
       button="true"
       (click)="abrirReflexao('diaria')"
@@ -20,25 +23,35 @@
         <div class="cartao-icon">☀️</div>
         <h2>Reflexão Diária</h2>
 
-        <p class="prazo-titulo">Prazo diário</p>
+       
+        <ng-container *ngIf="contadores.diaria as c">
+          <div
+            class="contador"
+            [class.contador-desbloqueado]="c.aberto">
 
-        <div class="contador" *ngIf="contadores.diaria as c">
-          <ng-container *ngIf="!c.terminado; else prazoDiarioTerminado">
-            <span>{{ c.dias }}d</span>
-            <span>{{ c.horas }}h</span>
-            <span>{{ c.minutos }}m</span>
-            <span>{{ c.segundos }}s</span>
-          </ng-container>
+            <p
+              class="contador-estado"
+              [class.estado-desbloqueado]="c.aberto">
+              {{ c.aberto ? 'Desbloqueado' : 'Bloqueado' }}
+            </p>
 
-          <ng-template #prazoDiarioTerminado>
-            <span class="prazo-terminado">Prazo terminado</span>
-          </ng-template>
-        </div>
+            <p class="contador-titulo">
+              {{ c.descricaoContador }}
+            </p>
 
-        <p class="prazo-data">{{ contadores.diaria?.descricaoPrazo }}</p>
+            <div class="contador-tempo">
+              {{ c.dias }}d {{ c.horas }}h {{ c.minutos }}m {{ c.segundos }}s
+            </div>
+
+            <p class="prazo-data">
+              {{ c.descricaoPrazo }}
+            </p>
+          </div>
+        </ng-container>
       </ion-card-content>
     </ion-card>
 
+    <!-- REFLEXÃO SEMANAL -->
     <ion-card
       button="true"
       (click)="abrirReflexao('semanal')"
@@ -48,25 +61,35 @@
         <div class="cartao-icon">🌿</div>
         <h2>Reflexão Semanal</h2>
 
-        <p class="prazo-titulo">Prazo semanal</p>
+       
+        <ng-container *ngIf="contadores.semanal as c">
+          <div
+            class="contador"
+            [class.contador-desbloqueado]="c.aberto">
 
-        <div class="contador" *ngIf="contadores.semanal as c">
-          <ng-container *ngIf="!c.terminado; else prazoSemanalTerminado">
-            <span>{{ c.dias }}d</span>
-            <span>{{ c.horas }}h</span>
-            <span>{{ c.minutos }}m</span>
-            <span>{{ c.segundos }}s</span>
-          </ng-container>
+            <p
+              class="contador-estado"
+              [class.estado-desbloqueado]="c.aberto">
+              {{ c.aberto ? 'Desbloqueado' : 'Bloqueado' }}
+            </p>
 
-          <ng-template #prazoSemanalTerminado>
-            <span class="prazo-terminado">Prazo terminado</span>
-          </ng-template>
-        </div>
+            <p class="contador-titulo">
+              {{ c.descricaoContador }}
+            </p>
 
-        <p class="prazo-data">{{ contadores.semanal?.descricaoPrazo }}</p>
+            <div class="contador-tempo">
+              {{ c.dias }}d {{ c.horas }}h {{ c.minutos }}m {{ c.segundos }}s
+            </div>
+
+            <p class="prazo-data">
+              {{ c.descricaoPrazo }}
+            </p>
+          </div>
+        </ng-container>
       </ion-card-content>
     </ion-card>
 
+    <!-- REFLEXÃO MENSAL -->
     <ion-card
       button="true"
       (click)="abrirReflexao('mensal')"
@@ -76,25 +99,35 @@
         <div class="cartao-icon">🌱</div>
         <h2>Reflexão Mensal</h2>
 
-        <p class="prazo-titulo">Prazo mensal</p>
+       
+        <ng-container *ngIf="contadores.mensal as c">
+          <div
+            class="contador"
+            [class.contador-desbloqueado]="c.aberto">
 
-        <div class="contador" *ngIf="contadores.mensal as c">
-          <ng-container *ngIf="!c.terminado; else prazoMensalTerminado">
-            <span>{{ c.dias }}d</span>
-            <span>{{ c.horas }}h</span>
-            <span>{{ c.minutos }}m</span>
-            <span>{{ c.segundos }}s</span>
-          </ng-container>
+            <p
+              class="contador-estado"
+              [class.estado-desbloqueado]="c.aberto">
+              {{ c.aberto ? 'Desbloqueado' : 'Bloqueado' }}
+            </p>
 
-          <ng-template #prazoMensalTerminado>
-            <span class="prazo-terminado">Prazo terminado</span>
-          </ng-template>
-        </div>
+            <p class="contador-titulo">
+              {{ c.descricaoContador }}
+            </p>
 
-        <p class="prazo-data">{{ contadores.mensal?.descricaoPrazo }}</p>
+            <div class="contador-tempo">
+              {{ c.dias }}d {{ c.horas }}h {{ c.minutos }}m {{ c.segundos }}s
+            </div>
+
+            <p class="prazo-data">
+              {{ c.descricaoPrazo }}
+            </p>
+          </div>
+        </ng-container>
       </ion-card-content>
     </ion-card>
 
+    <!-- REFLEXÃO ANUAL -->
     <ion-card
       button="true"
       (click)="abrirReflexao('anual')"
@@ -104,27 +137,37 @@
         <div class="cartao-icon">🌳</div>
         <h2>Reflexão Anual</h2>
 
-        <p class="prazo-titulo">Prazo anual</p>
+       
+        <ng-container *ngIf="contadores.anual as c">
+          <div
+            class="contador"
+            [class.contador-desbloqueado]="c.aberto">
 
-        <div class="contador" *ngIf="contadores.anual as c">
-          <ng-container *ngIf="!c.terminado; else prazoAnualTerminado">
-            <span>{{ c.dias }}d</span>
-            <span>{{ c.horas }}h</span>
-            <span>{{ c.minutos }}m</span>
-            <span>{{ c.segundos }}s</span>
-          </ng-container>
+            <p
+              class="contador-estado"
+              [class.estado-desbloqueado]="c.aberto">
+              {{ c.aberto ? 'Desbloqueado' : 'Bloqueado' }}
+            </p>
 
-          <ng-template #prazoAnualTerminado>
-            <span class="prazo-terminado">Prazo terminado</span>
-          </ng-template>
-        </div>
+            <p class="contador-titulo">
+              {{ c.descricaoContador }}
+            </p>
 
-        <p class="prazo-data">{{ contadores.anual?.descricaoPrazo }}</p>
+            <div class="contador-tempo">
+              {{ c.dias }}d {{ c.horas }}h {{ c.minutos }}m {{ c.segundos }}s
+            </div>
+
+            <p class="prazo-data">
+              {{ c.descricaoPrazo }}
+            </p>
+          </div>
+        </ng-container>
       </ion-card-content>
     </ion-card>
 
   </div>
 
+  <!-- ANIMAIS DE ESTIMAÇÃO -->
   <section class="animais-section">
 
     <div class="animais-titulo">

@@ -1,3 +1,4 @@
+
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
@@ -26,6 +27,44 @@
           <ion-label>{{ ficha.duracao }}</ion-label>
         </ion-chip>
       </section>
+
+      <!-- ESTADO DE ACESSO À REFLEXÃO -->
+      <ion-card
+        class="aviso-acesso"
+        *ngIf="mensagemAcesso"
+        [class.aviso-atrasada]="reflexaoAtrasada"
+        [class.aviso-bloqueado]="modoConsulta">
+
+        <ion-card-content>
+          <div class="aviso-acesso-conteudo">
+            <ion-icon
+              [name]="reflexaoAtrasada
+                ? 'time-outline'
+                : modoConsulta
+                  ? 'lock-closed-outline'
+                  : 'checkmark-circle-outline'">
+            </ion-icon>
+
+            <div>
+              <strong>
+                {{ reflexaoAtrasada
+                  ? 'Reflexão atrasada'
+                  : modoConsulta
+                    ? 'Modo de consulta'
+                    : 'Reflexão disponível' }}
+              </strong>
+
+              <p>{{ mensagemAcesso }}</p>
+
+              <p *ngIf="modoConsulta">
+                Podes consultar as perguntas e o histórico.
+                As respostas só podem ser alteradas quando a reflexão
+                estiver disponível.
+              </p>
+            </div>
+          </div>
+        </ion-card-content>
+      </ion-card>
 
       <!-- ESTATÍSTICAS -->
       <section class="estatisticas">
@@ -127,6 +166,7 @@
                   <ion-checkbox
                     class="pergunta-checkbox"
                     [checked]="!!respostas[pergunta.id]"
+                    [disabled]="!podeEditar"
                     (ionChange)="alterarResposta(
                       pergunta.id,
                       $event.detail.checked
@@ -146,6 +186,7 @@
                     class="botao-explorar"
                     [class.aberto]="expressoesArtisticas[pergunta.id]?.aberta"
                     [attr.aria-expanded]="!!expressoesArtisticas[pergunta.id]?.aberta"
+                    [disabled]="!podeEditar"
                     (click)="alternarExpressaoArtistica(pergunta.id)">
 
                     <ion-icon name="color-palette-outline"></ion-icon>
@@ -185,6 +226,7 @@
                         class="arte-opcao"
                         [class.selecionado]="expressoesArtisticas[pergunta.id]?.tipo === 'desenho'"
                         [attr.aria-pressed]="expressoesArtisticas[pergunta.id]?.tipo === 'desenho'"
+                        [disabled]="!podeEditar"
                         (click)="alterarTipoExpressaoArtistica(pergunta.id, 'desenho')">
 
                         <span class="arte-icone desenho">
@@ -209,6 +251,7 @@
                         class="arte-opcao"
                         [class.selecionado]="expressoesArtisticas[pergunta.id]?.tipo === 'fotografia'"
                         [attr.aria-pressed]="expressoesArtisticas[pergunta.id]?.tipo === 'fotografia'"
+                        [disabled]="!podeEditar"
                         (click)="alterarTipoExpressaoArtistica(pergunta.id, 'fotografia')">
 
                         <span class="arte-icone fotografia">
@@ -233,6 +276,7 @@
                         class="arte-opcao"
                         [class.selecionado]="expressoesArtisticas[pergunta.id]?.tipo === 'audio'"
                         [attr.aria-pressed]="expressoesArtisticas[pergunta.id]?.tipo === 'audio'"
+                        [disabled]="!podeEditar"
                         (click)="alterarTipoExpressaoArtistica(pergunta.id, 'audio')">
 
                         <span class="arte-icone audio">
@@ -257,6 +301,7 @@
                         class="arte-opcao"
                         [class.selecionado]="expressoesArtisticas[pergunta.id]?.tipo === 'livre'"
                         [attr.aria-pressed]="expressoesArtisticas[pergunta.id]?.tipo === 'livre'"
+                        [disabled]="!podeEditar"
                         (click)="alterarTipoExpressaoArtistica(pergunta.id, 'livre')">
 
                         <span class="arte-icone livre">
@@ -303,6 +348,7 @@
                         fill="outline"
                         size="default"
                         class="botao-ficheiro"
+                        [disabled]="!podeEditar"
                         (click)="selecionarFicheiroArtistico(pergunta.id)">
 
                         <ion-icon
@@ -331,6 +377,7 @@
                       <ion-textarea
                         class="nota-artistica"
                         [value]="expressoesArtisticas[pergunta.id]?.nota || ''"
+                        [disabled]="!podeEditar"
                         (ionInput)="alterarNotaArtistica(
                           pergunta.id,
                           $event.detail.value
@@ -377,6 +424,7 @@
             <ion-textarea
               class="campo-reflexao"
               [value]="reflexoes[campo.id] || ''"
+              [disabled]="!podeEditar"
               (ionInput)="alterarReflexao(
                 campo.id,
                 $event.detail.value
@@ -401,7 +449,7 @@
         <ion-button
           expand="block"
           (click)="guardarAvaliacao()"
-          [disabled]="aGuardar">
+          [disabled]="!podeEditar || aGuardar">
 
           <ion-icon slot="start" name="save-outline"></ion-icon>
 
@@ -412,7 +460,8 @@
           expand="block"
           fill="outline"
           color="medium"
-          (click)="limparFormulario()">
+          (click)="limparFormulario()"
+          [disabled]="!podeEditar">
 
           <ion-icon slot="start" name="refresh-outline"></ion-icon>
           Limpar respostas atuais
@@ -539,13 +588,14 @@
                         {{ nomeTipoArte(expressao.tipo) }}
                       </p>
 
-                      <!-- IMAGEM EM MINIATURA -->
+                      <!-- FICHEIRO HISTÓRICO -->
                       <ng-container
                         *ngIf="obterFicheiroHistorico(
                           registo.id,
                           item.pergunta.id
                         ) as ficheiro">
 
+                        <!-- IMAGEM EM MINIATURA -->
                         <button
                           *ngIf="ficheiro.url && ficheiro.imagem"
                           type="button"
@@ -613,7 +663,7 @@
                         </p>
                       </ng-container>
 
-                      <!-- NOME DO FICHEIRO DE IMAGEM OU ÁUDIO -->
+                      <!-- NOME DO FICHEIRO -->
                       <p
                         class="nome-ficheiro-historico"
                         *ngIf="expressao.nomeFicheiro">

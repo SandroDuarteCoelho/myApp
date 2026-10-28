@@ -95,7 +95,23 @@ interface Registo {
   assinaladas: number;
   totalPerguntas: number;
   percentagem: number;
+  periodoId?: string;
+  atrasada?: boolean;
   expressoesArtisticas?: Record<string, ExpressaoArtisticaGuardada>;
+}
+
+interface PendenciaReflexao {
+  tipo: TipoReflexao;
+  periodoId: string;
+  criadaEm: string;
+}
+
+interface PeriodoReflexao {
+  id: string;
+  tipo: TipoReflexao;
+  aberto: boolean;
+  inicio: Date;
+  fim: Date;
 }
 
 interface FicheiroHistorico {
@@ -155,6 +171,19 @@ export class ReflexaoPage implements OnInit, OnDestroy {
   ficheirosHistoricos: Record<string, FicheiroHistorico[]> = {};
 
   aCarregarFicheirosHistorico: Record<string, boolean> = {};
+
+  // =======================================================
+  // CONTROLO DO ACESSO À REFLEXÃO
+  // =======================================================
+
+  podeEditar = false;
+  modoConsulta = true;
+  reflexaoAtrasada = false;
+  mensagemAcesso = '';
+  periodoId = '';
+
+  private readonly CHAVE_PENDENTE =
+    'qualidade_vida_reflexao_pendente_v1';
 
   private readonly CHAVE_HISTORICO =
     'qualidade_vida_reflexoes_historico_v1';
@@ -257,6 +286,8 @@ export class ReflexaoPage implements OnInit, OnDestroy {
           this.expressoesArtisticas = {};
 
           this.carregarHistorico();
+          this.atualizarAcesso();
+
           this.carregado = true;
         },
 
@@ -274,6 +305,584 @@ export class ReflexaoPage implements OnInit, OnDestroy {
           );
         }
       });
+  }
+
+  // =========================================================
+  // PERÍODOS E HORÁRIOS DE ACESSO
+  // =========================================================
+
+  /**
+   * Horários:
+   *
+   * Diária: todos os dias, das 21:00 às 00:00.
+   * Semanal: domingo, das 17:00 às 00:00.
+   * Mensal: último dia do mês, das 17:00 às 00:00.
+   * Anual: 31 de dezembro, das 15:00 às 00:00.
+   *
+   * Quando a janela ainda não abriu, devolve o período
+   * anterior apenas para consulta. Não cria uma pendência.
+   */
+  private obterPeriodoAlvo(agora: Date = new Date()): PeriodoReflexao {
+    const dataAtual = new Date(agora);
+    const horaAtual =
+      dataAtual.getHours() * 60 + dataAtual.getMinutes();
+
+    // -------------------------------------------------------
+    // DIÁRIA
+    // -------------------------------------------------------
+
+    if (this.tipo === 'diaria') {
+      const inicioHoje = new Date(dataAtual);
+      inicioHoje.setHours(21, 0, 0, 0);
+
+      const fimHoje = new Date(dataAtual);
+      fimHoje.setDate(fimHoje.getDate() + 1);
+      fimHoje.setHours(0, 0, 0, 0);
+
+      if (dataAtual >= inicioHoje && dataAtual < fimHoje) {
+        return {
+          id: `diaria:${this.dataLocalISO(dataAtual)}`,
+          tipo: 'diaria',
+          aberto: true,
+          inicio: inicioHoje,
+          fim: fimHoje
+        };
+      }
+
+      // Antes das 21:00, o período de hoje ainda não abriu.
+      // O período anterior só pode ser recuperado se existir
+      // uma pendência legítima criada durante a sua janela.
+      const inicioAnterior = new Date(inicioHoje);
+      inicioAnterior.setDate(inicioAnterior.getDate() - 1);
+
+      const fimAnterior = new Date(inicioHoje);
+
+      return {
+        id: `diaria:${this.dataLocalISO(inicioAnterior)}`,
+        tipo: 'diaria',
+        aberto: false,
+        inicio: inicioAnterior,
+        fim: fimAnterior
+      };
+    }
+
+    // -------------------------------------------------------
+    // SEMANAL
+    // -------------------------------------------------------
+
+    if (this.tipo === 'semanal') {
+      const domingo = new Date(dataAtual);
+      domingo.setHours(0, 0, 0, 0);
+      domingo.setDate(domingo.getDate() - domingo.getDay());
+
+      const inicioDomingo = new Date(domingo);
+      inicioDomingo.setHours(17, 0, 0, 0);
+
+      const fimDomingo = new Date(domingo);
+      fimDomingo.setDate(fimDomingo.getDate() + 1);
+      fimDomingo.setHours(0, 0, 0, 0);
+
+      const eDomingo = dataAtual.getDay() === 0;
+
+      const aberta =
+        eDomingo &&
+        dataAtual >= inicioDomingo &&
+        dataAtual < fimDomingo;
+
+      if (aberta) {
+        return {
+          id: `semanal:${this.dataLocalISO(domingo)}`,
+          tipo: 'semanal',
+          aberto: true,
+          inicio: inicioDomingo,
+          fim: fimDomingo
+        };
+      }
+
+      if (eDomingo && horaAtual < 17 * 60) {
+        domingo.setDate(domingo.getDate() - 7);
+      }
+
+      const inicioAnterior = new Date(domingo);
+      inicioAnterior.setHours(17, 0, 0, 0);
+
+      const fimAnterior = new Date(domingo);
+      fimAnterior.setDate(fimAnterior.getDate() + 1);
+      fimAnterior.setHours(0, 0, 0, 0);
+
+      return {
+        id: `semanal:${this.dataLocalISO(domingo)}`,
+        tipo: 'semanal',
+        aberto: false,
+        inicio: inicioAnterior,
+        fim: fimAnterior
+      };
+    }
+
+    // -------------------------------------------------------
+    // MENSAL
+    // -------------------------------------------------------
+
+    if (this.tipo === 'mensal') {
+      const ultimoDiaDoMes = new Date(
+        dataAtual.getFullYear(),
+        dataAtual.getMonth() + 1,
+        0
+      );
+
+      ultimoDiaDoMes.setHours(0, 0, 0, 0);
+
+      const inicioMesAtual = new Date(ultimoDiaDoMes);
+      inicioMesAtual.setHours(17, 0, 0, 0);
+
+      const fimMesAtual = new Date(ultimoDiaDoMes);
+      fimMesAtual.setDate(fimMesAtual.getDate() + 1);
+      fimMesAtual.setHours(0, 0, 0, 0);
+
+      const eUltimoDia =
+        dataAtual.getDate() === ultimoDiaDoMes.getDate();
+
+      const aberta =
+        eUltimoDia &&
+        dataAtual >= inicioMesAtual &&
+        dataAtual < fimMesAtual;
+
+      if (aberta) {
+        const idMes =
+          `${dataAtual.getFullYear()}-` +
+          `${String(dataAtual.getMonth() + 1).padStart(2, '0')}`;
+
+        return {
+          id: `mensal:${idMes}`,
+          tipo: 'mensal',
+          aberto: true,
+          inicio: inicioMesAtual,
+          fim: fimMesAtual
+        };
+      }
+
+      const ultimoDiaMesAnterior = new Date(
+        dataAtual.getFullYear(),
+        dataAtual.getMonth(),
+        0
+      );
+
+      ultimoDiaMesAnterior.setHours(0, 0, 0, 0);
+
+      const inicioAnterior = new Date(ultimoDiaMesAnterior);
+      inicioAnterior.setHours(17, 0, 0, 0);
+
+      const fimAnterior = new Date(ultimoDiaMesAnterior);
+      fimAnterior.setDate(fimAnterior.getDate() + 1);
+      fimAnterior.setHours(0, 0, 0, 0);
+
+      const idMesAnterior =
+        `${ultimoDiaMesAnterior.getFullYear()}-` +
+        `${String(ultimoDiaMesAnterior.getMonth() + 1).padStart(2, '0')}`;
+
+      return {
+        id: `mensal:${idMesAnterior}`,
+        tipo: 'mensal',
+        aberto: false,
+        inicio: inicioAnterior,
+        fim: fimAnterior
+      };
+    }
+
+    // -------------------------------------------------------
+    // ANUAL
+    // -------------------------------------------------------
+
+    const inicioAnoAtual = new Date(
+      dataAtual.getFullYear(),
+      11,
+      31,
+      15,
+      0,
+      0,
+      0
+    );
+
+    const fimAnoAtual = new Date(
+      dataAtual.getFullYear() + 1,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0
+    );
+
+    const eUltimoDiaDoAno =
+      dataAtual.getMonth() === 11 &&
+      dataAtual.getDate() === 31;
+
+    const aberta =
+      eUltimoDiaDoAno &&
+      dataAtual >= inicioAnoAtual &&
+      dataAtual < fimAnoAtual;
+
+    if (aberta) {
+      return {
+        id: `anual:${dataAtual.getFullYear()}`,
+        tipo: 'anual',
+        aberto: true,
+        inicio: inicioAnoAtual,
+        fim: fimAnoAtual
+      };
+    }
+
+    const anoAnterior = dataAtual.getFullYear() - 1;
+
+    return {
+      id: `anual:${anoAnterior}`,
+      tipo: 'anual',
+      aberto: false,
+      inicio: new Date(anoAnterior, 11, 31, 15, 0, 0, 0),
+      fim: new Date(dataAtual.getFullYear(), 0, 1, 0, 0, 0, 0)
+    };
+  }
+
+  /**
+   * Obtém o final do período identificado pela pendência.
+   * Serve também para detetar pendências antigas criadas
+   * incorretamente depois de o prazo já ter terminado.
+   */
+  private obterFimPeriodoPorId(
+    tipo: TipoReflexao,
+    periodoId: string
+  ): Date | null {
+    const identificador = periodoId.split(':')[1];
+
+    if (!identificador) {
+      return null;
+    }
+
+    if (tipo === 'diaria' || tipo === 'semanal') {
+      const partes = identificador.split('-').map(Number);
+
+      if (
+        partes.length !== 3 ||
+        partes.some(Number.isNaN)
+      ) {
+        return null;
+      }
+
+      const fim = new Date(
+        partes[0],
+        partes[1] - 1,
+        partes[2]
+      );
+
+      if (Number.isNaN(fim.getTime())) {
+        return null;
+      }
+
+      fim.setDate(fim.getDate() + 1);
+      fim.setHours(0, 0, 0, 0);
+
+      return fim;
+    }
+
+    if (tipo === 'mensal') {
+      const partes = identificador.split('-').map(Number);
+
+      if (
+        partes.length !== 2 ||
+        partes.some(Number.isNaN)
+      ) {
+        return null;
+      }
+
+      return new Date(partes[0], partes[1], 1, 0, 0, 0, 0);
+    }
+
+    if (tipo === 'anual') {
+      const ano = Number(identificador);
+
+      if (!Number.isFinite(ano)) {
+        return null;
+      }
+
+      return new Date(ano + 1, 0, 1, 0, 0, 0, 0);
+    }
+
+    return null;
+  }
+
+  // =========================================================
+  // PENDÊNCIA
+  // =========================================================
+
+  /**
+   * Lê a pendência e elimina apenas pendências inválidas
+   * criadas depois de o período já ter terminado.
+   *
+   * Uma pendência válida tem de ter sido criada antes do fim
+   * do período, isto é, durante a janela de resposta.
+   */
+  private lerPendencia(): PendenciaReflexao | null {
+    try {
+      const raw = localStorage.getItem(this.CHAVE_PENDENTE);
+
+      if (!raw) {
+        return null;
+      }
+
+      const pendencia: unknown = JSON.parse(raw);
+
+      if (!pendencia || typeof pendencia !== 'object') {
+        return null;
+      }
+
+      const valor = pendencia as Partial<PendenciaReflexao>;
+
+      if (
+        !valor.tipo ||
+        !this.tiposValidos.includes(valor.tipo) ||
+        typeof valor.periodoId !== 'string' ||
+        !valor.periodoId
+      ) {
+        localStorage.removeItem(this.CHAVE_PENDENTE);
+        return null;
+      }
+
+      const fimPeriodo = this.obterFimPeriodoPorId(
+        valor.tipo,
+        valor.periodoId
+      );
+
+      const dataCriacao = valor.criadaEm
+        ? new Date(valor.criadaEm)
+        : null;
+
+      // Corrige pendências criadas pela lógica anterior,
+      // que as criava mesmo sem a janela de resposta abrir.
+      if (
+        !fimPeriodo ||
+        !dataCriacao ||
+        Number.isNaN(dataCriacao.getTime()) ||
+        dataCriacao >= fimPeriodo
+      ) {
+        localStorage.removeItem(this.CHAVE_PENDENTE);
+        return null;
+      }
+
+      return {
+        tipo: valor.tipo,
+        periodoId: valor.periodoId,
+        criadaEm: valor.criadaEm as string
+      };
+    } catch (erro) {
+      console.error(
+        'Não foi possível ler a reflexão pendente:',
+        erro
+      );
+      return null;
+    }
+  }
+
+  private guardarPendencia(pendencia: PendenciaReflexao): void {
+    try {
+      localStorage.setItem(
+        this.CHAVE_PENDENTE,
+        JSON.stringify(pendencia)
+      );
+    } catch (erro) {
+      console.error(
+        'Não foi possível guardar a reflexão pendente:',
+        erro
+      );
+    }
+  }
+
+  private limparPendenciaSeCorrespondente(
+    tipo: TipoReflexao,
+    periodoId: string
+  ): void {
+    const pendencia = this.lerPendencia();
+
+    if (
+      pendencia &&
+      pendencia.tipo === tipo &&
+      pendencia.periodoId === periodoId
+    ) {
+      localStorage.removeItem(this.CHAVE_PENDENTE);
+    }
+  }
+
+  /**
+   * Determina se a reflexão pode ser editada.
+   *
+   * IMPORTANTE:
+   * - Antes da abertura: consulta, sem criar pendência.
+   * - Durante a janela: cria uma pendência legítima e permite editar.
+   * - Depois do prazo: só considera atrasada se existir uma
+   *   pendência criada durante a janela de resposta.
+   * - Uma pendência de outro tipo impede iniciar outra reflexão.
+   */
+  private atualizarAcesso(): void {
+    const periodo = this.obterPeriodoAlvo();
+
+    this.periodoId = periodo.id;
+    this.reflexaoAtrasada = false;
+    this.podeEditar = false;
+    this.modoConsulta = true;
+    this.mensagemAcesso = '';
+
+    const pendencia = this.lerPendencia();
+
+    const jaGuardada = this.existeRegistoDoPeriodo(
+      this.tipo,
+      periodo.id
+    );
+
+    if (jaGuardada) {
+      this.mensagemAcesso = periodo.aberto
+        ? 'A reflexão deste período já foi guardada. Podes consultar as perguntas e o histórico, mas não alterar esta avaliação.'
+        : 'Este período já tem uma reflexão guardada. Podes consultar as perguntas e o histórico, mas não alterar esta avaliação.';
+
+      return;
+    }
+
+    // Existe uma pendência legítima de outro período.
+    if (
+      pendencia &&
+      (
+        pendencia.tipo !== this.tipo ||
+        pendencia.periodoId !== periodo.id
+      )
+    ) {
+      this.mensagemAcesso =
+        `Existe uma reflexão ${pendencia.tipo} atrasada por concluir. ` +
+        'Conclui essa reflexão antes de preencher outra avaliação.';
+
+      return;
+    }
+
+    // A janela está aberta: a reflexão pode ser preenchida.
+    if (periodo.aberto) {
+      if (!pendencia) {
+        this.guardarPendencia({
+          tipo: this.tipo,
+          periodoId: periodo.id,
+          criadaEm: new Date().toISOString()
+        });
+      }
+
+      this.podeEditar = true;
+      this.modoConsulta = false;
+      this.reflexaoAtrasada = false;
+      this.mensagemAcesso =
+        'O período de reflexão está aberto. Podes preencher as respostas e guardar a avaliação.';
+
+      return;
+    }
+
+    // Existe uma pendência válida para o período que terminou.
+    if (
+      pendencia &&
+      pendencia.tipo === this.tipo &&
+      pendencia.periodoId === periodo.id
+    ) {
+      this.podeEditar = true;
+      this.modoConsulta = false;
+      this.reflexaoAtrasada = true;
+      this.mensagemAcesso =
+        'Esta reflexão ficou por concluir após o fim do prazo. Podes preenchê-la e guardá-la agora. Depois de a guardares, a pendência será concluída.';
+
+      return;
+    }
+
+    // A janela ainda não abriu ou não há uma pendência legítima.
+    // Não se cria uma pendência apenas por consultar a página.
+    this.podeEditar = false;
+    this.modoConsulta = true;
+    this.reflexaoAtrasada = false;
+
+    switch (this.tipo) {
+      case 'diaria':
+        this.mensagemAcesso =
+          'A reflexão diária abre às 21:00. Até essa hora, podes consultar as perguntas e o histórico, mas ainda não podes preencher uma nova avaliação.';
+        break;
+
+      case 'semanal':
+        this.mensagemAcesso =
+          'A reflexão semanal abre ao domingo às 17:00. Até à abertura, podes consultar as perguntas e o histórico.';
+        break;
+
+      case 'mensal':
+        this.mensagemAcesso =
+          'A reflexão mensal abre às 17:00 do último dia do mês. Até à abertura, podes consultar as perguntas e o histórico.';
+        break;
+
+      case 'anual':
+        this.mensagemAcesso =
+          'A reflexão anual abre às 15:00 de 31 de dezembro. Até à abertura, podes consultar as perguntas e o histórico.';
+        break;
+    }
+  }
+
+  /**
+   * Reconhece registos novos e registos antigos sem periodoId.
+   */
+  private existeRegistoDoPeriodo(
+    tipo: TipoReflexao,
+    periodoId: string
+  ): boolean {
+    const historico = this.lerTodosOsRegistos();
+
+    return historico.some(registo => {
+      if (!registo || registo.tipo !== tipo) {
+        return false;
+      }
+
+      if (registo.periodoId) {
+        return registo.periodoId === periodoId;
+      }
+
+      if (!registo.data) {
+        return false;
+      }
+
+      if (tipo === 'diaria') {
+        return periodoId === `diaria:${registo.data}`;
+      }
+
+      if (tipo === 'mensal') {
+        return periodoId === `mensal:${registo.data.slice(0, 7)}`;
+      }
+
+      if (tipo === 'anual') {
+        return periodoId === `anual:${registo.data.slice(0, 4)}`;
+      }
+
+      if (tipo === 'semanal') {
+        const partes = registo.data.split('-').map(Number);
+
+        if (
+          partes.length !== 3 ||
+          partes.some(Number.isNaN)
+        ) {
+          return false;
+        }
+
+        const dataRegisto = new Date(
+          partes[0],
+          partes[1] - 1,
+          partes[2]
+        );
+
+        dataRegisto.setDate(
+          dataRegisto.getDate() - dataRegisto.getDay()
+        );
+
+        return periodoId ===
+          `semanal:${this.dataLocalISO(dataRegisto)}`;
+      }
+
+      return false;
+    });
   }
 
   // =========================================================
@@ -378,6 +987,10 @@ export class ReflexaoPage implements OnInit, OnDestroy {
   // =========================================================
 
   alterarResposta(id: string, assinalada: boolean): void {
+    if (!this.podeEditar) {
+      return;
+    }
+
     this.respostas = {
       ...this.respostas,
       [id]: assinalada
@@ -388,6 +1001,10 @@ export class ReflexaoPage implements OnInit, OnDestroy {
     id: string,
     valor: string | null | undefined
   ): void {
+    if (!this.podeEditar) {
+      return;
+    }
+
     this.reflexoes = {
       ...this.reflexoes,
       [id]: valor ?? ''
@@ -414,7 +1031,7 @@ export class ReflexaoPage implements OnInit, OnDestroy {
   }
 
   // =========================================================
-  // EXPRESSÃO ARTÍSTICA DURANTE A REFLEXÃO
+  // EXPRESSÃO ARTÍSTICA
   // =========================================================
 
   obterExpressao(perguntaId: string): ExpressaoArtisticaAtual {
@@ -430,6 +1047,10 @@ export class ReflexaoPage implements OnInit, OnDestroy {
   }
 
   alternarExpressaoArtistica(perguntaId: string): void {
+    if (!this.podeEditar) {
+      return;
+    }
+
     const expressao = this.obterExpressao(perguntaId);
 
     this.expressoesArtisticas = {
@@ -445,6 +1066,10 @@ export class ReflexaoPage implements OnInit, OnDestroy {
     perguntaId: string,
     valor: string | null | undefined
   ): void {
+    if (!this.podeEditar) {
+      return;
+    }
+
     const tipos: TipoExpressaoArtistica[] = [
       'desenho',
       'fotografia',
@@ -469,6 +1094,10 @@ export class ReflexaoPage implements OnInit, OnDestroy {
     perguntaId: string,
     valor: string | null | undefined
   ): void {
+    if (!this.podeEditar) {
+      return;
+    }
+
     const atual = this.obterExpressao(perguntaId);
 
     this.expressoesArtisticas = {
@@ -483,6 +1112,10 @@ export class ReflexaoPage implements OnInit, OnDestroy {
   async selecionarFicheiroArtistico(
     perguntaId: string
   ): Promise<void> {
+    if (!this.podeEditar) {
+      return;
+    }
+
     const expressao = this.obterExpressao(perguntaId);
 
     if (!expressao.tipo) {
@@ -513,7 +1146,7 @@ export class ReflexaoPage implements OnInit, OnDestroy {
     input.onchange = () => {
       const ficheiro = input.files?.[0];
 
-      if (ficheiro) {
+      if (ficheiro && this.podeEditar) {
         void this.processarFicheiroArtistico(perguntaId, ficheiro);
       }
     };
@@ -525,6 +1158,10 @@ export class ReflexaoPage implements OnInit, OnDestroy {
     perguntaId: string,
     ficheiro: File
   ): Promise<void> {
+    if (!this.podeEditar) {
+      return;
+    }
+
     if (ficheiro.size > this.TAMANHO_MAXIMO_FICHEIRO) {
       await this.mostrarToast('O ficheiro excede o limite de 50 MB.');
       return;
@@ -536,6 +1173,11 @@ export class ReflexaoPage implements OnInit, OnDestroy {
 
     try {
       await this.guardarFicheiroIndexedDB(ficheiroId, ficheiro);
+
+      if (!this.podeEditar) {
+        await this.eliminarFicheiroIndexedDB(ficheiroId);
+        return;
+      }
 
       this.expressoesArtisticas = {
         ...this.expressoesArtisticas,
@@ -704,9 +1346,35 @@ export class ReflexaoPage implements OnInit, OnDestroy {
   }
 
   async guardarAvaliacao(): Promise<void> {
-    if (!this.definicao || this.aGuardar) {
+    if (
+      !this.definicao ||
+      this.aGuardar ||
+      !this.podeEditar ||
+      !this.periodoId
+    ) {
+      if (!this.podeEditar) {
+        await this.mostrarToast(
+          'Esta reflexão está em modo de consulta e não pode ser guardada.'
+        );
+      }
+
       return;
     }
+
+    // Recalcula o acesso antes de guardar.
+    this.atualizarAcesso();
+
+    if (!this.podeEditar) {
+      await this.mostrarToast(
+        this.mensagemAcesso ||
+        'Não é possível guardar esta reflexão neste momento.'
+      );
+      return;
+    }
+
+    const periodoGuardado = this.periodoId;
+    const tipoGuardado = this.tipo;
+    const estavaAtrasada = this.reflexaoAtrasada;
 
     const agora = new Date();
     const total = this.totalPerguntas;
@@ -716,6 +1384,8 @@ export class ReflexaoPage implements OnInit, OnDestroy {
     const registo: Registo = {
       id: this.criarId(),
       tipo: this.tipo,
+      periodoId: periodoGuardado,
+      atrasada: estavaAtrasada,
       data: this.dataLocalISO(agora),
       guardadoEm: agora.toISOString(),
       respostas: { ...this.respostas },
@@ -734,14 +1404,50 @@ export class ReflexaoPage implements OnInit, OnDestroy {
 
     try {
       const historico = this.lerTodosOsRegistos();
+
+      const duplicado = historico.some(item => {
+        if (!item || item.tipo !== tipoGuardado) {
+          return false;
+        }
+
+        if (item.periodoId) {
+          return item.periodoId === periodoGuardado;
+        }
+
+        return this.registoAntigoCorrespondeAoPeriodo(
+          item,
+          tipoGuardado,
+          periodoGuardado
+        );
+      });
+
+      if (duplicado) {
+        this.carregarHistorico();
+        this.atualizarAcesso();
+
+        await this.mostrarToast(
+          'Já existe uma reflexão guardada para este período.'
+        );
+
+        return;
+      }
+
       historico.push(registo);
 
       this.guardarTodosOsRegistos(historico);
+
+      this.limparPendenciaSeCorrespondente(
+        tipoGuardado,
+        periodoGuardado
+      );
+
       this.carregarHistorico();
 
       this.respostas = {};
       this.reflexoes = {};
       this.expressoesArtisticas = {};
+
+      this.atualizarAcesso();
 
       await this.mostrarToast('Reflexão guardada no histórico.');
     } catch (erro) {
@@ -755,11 +1461,66 @@ export class ReflexaoPage implements OnInit, OnDestroy {
     }
   }
 
+  private registoAntigoCorrespondeAoPeriodo(
+    registo: Registo,
+    tipo: TipoReflexao,
+    periodoId: string
+  ): boolean {
+    if (!registo.data) {
+      return false;
+    }
+
+    if (tipo === 'diaria') {
+      return periodoId === `diaria:${registo.data}`;
+    }
+
+    if (tipo === 'mensal') {
+      return periodoId === `mensal:${registo.data.slice(0, 7)}`;
+    }
+
+    if (tipo === 'anual') {
+      return periodoId === `anual:${registo.data.slice(0, 4)}`;
+    }
+
+    if (tipo === 'semanal') {
+      const partes = registo.data.split('-').map(Number);
+
+      if (
+        partes.length !== 3 ||
+        partes.some(Number.isNaN)
+      ) {
+        return false;
+      }
+
+      const dataRegisto = new Date(
+        partes[0],
+        partes[1] - 1,
+        partes[2]
+      );
+
+      dataRegisto.setDate(
+        dataRegisto.getDate() - dataRegisto.getDay()
+      );
+
+      return periodoId ===
+        `semanal:${this.dataLocalISO(dataRegisto)}`;
+    }
+
+    return false;
+  }
+
   // =========================================================
   // LIMPAR FORMULÁRIO
   // =========================================================
 
   async limparFormulario(): Promise<void> {
+    if (!this.podeEditar) {
+      await this.mostrarToast(
+        'Não podes limpar uma reflexão que está em modo de consulta.'
+      );
+      return;
+    }
+
     const alerta = await this.alertController.create({
       header: 'Limpar esta sessão?',
       message:
@@ -773,6 +1534,10 @@ export class ReflexaoPage implements OnInit, OnDestroy {
           text: 'Limpar',
           role: 'destructive',
           handler: () => {
+            if (!this.podeEditar) {
+              return;
+            }
+
             this.respostas = {};
             this.reflexoes = {};
             this.expressoesArtisticas = {};
@@ -1110,6 +1875,9 @@ export class ReflexaoPage implements OnInit, OnDestroy {
       }
 
       await this.limparFicheirosOrfaos(restantes);
+
+      this.atualizarAcesso();
+
       await this.mostrarToast('Registo eliminado.');
     } catch (erro) {
       console.error('Não foi possível eliminar o registo:', erro);

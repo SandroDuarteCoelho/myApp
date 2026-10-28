@@ -1,23 +1,521 @@
+
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-button (click)="voltar()">Voltar</ion-button>
     </ion-buttons>
-    <ion-title>{{ titulo }}</ion-title>
+    <ion-title>{{ definicao?.titulo || 'Reflexão' }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <h2>{{ titulo }}</h2>
+<ion-content class="ion-padding reflexao-content">
 
-  <p>
-    Reserva um momento para refletir sobre a tua vida,
-    as tuas escolhas, as tuas relações e aquilo que valorizas.
-  </p>
+  <ng-container *ngIf="carregado; else aCarregar">
+    <ng-container *ngIf="definicao as ficha; else semDefinicao">
 
-  <ion-card>
-    <ion-card-content>
-      As perguntas desta reflexão serão acrescentadas aqui.
-    </ion-card-content>
-  </ion-card>
+      <!-- INTRODUÇÃO -->
+      <section class="introducao">
+        <p class="subtitulo">{{ ficha.subtitulo }}</p>
+        <h2>{{ ficha.titulo }}</h2>
+
+        <p class="pergunta-inicial">{{ ficha.perguntaInicial }}</p>
+        <p>{{ ficha.introducao }}</p>
+
+        <ion-chip class="duracao-chip">
+          <ion-icon name="time-outline"></ion-icon>
+          <ion-label>{{ ficha.duracao }}</ion-label>
+        </ion-chip>
+      </section>
+
+      <!-- ESTATÍSTICAS -->
+      <section class="estatisticas">
+        <h3>A tua reflexão</h3>
+
+        <div class="estatisticas-grid">
+          <ion-card class="estatistica-card">
+            <ion-card-content>
+              <span class="estatistica-valor">
+                {{ totalAssinaladas }}/{{ totalPerguntas }}
+              </span>
+              <span class="estatistica-legenda">
+                Respostas assinaladas
+              </span>
+            </ion-card-content>
+          </ion-card>
+
+          <ion-card class="estatistica-card">
+            <ion-card-content>
+              <span class="estatistica-valor">
+                {{ percentagemAtual }}%
+              </span>
+              <span class="estatistica-legenda">
+                Percentagem assinalada
+              </span>
+            </ion-card-content>
+          </ion-card>
+        </div>
+
+        <ion-progress-bar
+          class="barra-estatisticas"
+          [value]="percentagemAtual / 100"
+          color="success">
+        </ion-progress-bar>
+
+        <p class="nota-estatistica">
+          Esta percentagem serve apenas para acompanhar as tuas respostas.
+          Não é uma classificação da tua vida nem do teu valor pessoal.
+        </p>
+
+        <div
+          class="comparacao"
+          *ngIf="diferencaPercentual !== null">
+
+          <strong>Comparação com o registo anterior</strong>
+
+          <p *ngIf="diferencaPercentual > 0">
+            A percentagem de respostas assinaladas aumentou
+            {{ diferencaPercentual }} pontos percentuais.
+          </p>
+
+          <p *ngIf="diferencaPercentual < 0">
+            A percentagem de respostas assinaladas diminuiu
+            {{ -diferencaPercentual }} pontos percentuais.
+          </p>
+
+          <p *ngIf="diferencaPercentual === 0">
+            A percentagem de respostas assinaladas manteve-se igual.
+          </p>
+        </div>
+      </section>
+
+      <!-- CHECKLIST -->
+      <section class="checklist">
+        <h3>Checklist de reflexão</h3>
+
+        <p class="instrucao">
+          Assinala as afirmações que reconheces na tua experiência.
+          Não precisas de assinalar tudo. Cada pergunta é também um convite
+          a observar, sem julgamento, aquilo que estás a viver.
+        </p>
+
+        <section
+          class="grupo"
+          *ngFor="let grupo of ficha.grupos">
+
+          <div class="grupo-cabecalho">
+            <span class="grupo-etiqueta">TEMA DE REFLEXÃO</span>
+            <h4>{{ grupo.titulo }}</h4>
+          </div>
+
+          <div class="perguntas-lista">
+            <ion-card
+              class="pergunta-card"
+              *ngFor="let pergunta of grupo.perguntas; let i = index">
+
+              <ion-card-content>
+
+                <!-- IDENTIFICAÇÃO DA PERGUNTA -->
+                <div class="pergunta-cabecalho">
+                  <span class="pergunta-numero">
+                    {{ i + 1 }}
+                  </span>
+                  <span class="pergunta-etiqueta">PERGUNTA</span>
+                </div>
+
+                <!-- TEXTO E RESPOSTA -->
+                <div class="pergunta-corpo">
+                  <ion-checkbox
+                    class="pergunta-checkbox"
+                    [checked]="!!respostas[pergunta.id]"
+                    (ionChange)="alterarResposta(
+                      pergunta.id,
+                      $event.detail.checked
+                    )">
+                  </ion-checkbox>
+
+                  <ion-label class="pergunta-texto">
+                    {{ pergunta.texto }}
+                  </ion-label>
+                </div>
+
+                <!-- EXPLORAÇÃO ARTÍSTICA -->
+                <div class="expressao-artistica">
+
+                  <button
+                    type="button"
+                    class="botao-explorar"
+                    [class.aberto]="expressoesArtisticas[pergunta.id]?.aberta"
+                    [attr.aria-expanded]="!!expressoesArtisticas[pergunta.id]?.aberta"
+                    (click)="alternarExpressaoArtistica(pergunta.id)">
+
+                    <ion-icon name="color-palette-outline"></ion-icon>
+
+                    <span>
+                      {{
+                        expressoesArtisticas[pergunta.id]?.aberta
+                          ? 'Fechar exploração artística'
+                          : 'Explorar através da arte'
+                      }}
+                    </span>
+
+                    <ion-icon
+                      class="icone-expansao"
+                      [name]="expressoesArtisticas[pergunta.id]?.aberta
+                        ? 'chevron-up-outline'
+                        : 'chevron-down-outline'">
+                    </ion-icon>
+                  </button>
+
+                  <div
+                    class="conteudo-expressao"
+                    *ngIf="expressoesArtisticas[pergunta.id]?.aberta">
+
+                    <p class="texto-apoio-artistico">
+                      Há algo nesta pergunta que as palavras não conseguem
+                      expressar por completo? Escolhe uma forma de arte
+                      para explorares o que sentes ou descobres.
+                    </p>
+
+                    <!-- QUATRO CARTÕES DE EXPRESSÃO ARTÍSTICA -->
+                    <div class="grelha-arte">
+
+                      <!-- DESENHO OU PINTURA -->
+                      <button
+                        type="button"
+                        class="arte-opcao"
+                        [class.selecionado]="expressoesArtisticas[pergunta.id]?.tipo === 'desenho'"
+                        [attr.aria-pressed]="expressoesArtisticas[pergunta.id]?.tipo === 'desenho'"
+                        (click)="alterarTipoExpressaoArtistica(pergunta.id, 'desenho')">
+
+                        <span class="arte-icone desenho">
+                          <ion-icon name="brush-outline"></ion-icon>
+                        </span>
+
+                        <span class="arte-titulo">
+                          Desenho ou pintura
+                        </span>
+
+                        <span class="arte-descricao">
+                          Dar forma e cor ao que sentes.
+                        </span>
+
+                        <ion-icon
+                          class="arte-selecao"
+                          name="checkmark-circle">
+                        </ion-icon>
+                      </button>
+
+                      <!-- FOTOGRAFIA -->
+                      <button
+                        type="button"
+                        class="arte-opcao"
+                        [class.selecionado]="expressoesArtisticas[pergunta.id]?.tipo === 'fotografia'"
+                        [attr.aria-pressed]="expressoesArtisticas[pergunta.id]?.tipo === 'fotografia'"
+                        (click)="alterarTipoExpressaoArtistica(pergunta.id, 'fotografia')">
+
+                        <span class="arte-icone fotografia">
+                          <ion-icon name="camera-outline"></ion-icon>
+                        </span>
+
+                        <span class="arte-titulo">
+                          Fotografia
+                        </span>
+
+                        <span class="arte-descricao">
+                          Captar uma imagem significativa.
+                        </span>
+
+                        <ion-icon
+                          class="arte-selecao"
+                          name="checkmark-circle">
+                        </ion-icon>
+                      </button>
+
+                      <!-- MÚSICA OU SOM -->
+                      <button
+                        type="button"
+                        class="arte-opcao"
+                        [class.selecionado]="expressoesArtisticas[pergunta.id]?.tipo === 'audio'"
+                        [attr.aria-pressed]="expressoesArtisticas[pergunta.id]?.tipo === 'audio'"
+                        (click)="alterarTipoExpressaoArtistica(pergunta.id, 'audio')">
+
+                        <span class="arte-icone audio">
+                          <ion-icon name="musical-notes-outline"></ion-icon>
+                        </span>
+
+                        <span class="arte-titulo">
+                          Música ou som
+                        </span>
+
+                        <span class="arte-descricao">
+                          Expressar através de sons, música ou voz.
+                        </span>
+
+                        <ion-icon
+                          class="arte-selecao"
+                          name="checkmark-circle">
+                        </ion-icon>
+                      </button>
+
+                      <!-- EXPRESSÃO LIVRE -->
+                      <button
+                        type="button"
+                        class="arte-opcao"
+                        [class.selecionado]="expressoesArtisticas[pergunta.id]?.tipo === 'livre'"
+                        [attr.aria-pressed]="expressoesArtisticas[pergunta.id]?.tipo === 'livre'"
+                        (click)="alterarTipoExpressaoArtistica(pergunta.id, 'livre')">
+
+                        <span class="arte-icone livre">
+                          <ion-icon name="infinite-outline"></ion-icon>
+                        </span>
+
+                        <span class="arte-titulo">
+                          Expressão livre
+                        </span>
+
+                        <span class="arte-descricao">
+                          Criar sem uma forma ou técnica definida.
+                        </span>
+
+                        <ion-icon
+                          class="arte-selecao"
+                          name="checkmark-circle">
+                        </ion-icon>
+                      </button>
+
+                    </div>
+
+                    <!-- DETALHES DA CRIAÇÃO -->
+                    <div
+                      class="detalhes-arte"
+                      *ngIf="expressoesArtisticas[pergunta.id]?.tipo">
+
+                      <p class="tipo-escolhido">
+                        <ion-icon name="checkmark-circle-outline"></ion-icon>
+                        Forma escolhida:
+
+                        <strong>
+                          {{
+                            expressoesArtisticas[pergunta.id]?.tipo === 'desenho'
+                              ? 'Desenho ou pintura'
+                              : expressoesArtisticas[pergunta.id]?.tipo === 'fotografia'
+                                ? 'Fotografia'
+                                : expressoesArtisticas[pergunta.id]?.tipo === 'audio'
+                                  ? 'Música ou som'
+                                  : 'Expressão livre'
+                          }}
+                        </strong>
+                      </p>
+
+                      <ion-button
+                        fill="outline"
+                        size="default"
+                        class="botao-ficheiro"
+                        (click)="selecionarFicheiroArtistico(pergunta.id)">
+
+                        <ion-icon
+                          slot="start"
+                          name="attach-outline">
+                        </ion-icon>
+
+                        Escolher criação
+                      </ion-button>
+
+                      <p
+                        class="ficheiro-artistico"
+                        *ngIf="expressoesArtisticas[pergunta.id]?.nomeFicheiro">
+
+                        <ion-icon name="document-attach-outline"></ion-icon>
+
+                        <span>
+                          {{ expressoesArtisticas[pergunta.id]?.nomeFicheiro }}
+                        </span>
+                      </p>
+
+                      <label class="rotulo-nota-artistica">
+                        O que significa esta criação para ti?
+                      </label>
+
+                      <ion-textarea
+                        class="nota-artistica"
+                        [value]="expressoesArtisticas[pergunta.id]?.nota || ''"
+                        (ionInput)="alterarNotaArtistica(
+                          pergunta.id,
+                          $event.detail.value
+                        )"
+                        placeholder="Escreve aqui, se desejares..."
+                        [autoGrow]="true"
+                        [rows]="2">
+                      </ion-textarea>
+
+                      <p class="nota-privacidade-artistica">
+                        A interpretação é tua. Não existe uma leitura
+                        automática nem uma resposta certa ou errada.
+                      </p>
+                    </div>
+
+                  </div>
+                </div>
+
+              </ion-card-content>
+            </ion-card>
+          </div>
+        </section>
+      </section>
+
+      <!-- REFLEXÕES ESCRITAS -->
+      <section class="escrita" *ngIf="ficha.reflexoes?.length">
+        <h3>Reflexões escritas</h3>
+
+        <p class="texto-apoio">
+          Usa este espaço para registar pensamentos, sentimentos,
+          decisões ou experiências que as afirmações não conseguem
+          expressar por completo.
+        </p>
+
+        <ion-card
+          class="campo-escrito-card"
+          *ngFor="let campo of ficha.reflexoes">
+
+          <ion-card-content>
+            <ion-label class="rotulo-reflexao">
+              {{ campo.rotulo }}
+            </ion-label>
+
+            <ion-textarea
+              class="campo-reflexao"
+              [value]="reflexoes[campo.id] || ''"
+              (ionInput)="alterarReflexao(
+                campo.id,
+                $event.detail.value
+              )"
+              placeholder="Escreve aqui, se desejares..."
+              [autoGrow]="true"
+              [rows]="3">
+            </ion-textarea>
+          </ion-card-content>
+        </ion-card>
+      </section>
+
+      <!-- ENCERRAMENTO -->
+      <ion-card class="encerramento" *ngIf="ficha.encerramento">
+        <ion-card-content>
+          <p>{{ ficha.encerramento }}</p>
+        </ion-card-content>
+      </ion-card>
+
+      <!-- BOTÕES DE AÇÃO -->
+      <div class="botoes-acoes">
+        <ion-button
+          expand="block"
+          (click)="guardarAvaliacao()"
+          [disabled]="aGuardar">
+
+          <ion-icon slot="start" name="save-outline"></ion-icon>
+
+          {{ aGuardar ? 'A guardar...' : 'Guardar reflexão' }}
+        </ion-button>
+
+        <ion-button
+          expand="block"
+          fill="outline"
+          color="medium"
+          (click)="limparFormulario()">
+
+          <ion-icon slot="start" name="refresh-outline"></ion-icon>
+          Limpar respostas atuais
+        </ion-button>
+      </div>
+
+      <!-- HISTÓRICO -->
+      <section class="historico">
+        <h3>Histórico de reflexões</h3>
+
+        <p
+          class="historico-vazio"
+          *ngIf="registosOrdenados.length === 0">
+
+          Ainda não existem registos guardados para esta reflexão.
+          Quando guardares a primeira avaliação, aparecerá aqui.
+        </p>
+
+        <ion-card
+          class="registo-card"
+          *ngFor="let registo of registosOrdenados">
+
+          <ion-card-content>
+            <div class="registo-cabecalho">
+              <div>
+                <h4>{{ formatarData(registo.data) }}</h4>
+                <p>
+                  {{ registo.assinaladas }} de
+                  {{ registo.totalPerguntas }} respostas assinaladas
+                </p>
+              </div>
+
+              <span class="registo-percentagem">
+                {{ registo.percentagem }}%
+              </span>
+            </div>
+
+            <ion-progress-bar
+              [value]="registo.percentagem / 100"
+              color="success">
+            </ion-progress-bar>
+
+            <p
+              class="resumo-escrito"
+              *ngIf="resumoReflexoes(registo)">
+
+              {{ resumoReflexoes(registo) }}
+            </p>
+
+            <div class="registo-acoes">
+              <ion-button
+                fill="clear"
+                size="small"
+                (click)="verRegisto(registo)">
+                Ver registo
+              </ion-button>
+
+              <ion-button
+                fill="clear"
+                size="small"
+                color="danger"
+                (click)="confirmarEliminarRegisto(registo.id)">
+                Eliminar
+              </ion-button>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </section>
+
+    </ng-container>
+  </ng-container>
+
+  <!-- CARREGAMENTO -->
+  <ng-template #aCarregar>
+    <div class="estado-carregamento">
+      <ion-spinner name="crescent"></ion-spinner>
+      <p>A carregar a reflexão...</p>
+    </div>
+  </ng-template>
+
+  <!-- ERRO DE DEFINIÇÃO -->
+  <ng-template #semDefinicao>
+    <ion-card class="erro-card">
+      <ion-card-content>
+        <h2>Não foi possível abrir esta reflexão</h2>
+        <p>
+          Verifica se o tipo de reflexão foi indicado na navegação
+          e se o ficheiro assets/data/reflexoes.json existe.
+        </p>
+
+        <ion-button expand="block" (click)="voltar()">
+          Voltar à Qualidade de Vida
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  </ng-template>
+
 </ion-content>

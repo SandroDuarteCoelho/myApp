@@ -1,14 +1,26 @@
+import {
+  Component,
+  OnDestroy
+} from '@angular/core';
 
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+
 import {
   AlertController,
   IonicModule
 } from '@ionic/angular';
-import { Directory, Filesystem } from '@capacitor/filesystem';
 
-type TipoReflexao = 'diaria' | 'semanal' | 'mensal' | 'anual';
+import {
+  Directory,
+  Filesystem
+} from '@capacitor/filesystem';
+
+type TipoReflexao =
+  | 'diaria'
+  | 'semanal'
+  | 'mensal'
+  | 'anual';
 
 interface Animal {
   id: string;
@@ -21,6 +33,15 @@ interface RegistoAvaliacao {
   [chave: string]: unknown;
 }
 
+interface ContadorReflexao {
+  dias: number;
+  horas: string;
+  minutos: string;
+  segundos: string;
+  terminado: boolean;
+  descricaoPrazo: string;
+}
+
 @Component({
   selector: 'app-qualidade-vida',
   standalone: true,
@@ -31,36 +52,212 @@ interface RegistoAvaliacao {
     IonicModule
   ]
 })
-export class QualidadeVidaPage {
+export class QualidadeVidaPage implements OnDestroy {
 
   animais: Animal[] = [];
 
-  private readonly CHAVE_ANIMAIS = 'qualidade_vida_animais_v1';
-  private readonly CHAVE_HISTORICO = 'avaliacao_animal_historico_v1';
+  contadores: Record<TipoReflexao, ContadorReflexao> = {
+    diaria: this.contadorInicial(),
+    semanal: this.contadorInicial(),
+    mensal: this.contadorInicial(),
+    anual: this.contadorInicial()
+  };
+
+  private intervalo?: ReturnType<typeof setInterval>;
+
+  private readonly CHAVE_ANIMAIS =
+    'qualidade_vida_animais_v1';
+
+  private readonly CHAVE_HISTORICO =
+    'avaliacao_animal_historico_v1';
 
   constructor(
     private router: Router,
     private alertController: AlertController
   ) {
     this.carregarAnimais();
+    this.atualizarContadores();
+
+    this.intervalo = setInterval(() => {
+      this.atualizarContadores();
+    }, 1000);
   }
 
+  ngOnDestroy(): void {
+    if (this.intervalo) {
+      clearInterval(this.intervalo);
+    }
+  }
+
+  // --------------------------------------------------
+  // CONTADORES DOS PRAZOS
+  // --------------------------------------------------
+
+  private contadorInicial(): ContadorReflexao {
+    return {
+      dias: 0,
+      horas: '00',
+      minutos: '00',
+      segundos: '00',
+      terminado: false,
+      descricaoPrazo: ''
+    };
+  }
+
+  private atualizarContadores(): void {
+    const agora = new Date();
+
+    this.contadores = {
+      diaria: this.calcularContador('diaria', agora),
+      semanal: this.calcularContador('semanal', agora),
+      mensal: this.calcularContador('mensal', agora),
+      anual: this.calcularContador('anual', agora)
+    };
+  }
+
+  private calcularContador(
+    tipo: TipoReflexao,
+    agora: Date
+  ): ContadorReflexao {
+
+    const prazo = this.obterPrazo(tipo, agora);
+    const diferenca = prazo.getTime() - agora.getTime();
+
+    const terminado = diferenca <= 0;
+
+    if (terminado) {
+      return {
+        dias: 0,
+        horas: '00',
+        minutos: '00',
+        segundos: '00',
+        terminado: true,
+        descricaoPrazo: `Limite: ${this.formatarDataHora(prazo)}`
+      };
+    }
+
+    const totalSegundos = Math.floor(
+      diferenca / 1000
+    );
+
+    const dias = Math.floor(
+      totalSegundos / 86400
+    );
+
+    const horas = Math.floor(
+      (totalSegundos % 86400) / 3600
+    );
+
+    const minutos = Math.floor(
+      (totalSegundos % 3600) / 60
+    );
+
+    const segundos = totalSegundos % 60;
+
+    return {
+      dias,
+      horas: this.doisDigitos(horas),
+      minutos: this.doisDigitos(minutos),
+      segundos: this.doisDigitos(segundos),
+      terminado: false,
+      descricaoPrazo: `Limite: ${this.formatarDataHora(prazo)}`
+    };
+  }
+
+  private obterPrazo(
+    tipo: TipoReflexao,
+    agora: Date
+  ): Date {
+
+    const ano = agora.getFullYear();
+    const mes = agora.getMonth();
+    const dia = agora.getDate();
+
+    if (tipo === 'diaria') {
+      const prazo = new Date(
+        ano, mes, dia, 21, 0, 0, 0
+      );
+
+      return prazo;
+    }
+
+    if (tipo === 'semanal') {
+      const diasAteDomingo =
+        (7 - agora.getDay()) % 7;
+
+      return new Date(
+        ano,
+        mes,
+        dia + diasAteDomingo,
+        20, 0, 0, 0
+      );
+    }
+
+    if (tipo === 'mensal') {
+      const ultimoDia = new Date(
+        ano,
+        mes + 1,
+        0
+      ).getDate();
+
+      return new Date(
+        ano,
+        mes,
+        ultimoDia,
+        20, 0, 0, 0
+      );
+    }
+
+    return new Date(
+      ano,
+      11,
+      31,
+      18, 0, 0, 0
+    );
+  }
+
+  private doisDigitos(valor: number): string {
+    return String(valor).padStart(2, '0');
+  }
+
+  private formatarDataHora(data: Date): string {
+    return new Intl.DateTimeFormat('pt-PT', {
+      weekday: 'short',
+      day: '2-digit',
+      month: 'short',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false
+    }).format(data);
+  }
+
+  // --------------------------------------------------
+  // NAVEGAÇÃO
+  // --------------------------------------------------
+
   voltar(): void {
-    this.router.navigate(['/oracao-perdao']);
+    void this.router.navigate(['/oracao-perdao']);
   }
 
   abrirReflexao(tipo: TipoReflexao): void {
-    this.router.navigate(['/reflexao'], {
+    void this.router.navigate(['/reflexao'], {
       queryParams: { tipo }
     });
   }
 
   abrirAnimal(animal: Animal): void {
-    this.router.navigate(['/ficha-animal', animal.id]);
+    void this.router.navigate([
+      '/ficha-animal',
+      animal.id
+    ]);
   }
 
+  // --------------------------------------------------
+  // ADICIONAR ANIMAL
+  // --------------------------------------------------
+
   async adicionarAnimal(): Promise<void> {
-    const alert = await this.alertController.create({
+    const alerta = await this.alertController.create({
       header: 'Animal de estimação',
       message: 'Qual é o nome do animal?',
       inputs: [
@@ -98,10 +295,18 @@ export class QualidadeVidaPage {
       ]
     });
 
-    await alert.present();
+    await alerta.present();
   }
 
-  async removerAnimal(index: number, event?: Event): Promise<void> {
+  // --------------------------------------------------
+  // REMOVER ANIMAL E OS DADOS ASSOCIADOS
+  // --------------------------------------------------
+
+  async removerAnimal(
+    index: number,
+    event?: Event
+  ): Promise<void> {
+
     event?.stopPropagation();
 
     const animal = this.animais[index];
@@ -136,25 +341,36 @@ export class QualidadeVidaPage {
   private async eliminarAnimalDefinitivamente(
     animal: Animal
   ): Promise<void> {
-    // Tenta apagar a fotografia guardada antes de eliminar o registo.
+
     await this.apagarFotoGuardada(animal.foto);
 
-    // Remove todas as avaliações associadas ao animal.
     try {
-      const dadosHistorico = localStorage.getItem(this.CHAVE_HISTORICO);
+      const dadosHistorico = localStorage.getItem(
+        this.CHAVE_HISTORICO
+      );
 
       if (dadosHistorico) {
-        const historico: unknown = JSON.parse(dadosHistorico);
+        const historico: unknown = JSON.parse(
+          dadosHistorico
+        );
 
         if (Array.isArray(historico)) {
-          const atualizado = historico.filter((registo) => {
-            return !(
-              registo &&
-              typeof registo === 'object' &&
-              'animalId' in registo &&
-              (registo as RegistoAvaliacao).animalId === animal.id
-            );
-          });
+          const atualizado = historico.filter(
+            (registo: unknown) => {
+              if (
+                !registo ||
+                typeof registo !== 'object' ||
+                !('animalId' in registo)
+              ) {
+                return true;
+              }
+
+              return (
+                (registo as RegistoAvaliacao).animalId
+                !== animal.id
+              );
+            }
+          );
 
           localStorage.setItem(
             this.CHAVE_HISTORICO,
@@ -163,7 +379,10 @@ export class QualidadeVidaPage {
         }
       }
     } catch (erro) {
-      console.error('Não foi possível atualizar o histórico:', erro);
+      console.error(
+        'Não foi possível atualizar o histórico:',
+        erro
+      );
 
       await this.mostrarMensagem(
         'Não foi possível eliminar o histórico de avaliações. O animal não foi retirado da lista.'
@@ -172,7 +391,6 @@ export class QualidadeVidaPage {
       return;
     }
 
-    // Retira o animal da lista e guarda os restantes.
     this.animais = this.animais.filter(
       item => item.id !== animal.id
     );
@@ -187,17 +405,16 @@ export class QualidadeVidaPage {
   private async apagarFotoGuardada(
     referencia?: string
   ): Promise<void> {
+
     if (!referencia) {
       return;
     }
 
     try {
-      // Fotografias antigas guardadas diretamente em Base64.
       if (referencia.startsWith('data:image/')) {
         return;
       }
 
-      // Fotografias guardadas no sistema de ficheiros do dispositivo.
       if (referencia.startsWith('fs:')) {
         const caminho = referencia
           .slice(3)
@@ -213,7 +430,6 @@ export class QualidadeVidaPage {
         return;
       }
 
-      // Fotografias guardadas na IndexedDB do navegador.
       if (referencia.startsWith('idb:')) {
         const chave = referencia
           .slice(4)
@@ -224,34 +440,43 @@ export class QualidadeVidaPage {
         }
       }
     } catch (erro) {
-      // A eliminação dos restantes dados deve continuar,
-      // mesmo se o ficheiro já não existir ou não puder ser apagado.
-      console.warn('Não foi possível apagar o ficheiro da fotografia:', erro);
+      console.warn(
+        'Não foi possível apagar a fotografia:',
+        erro
+      );
     }
   }
 
-  private apagarFotoIndexedDB(chave: string): Promise<void> {
-    return new Promise((resolve, reject) => {
-      const pedido = indexedDB.open('fotos_animais_v1');
+  private apagarFotoIndexedDB(
+    chave: string
+  ): Promise<void> {
 
-      pedido.onerror = () => reject(pedido.error);
+    return new Promise((resolve, reject) => {
+      const pedido = indexedDB.open(
+        'fotos_animais_v1'
+      );
+
+      pedido.onerror = () => {
+        reject(pedido.error);
+      };
 
       pedido.onsuccess = () => {
         const baseDados = pedido.result;
 
-        if (!baseDados.objectStoreNames.contains('fotos')) {
+        if (
+          !baseDados.objectStoreNames.contains('fotos')
+        ) {
           baseDados.close();
           resolve();
           return;
         }
 
-        const transacao = baseDados.transaction('fotos', 'readwrite');
-        const pedidoApagar = transacao.objectStore('fotos').delete(chave);
+        const transacao = baseDados.transaction(
+          'fotos',
+          'readwrite'
+        );
 
-        pedidoApagar.onerror = () => {
-          baseDados.close();
-          reject(pedidoApagar.error);
-        };
+        transacao.objectStore('fotos').delete(chave);
 
         transacao.oncomplete = () => {
           baseDados.close();
@@ -262,17 +487,30 @@ export class QualidadeVidaPage {
           baseDados.close();
           reject(transacao.error);
         };
+
+        transacao.onabort = () => {
+          baseDados.close();
+          reject(transacao.error);
+        };
       };
     });
   }
 
+  // --------------------------------------------------
+  // ARMAZENAMENTO DOS ANIMAIS
+  // --------------------------------------------------
+
   private criarId(): string {
-    return `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
+    return `${Date.now()}-${Math.random()
+      .toString(36)
+      .slice(2, 9)}`;
   }
 
   private carregarAnimais(): void {
     try {
-      const dados = localStorage.getItem(this.CHAVE_ANIMAIS);
+      const dados = localStorage.getItem(
+        this.CHAVE_ANIMAIS
+      );
 
       if (!dados) {
         this.animais = [];
@@ -287,13 +525,15 @@ export class QualidadeVidaPage {
       }
 
       this.animais = guardados
-        .filter(item => typeof item === 'string' || (
-          item !== null &&
-          typeof item === 'object' &&
-          'nome' in item
-        ))
+        .filter(item =>
+          typeof item === 'string' ||
+          (
+            item !== null &&
+            typeof item === 'object' &&
+            'nome' in item
+          )
+        )
         .map((item, index): Animal => {
-          // Compatibilidade com os nomes guardados pela versão anterior.
           if (typeof item === 'string') {
             return {
               id: `animal-antigo-${index}`,
@@ -313,7 +553,11 @@ export class QualidadeVidaPage {
 
       this.guardarAnimais();
     } catch (erro) {
-      console.error('Não foi possível carregar os animais:', erro);
+      console.error(
+        'Não foi possível carregar os animais:',
+        erro
+      );
+
       this.animais = [];
     }
   }
@@ -325,7 +569,10 @@ export class QualidadeVidaPage {
     );
   }
 
-  private async mostrarMensagem(mensagem: string): Promise<void> {
+  private async mostrarMensagem(
+    mensagem: string
+  ): Promise<void> {
+
     const alerta = await this.alertController.create({
       message: mensagem,
       buttons: ['OK']

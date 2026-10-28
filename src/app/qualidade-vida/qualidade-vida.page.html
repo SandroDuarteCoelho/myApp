@@ -1,4 +1,4 @@
- <ion-header>
+<ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-button (click)="voltar()">Voltar</ion-button>
@@ -7,39 +7,126 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content class="ion-padding qualidade-content">
 
   <div class="reflexoes-grid">
-    <ion-card button="true" (click)="abrirReflexao('diaria')">
+
+    <ion-card
+      button="true"
+      (click)="abrirReflexao('diaria')"
+      class="cartao-reflexao">
+
       <ion-card-content>
         <div class="cartao-icon">☀️</div>
         <h2>Reflexão Diária</h2>
+
+        <p class="prazo-titulo">Prazo diário</p>
+
+        <div class="contador" *ngIf="contadores.diaria as c">
+          <ng-container *ngIf="!c.terminado; else prazoDiarioTerminado">
+            <span>{{ c.dias }}d</span>
+            <span>{{ c.horas }}h</span>
+            <span>{{ c.minutos }}m</span>
+            <span>{{ c.segundos }}s</span>
+          </ng-container>
+
+          <ng-template #prazoDiarioTerminado>
+            <span class="prazo-terminado">Prazo terminado</span>
+          </ng-template>
+        </div>
+
+        <p class="prazo-data">{{ contadores.diaria?.descricaoPrazo }}</p>
       </ion-card-content>
     </ion-card>
 
-    <ion-card button="true" (click)="abrirReflexao('semanal')">
+    <ion-card
+      button="true"
+      (click)="abrirReflexao('semanal')"
+      class="cartao-reflexao">
+
       <ion-card-content>
         <div class="cartao-icon">🌿</div>
         <h2>Reflexão Semanal</h2>
+
+        <p class="prazo-titulo">Prazo semanal</p>
+
+        <div class="contador" *ngIf="contadores.semanal as c">
+          <ng-container *ngIf="!c.terminado; else prazoSemanalTerminado">
+            <span>{{ c.dias }}d</span>
+            <span>{{ c.horas }}h</span>
+            <span>{{ c.minutos }}m</span>
+            <span>{{ c.segundos }}s</span>
+          </ng-container>
+
+          <ng-template #prazoSemanalTerminado>
+            <span class="prazo-terminado">Prazo terminado</span>
+          </ng-template>
+        </div>
+
+        <p class="prazo-data">{{ contadores.semanal?.descricaoPrazo }}</p>
       </ion-card-content>
     </ion-card>
 
-    <ion-card button="true" (click)="abrirReflexao('mensal')">
+    <ion-card
+      button="true"
+      (click)="abrirReflexao('mensal')"
+      class="cartao-reflexao">
+
       <ion-card-content>
         <div class="cartao-icon">🌱</div>
         <h2>Reflexão Mensal</h2>
+
+        <p class="prazo-titulo">Prazo mensal</p>
+
+        <div class="contador" *ngIf="contadores.mensal as c">
+          <ng-container *ngIf="!c.terminado; else prazoMensalTerminado">
+            <span>{{ c.dias }}d</span>
+            <span>{{ c.horas }}h</span>
+            <span>{{ c.minutos }}m</span>
+            <span>{{ c.segundos }}s</span>
+          </ng-container>
+
+          <ng-template #prazoMensalTerminado>
+            <span class="prazo-terminado">Prazo terminado</span>
+          </ng-template>
+        </div>
+
+        <p class="prazo-data">{{ contadores.mensal?.descricaoPrazo }}</p>
       </ion-card-content>
     </ion-card>
 
-    <ion-card button="true" (click)="abrirReflexao('anual')">
+    <ion-card
+      button="true"
+      (click)="abrirReflexao('anual')"
+      class="cartao-reflexao">
+
       <ion-card-content>
         <div class="cartao-icon">🌳</div>
         <h2>Reflexão Anual</h2>
+
+        <p class="prazo-titulo">Prazo anual</p>
+
+        <div class="contador" *ngIf="contadores.anual as c">
+          <ng-container *ngIf="!c.terminado; else prazoAnualTerminado">
+            <span>{{ c.dias }}d</span>
+            <span>{{ c.horas }}h</span>
+            <span>{{ c.minutos }}m</span>
+            <span>{{ c.segundos }}s</span>
+          </ng-container>
+
+          <ng-template #prazoAnualTerminado>
+            <span class="prazo-terminado">Prazo terminado</span>
+          </ng-template>
+        </div>
+
+        <p class="prazo-data">{{ contadores.anual?.descricaoPrazo }}</p>
       </ion-card-content>
     </ion-card>
+
   </div>
 
   <section class="animais-section">
+
     <div class="animais-titulo">
       <h2>Animal de estimação</h2>
 
@@ -53,24 +140,29 @@
     </div>
 
     <div class="animais-lista">
+
       <ion-card
-  *ngFor="let animal of animais; let i = index"
-  button="true"
-  (click)="abrirAnimal(animal)">
+        *ngFor="let animal of animais; let i = index"
+        button="true"
+        (click)="abrirAnimal(animal)">
+
         <ion-card-content>
           <div class="animal-item">
             <span>🐾</span>
             <strong>{{ animal.nome }}</strong>
+
             <ion-button
-  fill="clear"
-  color="danger"
-  (click)="removerAnimal(i, $event)"
-  aria-label="Remover animal">
-  ✕
-</ion-button>
+              fill="clear"
+              color="danger"
+              (click)="removerAnimal(i, $event)"
+              aria-label="Remover animal">
+              ✕
+            </ion-button>
           </div>
         </ion-card-content>
+
       </ion-card>
+
     </div>
   </section>
 

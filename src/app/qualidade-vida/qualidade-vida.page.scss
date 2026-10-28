@@ -1,6 +1,17 @@
-ion-content {
-  --background: #f4f3ef;
+:host {
+  display: block;
   color: #292929;
+}
+
+ion-header ion-toolbar {
+  --background: #ffffff;
+  --color: #292929;
+  --border-color: #e5e2da;
+}
+
+ion-content.qualidade-content {
+  --background: #f4f3ef;
+  --color: #292929;
 }
 
 .reflexoes-grid {
@@ -11,25 +22,26 @@ ion-content {
 
 .reflexoes-grid ion-card {
   margin: 0;
-  min-height: 145px;
+  min-width: 0;
+  min-height: 190px;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: stretch;
   text-align: center;
   background: #ffffff;
+  color: #333333;
   border-radius: 16px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
   border: 1px solid #e5e2da;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
 }
 
 .reflexoes-grid ion-card-content {
   width: 100%;
-  padding: 18px 8px;
+  padding: 16px 8px;
 }
 
 .cartao-icon {
   font-size: 30px;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .reflexoes-grid h2 {
@@ -38,6 +50,43 @@ ion-content {
   line-height: 1.4;
   font-weight: 600;
   color: #333333;
+}
+
+.prazo-titulo {
+  margin: 12px 0 5px;
+  color: #657166;
+  font-size: 0.78rem;
+}
+
+.contador {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  color: #39764f;
+  font-size: clamp(0.85rem, 3vw, 1.05rem);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.contador span:not(.prazo-terminado) {
+  padding: 4px 3px;
+  background: #edf4eb;
+  border-radius: 5px;
+}
+
+.prazo-terminado {
+  color: #a14c42;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.prazo-data {
+  margin: 8px 0 0;
+  color: #657166;
+  font-size: 0.72rem;
+  line-height: 1.4;
 }
 
 .animais-section {
@@ -73,6 +122,7 @@ ion-content {
 .animais-lista ion-card {
   margin: 8px 0;
   background: #ffffff;
+  color: #333333;
   border-radius: 12px;
   box-shadow: 0 2px 7px rgba(0, 0, 0, 0.05);
 }
@@ -94,11 +144,56 @@ ion-content {
 }
 
 @media (max-width: 360px) {
+  .reflexoes-grid {
+    gap: 8px;
+  }
+
   .reflexoes-grid ion-card {
-    min-height: 125px;
+    min-height: 180px;
   }
 
   .reflexoes-grid h2 {
     font-size: 13px;
   }
+
+  .reflexoes-grid ion-card-content {
+    padding: 14px 5px;
+  }
+
+  .prazo-data {
+    font-size: 0.68rem;
+  }
+}
+
+
+.contador-prazo,
+.tempo-restante,
+.contador-valores,
+.contador-unidade {
+  background: transparent !important;
+  color: #29352d;
+  box-shadow: none;
+}
+
+.contador-prazo {
+  padding: 0;
+  border: 0;
+}
+
+.tempo-restante {
+  padding: 0;
+  border: 0;
+  color: #527b5a;
+}
+
+.contador-valores {
+  padding: 0;
+}
+
+
+.contador span:not(.prazo-terminado) {
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+  color: #39764f;
 }

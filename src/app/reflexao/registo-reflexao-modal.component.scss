@@ -1,0 +1,266 @@
+
+:host {
+  display: block;
+  color: #26352b;
+}
+
+ion-toolbar {
+  --background: #ffffff;
+  --color: #26352b;
+  --border-color: #e0e7e0;
+}
+
+ion-content.consulta-content {
+  --background: #f3f6f3;
+  --color: #26352b;
+}
+
+.consulta-container {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.resumo-registo,
+.secao {
+  background: #ffffff;
+  border: 1px solid #e1e8e1;
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 18px;
+}
+
+.tipo-registo {
+  color: #39764f;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  margin: 0 0 6px;
+}
+
+h1 {
+  font-size: 1.55rem;
+  margin: 0 0 18px;
+  color: #26352b;
+}
+
+h2 {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #315d40;
+  font-size: 1.15rem;
+  line-height: 1.4;
+  margin: 0 0 18px;
+}
+
+h2 ion-icon {
+  flex-shrink: 0;
+  font-size: 1.3rem;
+}
+
+h3 {
+  color: #344a39;
+  font-size: 1rem;
+  margin: 0 0 10px;
+}
+
+.resultado-linha {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 0.9rem;
+}
+
+.barra {
+  height: 8px;
+  background: #e6ece6;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.barra div {
+  height: 100%;
+  background: #57976b;
+  border-radius: inherit;
+  transition: width 180ms ease;
+}
+
+.nota,
+.introducao-arte {
+  color: #637066;
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.nota {
+  margin: 12px 0 0;
+}
+
+.grupo {
+  padding: 14px 0;
+  border-top: 1px solid #edf0ed;
+}
+
+.grupo:first-of-type {
+  border-top: 0;
+}
+
+.grupo h3 {
+  margin-bottom: 12px;
+}
+
+.resposta-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 9px 10px;
+  margin: 5px 0;
+  border-radius: 9px;
+  background: #f7f8f7;
+  color: #657066;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.resposta-item ion-icon {
+  flex-shrink: 0;
+  font-size: 1.15rem;
+  margin-top: 1px;
+}
+
+.resposta-item.assinalada {
+  background: #edf6ee;
+  color: #263d2d;
+}
+
+.resposta-item.assinalada ion-icon {
+  color: #39764f;
+}
+
+.reflexao-item {
+  border-top: 1px solid #edf0ed;
+  padding: 15px 0;
+}
+
+.reflexao-item:first-of-type {
+  border-top: 0;
+}
+
+.pergunta {
+  color: #69766b;
+  font-size: 0.88rem;
+  margin: 0 0 10px;
+}
+
+.texto-reflexao {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  line-height: 1.65;
+  margin: 0;
+  color: #26352b;
+}
+
+.galeria {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 15px;
+  margin-top: 18px;
+}
+
+.arte-card {
+  min-width: 0;
+  border: 1px solid #e1e8e1;
+  border-radius: 12px;
+  padding: 13px;
+  background: #fbfcfb;
+}
+
+.arte-tipo {
+  color: #39764f;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.imagem-arte {
+  display: block;
+  width: 100%;
+  max-height: 340px;
+  object-fit: contain;
+  background: #f0f2f0;
+  border-radius: 9px;
+}
+
+audio {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin: 12px 0;
+}
+
+.nota-arte {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  line-height: 1.5;
+  margin: 12px 0 0;
+  color: #26352b;
+}
+
+.ficheiro-generico {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 10px;
+  background: #f0f3f0;
+  border-radius: 9px;
+  overflow-wrap: anywhere;
+}
+
+.ficheiro-generico ion-icon {
+  flex-shrink: 0;
+  font-size: 1.7rem;
+  color: #39764f;
+}
+
+.acoes-ficheiro {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 10px;
+}
+
+.aviso-ficheiro,
+.vazio {
+  color: #69766b;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.fechar-final {
+  margin: 8px 0 20px;
+}
+
+@media (max-width: 600px) {
+  .consulta-container {
+    padding: 12px;
+  }
+
+  .resumo-registo,
+  .secao {
+    padding: 15px;
+    border-radius: 12px;
+  }
+
+  .galeria {
+    grid-template-columns: 1fr;
+  }
+
+  h1 {
+    font-size: 1.3rem;
+  }
+}

@@ -171,3 +171,19 @@ ion-popover.perfil-popover .guardar-container ion-button {
     color: #222222 !important;
   }
 }
+
+ion-modal.modal-registo-reflexao {
+  --width: min(1000px, 96vw);
+  --height: 92vh;
+  --border-radius: 18px;
+  --background: #f3f6f3;
+}
+
+@media (max-width: 600px) {
+  ion-modal.modal-registo-reflexao {
+    --width: 100%;
+    --height: 100%;
+    --border-radius: 0;
+  }
+}
+

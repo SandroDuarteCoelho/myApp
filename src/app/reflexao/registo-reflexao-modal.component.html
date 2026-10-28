@@ -1,0 +1,213 @@
+
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-title>Memória da reflexão</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button
+        aria-label="Fechar consulta"
+        (click)="fechar()">
+        <ion-icon
+          name="close-outline"
+          slot="icon-only">
+        </ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="consulta-content">
+  <div class="consulta-container">
+
+    <section class="resumo-registo">
+      <p class="tipo-registo">
+        {{ tipoLegivel(registo?.tipo) }}
+      </p>
+
+      <h1>{{ dataFormatada }}</h1>
+
+      <div class="resultado-linha">
+        <span>Respostas assinaladas</span>
+
+        <strong>
+          {{ registo?.assinaladas ?? 0 }}
+          / {{ registo?.totalPerguntas ?? 0 }}
+          ({{ percentagem }}%)
+        </strong>
+      </div>
+
+      <div
+        class="barra"
+        role="progressbar"
+        [attr.aria-valuenow]="percentagem"
+        aria-valuemin="0"
+        aria-valuemax="100">
+        <div [style.width.%]="percentagem"></div>
+      </div>
+
+      <p class="nota">
+        Um retrato daquele momento, não uma classificação
+        da tua vida.
+      </p>
+    </section>
+
+    <section class="secao">
+      <h2>
+        <ion-icon name="checkbox-outline"></ion-icon>
+        Lista de verificação
+      </h2>
+
+      <div
+        *ngFor="let grupo of grupos"
+        class="grupo">
+
+        <h3>{{ grupo.titulo }}</h3>
+
+        <div
+          *ngFor="let pergunta of grupo.perguntas"
+          class="resposta-item"
+          [class.assinalada]="respostas[pergunta.id] === true">
+
+          <ion-icon
+            [name]="respostas[pergunta.id] ? 'checkmark-circle' : 'ellipse-outline'">
+          </ion-icon>
+
+          <span>{{ pergunta.texto }}</span>
+        </div>
+      </div>
+
+      <p *ngIf="!temRespostas" class="vazio">
+        Não existem respostas assinaladas neste registo.
+      </p>
+    </section>
+
+    <section class="secao" *ngIf="temReflexoes">
+      <h2>
+        <ion-icon name="create-outline"></ion-icon>
+        Reflexões escritas
+      </h2>
+
+      <article
+        *ngFor="let campo of camposReflexao"
+        class="reflexao-item"
+        [hidden]="!textoReflexao(campo)">
+
+        <h3>{{ campo.rotulo }}</h3>
+
+        <p class="pergunta">
+          {{ campo.pergunta }}
+        </p>
+
+        <p class="texto-reflexao">
+          {{ textoReflexao(campo) }}
+        </p>
+      </article>
+    </section>
+
+    <section class="secao">
+      <h2>
+        <ion-icon name="images-outline"></ion-icon>
+        A quarta dimensão: a memória artística da vida
+      </h2>
+
+      <p class="introducao-arte">
+        As imagens, os sons e as criações guardam formas de
+        expressão que nem sempre cabem nas palavras. Observa-as
+        no contexto em que foram criadas, sem lhes impor um
+        significado universal.
+      </p>
+
+      <div
+        *ngIf="temExpressoes; else semArte"
+        class="galeria">
+
+        <article
+          *ngFor="let item of expressoes"
+          class="arte-card">
+
+          <div class="arte-tipo">
+            {{ tipoArtisticoLegivel(item.expressao.tipo) }}
+          </div>
+
+          <img
+            *ngIf="eImagem(item) && item.url"
+            [src]="item.url"
+            [alt]="item.expressao.nota || item.expressao.nomeFicheiro || 'Imagem criada neste momento de reflexão'"
+            class="imagem-arte" />
+
+          <audio
+            *ngIf="eAudio(item) && item.url"
+            [src]="item.url"
+            controls
+            preload="metadata">
+          </audio>
+
+          <div
+            *ngIf="!eImagem(item) && !eAudio(item)"
+            class="ficheiro-generico">
+
+            <ion-icon name="document-attach-outline"></ion-icon>
+
+            <span>
+              {{ item.expressao.nomeFicheiro || 'Ficheiro artístico' }}
+            </span>
+          </div>
+
+          <p
+            *ngIf="item.expressao.nota"
+            class="nota-arte">
+            {{ item.expressao.nota }}
+          </p>
+
+          <p
+            *ngIf="item.indisponivel"
+            class="aviso-ficheiro">
+            Não foi possível abrir este ficheiro. A descrição
+            guardada no histórico mantém-se disponível.
+          </p>
+
+          <div
+            class="acoes-ficheiro"
+            *ngIf="item.url">
+
+            <ion-button
+              *ngIf="!eAudio(item)"
+              size="small"
+              fill="outline"
+              (click)="abrirFicheiro(item)">
+              Abrir ficheiro
+            </ion-button>
+
+            <ion-button
+              size="small"
+              fill="clear"
+              (click)="descarregarFicheiro(item)">
+
+              <ion-icon
+                name="download-outline"
+                slot="start">
+              </ion-icon>
+
+              Guardar cópia
+            </ion-button>
+          </div>
+        </article>
+      </div>
+
+      <ng-template #semArte>
+        <p class="vazio">
+          Este registo não tem expressões artísticas guardadas.
+        </p>
+      </ng-template>
+    </section>
+
+    <ion-button
+      expand="block"
+      fill="outline"
+      class="fechar-final"
+      (click)="fechar()">
+      Fechar consulta
+    </ion-button>
+
+  </div>
+</ion-content>

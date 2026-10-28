@@ -1,0 +1,464 @@
+{
+  "versao": 1,
+  "tipos": {
+    "diaria": {
+      "titulo": "Reflexão Diária",
+      "subtitulo": "Habitar a vida",
+      "perguntaInicial": "Hoje, estive verdadeiramente presente?",
+      "duracao": "2–4 minutos",
+      "introducao": "Assinala o que reconheces em ti. Não é necessário cumprir todos os pontos.",
+      "grupos": [
+        {
+          "titulo": "Consciência e escolha",
+          "perguntas": [
+            {
+              "id": "tempo_limitado",
+              "texto": "Reconheci que o tempo de hoje é limitado e não garantido."
+            },
+            {
+              "id": "escolha_consciente",
+              "texto": "Fiz pelo menos uma escolha consciente, em vez de agir apenas por hábito."
+            },
+            {
+              "id": "atencao_importante",
+              "texto": "Dediquei atenção a algo que considero verdadeiramente importante."
+            }
+          ]
+        },
+        {
+          "titulo": "Relação comigo",
+          "perguntas": [
+            {
+              "id": "necessidade",
+              "texto": "Respeitei alguma necessidade minha, sem me exigir perfeição."
+            },
+            {
+              "id": "emocao",
+              "texto": "Reconheci uma emoção, um limite ou um sinal do meu corpo sem o ignorar automaticamente."
+            }
+          ]
+        },
+        {
+          "titulo": "Relação com os outros",
+          "perguntas": [
+            {
+              "id": "presenca_outro",
+              "texto": "Estive verdadeiramente presente com alguém, escutando sem julgar ou tentar corrigir imediatamente."
+            },
+            {
+              "id": "reparacao",
+              "texto": "Evitei, ou procurei reparar, uma atitude que pudesse causar sofrimento desnecessário."
+            }
+          ]
+        },
+        {
+          "titulo": "Respeito pela vida",
+          "perguntas": [
+            {
+              "id": "dependentes",
+              "texto": "Respeitei as necessidades e os limites de quem depende de mim, incluindo os animais ao meu cuidado."
+            },
+            {
+              "id": "aceitacao",
+              "texto": "Aceitei que nem tudo precisava de ser resolvido, controlado ou melhorado hoje."
+            }
+          ]
+        },
+        {
+          "titulo": "Celebração",
+          "perguntas": [
+            {
+              "id": "momento",
+              "texto": "Reconheci pelo menos um momento em que vivi com presença, cuidado, liberdade ou afeto."
+            }
+          ]
+        }
+      ],
+      "reflexoes": [
+        {
+          "id": "momento_celebrar",
+          "rotulo": "O momento que quero celebrar hoje",
+          "pergunta": "Qual foi a pequena vitória de hoje sobre o piloto automático?"
+        }
+      ],
+      "encerramento": "Hoje não vivi tudo de forma consciente, mas reconheci pelo menos um momento em que estive verdadeiramente presente."
+    },
+    "semanal": {
+      "titulo": "Reflexão Semanal",
+      "subtitulo": "Reorientar a vida",
+      "perguntaInicial": "A vida que vivi esta semana aproxima-me do que valorizo?",
+      "duracao": "10 minutos",
+      "introducao": "Aqui, já não observamos apenas momentos isolados. Procuramos padrões, escolhas e pequenas mudanças de direção.",
+      "grupos": [
+        {
+          "titulo": "Direção e prioridades",
+          "perguntas": [
+            {
+              "id": "importante_urgente",
+              "texto": "Distingo o que era realmente importante daquilo que apenas parecia urgente."
+            },
+            {
+              "id": "espaco_habito",
+              "texto": "Identifiquei alguma atividade, obrigação ou hábito que ocupou demasiado espaço na minha vida."
+            },
+            {
+              "id": "passo",
+              "texto": "Dei um passo concreto numa direção que considero significativa, mesmo que pequeno."
+            }
+          ]
+        },
+        {
+          "titulo": "Padrões pessoais",
+          "perguntas": [
+            {
+              "id": "medo_culpa",
+              "texto": "Reconheci uma situação em que o medo, a culpa, a necessidade de aprovação ou o perfeccionismo condicionaram as minhas escolhas."
+            },
+            {
+              "id": "protecao",
+              "texto": "Percebi se uma estratégia antiga de proteção está a limitar a minha vida atual."
+            },
+            {
+              "id": "imperfeicao",
+              "texto": "Consegui aceitar alguma imperfeição, incerteza ou limitação sem transformar isso numa falha pessoal."
+            }
+          ]
+        },
+        {
+          "titulo": "Relações e reparação",
+          "perguntas": [
+            {
+              "id": "relacao",
+              "texto": "Dei atenção a uma relação importante, sem a reduzir a uma obrigação."
+            },
+            {
+              "id": "reparar_limite",
+              "texto": "Reconheci se preciso de esclarecer, agradecer, pedir desculpa, estabelecer um limite ou simplesmente escutar."
+            },
+            {
+              "id": "autonomia",
+              "texto": "Respeitei o caminho do outro sem impor a minha ideia do que seria melhor para ele."
+            }
+          ]
+        },
+        {
+          "titulo": "Cuidado e responsabilidade",
+          "perguntas": [
+            {
+              "id": "dignidade",
+              "texto": "Observei se as minhas ações respeitaram o bem-estar e a dignidade das pessoas envolvidas."
+            },
+            {
+              "id": "animais",
+              "texto": "Verifiquei se os animais ao meu cuidado tiveram atenção, atividade, descanso e cuidados adequados às suas necessidades."
+            },
+            {
+              "id": "responsabilidade",
+              "texto": "Enfrentei uma responsabilidade importante, em vez de a adiar apenas por desconforto ou receio."
+            }
+          ]
+        },
+        {
+          "titulo": "Finitude e liberdade",
+          "perguntas": [
+            {
+              "id": "adiar",
+              "texto": "Reconheci algo que não devo continuar a adiar indefinidamente."
+            },
+            {
+              "id": "nao_resolver",
+              "texto": "Aceitei que não preciso de resolver tudo para viver de forma significativa."
+            },
+            {
+              "id": "mudanca",
+              "texto": "Celebrei uma mudança de atitude, por pequena que tenha sido."
+            }
+          ]
+        }
+      ],
+      "reflexoes": [
+        {
+          "id": "aprendizagem",
+          "rotulo": "O que esta semana me ensinou?",
+          "pergunta": "O que reconheço agora que talvez não visse no início da semana?"
+        },
+        {
+          "id": "escolha_proxima",
+          "rotulo": "Uma escolha consciente para a próxima semana",
+          "pergunta": "Que pequena escolha quero levar comigo para a próxima semana?"
+        }
+      ],
+      "encerramento": "Esta semana consegui reconhecer um padrão e recuperar alguma liberdade de escolha."
+    },
+    "mensal": {
+      "titulo": "Reflexão Mensal",
+      "subtitulo": "Honrar a vida",
+      "perguntaInicial": "Se a minha vida fosse uma história, estaria a vivê-la de forma consciente?",
+      "duracao": "15–20 minutos",
+      "introducao": "Esta é a reflexão mais profunda. Não pretende julgar o mês, mas ajudar a reconhecer a direção da vida e aquilo que merece ser revisto.",
+      "grupos": [
+        {
+          "titulo": "A biografia que estou a construir",
+          "perguntas": [
+            {
+              "id": "valores",
+              "texto": "As minhas escolhas deste mês refletiram valores que reconheço como meus."
+            },
+            {
+              "id": "objetivo",
+              "texto": "Identifiquei algum objetivo que deixou de fazer sentido e que merece ser reconsiderado."
+            },
+            {
+              "id": "negligenciado",
+              "texto": "Reconheci alguma capacidade, relação, experiência ou parte de mim que tenho negligenciado."
+            },
+            {
+              "id": "expectativas",
+              "texto": "Consegui distinguir o que quero realmente viver daquilo que procuro apenas para corresponder a expectativas."
+            }
+          ]
+        },
+        {
+          "titulo": "O tempo e a finitude",
+          "perguntas": [
+            {
+              "id": "adiar",
+              "texto": "Considerei o que não quero continuar a adiar por hábito, medo ou ilusão de que haverá sempre mais tempo."
+            },
+            {
+              "id": "abordar",
+              "texto": "Reconheci algo que merece ser vivido, dito, iniciado ou terminado, respeitando os limites e a liberdade de todos."
+            },
+            {
+              "id": "controlo",
+              "texto": "Aceitei alguma realidade que não posso controlar, sem confundir aceitação com passividade."
+            },
+            {
+              "id": "tempo",
+              "texto": "Pensei se a forma como distribuo o meu tempo corresponde ao valor que atribuo às diferentes áreas da minha vida."
+            }
+          ]
+        },
+        {
+          "titulo": "A dignidade dos outros e dos animais",
+          "perguntas": [
+            {
+              "id": "autonomia",
+              "texto": "Reavaliei se as minhas decisões respeitam a autonomia, as necessidades e a dignidade das pessoas envolvidas."
+            },
+            {
+              "id": "equilibrio",
+              "texto": "Observei se as minhas responsabilidades sociais, familiares e profissionais estão equilibradas com o cuidado e o respeito pelas pessoas."
+            },
+            {
+              "id": "condicoes_animais",
+              "texto": "Reavaliei as condições de vida e as necessidades dos animais ao meu cuidado, incluindo a prevenção e o acompanhamento veterinário quando necessário."
+            },
+            {
+              "id": "fim_vida",
+              "texto": "Se existir uma decisão importante de saúde ou de fim de vida a preparar, considerei como conhecer e respeitar as preferências da pessoa ou o bem-estar do animal."
+            }
+          ]
+        },
+        {
+          "titulo": "Preparar sem viver em função da morte",
+          "perguntas": [
+            {
+              "id": "preferencias",
+              "texto": "Refleti, quando pertinente, sobre os meus valores e preferências para situações futuras de doença ou perda de autonomia."
+            },
+            {
+              "id": "valor",
+              "texto": "Reconheci que não preciso de terminar todas as relações, resolver todas as feridas ou deixar tudo organizado para que a minha vida tenha valor."
+            },
+            {
+              "id": "preservar",
+              "texto": "Identifiquei o que desejo preservar, transformar ou deixar de alimentar no próximo mês."
+            }
+          ]
+        },
+        {
+          "titulo": "Celebrar a vitória da consciência",
+          "perguntas": [
+            {
+              "id": "piloto",
+              "texto": "Reconheci uma mudança concreta em que deixei de agir apenas no piloto automático."
+            },
+            {
+              "id": "vivi",
+              "texto": "Celebrei algo que vivi, e não apenas algo que consegui produzir ou concluir."
+            },
+            {
+              "id": "descanso",
+              "texto": "Encontrei espaço para prazer, descanso, espontaneidade ou contemplação, sem exigir que tudo tivesse uma utilidade."
+            }
+          ]
+        }
+      ],
+      "reflexoes": [
+        {
+          "id": "preservar_mes",
+          "rotulo": "O que quero preservar?",
+          "pergunta": "O que quero preservar no próximo mês?"
+        },
+        {
+          "id": "transformar_mes",
+          "rotulo": "O que quero transformar?",
+          "pergunta": "O que quero transformar ou deixar de alimentar?"
+        },
+        {
+          "id": "vitoria_mes",
+          "rotulo": "A vitória deste mês",
+          "pergunta": "Que pequena ou grande mudança consciente quero reconhecer?"
+        }
+      ],
+      "encerramento": "Não controlo a duração da minha vida, mas posso participar conscientemente na forma como a vivo e no cuidado que ofereço aos outros."
+    },
+    "anual": {
+      "titulo": "Reflexão Anual",
+      "subtitulo": "Honrar a biografia",
+      "perguntaInicial": "A vida que vivi, a pessoa em que me tornei e aquilo que quero levar comigo.",
+      "duracao": "30–45 minutos",
+      "introducao": "Não é necessário responder a tudo nem chegar a conclusões definitivas. Esta reflexão serve para reconhecer a vida vivida, acolher o que mudou e escolher conscientemente o que merece continuar.",
+      "grupos": [
+        {
+          "titulo": "A vida que vivi",
+          "perguntas": [
+            {
+              "id": "presenca",
+              "texto": "Reconheço momentos em que estive verdadeiramente presente na minha vida."
+            },
+            {
+              "id": "experiencias",
+              "texto": "Identifiquei experiências que quero guardar, independentemente de terem sido grandes ou pequenas."
+            },
+            {
+              "id": "habito",
+              "texto": "Reconheci alguma coisa que deixei de fazer apenas por hábito ou por expectativa dos outros."
+            }
+          ]
+        },
+        {
+          "titulo": "A pessoa em que me tornei",
+          "perguntas": [
+            {
+              "id": "padroes",
+              "texto": "Compreendi melhor algum dos meus padrões de comportamento."
+            },
+            {
+              "id": "fragilidade",
+              "texto": "Reconheci uma fragilidade sem a reduzir à minha identidade."
+            },
+            {
+              "id": "mudanca",
+              "texto": "Permiti-me mudar de opinião, de objetivo ou de direção quando fez sentido."
+            },
+            {
+              "id": "acolhimento",
+              "texto": "Identifiquei algo em mim que merece ser acolhido, e não constantemente corrigido."
+            }
+          ]
+        },
+        {
+          "titulo": "As relações que construí",
+          "perguntas": [
+            {
+              "id": "significativas",
+              "texto": "Dediquei atenção às relações que considero significativas."
+            },
+            {
+              "id": "limites",
+              "texto": "Reconheci relações em que preciso de estabelecer limites, reparar algo ou aceitar uma distância."
+            },
+            {
+              "id": "singularidade",
+              "texto": "Respeitei melhor a autonomia e a singularidade das pessoas com quem me relacionei."
+            }
+          ]
+        },
+        {
+          "titulo": "O cuidado com a vida",
+          "perguntas": [
+            {
+              "id": "saude",
+              "texto": "Cuidei de forma razoável da minha saúde, das minhas necessidades e dos meus limites, dentro das circunstâncias possíveis."
+            },
+            {
+              "id": "dependentes",
+              "texto": "Reconheci a responsabilidade que tenho no bem-estar das pessoas e dos animais que dependem de mim."
+            },
+            {
+              "id": "bem_estar",
+              "texto": "Reavaliei alguma situação em que a conveniência, a rotina ou o medo poderiam estar a sobrepor-se ao bem-estar."
+            }
+          ]
+        },
+        {
+          "titulo": "A consciência da finitude",
+          "perguntas": [
+            {
+              "id": "tempo",
+              "texto": "Reconheci que não posso garantir quanto tempo me resta nem controlar todas as circunstâncias."
+            },
+            {
+              "id": "adiamento",
+              "texto": "Identifiquei algo importante que deixei de adiar ou que desejo abordar conscientemente."
+            },
+            {
+              "id": "valores",
+              "texto": "Refleti sobre os valores que gostaria que orientassem as minhas decisões perante a doença, a dependência e o fim da vida."
+            },
+            {
+              "id": "biografia",
+              "texto": "Aceitei que a minha biografia não precisa de estar completa, resolvida ou perfeita para ter valor."
+            }
+          ]
+        },
+        {
+          "titulo": "O que quero levar comigo",
+          "perguntas": [
+            {
+              "id": "preservar",
+              "texto": "Identifiquei o que quero preservar no próximo ano."
+            },
+            {
+              "id": "deixar",
+              "texto": "Reconheci o que estou disposto a deixar de alimentar ou a transformar."
+            },
+            {
+              "id": "prioridade",
+              "texto": "Escolhi uma prioridade que exprime aquilo que considero mais valioso nesta fase da vida."
+            },
+            {
+              "id": "celebrar",
+              "texto": "Encontrei razões para celebrar a vida vivida, incluindo as aprendizagens que nasceram de momentos difíceis."
+            }
+          ]
+        }
+      ],
+      "reflexoes": [
+        {
+          "id": "preservar_ano",
+          "rotulo": "O que quero preservar?",
+          "pergunta": "O que quero preservar?"
+        },
+        {
+          "id": "deixar_ano",
+          "rotulo": "O que quero deixar de alimentar?",
+          "pergunta": "O que quero deixar de alimentar?"
+        },
+        {
+          "id": "intencao_ano",
+          "rotulo": "A minha intenção para o próximo ano",
+          "pergunta": "A minha intenção para o próximo ano:"
+        },
+        {
+          "id": "homenagem",
+          "rotulo": "Uma homenagem à vida que vivi",
+          "pergunta": "Uma homenagem à vida que vivi:"
+        }
+      ],
+      "encerramento": "A minha biografia não precisa de estar completa, resolvida ou perfeita para ter valor."
+    }
+  }
+}

@@ -72,6 +72,19 @@ export class QualidadeVidaPage implements OnDestroy {
 
   animais: Animal[] = [];
 
+  // --------------------------------------------------
+  // MODO DE TESTES
+  // --------------------------------------------------
+
+  modoTeste = false;
+
+  private readonly CHAVE_MODO_TESTE =
+    'qualidade_vida_modo_teste_v1';
+
+  // --------------------------------------------------
+  // CONTADORES
+  // --------------------------------------------------
+
   contadores: Record<TipoReflexao, ContadorReflexao> = {
     diaria: this.contadorInicial(),
     semanal: this.contadorInicial(),
@@ -91,6 +104,10 @@ export class QualidadeVidaPage implements OnDestroy {
     private router: Router,
     private alertController: AlertController
   ) {
+    // Recuperar o estado do modo de testes.
+    this.modoTeste =
+      localStorage.getItem(this.CHAVE_MODO_TESTE) === 'true';
+
     this.carregarAnimais();
     this.atualizarContadores();
 
@@ -104,6 +121,21 @@ export class QualidadeVidaPage implements OnDestroy {
       clearInterval(this.intervalo);
     }
   }
+
+  // --------------------------------------------------
+  // ATIVAR / DESATIVAR MODO DE TESTES
+  // --------------------------------------------------
+
+  alternarModoTeste(event: CustomEvent<{ checked: boolean }>): void {
+  this.modoTeste = event.detail.checked;
+
+  localStorage.setItem(
+    this.CHAVE_MODO_TESTE,
+    String(this.modoTeste)
+  );
+
+  this.atualizarContadores();
+}
 
   // --------------------------------------------------
   // CONTADORES DOS PRAZOS
@@ -137,6 +169,21 @@ export class QualidadeVidaPage implements OnDestroy {
     tipo: TipoReflexao,
     agora: Date
   ): ContadorReflexao {
+
+    // No modo de testes, todas as reflexões ficam abertas.
+    // As regras normais não são alteradas.
+    if (this.modoTeste) {
+      return {
+        dias: 0,
+        horas: '00',
+        minutos: '00',
+        segundos: '00',
+        aberto: true,
+        descricaoContador: 'Modo de testes ativo',
+        descricaoPrazo: 'Acesso livre para testes',
+        terminado: false
+      };
+    }
 
     const evento = this.obterEventoContador(tipo, agora);
 
@@ -622,6 +669,7 @@ export class QualidadeVidaPage implements OnDestroy {
         .filter(animal => animal.nome.trim() !== '');
 
       this.guardarAnimais();
+
     } catch (erro) {
       console.error(
         'Não foi possível carregar os animais:',
@@ -650,4 +698,5 @@ export class QualidadeVidaPage implements OnDestroy {
 
     await alerta.present();
   }
+
 }

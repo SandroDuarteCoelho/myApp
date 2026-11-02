@@ -1049,8 +1049,6 @@ ion-card-content p {
   }
 }
 
-
-
 /* Ajustes para a expressão artística dentro de cada pergunta */
 .pergunta-card {
   --background: #ffffff;
@@ -1102,5 +1100,167 @@ ion-card-content p {
 
   .arte-titulo {
     overflow-wrap: anywhere;
+  }
+}
+
+/* =====================================================
+   GRÁFICO DE EVOLUÇÃO POR TEMA
+   ===================================================== */
+
+.grafico-historico {
+  width: 100%;
+  margin: 18px 0 24px;
+  padding: 17px 15px 14px;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid #e2e6dd;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(42, 54, 42, 0.04);
+}
+
+.grafico-cabecalho {
+  margin-bottom: 14px;
+}
+
+.grafico-cabecalho h4 {
+  margin: 0 0 6px;
+  color: #315d3e;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.grafico-cabecalho p {
+  margin: 0;
+  color: #657166;
+  font-size: 0.83rem;
+  line-height: 1.5;
+}
+
+/* Legenda */
+.grafico-legenda {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 9px 16px;
+  margin: 0 0 12px;
+}
+
+.grafico-legenda-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+  color: #465347;
+  font-size: 0.78rem;
+  line-height: 1.35;
+}
+
+.grafico-legenda-cor {
+  display: inline-block;
+  flex: 0 0 10px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.grafico-legenda-item span:last-child {
+  overflow-wrap: anywhere;
+}
+
+/* Área do gráfico */
+.grafico-scroll {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.grafico-svg {
+  display: block;
+  width: 100%;
+  min-width: 340px;
+  height: auto;
+  overflow: visible;
+}
+
+/* Linhas horizontais da grelha */
+.grafico-grelha {
+  stroke: #e9ede6;
+  stroke-width: 1;
+  stroke-dasharray: 4 4;
+}
+
+.grafico-eixo {
+  stroke: #bfc9bd;
+  stroke-width: 1.2;
+}
+
+.grafico-marca {
+  stroke: #aeb9ac;
+  stroke-width: 1;
+}
+
+/* Números e datas */
+.grafico-eixo-texto {
+  fill: #7b8579;
+  font-family: inherit;
+  font-size: 11px;
+}
+
+.grafico-data-texto {
+  fill: #657166;
+  font-family: inherit;
+  font-size: 10px;
+}
+
+/* Nota explicativa */
+.grafico-nota {
+  margin: 10px 1px 0 !important;
+  color: #7a8378 !important;
+  font-size: 0.76rem;
+  line-height: 1.5;
+}
+
+/* Ajustes para telemóveis */
+@media (max-width: 480px) {
+  .grafico-historico {
+    margin-top: 15px;
+    padding: 14px 11px 12px;
+  }
+
+  .grafico-cabecalho h4 {
+    font-size: 0.95rem;
+  }
+
+  .grafico-cabecalho p {
+    font-size: 0.79rem;
+  }
+
+  .grafico-legenda {
+    gap: 8px 12px;
+  }
+
+  .grafico-legenda-item {
+    font-size: 0.74rem;
+  }
+
+  .grafico-svg {
+    min-width: 340px;
+  }
+
+  .grafico-nota {
+    font-size: 0.73rem;
+  }
+}
+
+@media (max-width: 340px) {
+  .grafico-historico {
+    padding: 12px 9px;
+  }
+
+  .grafico-svg {
+    min-width: 320px;
   }
 }

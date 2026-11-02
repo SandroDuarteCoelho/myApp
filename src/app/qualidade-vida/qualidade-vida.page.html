@@ -10,6 +10,26 @@
 
 <ion-content class="ion-padding qualidade-content">
 
+  <!-- MODO DE TESTES -->
+<div class="modo-teste-container" *ngIf="false">
+  <div class="modo-teste-info">
+    <strong>Modo de testes</strong>
+    <p>
+      Permite experimentar as reflexões sem esperar
+      pelas datas e horários de abertura.
+    </p>
+  </div>
+
+  <ion-toggle
+    [checked]="modoTeste"
+    (ionChange)="alternarModoTeste($event)">
+  </ion-toggle>
+
+  <span [class.ativo]="modoTeste">
+    {{ modoTeste ? 'Ativo' : 'Desativado' }}
+  </span>
+</div>
+
   <!-- CARTÕES DE REFLEXÃO -->
   <div class="reflexoes-grid">
 
@@ -23,7 +43,6 @@
         <div class="cartao-icon">☀️</div>
         <h2>Reflexão Diária</h2>
 
-       
         <ng-container *ngIf="contadores.diaria as c">
           <div
             class="contador"
@@ -61,7 +80,6 @@
         <div class="cartao-icon">🌿</div>
         <h2>Reflexão Semanal</h2>
 
-       
         <ng-container *ngIf="contadores.semanal as c">
           <div
             class="contador"
@@ -99,7 +117,6 @@
         <div class="cartao-icon">🌱</div>
         <h2>Reflexão Mensal</h2>
 
-       
         <ng-container *ngIf="contadores.mensal as c">
           <div
             class="contador"
@@ -137,7 +154,6 @@
         <div class="cartao-icon">🌳</div>
         <h2>Reflexão Anual</h2>
 
-       
         <ng-container *ngIf="contadores.anual as c">
           <div
             class="contador"

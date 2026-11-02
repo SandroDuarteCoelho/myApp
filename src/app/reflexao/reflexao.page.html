@@ -477,6 +477,125 @@
           Quando guardares a primeira avaliação, aparecerá aqui.
         </p>
 
+        <!-- GRÁFICO DE EVOLUÇÃO POR TEMA -->
+        <section
+          class="grafico-historico"
+          *ngIf="graficoTemDados">
+
+          <div class="grafico-cabecalho">
+            <h4>Evolução das respostas por tema</h4>
+
+            <p>
+              Número de respostas assinaladas em cada tema
+              ao longo dos registos guardados.
+            </p>
+          </div>
+
+          <div class="grafico-legenda">
+            <div
+              class="grafico-legenda-item"
+              *ngFor="let serie of graficoLinhas">
+
+              <span
+                class="grafico-legenda-cor"
+                [style.background]="serie.cor">
+              </span>
+
+              <span>{{ serie.titulo }}</span>
+            </div>
+          </div>
+
+          <div class="grafico-scroll">
+            <svg
+              class="grafico-svg"
+              viewBox="0 0 640 250"
+              preserveAspectRatio="xMidYMid meet"
+              role="img"
+              aria-label="Gráfico da evolução do número de respostas assinaladas por tema">
+
+              <!-- GRELHA HORIZONTAL -->
+              <line x1="45" y1="25" x2="615" y2="25"
+                class="grafico-grelha" />
+
+              <line x1="45" y1="85" x2="615" y2="85"
+                class="grafico-grelha" />
+
+              <line x1="45" y1="145" x2="615" y2="145"
+                class="grafico-grelha" />
+
+              <line x1="45" y1="205" x2="615" y2="205"
+                class="grafico-eixo" />
+
+              <!-- VALORES DO EIXO VERTICAL -->
+              <text x="35" y="29" text-anchor="end"
+                class="grafico-eixo-texto">
+                {{ graficoMaximo }}
+              </text>
+
+              <text x="35" y="209" text-anchor="end"
+                class="grafico-eixo-texto">
+                0
+              </text>
+
+              <!-- LINHAS DE EVOLUÇÃO -->
+              <g *ngFor="let serie of graficoLinhas">
+
+                <polyline
+                  [attr.points]="serie.pontosSvg"
+                  fill="none"
+                  [attr.stroke]="serie.cor"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                </polyline>
+
+                <!-- PONTOS DE CADA REGISTO -->
+                <circle
+                  *ngFor="let ponto of serie.pontos"
+                  [attr.cx]="ponto.x"
+                  [attr.cy]="ponto.y"
+                  r="4.5"
+                  [attr.fill]="serie.cor"
+                  stroke="#ffffff"
+                  stroke-width="2">
+
+                  <title>
+                    {{ serie.titulo }}: {{ ponto.valor }} respostas
+                  </title>
+                </circle>
+
+              </g>
+
+              <!-- DATAS DO EIXO HORIZONTAL -->
+              <g *ngFor="let data of graficoDatas">
+
+                <line
+                  [attr.x1]="data.x"
+                  y1="205"
+                  [attr.x2]="data.x"
+                  y2="210"
+                  class="grafico-marca">
+                </line>
+
+                <text
+                  [attr.x]="data.x"
+                  y="228"
+                  text-anchor="middle"
+                  class="grafico-data-texto">
+                  {{ data.label }}
+                </text>
+
+              </g>
+
+            </svg>
+          </div>
+
+          <p class="grafico-nota">
+            Cada linha representa um tema. Os pontos mostram
+            quantas respostas foram assinaladas nesse tema em cada registo.
+          </p>
+        </section>
+
         <ion-card
           class="registo-card"
           *ngFor="let registo of registosOrdenados">

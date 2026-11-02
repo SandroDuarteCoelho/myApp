@@ -1,0 +1,1645 @@
+
+{
+  "versao": 1,
+  "descricao": "Dicionário normalizado de características SWOT dos 17 seténios.",
+  "caracteristicas": [
+    {
+      "id": "sensibilidade_emocional",
+      "nome": "Sensibilidade emocional",
+      "sinonimos": ["sensibilidade afetiva", "perceção emocional"],
+      "opostos": ["distanciamento_emocional"],
+      "complementares": ["empatia", "escuta_ativa"],
+      "categoria": "emocional",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "vinculo_afetivo",
+      "nome": "Vínculo afetivo",
+      "sinonimos": ["ligação afetiva", "laço emocional", "ligação emocional"],
+      "opostos": ["distanciamento_relacional"],
+      "complementares": ["sentido_familia", "capacidade_cuidar"],
+      "categoria": "relacional",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "autoconhecimento",
+      "nome": "Autoconhecimento",
+      "sinonimos": ["consciência de si", "conhecimento pessoal"],
+      "opostos": ["desconhecimento_pessoal"],
+      "complementares": ["introspecao", "autoaceitacao"],
+      "categoria": "pessoal",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "dependencia_emocional",
+      "nome": "Dependência emocional",
+      "sinonimos": ["dependência afetiva", "apego emocional excessivo"],
+      "opostos": ["autonomia_emocional"],
+      "complementares": ["medo_separacao", "dependencia_relacional"],
+      "categoria": "emocional",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "medo_separacao",
+      "nome": "Medo da separação",
+      "sinonimos": ["medo de abandono", "receio de perder vínculos"],
+      "opostos": ["seguranca_afetiva"],
+      "complementares": ["dependencia_emocional", "inseguranca_afetiva"],
+      "categoria": "emocional",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "autorregulacao",
+      "nome": "Autorregulação emocional",
+      "sinonimos": ["regulação emocional", "gestão das emoções"],
+      "opostos": ["impulsividade_emocional", "instabilidade_emocional"],
+      "complementares": ["maturidade_emocional", "autodominio"],
+      "categoria": "emocional",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "seguranca_afetiva",
+      "nome": "Segurança afetiva",
+      "sinonimos": ["segurança emocional", "estabilidade afetiva"],
+      "opostos": ["inseguranca_afetiva"],
+      "complementares": ["vinculo_afetivo", "autoaceitacao"],
+      "categoria": "emocional",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "reconhecimento_emocional",
+      "nome": "Reconhecimento emocional",
+      "sinonimos": ["validação emocional", "reconhecimento dos sentimentos"],
+      "opostos": ["invalidacao_emocional"],
+      "complementares": ["sensibilidade_emocional", "escuta_ativa"],
+      "categoria": "emocional",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "autonomia_emocional",
+      "nome": "Autonomia emocional",
+      "sinonimos": ["independência emocional", "autossuficiência emocional"],
+      "opostos": ["dependencia_emocional"],
+      "complementares": ["autoconfianca", "autorregulacao"],
+      "categoria": "emocional",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "inseguranca_afetiva",
+      "nome": "Insegurança afetiva",
+      "sinonimos": ["insegurança emocional", "instabilidade afetiva"],
+      "opostos": ["seguranca_afetiva"],
+      "complementares": ["medo_separacao", "dependencia_emocional"],
+      "categoria": "emocional",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "dependencia_relacional",
+      "nome": "Dependência relacional",
+      "sinonimos": ["dependência nos relacionamentos", "apego relacional excessivo"],
+      "opostos": ["autonomia_relacional"],
+      "complementares": ["dependencia_emocional", "dificuldade_limites"],
+      "categoria": "relacional",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "expressao_emocional",
+      "nome": "Expressão emocional",
+      "sinonimos": ["comunicação emocional", "manifestação dos sentimentos"],
+      "opostos": ["repressao_emocional"],
+      "complementares": ["comunicacao", "autoconhecimento"],
+      "categoria": "emocional",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "raciocinio_logico",
+      "nome": "Raciocínio lógico",
+      "sinonimos": ["pensamento lógico", "capacidade analítica"],
+      "opostos": [],
+      "complementares": ["capacidade_estrategica", "desenvolvimento_intelectual"],
+      "categoria": "intelectual",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "expressao_verbal",
+      "nome": "Expressão verbal",
+      "sinonimos": ["comunicação verbal", "facilidade de expressão"],
+      "opostos": ["dificuldade_expressao"],
+      "complementares": ["comunicacao", "escuta_ativa"],
+      "categoria": "comunicacional",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "capacidade_aprendizagem",
+      "nome": "Capacidade de aprendizagem",
+      "sinonimos": ["facilidade de aprendizagem", "aptidão para aprender"],
+      "opostos": ["resistencia_aprendizagem"],
+      "complementares": ["aprendizagem_continua", "desenvolvimento_intelectual"],
+      "categoria": "intelectual",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "inseguranca_pessoal",
+      "nome": "Insegurança pessoal",
+      "sinonimos": ["falta de confiança pessoal", "dúvida sobre si próprio"],
+      "opostos": ["autoconfianca"],
+      "complementares": ["dependencia_aprovacao", "conflito_identidade"],
+      "categoria": "pessoal",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "dependencia_aprovacao",
+      "nome": "Dependência de aprovação",
+      "sinonimos": ["necessidade de aprovação", "procura de validação", "dependência do reconhecimento"],
+      "opostos": ["autoconfianca"],
+      "complementares": ["inseguranca_pessoal", "necessidade_reconhecimento"],
+      "categoria": "emocional",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "autonomia_pessoal",
+      "nome": "Autonomia pessoal",
+      "sinonimos": ["independência pessoal", "autodeterminação", "capacidade de decisão"],
+      "opostos": ["dependencia_externa"],
+      "complementares": ["autoconfianca", "autenticidade"],
+      "categoria": "pessoal",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "autodisciplina",
+      "nome": "Autodisciplina",
+      "sinonimos": ["disciplina pessoal", "capacidade de autorregulação"],
+      "opostos": ["desorganizacao_pessoal"],
+      "complementares": ["perseveranca", "autodominio"],
+      "categoria": "comportamental",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "autonomia_financeira",
+      "nome": "Autonomia financeira",
+      "sinonimos": ["independência financeira", "autossuficiência financeira"],
+      "opostos": ["dependencia_financeira"],
+      "complementares": ["gestao_financeira", "organizacao"],
+      "categoria": "financeira",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "desenvolvimento_intelectual",
+      "nome": "Desenvolvimento intelectual",
+      "sinonimos": ["crescimento intelectual", "evolução cognitiva"],
+      "opostos": ["estagnacao_intelectual"],
+      "complementares": ["raciocinio_logico", "aprendizagem_continua"],
+      "categoria": "intelectual",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "submissao_autoridade",
+      "nome": "Submissão à autoridade",
+      "sinonimos": ["submissão hierárquica", "obediência excessiva"],
+      "opostos": ["autonomia_pessoal"],
+      "complementares": ["dependencia_externa", "inseguranca_pessoal"],
+      "categoria": "relacional",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "dependencia_externa",
+      "nome": "Dependência externa",
+      "sinonimos": ["dependência dos outros", "necessidade de apoio constante"],
+      "opostos": ["autonomia_pessoal"],
+      "complementares": ["dependencia_aprovacao", "submissao_autoridade"],
+      "categoria": "comportamental",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "criatividade",
+      "nome": "Criatividade",
+      "sinonimos": ["imaginação criativa", "capacidade inventiva"],
+      "opostos": ["rigidez_pensamento"],
+      "complementares": ["expressao_criativa", "inovacao"],
+      "categoria": "criativa",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "sensibilidade_social",
+      "nome": "Sensibilidade social",
+      "sinonimos": ["perceção social", "consciência das necessidades dos outros"],
+      "opostos": ["indiferenca_social"],
+      "complementares": ["empatia", "capacidade_colaboracao"],
+      "categoria": "social",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "capacidade_colaboracao",
+      "nome": "Capacidade de colaboração",
+      "sinonimos": ["cooperação", "trabalho colaborativo"],
+      "opostos": ["individualismo_excessivo"],
+      "complementares": ["empatia", "solidariedade"],
+      "categoria": "social",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "impulsividade_emocional",
+      "nome": "Impulsividade emocional",
+      "sinonimos": ["reação emocional impulsiva", "dificuldade de controlar impulsos"],
+      "opostos": ["autorregulacao"],
+      "complementares": ["instabilidade_emocional"],
+      "categoria": "emocional",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "necessidade_aprovacao",
+      "nome": "Necessidade de aprovação",
+      "sinonimos": ["procura de aprovação", "necessidade de aceitação externa"],
+      "opostos": ["autoconfianca"],
+      "complementares": ["dependencia_aprovacao", "inseguranca_pessoal"],
+      "categoria": "emocional",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "instabilidade_emocional",
+      "nome": "Instabilidade emocional",
+      "sinonimos": ["oscilação emocional", "volatilidade emocional"],
+      "opostos": ["equilibrio_emocional"],
+      "complementares": ["impulsividade_emocional", "ansiedade"],
+      "categoria": "emocional",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "identidade_pessoal",
+      "nome": "Identidade pessoal",
+      "sinonimos": ["sentido de identidade", "consciência da própria identidade"],
+      "opostos": ["conflito_identidade"],
+      "complementares": ["autenticidade", "autoconhecimento"],
+      "categoria": "pessoal",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "maturidade_emocional",
+      "nome": "Maturidade emocional",
+      "sinonimos": ["equilíbrio emocional", "maturidade afetiva"],
+      "opostos": ["instabilidade_emocional"],
+      "complementares": ["autorregulacao", "autoaceitacao"],
+      "categoria": "emocional",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "integracao_social",
+      "nome": "Integração social",
+      "sinonimos": ["inclusão social", "sentido de integração na comunidade"],
+      "opostos": ["isolamento_social"],
+      "complementares": ["socializacao", "capacidade_colaboracao"],
+      "categoria": "social",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "isolamento_social",
+      "nome": "Isolamento social",
+      "sinonimos": ["afastamento social", "exclusão relacional"],
+      "opostos": ["integracao_social"],
+      "complementares": ["distanciamento_social", "isolamento_relacional"],
+      "categoria": "social",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "comportamento_agressivo",
+      "nome": "Comportamento agressivo",
+      "sinonimos": ["agressividade", "hostilidade comportamental"],
+      "opostos": ["bondade", "compaixao"],
+      "complementares": ["impulsividade_emocional", "autoritarismo"],
+      "categoria": "comportamental",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "autenticidade",
+      "nome": "Autenticidade",
+      "sinonimos": ["genuinidade", "fidelidade a si próprio"],
+      "opostos": ["conformismo", "perda_identidade"],
+      "complementares": ["autonomia_pessoal", "identidade_pessoal"],
+      "categoria": "pessoal",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "expressao_criativa",
+      "nome": "Expressão criativa",
+      "sinonimos": ["manifestação criativa", "expressão artística"],
+      "opostos": ["inibicao_criativa"],
+      "complementares": ["criatividade", "inovacao"],
+      "categoria": "criativa",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "lealdade",
+      "nome": "Lealdade",
+      "sinonimos": ["fidelidade", "compromisso relacional"],
+      "opostos": ["deslealdade"],
+      "complementares": ["vinculo_afetivo", "sentido_familia"],
+      "categoria": "relacional",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "dependencia_familiar",
+      "nome": "Dependência familiar",
+      "sinonimos": ["dependência do núcleo familiar", "falta de autonomia familiar"],
+      "opostos": ["autonomia_familiar"],
+      "complementares": ["dependencia_emocional", "dificuldade_autonomia"],
+      "categoria": "familiar",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "conflito_identidade",
+      "nome": "Conflito de identidade",
+      "sinonimos": ["crise de identidade", "conflito interno sobre quem se é"],
+      "opostos": ["identidade_pessoal"],
+      "complementares": ["inseguranca_pessoal", "perda_identidade"],
+      "categoria": "pessoal",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "inseguranca_espiritual",
+      "nome": "Insegurança espiritual",
+      "sinonimos": ["dúvida espiritual", "falta de confiança na dimensão espiritual"],
+      "opostos": ["seguranca_espiritual"],
+      "complementares": ["conflitos_valores", "conflito_identidade"],
+      "categoria": "espiritual",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "expressao_espiritual",
+      "nome": "Expressão espiritual",
+      "sinonimos": ["manifestação espiritual", "vivência espiritual"],
+      "opostos": ["inibicao_espiritual"],
+      "complementares": ["desenvolvimento_espiritual", "autoconhecimento"],
+      "categoria": "espiritual",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "maturidade_relacional",
+      "nome": "Maturidade relacional",
+      "sinonimos": ["maturidade nos relacionamentos", "competência relacional"],
+      "opostos": ["imaturidade_relacional"],
+      "complementares": ["empatia", "autonomia_relacional"],
+      "categoria": "relacional",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "conformismo_familiar",
+      "nome": "Conformismo familiar",
+      "sinonimos": ["adaptação excessiva às expectativas familiares", "submissão às normas familiares"],
+      "opostos": ["autonomia_familiar"],
+      "complementares": ["dependencia_familiar", "perda_identidade"],
+      "categoria": "familiar",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "perda_identidade",
+      "nome": "Perda de identidade",
+      "sinonimos": ["anulação pessoal", "perda do sentido de si"],
+      "opostos": ["identidade_pessoal", "autenticidade"],
+      "complementares": ["conformismo_familiar", "conflito_identidade"],
+      "categoria": "pessoal",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "conflitos_valores",
+      "nome": "Conflitos de valores",
+      "sinonimos": ["conflito de princípios", "incompatibilidade de valores"],
+      "opostos": ["coerencia_valores"],
+      "complementares": ["conflito_identidade", "inseguranca_espiritual"],
+      "categoria": "pessoal",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "lideranca",
+      "nome": "Liderança",
+      "sinonimos": ["capacidade de liderar", "orientação de pessoas"],
+      "opostos": ["passividade"],
+      "complementares": ["organizacao", "capacidade_estrategica"],
+      "categoria": "comportamental",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "autonomia",
+      "nome": "Autonomia",
+      "sinonimos": ["independência", "autodeterminação"],
+      "opostos": ["dependencia_externa"],
+      "complementares": ["lideranca", "autoconfianca"],
+      "categoria": "pessoal",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "capacidade_estruturacao",
+      "nome": "Capacidade de estruturação",
+      "sinonimos": ["organização estrutural", "capacidade de criar estruturas"],
+      "opostos": ["desorganizacao_pessoal"],
+      "complementares": ["organizacao", "planeamento"],
+      "categoria": "organizacional",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "autoritarismo",
+      "nome": "Autoritarismo",
+      "sinonimos": ["imposição de autoridade", "exercício rígido do poder"],
+      "opostos": ["lideranca_participativa"],
+      "complementares": ["necessidade_controlo", "abuso_autoridade"],
+      "categoria": "relacional",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "possessividade",
+      "nome": "Possessividade",
+      "sinonimos": ["apego possessivo", "necessidade de posse relacional"],
+      "opostos": ["desapego"],
+      "complementares": ["ciume_excessivo", "dependencia_emocional"],
+      "categoria": "relacional",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "independencia_financeira",
+      "nome": "Independência financeira",
+      "sinonimos": ["autonomia financeira", "autossuficiência económica"],
+      "opostos": ["dependencia_financeira"],
+      "complementares": ["gestao_financeira", "estabilidade_financeira"],
+      "categoria": "financeira",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "estabilidade_familiar",
+      "nome": "Estabilidade familiar",
+      "sinonimos": ["segurança familiar", "equilíbrio familiar"],
+      "opostos": ["conflitos_familiares"],
+      "complementares": ["harmonia_familiar", "fortalecimento_vinculos"],
+      "categoria": "familiar",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "lideranca_consciente",
+      "nome": "Liderança consciente",
+      "sinonimos": ["liderança responsável", "liderança equilibrada"],
+      "opostos": ["autoritarismo"],
+      "complementares": ["empatia", "lideranca_participativa"],
+      "categoria": "comportamental",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "conflitos_familiares",
+      "nome": "Conflitos familiares",
+      "sinonimos": ["tensões familiares", "desentendimentos familiares"],
+      "opostos": ["harmonia_familiar"],
+      "complementares": ["dependencia_familiar", "conflitos_geracionais"],
+      "categoria": "familiar",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "ciume_excessivo",
+      "nome": "Ciúme excessivo",
+      "sinonimos": ["ciúme possessivo", "ciúme desproporcionado"],
+      "opostos": ["confianca_relacional"],
+      "complementares": ["possessividade", "inseguranca_afetiva"],
+      "categoria": "relacional",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "abuso_autoridade",
+      "nome": "Abuso de autoridade",
+      "sinonimos": ["uso abusivo do poder", "excesso de autoridade"],
+      "opostos": ["lideranca_participativa"],
+      "complementares": ["autoritarismo", "necessidade_controlo"],
+      "categoria": "relacional",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "disciplina",
+      "nome": "Disciplina",
+      "sinonimos": ["disciplina pessoal", "constância comportamental"],
+      "opostos": ["desorganizacao_pessoal"],
+      "complementares": ["perseveranca", "autodominio"],
+      "categoria": "comportamental",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "perseveranca",
+      "nome": "Perseverança",
+      "sinonimos": ["persistência", "determinação continuada"],
+      "opostos": ["desistencia"],
+      "complementares": ["disciplina", "iniciativa"],
+      "categoria": "comportamental",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "gestao_financeira",
+      "nome": "Gestão financeira",
+      "sinonimos": ["administração financeira", "planeamento financeiro"],
+      "opostos": ["desorganizacao_financeira"],
+      "complementares": ["organizacao", "estabilidade_financeira"],
+      "categoria": "financeira",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "ansiedade",
+      "nome": "Ansiedade",
+      "sinonimos": ["preocupação excessiva", "apreensão persistente"],
+      "opostos": ["tranquilidade"],
+      "complementares": ["necessidade_controlo", "instabilidade_emocional"],
+      "categoria": "emocional",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "ganancia",
+      "nome": "Ganância",
+      "sinonimos": ["ambição material excessiva", "avidez"],
+      "opostos": ["generosidade", "desapego"],
+      "complementares": ["apego_material", "possessividade"],
+      "categoria": "comportamental",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "necessidade_controlo",
+      "nome": "Necessidade de controlo",
+      "sinonimos": ["necessidade de controlar", "controlo excessivo"],
+      "opostos": ["flexibilidade"],
+      "complementares": ["rigidez", "ansiedade"],
+      "categoria": "comportamental",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "estabilidade_financeira",
+      "nome": "Estabilidade financeira",
+      "sinonimos": ["segurança financeira", "equilíbrio económico"],
+      "opostos": ["instabilidade_financeira"],
+      "complementares": ["gestao_financeira", "independencia_financeira"],
+      "categoria": "financeira",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "reconhecimento_profissional",
+      "nome": "Reconhecimento profissional",
+      "sinonimos": ["valorização profissional", "reconhecimento no trabalho"],
+      "opostos": ["desvalorizacao_profissional"],
+      "complementares": ["lideranca", "capacidade_estruturacao"],
+      "categoria": "profissional",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "autodominio",
+      "nome": "Autodomínio",
+      "sinonimos": ["controlo de si", "domínio pessoal"],
+      "opostos": ["impulsividade_emocional"],
+      "complementares": ["disciplina", "autorregulacao"],
+      "categoria": "pessoal",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "dependencia_financeira",
+      "nome": "Dependência financeira",
+      "sinonimos": ["dependência económica", "falta de autonomia financeira"],
+      "opostos": ["independencia_financeira"],
+      "complementares": ["dependencia_externa", "desorganizacao_financeira"],
+      "categoria": "financeira",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "esgotamento",
+      "nome": "Esgotamento",
+      "sinonimos": ["exaustão", "esgotamento físico e emocional"],
+      "opostos": ["vitalidade"],
+      "complementares": ["excesso_responsabilidade", "ansiedade"],
+      "categoria": "bem_estar",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "generosidade",
+      "nome": "Generosidade",
+      "sinonimos": ["altruísmo", "disponibilidade para partilhar"],
+      "opostos": ["egoismo"],
+      "complementares": ["solidariedade", "bondade"],
+      "categoria": "relacional",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "sentido_familia",
+      "nome": "Sentido de família",
+      "sinonimos": ["valorização da família", "sentido de pertença familiar"],
+      "opostos": ["distanciamento_familiar"],
+      "complementares": ["uniao_familiar", "lealdade"],
+      "categoria": "familiar",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "capacidade_cuidar",
+      "nome": "Capacidade de cuidar",
+      "sinonimos": ["cuidado dos outros", "aptidão para cuidar"],
+      "opostos": ["negligencia_pessoal"],
+      "complementares": ["compaixao", "empatia"],
+      "categoria": "relacional",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "excesso_responsabilidade",
+      "nome": "Excesso de responsabilidade",
+      "sinonimos": ["responsabilidade excessiva", "sobrecarga de responsabilidades"],
+      "opostos": ["responsabilidade_equilibrada"],
+      "complementares": ["autossacrificio", "esgotamento"],
+      "categoria": "comportamental",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "dificuldade_autonomia",
+      "nome": "Dificuldade de autonomia",
+      "sinonimos": ["falta de independência", "dificuldade de autodeterminação"],
+      "opostos": ["autonomia_pessoal"],
+      "complementares": ["dependencia_familiar", "dependencia_externa"],
+      "categoria": "pessoal",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "harmonia_familiar",
+      "nome": "Harmonia familiar",
+      "sinonimos": ["paz familiar", "equilíbrio nas relações familiares"],
+      "opostos": ["conflitos_familiares"],
+      "complementares": ["estabilidade_familiar", "uniao_familiar"],
+      "categoria": "familiar",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "solidariedade",
+      "nome": "Solidariedade",
+      "sinonimos": ["apoio mútuo", "cooperação solidária"],
+      "opostos": ["indiferenca_social"],
+      "complementares": ["generosidade", "capacidade_colaboracao"],
+      "categoria": "social",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "fortalecimento_vinculos",
+      "nome": "Fortalecimento de vínculos",
+      "sinonimos": ["consolidação de laços", "reforço das relações"],
+      "opostos": ["enfraquecimento_vinculos"],
+      "complementares": ["vinculo_afetivo", "harmonia_familiar"],
+      "categoria": "relacional",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "autossacrificio",
+      "nome": "Autossacrifício",
+      "sinonimos": ["sacrifício pessoal excessivo", "anulação das próprias necessidades"],
+      "opostos": ["autocuidado"],
+      "complementares": ["excesso_responsabilidade", "dificuldade_limites"],
+      "categoria": "comportamental",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "iniciativa",
+      "nome": "Iniciativa",
+      "sinonimos": ["proatividade", "capacidade de iniciar projetos"],
+      "opostos": ["passividade"],
+      "complementares": ["perseveranca", "adaptabilidade"],
+      "categoria": "comportamental",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "capacidade_transformacao",
+      "nome": "Capacidade de transformação",
+      "sinonimos": ["aptidão para mudar", "capacidade de renovação"],
+      "opostos": ["resistencia_mudanca"],
+      "complementares": ["adaptabilidade", "reinvenção_pessoal"],
+      "categoria": "pessoal",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "adaptabilidade",
+      "nome": "Adaptabilidade",
+      "sinonimos": ["flexibilidade adaptativa", "capacidade de adaptação"],
+      "opostos": ["rigidez", "resistencia_mudanca"],
+      "complementares": ["iniciativa", "capacidade_transformacao"],
+      "categoria": "comportamental",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "inseguranca_profissional",
+      "nome": "Insegurança profissional",
+      "sinonimos": ["falta de confiança profissional", "dúvida sobre competências profissionais"],
+      "opostos": ["autoconfianca_profissional"],
+      "complementares": ["medo_envelhecimento", "perda_proposito"],
+      "categoria": "profissional",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "resistencia_mudanca",
+      "nome": "Resistência à mudança",
+      "sinonimos": ["resistência à transformação", "dificuldade em aceitar mudanças"],
+      "opostos": ["adaptabilidade"],
+      "complementares": ["rigidez", "necessidade_controlo"],
+      "categoria": "comportamental",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "desorganizacao_financeira",
+      "nome": "Desorganização financeira",
+      "sinonimos": ["falta de planeamento financeiro", "má gestão financeira"],
+      "opostos": ["gestao_financeira"],
+      "complementares": ["instabilidade_financeira", "dependencia_financeira"],
+      "categoria": "financeira",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "renovacao_profissional",
+      "nome": "Renovação profissional",
+      "sinonimos": ["reinvenção profissional", "mudança de percurso profissional"],
+      "opostos": ["estagnacao_profissional"],
+      "complementares": ["novos_projetos", "adaptabilidade"],
+      "categoria": "profissional",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "novos_projetos",
+      "nome": "Novos projetos",
+      "sinonimos": ["novas iniciativas", "novos empreendimentos"],
+      "opostos": ["estagnacao"],
+      "complementares": ["iniciativa", "criatividade"],
+      "categoria": "profissional",
+      "polaridade": "oportunidade"
+    },
+    {
+      "id": "reinvenção_pessoal",
+      "nome": "Reinvenção pessoal",
+      "sinonimos": ["renovação pessoal", "redescoberta de si"],
+      "opostos": ["estagnacao_pessoal"],
+      "complementares": ["autoconhecimento", "capacidade_transformacao"],
+      "categoria": "pessoal",
+      "polaridade": "oportunidade"
+    },
+    {
+      "id": "instabilidade_financeira",
+      "nome": "Instabilidade financeira",
+      "sinonimos": ["insegurança económica", "incerteza financeira"],
+      "opostos": ["estabilidade_financeira"],
+      "complementares": ["desorganizacao_financeira", "dependencia_financeira"],
+      "categoria": "financeira",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "medo_envelhecimento",
+      "nome": "Medo do envelhecimento",
+      "sinonimos": ["receio de envelhecer", "ansiedade perante o envelhecimento"],
+      "opostos": ["aceitacao_envelhecimento"],
+      "complementares": ["perda_proposito", "inseguranca_profissional"],
+      "categoria": "pessoal",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "perda_proposito",
+      "nome": "Perda de propósito",
+      "sinonimos": ["falta de sentido", "ausência de propósito"],
+      "opostos": ["sentido_proposito"],
+      "complementares": ["medo_envelhecimento", "estagnacao_pessoal"],
+      "categoria": "existencial",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "sabedoria_espiritual",
+      "nome": "Sabedoria espiritual",
+      "sinonimos": ["maturidade espiritual", "compreensão espiritual"],
+      "opostos": ["dogmatismo"],
+      "complementares": ["desenvolvimento_espiritual", "capacidade_orientacao"],
+      "categoria": "espiritual",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "capacidade_orientacao",
+      "nome": "Capacidade de orientação",
+      "sinonimos": ["aptidão para orientar", "capacidade de aconselhar"],
+      "opostos": ["desorientacao"],
+      "complementares": ["sabedoria", "transmissao_conhecimento"],
+      "categoria": "relacional",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "apego_material",
+      "nome": "Apego material",
+      "sinonimos": ["apego aos bens", "dependência dos bens materiais"],
+      "opostos": ["desapego"],
+      "complementares": ["ganancia", "necessidade_controlo"],
+      "categoria": "pessoal",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "rigidez_moral",
+      "nome": "Rigidez moral",
+      "sinonimos": ["inflexibilidade moral", "moralismo rígido"],
+      "opostos": ["flexibilidade_moral"],
+      "complementares": ["intolerancia", "dogmatismo"],
+      "categoria": "valores",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "necessidade_reconhecimento",
+      "nome": "Necessidade de reconhecimento",
+      "sinonimos": ["procura de reconhecimento", "necessidade de valorização"],
+      "opostos": ["autovalorizacao"],
+      "complementares": ["dependencia_aprovacao", "inseguranca_pessoal"],
+      "categoria": "emocional",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "desenvolvimento_espiritual",
+      "nome": "Desenvolvimento espiritual",
+      "sinonimos": ["crescimento espiritual", "evolução interior"],
+      "opostos": ["estagnacao_espiritual"],
+      "complementares": ["sabedoria_espiritual", "expressao_espiritual"],
+      "categoria": "espiritual",
+      "polaridade": "oportunidade"
+    },
+    {
+      "id": "servico_comunitario",
+      "nome": "Serviço comunitário",
+      "sinonimos": ["serviço à comunidade", "participação comunitária"],
+      "opostos": ["desinteresse_comunitario"],
+      "complementares": ["solidariedade", "generosidade"],
+      "categoria": "social",
+      "polaridade": "oportunidade"
+    },
+    {
+      "id": "transmissao_conhecimento",
+      "nome": "Transmissão de conhecimento",
+      "sinonimos": ["partilha de conhecimento", "transmissão de saberes"],
+      "opostos": ["retencao_conhecimento"],
+      "complementares": ["sabedoria", "capacidade_orientacao"],
+      "categoria": "intelectual",
+      "polaridade": "oportunidade"
+    },
+    {
+      "id": "intolerancia",
+      "nome": "Intolerância",
+      "sinonimos": ["falta de tolerância", "intransigência"],
+      "opostos": ["tolerancia"],
+      "complementares": ["rigidez_moral", "dogmatismo"],
+      "categoria": "social",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "isolamento_espiritual",
+      "nome": "Isolamento espiritual",
+      "sinonimos": ["afastamento espiritual", "isolamento na vivência espiritual"],
+      "opostos": ["integracao_espiritual"],
+      "complementares": ["isolamento_relacional", "dogmatismo"],
+      "categoria": "espiritual",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "dogmatismo",
+      "nome": "Dogmatismo",
+      "sinonimos": ["pensamento dogmático", "adesão rígida a crenças"],
+      "opostos": ["abertura_mental"],
+      "complementares": ["rigidez_moral", "intolerancia"],
+      "categoria": "intelectual",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "compaixao",
+      "nome": "Compaixão",
+      "sinonimos": ["sensibilidade compassiva", "compreensão do sofrimento alheio"],
+      "opostos": ["indiferenca"],
+      "complementares": ["empatia", "bondade"],
+      "categoria": "relacional",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "escuta_ativa",
+      "nome": "Escuta ativa",
+      "sinonimos": ["escuta atenta", "capacidade de ouvir"],
+      "opostos": ["escuta_passiva"],
+      "complementares": ["empatia", "comunicacao"],
+      "categoria": "comunicacional",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "bondade",
+      "nome": "Bondade",
+      "sinonimos": ["benevolência", "amabilidade"],
+      "opostos": ["maldade", "hostilidade"],
+      "complementares": ["generosidade", "compaixao"],
+      "categoria": "relacional",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "dificuldade_limites",
+      "nome": "Dificuldade de estabelecer limites",
+      "sinonimos": ["dificuldade em dizer não", "ausência de limites pessoais"],
+      "opostos": ["limites_saudaveis"],
+      "complementares": ["excesso_disponibilidade", "autossacrificio"],
+      "categoria": "relacional",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "excesso_disponibilidade",
+      "nome": "Excesso de disponibilidade",
+      "sinonimos": ["disponibilidade excessiva", "estar sempre disponível para os outros"],
+      "opostos": ["autocuidado"],
+      "complementares": ["dificuldade_limites", "excesso_responsabilidade"],
+      "categoria": "relacional",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "solidariedade",
+      "nome": "Solidariedade",
+      "sinonimos": ["apoio mútuo", "cooperação solidária"],
+      "opostos": ["indiferenca_social"],
+      "complementares": ["generosidade", "compaixao"],
+      "categoria": "social",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "aconselhamento",
+      "nome": "Aconselhamento",
+      "sinonimos": ["orientação pessoal", "apoio através de conselhos"],
+      "opostos": ["desorientacao"],
+      "complementares": ["escuta_ativa", "capacidade_orientacao"],
+      "categoria": "relacional",
+      "polaridade": "oportunidade"
+    },
+    {
+      "id": "generosidade_consciente",
+      "nome": "Generosidade consciente",
+      "sinonimos": ["generosidade equilibrada", "ajuda com consciência dos próprios limites"],
+      "opostos": ["autossacrificio"],
+      "complementares": ["generosidade", "limites_saudaveis"],
+      "categoria": "relacional",
+      "polaridade": "oportunidade"
+    },
+    {
+      "id": "esgotamento_emocional",
+      "nome": "Esgotamento emocional",
+      "sinonimos": ["exaustão emocional", "cansaço emocional"],
+      "opostos": ["equilibrio_emocional"],
+      "complementares": ["excesso_disponibilidade", "autossacrificio"],
+      "categoria": "emocional",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "negligencia_pessoal",
+      "nome": "Negligência pessoal",
+      "sinonimos": ["descuido consigo próprio", "desvalorização das próprias necessidades"],
+      "opostos": ["autocuidado"],
+      "complementares": ["autossacrificio", "excesso_responsabilidade"],
+      "categoria": "pessoal",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "perda_autonomia",
+      "nome": "Perda de autonomia",
+      "sinonimos": ["diminuição da independência", "redução da autodeterminação"],
+      "opostos": ["autonomia_pessoal"],
+      "complementares": ["dependencia_externa", "dependencia_relacional"],
+      "categoria": "pessoal",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "introspecao",
+      "nome": "Introspeção",
+      "sinonimos": ["reflexão interior", "observação de si"],
+      "opostos": ["dispersao_interior"],
+      "complementares": ["autoconhecimento", "capacidade_contemplativa"],
+      "categoria": "pessoal",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "sabedoria",
+      "nome": "Sabedoria",
+      "sinonimos": ["discernimento", "conhecimento amadurecido"],
+      "opostos": ["imprudencia"],
+      "complementares": ["introspecao", "capacidade_orientacao"],
+      "categoria": "intelectual",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "capacidade_contemplativa",
+      "nome": "Capacidade contemplativa",
+      "sinonimos": ["contemplação", "capacidade de observação tranquila"],
+      "opostos": ["agitação_constante"],
+      "complementares": ["introspecao", "sabedoria_espiritual"],
+      "categoria": "espiritual",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "isolamento_excessivo",
+      "nome": "Isolamento excessivo",
+      "sinonimos": ["recolhimento excessivo", "afastamento prolongado"],
+      "opostos": ["socializacao"],
+      "complementares": ["distanciamento_social", "isolamento_relacional"],
+      "categoria": "social",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "rigidez_pensamento",
+      "nome": "Rigidez de pensamento",
+      "sinonimos": ["inflexibilidade mental", "pensamento rígido"],
+      "opostos": ["abertura_mental"],
+      "complementares": ["dogmatismo", "resistencia_mudanca"],
+      "categoria": "intelectual",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "distanciamento_social",
+      "nome": "Distanciamento social",
+      "sinonimos": ["afastamento das relações sociais", "redução do contacto social"],
+      "opostos": ["integracao_social"],
+      "complementares": ["isolamento_excessivo", "isolamento_social"],
+      "categoria": "social",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "isolamento_relacional",
+      "nome": "Isolamento relacional",
+      "sinonimos": ["afastamento relacional", "desconexão interpessoal"],
+      "opostos": ["vinculo_afetivo"],
+      "complementares": ["isolamento_social", "isolamento_espiritual"],
+      "categoria": "relacional",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "empatia",
+      "nome": "Empatia",
+      "sinonimos": ["compreensão empática", "capacidade de se colocar no lugar do outro"],
+      "opostos": ["indiferenca"],
+      "complementares": ["escuta_ativa", "compaixao"],
+      "categoria": "relacional",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "comunicacao",
+      "nome": "Comunicação",
+      "sinonimos": ["capacidade comunicativa", "troca de informação e expressão"],
+      "opostos": ["dificuldade_expressao"],
+      "complementares": ["escuta_ativa", "expressao_verbal"],
+      "categoria": "comunicacional",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "sabedoria_partilhada",
+      "nome": "Sabedoria partilhada",
+      "sinonimos": ["conhecimento partilhado", "experiência transmitida"],
+      "opostos": ["isolamento_conhecimento"],
+      "complementares": ["transmissao_conhecimento", "sabedoria"],
+      "categoria": "intelectual",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "criticismo",
+      "nome": "Criticismo",
+      "sinonimos": ["atitude crítica excessiva", "tendência para criticar"],
+      "opostos": ["aceitacao"],
+      "complementares": ["rigidez_pensamento", "autocriticismo"],
+      "categoria": "comportamental",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "dificuldade_adaptacao",
+      "nome": "Dificuldade de adaptação",
+      "sinonimos": ["falta de adaptabilidade", "dificuldade em ajustar-se a mudanças"],
+      "opostos": ["adaptabilidade"],
+      "complementares": ["resistencia_mudanca", "rigidez"],
+      "categoria": "comportamental",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "socializacao",
+      "nome": "Socialização",
+      "sinonimos": ["integração social", "participação social"],
+      "opostos": ["isolamento_social"],
+      "complementares": ["comunicacao", "empatia"],
+      "categoria": "social",
+      "polaridade": "oportunidade"
+    },
+    {
+      "id": "aprendizagem_continua",
+      "nome": "Aprendizagem contínua",
+      "sinonimos": ["aprendizagem ao longo da vida", "formação permanente"],
+      "opostos": ["estagnacao_intelectual"],
+      "complementares": ["capacidade_aprendizagem", "desenvolvimento_intelectual"],
+      "categoria": "intelectual",
+      "polaridade": "oportunidade"
+    },
+    {
+      "id": "alegria",
+      "nome": "Alegria",
+      "sinonimos": ["contentamento", "vivacidade", "júbilo"],
+      "opostos": ["tristeza"],
+      "complementares": ["espontaneidade", "capacidade_convivio"],
+      "categoria": "emocional",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "capacidade_convivio",
+      "nome": "Capacidade de convívio",
+      "sinonimos": ["facilidade de convívio", "sociabilidade"],
+      "opostos": ["isolamento_social"],
+      "complementares": ["alegria", "empatia"],
+      "categoria": "social",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "magoa_acumulada",
+      "nome": "Mágoa acumulada",
+      "sinonimos": ["ressentimento guardado", "feridas emocionais não resolvidas"],
+      "opostos": ["reconciliacao"],
+      "complementares": ["ressentimento", "dificuldade_desapego"],
+      "categoria": "emocional",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "dificuldade_desapego",
+      "nome": "Dificuldade de desapego",
+      "sinonimos": ["apego excessivo", "dificuldade em deixar ir"],
+      "opostos": ["desapego"],
+      "complementares": ["magoa_acumulada", "ressentimento"],
+      "categoria": "emocional",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "ressentimento",
+      "nome": "Ressentimento",
+      "sinonimos": ["rancor", "mágoa persistente"],
+      "opostos": ["reconciliacao"],
+      "complementares": ["magoa_acumulada", "dificuldade_desapego"],
+      "categoria": "emocional",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "partilha_alegria",
+      "nome": "Partilha de alegria",
+      "sinonimos": ["alegria partilhada", "celebração em conjunto"],
+      "opostos": ["isolamento_social"],
+      "complementares": ["alegria", "capacidade_convivio"],
+      "categoria": "social",
+      "polaridade": "oportunidade"
+    },
+    {
+      "id": "reconciliacao",
+      "nome": "Reconciliação",
+      "sinonimos": ["reaproximação", "restabelecimento de relações"],
+      "opostos": ["ressentimento"],
+      "complementares": ["perdao", "empatia"],
+      "categoria": "relacional",
+      "polaridade": "oportunidade"
+    },
+    {
+      "id": "valorizacao_presente",
+      "nome": "Valorização do presente",
+      "sinonimos": ["viver o momento presente", "apreciação do agora"],
+      "opostos": ["apego_passado"],
+      "complementares": ["alegria", "desapego"],
+      "categoria": "pessoal",
+      "polaridade": "oportunidade"
+    },
+    {
+      "id": "perda_espontaneidade",
+      "nome": "Perda de espontaneidade",
+      "sinonimos": ["inibição espontânea", "falta de naturalidade"],
+      "opostos": ["espontaneidade"],
+      "complementares": ["rigidez", "necessidade_controlo"],
+      "categoria": "comportamental",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "mentoria",
+      "nome": "Mentoria",
+      "sinonimos": ["orientação de outros", "acompanhamento de desenvolvimento"],
+      "opostos": [],
+      "complementares": ["sabedoria", "transmissao_conhecimento"],
+      "categoria": "profissional",
+      "polaridade": "oportunidade"
+    },
+    {
+      "id": "inovacao",
+      "nome": "Inovação",
+      "sinonimos": ["capacidade de inovar", "criação de novas soluções"],
+      "opostos": ["estagnacao"],
+      "complementares": ["criatividade", "expressao_criativa"],
+      "categoria": "criativa",
+      "polaridade": "oportunidade"
+    },
+    {
+      "id": "transmissao_experiencia",
+      "nome": "Transmissão de experiência",
+      "sinonimos": ["partilha de experiência", "transmissão de vivências"],
+      "opostos": ["isolamento_conhecimento"],
+      "complementares": ["mentoria", "sabedoria"],
+      "categoria": "intelectual",
+      "polaridade": "oportunidade"
+    },
+    {
+      "id": "conflitos_autoridade",
+      "nome": "Conflitos de autoridade",
+      "sinonimos": ["disputas de autoridade", "conflitos hierárquicos"],
+      "opostos": ["lideranca_participativa"],
+      "complementares": ["autoritarismo", "necessidade_controlo"],
+      "categoria": "relacional",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "organizacao",
+      "nome": "Organização",
+      "sinonimos": ["capacidade organizativa", "estruturação"],
+      "opostos": ["desorganizacao_pessoal"],
+      "complementares": ["planeamento", "capacidade_estruturacao"],
+      "categoria": "organizacional",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "capacidade_estrategica",
+      "nome": "Capacidade estratégica",
+      "sinonimos": ["pensamento estratégico", "planeamento estratégico"],
+      "opostos": ["improvisacao_constante"],
+      "complementares": ["raciocinio_logico", "organizacao"],
+      "categoria": "intelectual",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "rigidez_administrativa",
+      "nome": "Rigidez administrativa",
+      "sinonimos": ["inflexibilidade administrativa", "burocracia rígida"],
+      "opostos": ["flexibilidade"],
+      "complementares": ["necessidade_controlo", "rigidez"],
+      "categoria": "organizacional",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "organizacao_familiar",
+      "nome": "Organização familiar",
+      "sinonimos": ["estruturação familiar", "planeamento da vida familiar"],
+      "opostos": ["desorganizacao_familiar"],
+      "complementares": ["organizacao", "sentido_familia"],
+      "categoria": "familiar",
+      "polaridade": "oportunidade"
+    },
+    {
+      "id": "conflitos_poder",
+      "nome": "Conflitos de poder",
+      "sinonimos": ["disputas de poder", "lutas pelo controlo"],
+      "opostos": ["cooperacao"],
+      "complementares": ["autoritarismo", "necessidade_controlo"],
+      "categoria": "relacional",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "apego_autoridade",
+      "nome": "Apego à autoridade",
+      "sinonimos": ["apego ao poder", "necessidade de manter autoridade"],
+      "opostos": ["desapego_poder"],
+      "complementares": ["necessidade_controlo", "autoritarismo"],
+      "categoria": "comportamental",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "sentido_pertenca",
+      "nome": "Sentido de pertença",
+      "sinonimos": ["sentimento de pertença", "identificação com um grupo"],
+      "opostos": ["alienacao"],
+      "complementares": ["uniao_familiar", "vinculo_afetivo"],
+      "categoria": "social",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "sabedoria_ancestral",
+      "nome": "Sabedoria ancestral",
+      "sinonimos": ["conhecimento ancestral", "saberes transmitidos entre gerações"],
+      "opostos": ["desvalorizacao_tradicao"],
+      "complementares": ["transmissao_intergeracional", "sabedoria"],
+      "categoria": "familiar",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "uniao_familiar",
+      "nome": "União familiar",
+      "sinonimos": ["coesão familiar", "união entre familiares"],
+      "opostos": ["fragmentacao_familiar"],
+      "complementares": ["sentido_familia", "harmonia_familiar"],
+      "categoria": "familiar",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "apego_passado",
+      "nome": "Apego ao passado",
+      "sinonimos": ["fixação no passado", "dificuldade em deixar o passado"],
+      "opostos": ["valorizacao_presente", "desapego"],
+      "complementares": ["idealizacao_familiar", "dificuldade_desapego"],
+      "categoria": "pessoal",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "rigidez_tradicional",
+      "nome": "Rigidez tradicional",
+      "sinonimos": ["apego rígido à tradição", "inflexibilidade tradicional"],
+      "opostos": ["abertura_mudanca"],
+      "complementares": ["dogmatismo", "resistencia_mudanca"],
+      "categoria": "familiar",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "idealizacao_familiar",
+      "nome": "Idealização familiar",
+      "sinonimos": ["idealização da família", "visão idealizada do núcleo familiar"],
+      "opostos": ["visao_realista_familia"],
+      "complementares": ["apego_passado", "dependencia_familiar"],
+      "categoria": "familiar",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "reconciliacao_familiar",
+      "nome": "Reconciliação familiar",
+      "sinonimos": ["reaproximação familiar", "restabelecimento de laços familiares"],
+      "opostos": ["conflitos_familiares"],
+      "complementares": ["perdao", "empatia"],
+      "categoria": "familiar",
+      "polaridade": "oportunidade"
+    },
+    {
+      "id": "transmissao_intergeracional",
+      "nome": "Transmissão intergeracional",
+      "sinonimos": ["transmissão entre gerações", "partilha de saberes familiares"],
+      "opostos": ["rutura_intergeracional"],
+      "complementares": ["sabedoria_ancestral", "transmissao_conhecimento"],
+      "categoria": "familiar",
+      "polaridade": "oportunidade"
+    },
+    {
+      "id": "preservacao_memorias",
+      "nome": "Preservação de memórias",
+      "sinonimos": ["preservação da memória familiar", "conservação de recordações"],
+      "opostos": ["esquecimento_memorias"],
+      "complementares": ["sabedoria_ancestral", "transmissao_intergeracional"],
+      "categoria": "familiar",
+      "polaridade": "oportunidade"
+    },
+    {
+      "id": "conflitos_geracionais",
+      "nome": "Conflitos geracionais",
+      "sinonimos": ["conflitos entre gerações", "tensões intergeracionais"],
+      "opostos": ["harmonia_geracional"],
+      "complementares": ["rigidez_tradicional", "conflitos_familiares"],
+      "categoria": "familiar",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "repeticao_padroes_familiares",
+      "nome": "Repetição de padrões familiares",
+      "sinonimos": ["reprodução de padrões familiares", "repetição de dinâmicas familiares"],
+      "opostos": ["diferenciacao_familiar"],
+      "complementares": ["apego_passado", "idealizacao_familiar"],
+      "categoria": "familiar",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "dependencia_passado",
+      "nome": "Dependência do passado",
+      "sinonimos": ["vivência condicionada pelo passado", "fixação em experiências anteriores"],
+      "opostos": ["desapego"],
+      "complementares": ["apego_passado", "resistencia_mudanca"],
+      "categoria": "pessoal",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "equilibrio",
+      "nome": "Equilíbrio",
+      "sinonimos": ["harmonia", "estabilidade interior"],
+      "opostos": ["desequilibrio"],
+      "complementares": ["simplicidade", "desapego"],
+      "categoria": "pessoal",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "desapego",
+      "nome": "Desapego",
+      "sinonimos": ["libertação do apego", "capacidade de deixar ir"],
+      "opostos": ["apego_material", "possessividade"],
+      "complementares": ["simplicidade", "equilibrio"],
+      "categoria": "pessoal",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "simplicidade",
+      "nome": "Simplicidade",
+      "sinonimos": ["vida simples", "despojamento"],
+      "opostos": ["complexidade_excessiva"],
+      "complementares": ["desapego", "equilibrio"],
+      "categoria": "pessoal",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "rigidez_conceptual",
+      "nome": "Rigidez conceptual",
+      "sinonimos": ["inflexibilidade conceptual", "fixação em conceitos"],
+      "opostos": ["abertura_mental"],
+      "complementares": ["dogmatismo", "rigidez_pensamento"],
+      "categoria": "intelectual",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "dificuldade_integracao",
+      "nome": "Dificuldade de integração",
+      "sinonimos": ["dificuldade de integração pessoal", "fragmentação interior"],
+      "opostos": ["integracao_pessoal"],
+      "complementares": ["conflito_identidade", "desequilibrio"],
+      "categoria": "pessoal",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "integracao_pessoal",
+      "nome": "Integração pessoal",
+      "sinonimos": ["integração interior", "coerência pessoal"],
+      "opostos": ["dificuldade_integracao"],
+      "complementares": ["autoconhecimento", "autoaceitacao"],
+      "categoria": "pessoal",
+      "polaridade": "oportunidade"
+    },
+    {
+      "id": "transcendencia",
+      "nome": "Transcendência",
+      "sinonimos": ["superação de limites pessoais", "elevação da consciência"],
+      "opostos": [],
+      "complementares": ["desenvolvimento_espiritual", "desapego"],
+      "categoria": "espiritual",
+      "polaridade": "oportunidade"
+    },
+    {
+      "id": "harmonia_interior",
+      "nome": "Harmonia interior",
+      "sinonimos": ["paz interior", "equilíbrio interno"],
+      "opostos": ["conflito_interior"],
+      "complementares": ["equilibrio", "simplicidade"],
+      "categoria": "pessoal",
+      "polaridade": "oportunidade"
+    },
+    {
+      "id": "isolamento",
+      "nome": "Isolamento",
+      "sinonimos": ["afastamento", "recolhimento social"],
+      "opostos": ["integracao_social"],
+      "complementares": ["isolamento_social", "distanciamento_social"],
+      "categoria": "social",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "apego_excessivo",
+      "nome": "Apego excessivo",
+      "sinonimos": ["apego desproporcionado", "dificuldade de libertação"],
+      "opostos": ["desapego"],
+      "complementares": ["apego_material", "possessividade"],
+      "categoria": "pessoal",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "perda_flexibilidade",
+      "nome": "Perda de flexibilidade",
+      "sinonimos": ["inflexibilidade", "falta de flexibilidade"],
+      "opostos": ["flexibilidade"],
+      "complementares": ["rigidez", "resistencia_mudanca"],
+      "categoria": "comportamental",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "autoaceitacao",
+      "nome": "Autoaceitação",
+      "sinonimos": ["aceitação pessoal", "acolhimento de si próprio"],
+      "opostos": ["autocriticismo"],
+      "complementares": ["autoconhecimento", "autoconfianca"],
+      "categoria": "emocional",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "autocriticismo",
+      "nome": "Autocriticismo",
+      "sinonimos": ["autocrítica excessiva", "julgamento pessoal", "exigência excessiva consigo próprio"],
+      "opostos": ["autoaceitacao"],
+      "complementares": ["perfeccionismo", "necessidade_controlo"],
+      "categoria": "emocional",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "autoconfianca",
+      "nome": "Autoconfiança",
+      "sinonimos": ["confiança pessoal", "segurança interior", "confiança em si próprio"],
+      "opostos": ["inseguranca_pessoal"],
+      "complementares": ["autonomia_pessoal", "autoaceitacao"],
+      "categoria": "pessoal",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "autonomia_relacional",
+      "nome": "Autonomia relacional",
+      "sinonimos": ["independência relacional", "capacidade de manter identidade nos relacionamentos"],
+      "opostos": ["dependencia_relacional"],
+      "complementares": ["maturidade_relacional", "limites_saudaveis"],
+      "categoria": "relacional",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "limites_saudaveis",
+      "nome": "Limites saudáveis",
+      "sinonimos": ["limites pessoais equilibrados", "capacidade de dizer não"],
+      "opostos": ["dificuldade_limites"],
+      "complementares": ["autonomia_relacional", "autocuidado"],
+      "categoria": "relacional",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "autocuidado",
+      "nome": "Autocuidado",
+      "sinonimos": ["cuidado pessoal", "respeito pelas próprias necessidades"],
+      "opostos": ["negligencia_pessoal"],
+      "complementares": ["limites_saudaveis", "autoaceitacao"],
+      "categoria": "pessoal",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "flexibilidade",
+      "nome": "Flexibilidade",
+      "sinonimos": ["abertura à mudança", "capacidade de adaptação"],
+      "opostos": ["rigidez", "necessidade_controlo"],
+      "complementares": ["adaptabilidade", "abertura_mental"],
+      "categoria": "comportamental",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "rigidez",
+      "nome": "Rigidez",
+      "sinonimos": ["inflexibilidade", "falta de flexibilidade"],
+      "opostos": ["flexibilidade"],
+      "complementares": ["resistencia_mudanca", "necessidade_controlo"],
+      "categoria": "comportamental",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "abertura_mental",
+      "nome": "Abertura mental",
+      "sinonimos": ["mente aberta", "recetividade a novas ideias"],
+      "opostos": ["dogmatismo", "rigidez_pensamento"],
+      "complementares": ["flexibilidade", "aprendizagem_continua"],
+      "categoria": "intelectual",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "perfeccionismo",
+      "nome": "Perfeccionismo",
+      "sinonimos": ["exigência de perfeição", "perfeccionismo excessivo"],
+      "opostos": ["aceitacao"],
+      "complementares": ["autocriticismo", "necessidade_controlo"],
+      "categoria": "comportamental",
+      "polaridade": "vulnerabilidade"
+    },
+    {
+      "id": "equilibrio_emocional",
+      "nome": "Equilíbrio emocional",
+      "sinonimos": ["estabilidade emocional", "serenidade emocional"],
+      "opostos": ["instabilidade_emocional"],
+      "complementares": ["autorregulacao", "maturidade_emocional"],
+      "categoria": "emocional",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "aceitacao",
+      "nome": "Aceitação",
+      "sinonimos": ["aceitação de si e dos outros", "atitude de acolhimento"],
+      "opostos": ["criticismo", "perfeccionismo"],
+      "complementares": ["autoaceitacao", "empatia"],
+      "categoria": "relacional",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "perdao",
+      "nome": "Perdão",
+      "sinonimos": ["capacidade de perdoar", "libertação do ressentimento"],
+      "opostos": ["ressentimento"],
+      "complementares": ["reconciliacao", "compaixao"],
+      "categoria": "emocional",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "abertura_mudanca",
+      "nome": "Abertura à mudança",
+      "sinonimos": ["recetividade à mudança", "disponibilidade para mudar"],
+      "opostos": ["resistencia_mudanca"],
+      "complementares": ["adaptabilidade", "iniciativa"],
+      "categoria": "comportamental",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "cooperacao",
+      "nome": "Cooperação",
+      "sinonimos": ["colaboração", "trabalho conjunto"],
+      "opostos": ["conflitos_poder"],
+      "complementares": ["solidariedade", "empatia"],
+      "categoria": "social",
+      "polaridade": "recurso"
+    },
+    {
+      "id": "lideranca_participativa",
+      "nome": "Liderança participativa",
+      "sinonimos": ["liderança colaborativa", "liderança democrática"],
+      "opostos": ["autoritarismo", "abuso_autoridade"],
+      "complementares": ["empatia", "cooperacao"],
+      "categoria": "comportamental",
+      "polaridade": "recurso"
+    }
+  ]
+}
